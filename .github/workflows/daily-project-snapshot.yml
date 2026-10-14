@@ -1,0 +1,27 @@
+name: Daily project snapshot
+on:
+  schedule:
+    - cron: "23 1 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: node scripts/update-projects.mjs
+      - name: Commit a changed snapshot
+        run: |
+          if git diff --quiet; then
+            echo "No metric changes"
+            exit 0
+          fi
+          git config user.name "ipunk-radar-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add dist/data/projects.json dist/data/history
+          git commit -m "data: update daily project snapshot"
+          git push

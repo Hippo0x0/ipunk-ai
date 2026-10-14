@@ -1,0 +1,10 @@
+{
+  "captured_at": "2026-10-14T14:56:00+08:00",
+  "source": "GitHub REST API",
+  "baseline_only": true,
+  "projects": [
+    {"slug":"rea","repo":"morluto/rea","stars":218376,"forks":53994,"open_issues":549,"language":"TypeScript","license":"MIT","pushed_at":"2026-10-14T06:55:52Z"},
+    {"slug":"openclaw","repo":"openclaw/openclaw","stars":391934,"forks":82429,"open_issues":9597,"language":"TypeScript","license":"MIT","pushed_at":"2026-10-14T06:56:10Z"},
+    {"slug":"jev","repo":"jevmodel/jev-ai","stars":0,"forks":0,"open_issues":0,"language":"HTML","license":null,"pushed_at":"2026-09-28T07:35:08Z"}
+  ]
+}
