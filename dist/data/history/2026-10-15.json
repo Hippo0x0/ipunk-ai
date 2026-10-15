@@ -1,33 +1,33 @@
 {
-  "captured_at": "2026-10-15T05:59:52.351Z",
+  "captured_at": "2026-10-15T06:22:13.379Z",
   "source": "GitHub REST API",
   "baseline_only": false,
   "projects": [
     {
       "slug": "rea",
       "repo": "morluto/rea",
-      "stars": 249804,
-      "forks": 62723,
-      "open_issues": 853,
+      "stars": 250377,
+      "forks": 62880,
+      "open_issues": 871,
       "language": "TypeScript",
       "license": "MIT",
-      "pushed_at": "2026-10-15T05:57:56Z",
-      "previous_capture_at": "2026-10-15T02:44:49.064Z",
-      "stars_since_previous_capture": 4453,
-      "forks_since_previous_capture": 1343
+      "pushed_at": "2026-10-15T06:21:39Z",
+      "previous_capture_at": "2026-10-15T05:59:52.351Z",
+      "stars_since_previous_capture": 573,
+      "forks_since_previous_capture": 157
     },
     {
       "slug": "openclaw",
       "repo": "openclaw/openclaw",
-      "stars": 392047,
+      "stars": 392046,
       "forks": 82434,
-      "open_issues": 9560,
+      "open_issues": 9546,
       "language": "TypeScript",
       "license": "MIT",
-      "pushed_at": "2026-10-15T05:59:49Z",
-      "previous_capture_at": "2026-10-15T02:44:49.064Z",
-      "stars_since_previous_capture": 8,
-      "forks_since_previous_capture": -2
+      "pushed_at": "2026-10-15T06:22:06Z",
+      "previous_capture_at": "2026-10-15T05:59:52.351Z",
+      "stars_since_previous_capture": -1,
+      "forks_since_previous_capture": 0
     },
     {
       "slug": "jev",
@@ -38,48 +38,74 @@
       "language": "HTML",
       "license": null,
       "pushed_at": "2026-09-28T07:35:08Z",
-      "previous_capture_at": "2026-10-15T02:44:49.064Z",
+      "previous_capture_at": "2026-10-15T05:59:52.351Z",
       "stars_since_previous_capture": 0,
       "forks_since_previous_capture": 0
     },
     {
       "slug": "gemini-cli",
       "repo": "google-gemini/gemini-cli",
-      "stars": 107375,
+      "stars": 107376,
       "forks": 14716,
       "open_issues": 745,
       "language": "TypeScript",
       "license": "Apache-2.0",
       "pushed_at": "2026-10-14T19:37:03Z",
-      "previous_capture_at": "2026-10-15T02:44:49.064Z",
-      "stars_since_previous_capture": 3,
+      "previous_capture_at": "2026-10-15T05:59:52.351Z",
+      "stars_since_previous_capture": 1,
       "forks_since_previous_capture": 0
     },
     {
       "slug": "browser-use",
       "repo": "browser-use/browser-use",
-      "stars": 118016,
-      "forks": 13078,
-      "open_issues": 546,
+      "stars": 118017,
+      "forks": 13080,
+      "open_issues": 548,
       "language": "Python",
       "license": "MIT",
       "pushed_at": "2026-10-15T01:38:16Z",
-      "previous_capture_at": "2026-10-15T02:44:49.064Z",
-      "stars_since_previous_capture": 12,
-      "forks_since_previous_capture": 1
+      "previous_capture_at": "2026-10-15T05:59:52.351Z",
+      "stars_since_previous_capture": 1,
+      "forks_since_previous_capture": 2
     },
     {
       "slug": "markitdown",
       "repo": "microsoft/markitdown",
-      "stars": 190295,
+      "stars": 190298,
       "forks": 14133,
       "open_issues": 728,
       "language": "Python",
       "license": "MIT",
       "pushed_at": "2026-10-04T03:59:52Z",
-      "previous_capture_at": "2026-10-15T02:44:49.064Z",
-      "stars_since_previous_capture": 23,
-      "forks_since_previous_capture": -1
+      "previous_capture_at": "2026-10-15T05:59:52.351Z",
+      "stars_since_previous_capture": 3,
+      "forks_since_previous_capture": 0
+    },
+    {
+      "slug": "claude-code",
+      "repo": "anthropics/claude-code",
+      "stars": 150928,
+      "forks": 26584,
+      "open_issues": 15032,
+      "language": "TypeScript",
+      "license": null,
+      "pushed_at": "2026-10-14T18:24:25Z",
+      "previous_capture_at": "2026-10-15T05:59:52.351Z",
+      "stars_since_previous_capture": null,
+      "forks_since_previous_capture": null
+    },
+    {
+      "slug": "codex-cli",
+      "repo": "openai/codex",
+      "stars": 129280,
+      "forks": 20322,
+      "open_issues": 22635,
+      "language": "Rust",
+      "license": "Apache-2.0",
+      "pushed_at": "2026-10-15T03:48:51Z",
+      "previous_capture_at": "2026-10-15T05:59:52.351Z",
+      "stars_since_previous_capture": null,
+      "forks_since_previous_capture": null
     }
   ]
 }

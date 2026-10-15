@@ -11,6 +11,8 @@ const repositories = [
   ["gemini-cli", "google-gemini/gemini-cli"],
   ["browser-use", "browser-use/browser-use"],
   ["markitdown", "microsoft/markitdown"],
+  ["claude-code", "anthropics/claude-code"],
+  ["codex-cli", "openai/codex"],
 ];
 const existing = JSON.parse(await readFile(dataPath, "utf8"));
 const prior = new Map(existing.projects.map((project) => [project.repo, project]));
