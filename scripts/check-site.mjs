@@ -11,7 +11,7 @@ async function walk(directory) {
 }
 await walk(root);
 const htmlFiles = files.filter((path) => path.endsWith(".html"));
-if (htmlFiles.length < 13) throw new Error(`Expected at least 13 HTML pages, found ${htmlFiles.length}`);
+if (htmlFiles.length < 14) throw new Error(`Expected at least 14 HTML pages, found ${htmlFiles.length}`);
 for (const path of htmlFiles) {
   const html = await readFile(path, "utf8");
   if (!/<title>[^<]+<\/title>/.test(html)) throw new Error(`${path}: missing title`);
@@ -23,7 +23,7 @@ for (const path of htmlFiles) {
   }
 }
 const data = JSON.parse(await readFile(join(root, "data/projects.json"), "utf8"));
-if (data.projects.length !== 8) throw new Error("Expected exactly eight tracked projects");
+if (data.projects.length !== 9) throw new Error("Expected exactly nine tracked projects");
 for (const project of data.projects) {
   const page = join(root, "projects", project.slug, "index.html");
   try { await stat(page); } catch { throw new Error(`Missing project page for ${project.slug}`); }

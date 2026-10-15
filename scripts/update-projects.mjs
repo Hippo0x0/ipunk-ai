@@ -13,6 +13,7 @@ const repositories = [
   ["markitdown", "microsoft/markitdown"],
   ["claude-code", "anthropics/claude-code"],
   ["codex-cli", "openai/codex"],
+  ["qwen-code", "QwenLM/qwen-code"],
 ];
 const existing = JSON.parse(await readFile(dataPath, "utf8"));
 const prior = new Map(existing.projects.map((project) => [project.repo, project]));

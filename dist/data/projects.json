@@ -106,6 +106,19 @@
       "previous_capture_at": "2026-10-15T05:59:52.351Z",
       "stars_since_previous_capture": null,
       "forks_since_previous_capture": null
+    },
+    {
+      "slug": "qwen-code",
+      "repo": "QwenLM/qwen-code",
+      "stars": 28479,
+      "forks": 3203,
+      "open_issues": 1874,
+      "language": "TypeScript",
+      "license": "Apache-2.0",
+      "pushed_at": "2026-10-14T13:38:43Z",
+      "previous_capture_at": "2026-10-15T06:22:13.379Z",
+      "stars_since_previous_capture": null,
+      "forks_since_previous_capture": null
     }
   ]
 }
