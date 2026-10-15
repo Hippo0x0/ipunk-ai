@@ -15,6 +15,7 @@ const repositories = [
   ["codex-cli", "openai/codex"],
   ["qwen-code", "QwenLM/qwen-code"],
   ["opencode", "anomalyco/opencode"],
+  ["cline", "cline/cline"],
 ];
 const existing = JSON.parse(await readFile(dataPath, "utf8"));
 const prior = new Map(existing.projects.map((project) => [project.repo, project]));

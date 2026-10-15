@@ -11,7 +11,7 @@ if(nav&&!nav.querySelector('[data-trends-link]')){
 }
 fetch('/data/projects.json').then(response=>response.ok?response.json():Promise.reject()).then(data=>{
   const number=new Intl.NumberFormat('en-US');
-  const paths={rea:'morluto/rea',openclaw:'openclaw/openclaw',jev:'jevmodel/jev-ai','gemini-cli':'google-gemini/gemini-cli','browser-use':'browser-use/browser-use',markitdown:'microsoft/markitdown','claude-code':'anthropics/claude-code','codex-cli':'openai/codex','qwen-code':'QwenLM/qwen-code',opencode:'anomalyco/opencode'};
+  const paths={rea:'morluto/rea',openclaw:'openclaw/openclaw',jev:'jevmodel/jev-ai','gemini-cli':'google-gemini/gemini-cli','browser-use':'browser-use/browser-use',markitdown:'microsoft/markitdown','claude-code':'anthropics/claude-code','codex-cli':'openai/codex','qwen-code':'QwenLM/qwen-code',opencode:'anomalyco/opencode',cline:'cline/cline'};
   for(const card of document.querySelectorAll('.card')){
     const slug=new URL(card.href).pathname.split('/').filter(Boolean).at(-1);const project=data.projects.find(item=>item.repo===paths[slug]);if(!project)continue;
     const values=card.querySelectorAll('.metric strong');if(values[0])values[0].textContent=number.format(project.stars);if(values[1])values[1].textContent=number.format(project.forks);

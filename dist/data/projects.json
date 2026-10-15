@@ -132,6 +132,19 @@
       "previous_capture_at": "2026-10-15T06:22:13.379Z",
       "stars_since_previous_capture": null,
       "forks_since_previous_capture": null
+    },
+    {
+      "slug": "cline",
+      "repo": "cline/cline",
+      "stars": 70356,
+      "forks": 7664,
+      "open_issues": 1669,
+      "language": "TypeScript",
+      "license": "Apache-2.0",
+      "pushed_at": "2026-10-15T12:13:12Z",
+      "previous_capture_at": "2026-10-15T06:22:13.379Z",
+      "stars_since_previous_capture": null,
+      "forks_since_previous_capture": null
     }
   ]
 }
