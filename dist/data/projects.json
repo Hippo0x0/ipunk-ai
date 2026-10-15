@@ -119,6 +119,19 @@
       "previous_capture_at": "2026-10-15T06:22:13.379Z",
       "stars_since_previous_capture": null,
       "forks_since_previous_capture": null
+    },
+    {
+      "slug": "opencode",
+      "repo": "anomalyco/opencode",
+      "stars": 213720,
+      "forks": 28671,
+      "open_issues": 4308,
+      "language": "TypeScript",
+      "license": "MIT",
+      "pushed_at": "2026-10-15T12:17:18Z",
+      "previous_capture_at": "2026-10-15T06:22:13.379Z",
+      "stars_since_previous_capture": null,
+      "forks_since_previous_capture": null
     }
   ]
 }
