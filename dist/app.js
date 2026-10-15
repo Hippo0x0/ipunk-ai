@@ -5,7 +5,7 @@ function update(){if(!button)return;const en=document.body.classList.contains('e
 button?.addEventListener('click',()=>{document.body.classList.toggle('en');localStorage.setItem('ipunk-ai-language',document.body.classList.contains('en')?'en':'zh');update()});update();
 fetch('/data/projects.json').then(response=>response.ok?response.json():Promise.reject()).then(data=>{
   const number=new Intl.NumberFormat('en-US');
-  const paths={rea:'morluto/rea',openclaw:'openclaw/openclaw',jev:'jevmodel/jev-ai'};
+  const paths={rea:'morluto/rea',openclaw:'openclaw/openclaw',jev:'jevmodel/jev-ai','gemini-cli':'google-gemini/gemini-cli','browser-use':'browser-use/browser-use',markitdown:'microsoft/markitdown'};
   for(const card of document.querySelectorAll('.card')){
     const slug=new URL(card.href).pathname.split('/').filter(Boolean).at(-1);const project=data.projects.find(item=>item.repo===paths[slug]);if(!project)continue;
     const values=card.querySelectorAll('.metric strong');if(values[0])values[0].textContent=number.format(project.stars);if(values[1])values[1].textContent=number.format(project.forks);

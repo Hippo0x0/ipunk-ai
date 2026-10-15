@@ -8,6 +8,9 @@ const repositories = [
   ["rea", "morluto/rea"],
   ["openclaw", "openclaw/openclaw"],
   ["jev", "jevmodel/jev-ai"],
+  ["gemini-cli", "google-gemini/gemini-cli"],
+  ["browser-use", "browser-use/browser-use"],
+  ["markitdown", "microsoft/markitdown"],
 ];
 const existing = JSON.parse(await readFile(dataPath, "utf8"));
 const prior = new Map(existing.projects.map((project) => [project.repo, project]));
@@ -16,8 +19,13 @@ const date = capturedAt.slice(0, 10);
 
 const projects = [];
 for (const [slug, repo] of repositories) {
+  const token = process.env.GITHUB_TOKEN;
   const response = await fetch(`https://api.github.com/repos/${repo}`, {
-    headers: { Accept: "application/vnd.github+json", "User-Agent": "ipunk-ai-radar" },
+    headers: {
+      Accept: "application/vnd.github+json",
+      "User-Agent": "ipunk-ai-radar",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
     signal: AbortSignal.timeout(20_000),
   });
   if (!response.ok) throw new Error(`${repo}: GitHub API returned ${response.status}`);

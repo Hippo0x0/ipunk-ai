@@ -1,6 +1,6 @@
 # iPunk AI Radar
 
-Static MVP for `ai.ipunk.cn`. It separates observed GitHub metrics from editorial scores and keeps dated snapshots for later 1-day, 7-day, and 30-day comparisons.
+Static AI project radar for `ai.ipunk.cn`. It separates observed GitHub metrics from editorial scores and keeps dated snapshots for 1-day, 7-day, and 30-day comparisons. The current watchlist contains six projects across agent tooling, personal assistants, decision models, terminal agents, browser agents, and document processing.
 
 ## Update project data
 
@@ -8,4 +8,4 @@ Static MVP for `ai.ipunk.cn`. It separates observed GitHub metrics from editoria
 node scripts/update-projects.mjs
 ```
 
-The first snapshot is a baseline. A delta is reported only when a prior capture exists. Editorial scores are updated manually when meaningful evidence changes.
+A delta is reported only when a prior capture exists. Editorial scores are updated manually when meaningful evidence changes. Set `GITHUB_TOKEN` to increase the GitHub API rate limit; the scheduled GitHub Action supplies its built-in token automatically.

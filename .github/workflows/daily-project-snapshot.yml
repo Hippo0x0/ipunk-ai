@@ -14,6 +14,8 @@ jobs:
         with:
           node-version: 24
       - run: node scripts/update-projects.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit a changed snapshot
         run: |
           if git diff --quiet; then

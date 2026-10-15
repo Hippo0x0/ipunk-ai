@@ -1,0 +1,85 @@
+{
+  "captured_at": "2026-10-15T02:44:49.064Z",
+  "source": "GitHub REST API",
+  "baseline_only": false,
+  "projects": [
+    {
+      "slug": "rea",
+      "repo": "morluto/rea",
+      "stars": 245351,
+      "forks": 61380,
+      "open_issues": 805,
+      "language": "TypeScript",
+      "license": "MIT",
+      "pushed_at": "2026-10-15T02:42:42Z",
+      "previous_capture_at": "2026-10-14T14:56:00+08:00",
+      "stars_since_previous_capture": 26975,
+      "forks_since_previous_capture": 7386
+    },
+    {
+      "slug": "openclaw",
+      "repo": "openclaw/openclaw",
+      "stars": 392039,
+      "forks": 82436,
+      "open_issues": 9613,
+      "language": "TypeScript",
+      "license": "MIT",
+      "pushed_at": "2026-10-15T02:44:41Z",
+      "previous_capture_at": "2026-10-14T14:56:00+08:00",
+      "stars_since_previous_capture": 105,
+      "forks_since_previous_capture": 7
+    },
+    {
+      "slug": "jev",
+      "repo": "jevmodel/jev-ai",
+      "stars": 0,
+      "forks": 0,
+      "open_issues": 0,
+      "language": "HTML",
+      "license": null,
+      "pushed_at": "2026-09-28T07:35:08Z",
+      "previous_capture_at": "2026-10-14T14:56:00+08:00",
+      "stars_since_previous_capture": 0,
+      "forks_since_previous_capture": 0
+    },
+    {
+      "slug": "gemini-cli",
+      "repo": "google-gemini/gemini-cli",
+      "stars": 107372,
+      "forks": 14716,
+      "open_issues": 744,
+      "language": "TypeScript",
+      "license": "Apache-2.0",
+      "pushed_at": "2026-10-14T19:37:03Z",
+      "previous_capture_at": "2026-10-14T14:56:00+08:00",
+      "stars_since_previous_capture": null,
+      "forks_since_previous_capture": null
+    },
+    {
+      "slug": "browser-use",
+      "repo": "browser-use/browser-use",
+      "stars": 118004,
+      "forks": 13077,
+      "open_issues": 546,
+      "language": "Python",
+      "license": "MIT",
+      "pushed_at": "2026-10-15T01:38:16Z",
+      "previous_capture_at": "2026-10-14T14:56:00+08:00",
+      "stars_since_previous_capture": null,
+      "forks_since_previous_capture": null
+    },
+    {
+      "slug": "markitdown",
+      "repo": "microsoft/markitdown",
+      "stars": 190272,
+      "forks": 14134,
+      "open_issues": 728,
+      "language": "Python",
+      "license": "MIT",
+      "pushed_at": "2026-10-04T03:59:52Z",
+      "previous_capture_at": "2026-10-14T14:56:00+08:00",
+      "stars_since_previous_capture": null,
+      "forks_since_previous_capture": null
+    }
+  ]
+}

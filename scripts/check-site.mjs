@@ -11,7 +11,7 @@ async function walk(directory) {
 }
 await walk(root);
 const htmlFiles = files.filter((path) => path.endsWith(".html"));
-if (htmlFiles.length < 6) throw new Error(`Expected at least 6 HTML pages, found ${htmlFiles.length}`);
+if (htmlFiles.length < 9) throw new Error(`Expected at least 9 HTML pages, found ${htmlFiles.length}`);
 for (const path of htmlFiles) {
   const html = await readFile(path, "utf8");
   if (!/<title>[^<]+<\/title>/.test(html)) throw new Error(`${path}: missing title`);
@@ -23,6 +23,9 @@ for (const path of htmlFiles) {
   }
 }
 const data = JSON.parse(await readFile(join(root, "data/projects.json"), "utf8"));
-if (data.projects.length !== 3) throw new Error("Expected exactly three launch projects");
-if (!data.baseline_only) throw new Error("Launch data must remain labeled as baseline");
+if (data.projects.length !== 6) throw new Error("Expected exactly six tracked projects");
+for (const project of data.projects) {
+  const page = join(root, "projects", project.slug, "index.html");
+  try { await stat(page); } catch { throw new Error(`Missing project page for ${project.slug}`); }
+}
 console.log(`Site check passed: ${htmlFiles.length} HTML pages, ${data.projects.length} project snapshots`);
