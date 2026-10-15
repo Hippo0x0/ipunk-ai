@@ -13,7 +13,7 @@ A delta is reported only when a prior capture exists. Editorial scores are updat
 ## Deploy
 
 ```bash
-wrangler deploy --config wrangler.jsonc
+NODE_OPTIONS="--dns-result-order=ipv4first --no-network-family-autoselection" wrangler deploy --config wrangler.jsonc
 ```
 
-The Worker serves `dist/` as static assets and uses automatic trailing-slash HTML routing with `404.html` as the not-found page.
+The network options avoid OAuth refresh timeouts on dual-stack hosts. The Worker serves `dist/` as static assets and uses automatic trailing-slash HTML routing with `404.html` as the not-found page.
