@@ -3,6 +3,7 @@ const saved=localStorage.getItem('ipunk-ai-language');
 if(saved==='en') document.body.classList.add('en');
 function update(){if(!button)return;const en=document.body.classList.contains('en');button.textContent=en?'中文':'English';button.setAttribute('aria-label',en?'切换到中文':'Switch to English');document.documentElement.lang=en?'en':'zh-CN'}
 button?.addEventListener('click',()=>{document.body.classList.toggle('en');localStorage.setItem('ipunk-ai-language',document.body.classList.contains('en')?'en':'zh');update()});update();
+for(const link of document.querySelectorAll('a.back')) link.href='/#projects';
 fetch('/data/projects.json').then(response=>response.ok?response.json():Promise.reject()).then(data=>{
   const number=new Intl.NumberFormat('en-US');
   const paths={rea:'morluto/rea',openclaw:'openclaw/openclaw',jev:'jevmodel/jev-ai','gemini-cli':'google-gemini/gemini-cli','browser-use':'browser-use/browser-use',markitdown:'microsoft/markitdown'};
