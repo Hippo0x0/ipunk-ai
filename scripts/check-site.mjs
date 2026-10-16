@@ -11,7 +11,7 @@ async function walk(directory) {
 }
 await walk(root);
 const htmlFiles = files.filter((path) => path.endsWith(".html"));
-if (htmlFiles.length < 16) throw new Error(`Expected at least 16 HTML pages, found ${htmlFiles.length}`);
+if (htmlFiles.length < 17) throw new Error(`Expected at least 17 HTML pages, found ${htmlFiles.length}`);
 for (const path of htmlFiles) {
   const html = await readFile(path, "utf8");
   if (!/<title>[^<]+<\/title>/.test(html)) throw new Error(`${path}: missing title`);
