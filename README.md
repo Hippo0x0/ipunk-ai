@@ -1,6 +1,6 @@
 # iPunk AI Radar
 
-Static AI project radar for `ai.ipunk.cn`. It separates observed GitHub metrics from editorial scores and keeps dated snapshots for 1-day, 7-day, and 30-day comparisons. The current watchlist contains eleven projects across agent tooling, personal assistants, decision models, coding agents, browser agents, and document processing.
+Static AI project radar for `ai.ipunk.cn`. It separates observed GitHub metrics from editorial scores and keeps dated snapshots for 1-day, 7-day, and 30-day comparisons. The current watchlist contains twelve projects across agent tooling, personal assistants, decision models, coding agents, browser agents, and document processing.
 
 ## Update project data
 

@@ -1,5 +1,10 @@
 const trendNumber=new Intl.NumberFormat('en-US');
 const signed=value=>`${value>=0?'+':''}${trendNumber.format(value)}`;
+const projectNames={
+  'gemini-cli':'Gemini CLI','browser-use':'Browser Use','markitdown':'MarkItDown',openclaw:'OpenClaw',
+  'claude-code':'Claude Code','codex-cli':'Codex CLI','qwen-code':'Qwen Code',opencode:'OpenCode',cline:'Cline',
+  'deepseek-harness':'DeepSeek Harness',rea:'REA',jev:'Jev'
+};
 fetch('/data/projects.json').then(response=>response.ok?response.json():Promise.reject(new Error('snapshot unavailable'))).then(data=>{
   const projects=data.projects.map(project=>{
     const comparable=project.stars_since_previous_capture!=null;
@@ -24,6 +29,6 @@ fetch('/data/projects.json').then(response=>response.ok?response.json():Promise.
     const deltaStars=project.comparable?signed(project.stars_since_previous_capture):'—';
     const deltaForks=project.comparable?signed(project.forks_since_previous_capture):'—';
     const signal=project.flagged?'<span class="flag warning"><span class="zh-only">需复核</span><span class="en-only">Review</span></span>':project.comparable?'<span class="flag"><span class="zh-only">已比较</span><span class="en-only">Compared</span></span>':'<span class="flag new"><span class="zh-only">首次收录</span><span class="en-only">New</span></span>';
-    return `<tr><td>${String(index+1).padStart(2,'0')}</td><td><a href="/projects/${project.slug}/"><strong>${project.slug==='gemini-cli'?'Gemini CLI':project.slug==='browser-use'?'Browser Use':project.slug==='markitdown'?'MarkItDown':project.slug==='openclaw'?'OpenClaw':project.slug.toUpperCase()}</strong><small>${project.repo}</small></a></td><td>${trendNumber.format(project.stars)}</td><td class="delta ${project.stars_since_previous_capture>0?'up':''}">${deltaStars}</td><td>${trendNumber.format(project.forks)}</td><td class="delta ${project.forks_since_previous_capture>0?'up':''}">${deltaForks}</td><td>${signal}</td></tr>`;
+    return `<tr><td>${String(index+1).padStart(2,'0')}</td><td><a href="/projects/${project.slug}/"><strong>${projectNames[project.slug]??project.slug}</strong><small>${project.repo}</small></a></td><td>${trendNumber.format(project.stars)}</td><td class="delta ${project.stars_since_previous_capture>0?'up':''}">${deltaStars}</td><td>${trendNumber.format(project.forks)}</td><td class="delta ${project.forks_since_previous_capture>0?'up':''}">${deltaForks}</td><td>${signal}</td></tr>`;
   }).join('');
 }).catch(()=>{document.querySelector('#trend-rows').innerHTML='<tr><td colspan="7">Snapshot unavailable. Please try again later.</td></tr>'});

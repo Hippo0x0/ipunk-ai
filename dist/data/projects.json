@@ -145,6 +145,19 @@
       "previous_capture_at": "2026-10-16T01:31:40.640Z",
       "stars_since_previous_capture": 14,
       "forks_since_previous_capture": 1
+    },
+    {
+      "slug": "deepseek-harness",
+      "repo": "deepseek-ai/deepseek-harness",
+      "stars": 250798,
+      "forks": 30153,
+      "open_issues": 0,
+      "language": "TypeScript",
+      "license": "MIT",
+      "pushed_at": "2026-10-15T13:39:04Z",
+      "previous_capture_at": null,
+      "stars_since_previous_capture": null,
+      "forks_since_previous_capture": null
     }
   ]
 }

@@ -23,7 +23,7 @@ for (const path of htmlFiles) {
   }
 }
 const data = JSON.parse(await readFile(join(root, "data/projects.json"), "utf8"));
-if (data.projects.length !== 11) throw new Error("Expected exactly eleven tracked projects");
+if (data.projects.length !== 12) throw new Error("Expected exactly twelve tracked projects");
 for (const project of data.projects) {
   const page = join(root, "projects", project.slug, "index.html");
   try { await stat(page); } catch { throw new Error(`Missing project page for ${project.slug}`); }
