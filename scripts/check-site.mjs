@@ -23,6 +23,15 @@ for (const path of htmlFiles) {
   }
 }
 const data = JSON.parse(await readFile(join(root, "data/projects.json"), "utf8"));
-if (data.projects.length !== 3) throw new Error("Expected exactly three launch projects");
-if (!data.baseline_only) throw new Error("Launch data must remain labeled as baseline");
+if (data.projects.length < 3) throw new Error("Expected at least three watchlist projects");
+if (!data.captured_at || Number.isNaN(Date.parse(data.captured_at))) throw new Error("Project data needs a valid captured_at timestamp");
+for (const project of data.projects) {
+  if (!project.slug || !project.repo) throw new Error("Each project needs a slug and repository");
+  if (!Number.isFinite(project.stars) || !Number.isFinite(project.forks)) throw new Error(`${project.repo}: invalid metrics`);
+}
+const index = await readFile(join(root, "index.html"), "utf8");
+const app = await readFile(join(root, "app.js"), "utf8");
+for (const hook of ["data-search", "data-filter", "data-sort", "data-project"]) {
+  if (!app.includes(hook) && !index.includes(hook)) throw new Error(`Missing radar hook: ${hook}`);
+}
 console.log(`Site check passed: ${htmlFiles.length} HTML pages, ${data.projects.length} project snapshots`);

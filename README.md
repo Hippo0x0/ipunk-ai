@@ -1,6 +1,6 @@
 # iPunk AI Radar
 
-Static MVP for `ai.ipunk.cn`. It separates observed GitHub metrics from editorial scores and keeps dated snapshots for later 1-day, 7-day, and 30-day comparisons.
+Static project radar for `ai.ipunk.cn`. It separates observed GitHub metrics from editorial scores, keeps dated snapshots, and offers client-side search, category filters, and evidence-based sorting.
 
 ## Update project data
 
@@ -8,4 +8,11 @@ Static MVP for `ai.ipunk.cn`. It separates observed GitHub metrics from editoria
 node scripts/update-projects.mjs
 ```
 
-The first snapshot is a baseline. A delta is reported only when a prior capture exists. Editorial scores are updated manually when meaningful evidence changes.
+The first snapshot is a baseline. A delta is reported only when a prior capture exists, and the UI shows the exact interval between captures. Editorial scores are updated manually when meaningful evidence changes.
+
+## Verify
+
+```bash
+node --check dist/app.js
+node scripts/check-site.mjs
+```

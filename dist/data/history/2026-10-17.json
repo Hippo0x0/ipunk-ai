@@ -1,0 +1,46 @@
+{
+  "captured_at": "2026-10-17T15:10:52.411Z",
+  "source": "GitHub REST API",
+  "baseline_only": false,
+  "projects": [
+    {
+      "slug": "rea",
+      "repo": "morluto/rea",
+      "stars": 301867,
+      "forks": 76367,
+      "open_issues": 1202,
+      "language": "TypeScript",
+      "license": "MIT",
+      "pushed_at": "2026-10-17T15:10:33Z",
+      "previous_capture_at": "2026-10-14T14:56:00+08:00",
+      "stars_since_previous_capture": 83491,
+      "forks_since_previous_capture": 22373
+    },
+    {
+      "slug": "openclaw",
+      "repo": "openclaw/openclaw",
+      "stars": 392261,
+      "forks": 82457,
+      "open_issues": 9356,
+      "language": "TypeScript",
+      "license": "MIT",
+      "pushed_at": "2026-10-17T15:10:52Z",
+      "previous_capture_at": "2026-10-14T14:56:00+08:00",
+      "stars_since_previous_capture": 327,
+      "forks_since_previous_capture": 28
+    },
+    {
+      "slug": "jev",
+      "repo": "jevmodel/jev-ai",
+      "stars": 0,
+      "forks": 0,
+      "open_issues": 0,
+      "language": "HTML",
+      "license": null,
+      "pushed_at": "2026-09-28T07:35:08Z",
+      "previous_capture_at": "2026-10-14T14:56:00+08:00",
+      "stars_since_previous_capture": 0,
+      "forks_since_previous_capture": 0
+    }
+  ]
+}
