@@ -28,4 +28,9 @@ for (const project of data.projects) {
   const page = join(root, "projects", project.slug, "index.html");
   try { await stat(page); } catch { throw new Error(`Missing project page for ${project.slug}`); }
 }
+const app = await readFile(join(root, "app.js"), "utf8");
+for (const hook of ["data-search", "data-filter", "data-sort", "dataset.project"]) {
+  if (!app.includes(hook)) throw new Error(`Missing interactive radar hook: ${hook}`);
+}
+await stat(join(root, "radar.css"));
 console.log(`Site check passed: ${htmlFiles.length} HTML pages, ${data.projects.length} project snapshots`);
