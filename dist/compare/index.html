@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI 开源项目对比器｜iPunk AI Radar</title>
+  <meta name="description" content="并排比较 Codex CLI、Claude Code、Gemini CLI、OpenCode、Cline 等 AI 开源项目的编辑评分、GitHub 增长、许可证、语言与维护信号。">
+  <link rel="canonical" href="https://ai.ipunk.cn/compare/">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/compare.css">
+  <meta property="og:title" content="AI 开源项目对比器｜iPunk AI Radar">
+  <meta property="og:description" content="一次比较 2–3 个 AI 项目，把公开数据与编辑判断分开看。">
+  <meta property="og:url" content="https://ai.ipunk.cn/compare/">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"iPunk AI Radar 项目对比器","url":"https://ai.ipunk.cn/compare/","applicationCategory":"DeveloperApplication","operatingSystem":"Any","inLanguage":["zh-CN","en"],"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"}}</script>
+</head>
+<body>
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/"><span>iP</span>AI Radar</a><nav class="navlinks"><a href="/#projects"><span class="zh-only">项目</span><span class="en-only">Projects</span></a><a href="/trends/" data-trends-link><span class="zh-only">趋势榜</span><span class="en-only">Trends</span></a><a href="/compare/" data-compare-link><span class="zh-only">项目对比</span><span class="en-only">Compare</span></a><a href="/methodology/"><span class="zh-only">评分方法</span><span class="en-only">Method</span></a><button class="lang" data-language type="button">English</button></nav></div></header>
+<main>
+  <section class="project-hero compare-hero"><div class="wrap"><div class="eyebrow live">SIDE-BY-SIDE · 2–3 PROJECTS</div><h1><span class="zh-only">别问谁最好，<br>先问谁适合。</span><span class="en-only">Not the best.<br>The best fit.</span></h1><p class="section-note zh-only">选择 2–3 个项目，把编辑评分、证据置信度和最新 GitHub 快照并排查看。增长只代表关注变化，不自动等于质量。</p><p class="section-note en-only">Choose two or three projects and compare editorial scores, evidence confidence and the latest GitHub snapshot. Growth reflects attention—not automatic quality.</p></div></section>
+  <section class="section compare-section"><div class="wrap">
+    <div class="preset-row" aria-label="快速对比组合"><span class="eyebrow"><span class="zh-only">快速组合</span><span class="en-only">Presets</span></span><button type="button" data-preset="codex-cli,claude-code,gemini-cli">Codex · Claude · Gemini</button><button type="button" data-preset="opencode,cline,qwen-code">OpenCode · Cline · Qwen</button><button type="button" data-preset="deepseek-harness,browser-use,openclaw">Harness · Browser · Personal</button></div>
+    <div class="compare-picker"><div><div class="eyebrow">WATCHLIST</div><h2><span class="zh-only">选择项目</span><span class="en-only">Choose projects</span></h2><p><span class="zh-only">最多选择 3 个，至少选择 2 个。</span><span class="en-only">Choose two or three.</span></p></div><div class="picker-grid" data-project-picker aria-live="polite"><span>Loading…</span></div></div>
+    <div class="selection-status"><strong data-selection-count>0 / 3</strong><span data-selection-message><span class="zh-only">请再选择 2 个项目</span><span class="en-only">Choose 2 more projects</span></span><button type="button" class="clear-button" data-clear><span class="zh-only">清空</span><span class="en-only">Clear</span></button></div>
+    <div class="compare-output" data-compare-output hidden>
+      <div class="comparison-summary" data-comparison-summary></div>
+      <div class="comparison-table-wrap"><table class="comparison-table"><thead data-compare-head></thead><tbody data-compare-body></tbody></table></div>
+      <div class="notice comparison-note"><strong><span class="zh-only">判断边界：</span><span class="en-only">Boundary:</span></strong> <span class="zh-only">Star、Fork、Issue、语言和许可证来自公开 GitHub 快照；总分与置信度是 iPunk 的编辑判断。许可证为空不等于“自由使用”，应回到项目原始条款核对。</span><span class="en-only">Stars, forks, issues, language and license come from public GitHub snapshots. Scores and confidence are iPunk editorial judgments. A missing license never means unrestricted use.</span></div>
+    </div>
+  </div></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><strong>iPunk AI Radar</strong><span><span class="zh-only">公开指标与编辑判断分开呈现。</span><span class="en-only">Public metrics and editorial judgment stay separate.</span></span><span><span class="zh-only">数据更新：</span><span class="en-only">Data updated: </span><time data-compare-captured>—</time></span></div></footer>
+<script src="/app.js"></script><script src="/compare.js"></script>
+</body>
+</html>

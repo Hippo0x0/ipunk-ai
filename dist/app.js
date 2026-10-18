@@ -26,6 +26,10 @@ if(nav&&!nav.querySelector('[data-trends-link]')){
   const link=document.createElement('a');link.href='/trends/';link.dataset.trendsLink='';link.innerHTML='<span class="zh-only">趋势榜</span><span class="en-only">Trends</span>';
   nav.insertBefore(link,nav.querySelector('a[href="/methodology/"]')||nav.querySelector('[data-language]'));
 }
+if(nav&&!nav.querySelector('[data-compare-link]')){
+  const link=document.createElement('a');link.href='/compare/';link.dataset.compareLink='';link.innerHTML='<span class="zh-only">项目对比</span><span class="en-only">Compare</span>';
+  nav.insertBefore(link,nav.querySelector('a[href="/methodology/"]')||nav.querySelector('[data-language]'));
+}
 
 const grid=document.querySelector('#projects .grid');
 if(grid){

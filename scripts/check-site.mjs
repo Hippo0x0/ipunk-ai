@@ -11,7 +11,7 @@ async function walk(directory) {
 }
 await walk(root);
 const htmlFiles = files.filter((path) => path.endsWith(".html"));
-if (htmlFiles.length < 18) throw new Error(`Expected at least 18 HTML pages, found ${htmlFiles.length}`);
+if (htmlFiles.length < 20) throw new Error(`Expected at least 20 HTML pages, found ${htmlFiles.length}`);
 for (const path of htmlFiles) {
   const html = await readFile(path, "utf8");
   if (!/<title>[^<]+<\/title>/.test(html)) throw new Error(`${path}: missing title`);
@@ -33,4 +33,5 @@ for (const hook of ["data-search", "data-filter", "data-sort", "dataset.project"
   if (!app.includes(hook)) throw new Error(`Missing interactive radar hook: ${hook}`);
 }
 await stat(join(root, "radar.css"));
+for (const file of ["compare/index.html", "compare.js", "compare.css"]) await stat(join(root, file));
 console.log(`Site check passed: ${htmlFiles.length} HTML pages, ${data.projects.length} project snapshots`);
