@@ -43,5 +43,9 @@ for (const hook of ["data-search", "data-filter", "data-sort", "dataset.project"
   if (!app.includes(hook)) throw new Error(`Missing interactive radar hook: ${hook}`);
 }
 await stat(join(root, "radar.css"));
-for (const file of ["compare/index.html", "compare.js", "compare.css", "data/timeline.json"]) await stat(join(root, file));
+for (const file of ["compare/index.html", "compare.js", "compare.css", "choose/index.html", "choose.js", "choose.css", "data/timeline.json"]) await stat(join(root, file));
+const chooser = await readFile(join(root, "choose.js"), "utf8");
+for (const hook of ["workflow", "license", "priority", "data-compare-choice"]) {
+  if (!chooser.includes(hook)) throw new Error(`Missing chooser hook: ${hook}`);
+}
 console.log(`Site check passed: ${htmlFiles.length} HTML pages, ${data.projects.length} project snapshots`);

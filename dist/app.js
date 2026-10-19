@@ -30,6 +30,10 @@ if(nav&&!nav.querySelector('[data-compare-link]')){
   const link=document.createElement('a');link.href='/compare/';link.dataset.compareLink='';link.innerHTML='<span class="zh-only">项目对比</span><span class="en-only">Compare</span>';
   nav.insertBefore(link,nav.querySelector('a[href="/methodology/"]')||nav.querySelector('[data-language]'));
 }
+if(nav&&!nav.querySelector('[data-choose-link]')){
+  const link=document.createElement('a');link.href='/choose/';link.dataset.chooseLink='';link.innerHTML='<span class="zh-only">选择器</span><span class="en-only">Chooser</span>';
+  nav.insertBefore(link,nav.querySelector('a[href="/methodology/"]')||nav.querySelector('[data-language]'));
+}
 
 const grid=document.querySelector('#projects .grid');
 if(grid){
