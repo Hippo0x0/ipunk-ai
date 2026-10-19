@@ -5,11 +5,36 @@ const projectNames={
   'claude-code':'Claude Code','codex-cli':'Codex CLI','qwen-code':'Qwen Code',opencode:'OpenCode',cline:'Cline',
   'deepseek-harness':'DeepSeek Harness',rea:'REA',jev:'Jev'
 };
-fetch('/data/projects.json').then(response=>response.ok?response.json():Promise.reject(new Error('snapshot unavailable'))).then(data=>{
+let historyTimeline=null;
+const fetchJson=path=>fetch(path).then(response=>response.ok?response.json():Promise.reject(new Error(`${path} unavailable`)));
+function sparkline(values){
+  const width=240,height=58,pad=4,min=Math.min(...values),max=Math.max(...values),span=max-min||1;
+  const points=values.map((value,index)=>`${pad+(index*(width-pad*2)/Math.max(1,values.length-1))},${height-pad-((value-min)/span)*(height-pad*2)}`).join(' ');
+  const last=points.split(' ').at(-1).split(',');
+  return `<svg class="sparkline" viewBox="0 0 ${width} ${height}" role="img" aria-label="Star history"><line class="baseline" x1="0" y1="${height-pad}" x2="${width}" y2="${height-pad}"></line><polyline class="series" points="${points}"></polyline><circle cx="${last[0]}" cy="${last[1]}" r="3.5"></circle></svg>`;
+}
+function updateHistoryRange(){
+  const target=document.querySelector('[data-history-range]');if(!target||!historyTimeline?.snapshots?.length)return;
+  const snapshots=historyTimeline.snapshots;const locale=document.documentElement.lang==='en'?'en-US':'zh-CN';
+  const format=value=>new Date(`${value}T00:00:00Z`).toLocaleDateString(locale,{month:'short',day:'numeric',timeZone:'UTC'});
+  target.textContent=document.documentElement.lang==='en'?`${format(snapshots[0].date)}–${format(snapshots.at(-1).date)} · ${snapshots.length} daily captures`:`${format(snapshots[0].date)}–${format(snapshots.at(-1).date)} · ${snapshots.length} 次日快照`;
+}
+function renderHistory(timeline){
+  historyTimeline=timeline;const snapshots=timeline?.snapshots||[];const target=document.querySelector('[data-history-grid]');
+  if(snapshots.length<2){target.innerHTML='<div class="history-loading"><span class="zh-only">历史快照不足，暂不能计算多日趋势。</span><span class="en-only">Not enough snapshots for a multi-day trend.</span></div>';return}
+  const series=Object.keys(projectNames).map(slug=>{
+    const points=snapshots.map(snapshot=>snapshot.projects.find(project=>project.slug===slug)).filter(Boolean);
+    if(points.length<2)return null;const first=points[0].stars,last=points.at(-1).stars,delta=last-first;
+    return {slug,values:points.map(point=>point.stars),first,last,delta,percent:first?delta/first*100:null,captures:points.length};
+  }).filter(Boolean).sort((a,b)=>b.delta-a.delta).slice(0,6);
+  target.innerHTML=series.map(item=>`<a class="history-card" href="/projects/${item.slug}/"><div class="history-card-head"><div><h3>${projectNames[item.slug]}</h3><small>${item.captures} CAPTURES</small></div><strong class="history-delta ${item.delta<0?'down':''}">${signed(item.delta)} ★</strong></div>${sparkline(item.values)}<div class="history-stats"><span>${trendNumber.format(item.first)} → ${trendNumber.format(item.last)}</span><span>${item.percent==null?'—':`${item.percent>=0?'+':''}${item.percent.toFixed(item.percent>=10?0:1)}%`}</span></div></a>`).join('');
+  updateHistoryRange();
+}
+Promise.all([fetchJson('/data/projects.json'),fetchJson('/data/timeline.json').catch(()=>null)]).then(([data,timeline])=>{
   const projects=data.projects.map(project=>{
     const comparable=project.stars_since_previous_capture!=null;
     const previous=comparable?project.stars-project.stars_since_previous_capture:null;
-    const flagged=comparable&&project.stars_since_previous_capture>1000&&project.stars_since_previous_capture>previous*.05;
+    const flagged=comparable&&(project.stars_since_previous_capture>1000||project.stars_since_previous_capture>previous*.05);
     return {...project,comparable,flagged};
   }).sort((a,b)=>(b.stars_since_previous_capture??-1)-(a.stars_since_previous_capture??-1));
   const comparable=projects.filter(project=>project.comparable);
@@ -24,7 +49,8 @@ fetch('/data/projects.json').then(response=>response.ok?response.json():Promise.
     document.querySelector('[data-trend-captured]').textContent=captured.toLocaleString(document.documentElement.lang==='en'?'en-US':'zh-CN',{dateStyle:'medium',timeStyle:'short'});
     document.querySelector('[data-trend-window]').textContent=hours?`${hours} h`:'—';
   };
-  updateTrendMeta();window.addEventListener('languagechange',updateTrendMeta);
+  updateTrendMeta();if(timeline)renderHistory(timeline);else document.querySelector('[data-history-grid]').innerHTML='<div class="history-loading">Timeline unavailable. Latest snapshot data remains available below.</div>';
+  window.addEventListener('languagechange',()=>{updateTrendMeta();updateHistoryRange()});
   document.querySelector('#trend-rows').innerHTML=projects.map((project,index)=>{
     const deltaStars=project.comparable?signed(project.stars_since_previous_capture):'—';
     const deltaForks=project.comparable?signed(project.forks_since_previous_capture):'—';

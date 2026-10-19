@@ -28,10 +28,20 @@ for (const project of data.projects) {
   const page = join(root, "projects", project.slug, "index.html");
   try { await stat(page); } catch { throw new Error(`Missing project page for ${project.slug}`); }
 }
+const timeline = JSON.parse(await readFile(join(root, "data/timeline.json"), "utf8"));
+if (!Array.isArray(timeline.snapshots) || timeline.snapshots.length < 2) throw new Error("Expected at least two timeline snapshots");
+const timelineDates = timeline.snapshots.map((snapshot) => snapshot.date);
+if (timelineDates.some((date, index) => index > 0 && date <= timelineDates[index - 1])) throw new Error("Timeline snapshots must be in ascending date order");
+for (const snapshot of timeline.snapshots) {
+  if (!snapshot.projects.length) throw new Error(`${snapshot.date}: empty timeline snapshot`);
+  const slugs = snapshot.projects.map((project) => project.slug);
+  if (new Set(slugs).size !== slugs.length) throw new Error(`${snapshot.date}: duplicate timeline project`);
+  if (slugs.some((slug) => !data.projects.some((project) => project.slug === slug))) throw new Error(`${snapshot.date}: unknown timeline project`);
+}
 const app = await readFile(join(root, "app.js"), "utf8");
 for (const hook of ["data-search", "data-filter", "data-sort", "dataset.project"]) {
   if (!app.includes(hook)) throw new Error(`Missing interactive radar hook: ${hook}`);
 }
 await stat(join(root, "radar.css"));
-for (const file of ["compare/index.html", "compare.js", "compare.css"]) await stat(join(root, file));
+for (const file of ["compare/index.html", "compare.js", "compare.css", "data/timeline.json"]) await stat(join(root, file));
 console.log(`Site check passed: ${htmlFiles.length} HTML pages, ${data.projects.length} project snapshots`);

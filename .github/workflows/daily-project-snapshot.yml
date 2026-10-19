@@ -42,14 +42,14 @@ jobs:
         run: |
           set -euo pipefail
 
-          if [[ -z "$(git status --porcelain -- dist/data/projects.json dist/data/history)" ]]; then
+          if [[ -z "$(git status --porcelain -- dist/data/projects.json dist/data/timeline.json dist/data/history)" ]]; then
             echo "No metric changes"
             exit 0
           fi
 
           git config user.name "ipunk-radar-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add dist/data/projects.json dist/data/history
+          git add dist/data/projects.json dist/data/timeline.json dist/data/history
           git commit -m "data: update daily project snapshot"
 
           if ! git push origin HEAD:main; then
