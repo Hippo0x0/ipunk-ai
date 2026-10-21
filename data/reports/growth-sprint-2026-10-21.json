@@ -1,0 +1,42 @@
+{
+  "site": "https://ai.ipunk.cn/",
+  "status": "in_progress",
+  "cycle": {"start": "2026-10-21", "end_inclusive": "2026-11-17", "days": 28, "timezone": "Asia/Shanghai"},
+  "measurement": {
+    "preferred_property": "https://ai.ipunk.cn/",
+    "search_type": "web",
+    "fallback": "sc-domain:ipunk.cn filtered to pages beginning https://ai.ipunk.cn/; label property and filter explicitly",
+    "rule": "Use complete dated 7-day comparisons and 28-day totals. Never attribute main-site clicks to the AI site or mix property and filtered-domain totals without qualification.",
+    "traffic_targets": {"impressions": null, "clicks": null, "status": "not_confirmed"},
+    "baseline_28_days": null,
+    "historical_context": {"source": "Parent repo data/reports/2026-10-21-search-intent.json, authenticated UI observation", "start": "2026-10-12", "end": "2026-10-18", "property": "sc-domain:ipunk.cn", "page_filter_contains": "https://ai.ipunk.cn/", "impressions": 1, "clicks": 0, "qualification": "Seven-day history, not an independent 28-day property baseline"}
+  },
+  "weekly_work": [
+    {"days": "1-7", "deliverable": "Dated independent baseline, technical/indexing audit and evidence-backed prioritized backlog. Resolve verified defects before expanding content."},
+    {"days": "8-14", "deliverable": "Improve existing project pages around supported installation, configuration and troubleshooting intents. Publish standalone tutorials only for distinct evidenced demand, with official sources and reproducible checks."},
+    {"days": "15-21", "deliverable": "Review newly observed queries and landing pages; improve relevant internal links and answers. Keep untested titles stable and avoid generic VS expansion."},
+    {"days": "22-28", "deliverable": "Audit execution records and compare complete windows, reporting impressions, clicks, pages with impressions and pages with clicks. Identify repeatable topics without claiming causation from tiny samples."}
+  ],
+  "daily_rules": [
+    "Reuse same-day GitHub snapshots; metrics refresh alone is not a content-growth improvement.",
+    "Record a verified improvement, research finding, or justified observation/blocker; do not invent work to fill a daily quota.",
+    "GitHub stars are topic-discovery evidence, not keyword search volume or product quality.",
+    "No fabricated tests, mass thin pages, unsolicited promotion, paid resources or automatic changes to editorial scores.",
+    "Deploy actual validated site changes through the existing Cloudflare Worker and verify production; operational reports alone require no deployment."
+  ],
+  "day_records": [
+    {
+      "date": "2026-10-21",
+      "status": "audit_completed",
+      "source_commit": "829b823",
+      "checks": {"existing_site_check": "Passed: 21 HTML pages and 12 project snapshots", "local_sitemap_metadata": "20 URLs passed parent production inspector using local HTML", "live_sitemap": "HTTPS fetch succeeded; 20 URLs listed"},
+      "findings": [
+        {"url": "https://ai.ipunk.cn/choose/", "finding": "No incoming canonical static anchor links in local sitemap-scoped graph; unreachable from homepage", "action": "Review utility and search intent before deciding an editorial entry point; not evidence of Google exclusion"},
+        {"url": "https://ai.ipunk.cn/compare/", "finding": "Unreachable from homepage in local static graph; one incoming link from choose", "action": "Respect user's reduced-VS direction; do not automatically promote or delete"}
+      ],
+      "limits": "Static graph excludes JavaScript-generated links and external discovery. No new Search Console index status or traffic baseline collected in this run.",
+      "next": "Capture independent dated 28-day AI property baseline and indexing state; inspect existing OpenCode page against real query intent before choosing a tutorial."
+    }
+  ],
+  "acceptance": "Report the 28-day execution outcome separately from traffic outcomes. No AI-specific numeric traffic target is agreed; never silently reuse the overall domain target or claim growth success from a completed checklist."
+}
