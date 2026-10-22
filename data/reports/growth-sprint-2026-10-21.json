@@ -25,6 +25,7 @@
     "Deploy actual validated site changes through the existing Cloudflare Worker and verify production; operational reports alone require no deployment."
   ],
   "day_records": [
+    {"date": "2026-10-22", "status": "deployed_verification_partial", "evidence": "data/reports/2026-10-22-growth.json", "work": "Fixed static snapshot consistency, refreshed 12 project metrics, captured independent Search Console history; custom-domain verification remains blocked."},
     {
       "date": "2026-10-21",
       "status": "audit_completed",

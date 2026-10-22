@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-22",
+  "cycle_day": 2,
+  "focus": "Keep crawlable HTML and browser-rendered GitHub snapshots consistent",
+  "finding": "Home and project HTML retained older metrics (OpenCode HTML 213,720 stars versus saved Oct 21 snapshot 219,166); app.js refreshed only three project numbers, leaving license, language and push date stale.",
+  "changes": [
+    "Render saved snapshot into homepage and twelve project pages",
+    "Display capture timestamp separately from editorial update date",
+    "Refresh all six snapshot fields in browser; render missing license/language explicitly",
+    "Validate all generated pages before writing; reject malformed metrics and missing expected markup",
+    "Daily workflow now tests and commits generated HTML with snapshot data"
+  ],
+  "snapshot": {"captured_at": "2026-10-22T02:03:39.647Z", "project_count": 12, "origin": "GitHub REST API", "remote_sync_before_collection": "Public HTTPS remote main matched local 223f3a5, with no Oct 22 snapshot; direct SSH initially failed", "notable_attention_change": {"slug": "rea", "star_delta_since_previous_capture": 7813, "interpretation": "Review candidate only; not a quality score or search-volume estimate"}},
+  "validation": {"regression_tests": "15 passed", "site_check": "21 HTML pages, 12 project snapshots passed", "local_seo": "20 sitemap URLs passed metadata/title/canonical/H1 inspection", "browser": "Local OpenCode page showed 219,718 stars, 29,342 forks, 3,695 issues, MIT, TypeScript and 2026-10-22 last push; capture label switched between Chinese and English", "diff_check": "passed", "cleanup": "Owned preview server stopped and temporary browser tab closed"},
+  "publication": {"commit": "647d091", "pushed": true, "worker": "ipunk-ai", "version": "4eac0262-51f1-4b82-9bc8-e4d8e346bdd5", "provider_deployment": "succeeded", "default_worker_url": "https://ipunk-ai.butub666.workers.dev", "verified": "Default Worker OpenCode HTML contains Oct 22 capture, new stars and canonical https://ai.ipunk.cn/projects/opencode/ with no meta noindex", "custom_domain_verified": false, "custom_domain_limit": "curl TLS handshake failures and browser QUIC error; no DNS changes or security bypass attempted"},
+  "search_console": {"source": "Authenticated UI observed Oct 22; updated 5.5 hours ago", "property": "https://ai.ipunk.cn/", "search_type": "web", "selected_window": "28 days", "actual_available_dates": ["2026-10-14", "2026-10-19"], "impressions": 1, "clicks": 0, "position": 99, "visible_page_rows": [{"url": "https://ai.ipunk.cn/projects/rea/", "impressions": 1, "clicks": 0}], "visible_query_rows": 0, "limit": "Not a complete 28-day baseline; not enough history for two complete seven-day windows"},
+  "next": "Verify custom domain from a working network and obtain new index evidence before expanding content. Do not infer traffic lift from snapshot freshness."
+}
