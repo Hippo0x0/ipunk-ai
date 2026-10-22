@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T02:03:39.647Z",
+  "generated_at": "2026-10-22T06:12:53.554Z",
   "source": "Daily GitHub REST API snapshots",
   "snapshots": [
     {
@@ -482,17 +482,17 @@
     },
     {
       "date": "2026-10-22",
-      "captured_at": "2026-10-22T02:03:39.647Z",
+      "captured_at": "2026-10-22T06:12:53.554Z",
       "projects": [
         {
           "slug": "rea",
-          "stars": 358266,
-          "forks": 89918
+          "stars": 359810,
+          "forks": 90311
         },
         {
           "slug": "openclaw",
-          "stars": 392706,
-          "forks": 82541
+          "stars": 392717,
+          "forks": 82548
         },
         {
           "slug": "jev",
@@ -501,48 +501,48 @@
         },
         {
           "slug": "gemini-cli",
-          "stars": 107492,
-          "forks": 14757
+          "stars": 107493,
+          "forks": 14759
         },
         {
           "slug": "browser-use",
-          "stars": 118787,
-          "forks": 13196
+          "stars": 118803,
+          "forks": 13198
         },
         {
           "slug": "markitdown",
-          "stars": 191496,
-          "forks": 14263
+          "stars": 191528,
+          "forks": 14268
         },
         {
           "slug": "claude-code",
-          "stars": 152762,
-          "forks": 26729
+          "stars": 152791,
+          "forks": 26768
         },
         {
           "slug": "codex-cli",
-          "stars": 130325,
-          "forks": 20551
+          "stars": 130358,
+          "forks": 20561
         },
         {
           "slug": "qwen-code",
-          "stars": 28637,
-          "forks": 3244
+          "stars": 28638,
+          "forks": 3247
         },
         {
           "slug": "opencode",
-          "stars": 219718,
-          "forks": 29342
+          "stars": 219833,
+          "forks": 29380
         },
         {
           "slug": "cline",
-          "stars": 70740,
-          "forks": 7721
+          "stars": 70699,
+          "forks": 7722
         },
         {
           "slug": "deepseek-harness",
-          "stars": 257062,
-          "forks": 31007
+          "stars": 257335,
+          "forks": 31041
         }
       ]
     }
