@@ -25,7 +25,7 @@
     "Deploy actual validated site changes through the existing Cloudflare Worker and verify production; operational reports alone require no deployment."
   ],
   "day_records": [
-    {"date": "2026-10-22", "status": "deployed_verification_partial", "evidence": "data/reports/2026-10-22-growth.json", "work": "Fixed static snapshot consistency, refreshed 12 project metrics, captured independent Search Console history; custom-domain verification remains blocked."},
+    {"date": "2026-10-22", "status": "deployed_and_verified", "evidence": "data/reports/2026-10-22-growth.json", "followup_evidence": ["data/reports/2026-10-22-domain-verification.json", "data/reports/2026-10-22-index-inspection.json", "data/reports/2026-10-22-opencode-version-review.json"], "work": "Fixed static snapshot consistency and added bilingual OpenCode version guidance. Custom-domain content verified. Google live fetch succeeds for OpenCode, but homepage and OpenCode remain discovered-not-indexed; REA is indexed. Authentication failure resolved on one retry after credential metadata changed.", "next": "Keep content stable; recheck regular index state at Oct 27 checkpoint. Independent AI property still lacks a complete 28-day baseline; no traffic success claimed."},
     {
       "date": "2026-10-21",
       "status": "audit_completed",
