@@ -78,7 +78,11 @@ fetch('/data/projects.json').then(response=>response.ok?response.json():Promise.
     const signal=card.querySelector('.signal i');if(signal&&project.stars_since_previous_capture!=null)signal.textContent=`${project.stars_since_previous_capture>=0?'+':''}${number.format(project.stars_since_previous_capture)} ★`;
   }
   const slug=location.pathname.split('/').filter(Boolean).at(-1);const project=data.projects.find(item=>item.slug===slug);
-  if(project){const values=document.querySelectorAll('.snapshot dd');for(const [index,value] of [project.stars,project.forks,project.open_issues].entries())if(values[index])values[index].textContent=number.format(value)}
+  if(project){
+    const fields={Stars:number.format(project.stars),Forks:number.format(project.forks),'Open issues':number.format(project.open_issues),License:project.license&&project.license!=='NOASSERTION'?project.license:'Not declared',Language:project.language||'Not specified','Last push':project.pushed_at?project.pushed_at.slice(0,10):'Not available'};
+    for(const label of document.querySelectorAll('.snapshot dt')){const value=fields[label.textContent.trim()];if(value!==undefined&&label.nextElementSibling?.tagName==='DD')label.nextElementSibling.textContent=value}
+    document.querySelectorAll('time[data-captured]').forEach(target=>target.dateTime=data.captured_at);
+  }
   renderCaptureLabels();applyProjectView();
 }).catch(()=>{document.querySelectorAll('[data-capture-window]').forEach(target=>target.textContent=isEnglish()?'Live data unavailable':'实时数据暂不可用')});
 

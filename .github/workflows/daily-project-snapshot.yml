@@ -35,21 +35,23 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Validate site data and internal links
-        run: node scripts/check-site.mjs
+        run: |
+          node --test tests/*.test.mjs
+          node scripts/check-site.mjs
 
       - name: Commit a changed snapshot
         shell: bash
         run: |
           set -euo pipefail
 
-          if [[ -z "$(git status --porcelain -- dist/data/projects.json dist/data/timeline.json dist/data/history)" ]]; then
+          if [[ -z "$(git status --porcelain -- dist/data/projects.json dist/data/timeline.json dist/data/history dist/index.html dist/projects)" ]]; then
             echo "No metric changes"
             exit 0
           fi
 
           git config user.name "ipunk-radar-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add dist/data/projects.json dist/data/timeline.json dist/data/history
+          git add dist/data/projects.json dist/data/timeline.json dist/data/history dist/index.html dist/projects
           git commit -m "data: update daily project snapshot"
 
           if ! git push origin HEAD:main; then

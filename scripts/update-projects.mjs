@@ -1,6 +1,7 @@
 import { mkdir, readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { renderSnapshotFiles } from "./render-snapshot.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dataPath = resolve(root, "dist/data/projects.json");
@@ -80,4 +81,5 @@ const timeline = {
 const timelinePath = resolve(root, "dist/data/timeline.json");
 await writeFile(`${timelinePath}.tmp`, `${JSON.stringify(timeline, null, 2)}\n`);
 await rename(`${timelinePath}.tmp`, timelinePath);
+await renderSnapshotFiles(root);
 console.log(timelineOnly ? `Rebuilt timeline from ${timelineSnapshots.length} snapshots` : `Updated ${projects.length} projects at ${capturedAt}`);
