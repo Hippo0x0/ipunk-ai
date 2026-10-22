@@ -1,5 +1,6 @@
 {
   "date": "2026-10-22",
+  "verification_followup": "2026-10-22-domain-verification.json supersedes the custom-domain verification blocker below: new OpenCode HTML verified with valid TLS through public DNS address; normal local resolution still fails.",
   "cycle_day": 2,
   "focus": "Keep crawlable HTML and browser-rendered GitHub snapshots consistent",
   "finding": "Home and project HTML retained older metrics (OpenCode HTML 213,720 stars versus saved Oct 21 snapshot 219,166); app.js refreshed only three project numbers, leaving license, language and push date stale.",
