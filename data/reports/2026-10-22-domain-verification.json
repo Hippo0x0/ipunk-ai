@@ -1,0 +1,25 @@
+{
+  "observed_at": "2026-10-22T02:55:43Z",
+  "scope": "Follow-up to day-two custom-domain verification gap; not an additional sprint day",
+  "local_resolution": {"ai.ipunk.cn": "198.18.0.11", "ipunk.cn": "198.18.0.78"},
+  "public_dns_source": "https://dns.google/resolve?name=ai.ipunk.cn&type=A",
+  "public_ai_addresses": ["172.67.198.160", "104.21.21.127"],
+  "method": "curl --resolve pins the observed public address for this request only; HTTPS hostname, SNI and normal certificate validation remain enabled. No system DNS or Cloudflare configuration changed.",
+  "ai_project": {
+    "url": "https://ai.ipunk.cn/projects/opencode/",
+    "address_tested": "172.67.198.160",
+    "http_status": 200,
+    "tls_verify_result": 0,
+    "capture_timestamp_present": "2026-10-22T02:03:39.647Z",
+    "stars_present": "219,718",
+    "canonical": "https://ai.ipunk.cn/projects/opencode/",
+    "meta_noindex": false,
+    "x_robots_tag_header": null
+  },
+  "robots": "Fetched successfully; User-agent: *, Allow: /, canonical sitemap URL",
+  "sitemap": "Fetched XML successfully with 20 ai.ipunk.cn URLs; not proof that Google has indexed them",
+  "main_site": {"url": "https://ipunk.cn/", "address_tested": "172.66.44.120", "http_status": 200, "independent_web_fetch": "Homepage text also retrieved successfully"},
+  "conclusion": "Custom-domain delivery of the new OpenCode HTML is verified through an observed public Cloudflare address. Earlier failure is specific to the normal local resolution/network path; exact intermediary cause is not established.",
+  "limitations": "One Cloudflare route and one AI project page checked, not global availability or full-site indexing. Normal local DNS path remains failing.",
+  "next": "Continue indexing and search-intent work; do not redeploy or change DNS solely because the local normal-resolution check failed."
+}
