@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-22",
+  "cycle_day": 2,
+  "source": "Authenticated Google Search Console URL Inspection UI",
+  "property": "sc-domain:ipunk.cn",
+  "observations": [
+    {"url": "https://ai.ipunk.cn/", "indexed": false, "reason": "Discovered - currently not indexed", "sitemap": "https://ai.ipunk.cn/sitemap.xml", "last_crawl": null},
+    {"url": "https://ai.ipunk.cn/projects/opencode/", "indexed": false, "reason": "Discovered - currently not indexed", "sitemap": "https://ai.ipunk.cn/sitemap.xml", "last_crawl": null, "live_test": {"displayed_time": "2026-10-22 10:57:32", "agent": "Google Inspection Tool smartphone", "fetch": "successful", "crawl_allowed": true, "indexing_allowed": true, "declared_canonical": "https://ai.ipunk.cn/projects/opencode/", "google_canonical": "Only determined after indexing"}},
+    {"url": "https://ai.ipunk.cn/projects/rea/", "indexed": true, "last_crawl_displayed": "2026-10-15 11:29:32", "agent": "Googlebot smartphone", "fetch": "successful", "crawl_allowed": true, "indexing_allowed": true, "sitemap": "https://ai.ipunk.cn/sitemap.xml", "declared_canonical": "https://ai.ipunk.cn/projects/rea/", "google_canonical": "Inspected URL"}
+  ],
+  "interpretation": "Index coverage is a confirmed constraint for the homepage and OpenCode page. REA is indexed, so a sitewide indexing block is not established. Successful live inspection verifies present fetchability, not inclusion in the index or future ranking.",
+  "official_reference": "https://support.google.com/webmasters/answer/7440203#discovered__unclear_status",
+  "action": "No repeated indexing requests, title changes or deployment. Existing homepage static project links were verified locally; no missing OpenCode discovery link inferred from Google's referral field.",
+  "next": "Prioritize a source-backed usefulness review of an existing AI project page before creating more project summaries. Revisit normal index state at the Oct 27 checkpoint; live testing does not replace that evidence.",
+  "limits": "Three selected URLs, not a full-site index census. Date/time strings transcribed as displayed. No claim that the Oct 22 changes have improved traffic."
+}
