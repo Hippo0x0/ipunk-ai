@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-22",
+  "cycle_day": 2,
+  "page": "https://ai.ipunk.cn/projects/opencode/",
+  "finding": "Existing review lacked version scope; current official docs distinguish V1/V2 installation and migration boundaries.",
+  "sources": ["https://opencode.ai/docs/", "https://opencode.ai/v2/docs/", "https://opencode.ai/v2/docs/migrate-v1/"],
+  "changes": ["Bilingual version warning and official installation links", "Configuration backup and outside-project permission warning", "Preserved title and original score; explicitly not a V2 benchmark", "Updated actual content modification date and sitemap lastmod"],
+  "validation": {"snapshot_tests": "15 passed", "site_check": "21 HTML pages and 12 project snapshots passed", "browser": "New section verified in Chinese and after switching to English", "diff_check": "passed"},
+  "source_commit": "87bf4b4",
+  "publication": {"status": "push_succeeded_deployment_failed", "source_remote_verified": "87bf4b49ff28bc8ae6291d8f8d826a299b133cae", "git_push_exit_code": 0, "wrangler_exit_code": 1, "failure": "Cloudflare assets-upload-session authentication error 10000", "account_read": "Wrangler can still read account membership and lists workers write scopes; exact reason upload authentication failed is unconfirmed", "fallback_check": "Only daily-project-snapshot.yml exists; it updates GitHub content, with no deployment step", "last_online_check": "Still previous version; do not claim publication", "next": "Restore authorized Cloudflare publishing access before retrying deployment; do not change DNS or request unrelated scopes based solely on warnings."},
+  "cleanup": "Temporary preview tab closed and owned HTTP server stopped",
+  "limits": "Documentation review only, not installed or benchmarked. No keyword-volume claim or measured traffic lift. Both publication processes have now terminated; previous waiting records are superseded."
+}
