@@ -25,6 +25,12 @@
     "custom_domain_verification": "incomplete",
     "verification_limit": "HTTPS requests to ai.ipunk.cn with two previously observed edge addresses timed out (20s and 15s). This does not establish a global outage; production body equality and indexability were not verified in this pass."
   },
+  "verification_followup": {
+    "date": "2026-10-23",
+    "status": "custom_domain_verified",
+    "evidence": "Normal hostname HTTPS fetch returned a projects.json exactly equal to the published local snapshot (2026-10-23T05:08:09.234Z). A fresh browser tab rendered DeepSeek Harness with 258452 stars, 31192 forks and the same capture timestamp; canonical is https://ai.ipunk.cn/projects/deepseek-harness/ and no robots meta tag is present. Main and AI root requests returned HTTP 200.",
+    "qualification": "Earlier timeout evidence is preserved. No infrastructure change was required; cause of intermittent delay is unproven."
+  },
   "search_console": {"new_observation": null, "traffic_target_met": "unverified"},
   "next": "Recheck custom-domain serving from a working network path; collect fresh complete GSC windows before selecting the next content opportunity. Do not repeat today's data refresh simply to change timestamps."
 }
