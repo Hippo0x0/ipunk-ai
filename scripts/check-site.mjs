@@ -1,7 +1,13 @@
 import { readdir, readFile, stat } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { join, relative } from "node:path";
+import { fileURLToPath } from "node:url";
+import { checkIndexableHtml } from "./seo-guard.mjs";
 
-const root = resolve("dist");
+const root = fileURLToPath(new URL("../dist/", import.meta.url));
+const sitemap = await readFile(join(root, "sitemap.xml"), "utf8");
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
+if (new Set(sitemapUrls).size !== sitemapUrls.length) throw new Error("Duplicate sitemap URLs");
+const checkedUrls = new Set();
 const files = [];
 async function walk(directory) {
   for (const entry of await readdir(directory)) {
@@ -15,13 +21,20 @@ if (htmlFiles.length < 20) throw new Error(`Expected at least 20 HTML pages, fou
 for (const path of htmlFiles) {
   const html = await readFile(path, "utf8");
   if (!/<title>[^<]+<\/title>/.test(html)) throw new Error(`${path}: missing title`);
-  if (!path.endsWith("404.html") && !/rel="canonical"/.test(html)) throw new Error(`${path}: missing canonical`);
+  if (!path.endsWith("404.html")) {
+    const route = relative(root, path).replaceAll("\\", "/").replace(/index\.html$/, "");
+    const url = `https://ai.ipunk.cn/${route}`;
+    checkIndexableHtml(html, url);
+    if (!sitemapUrls.includes(url)) throw new Error(`${url}: missing from sitemap`);
+    checkedUrls.add(url);
+  }
   for (const [, href] of html.matchAll(/href="([^"#]+)"/g)) {
     if (!href.startsWith("/") || href.startsWith("//")) continue;
     const target = href.endsWith("/") ? join(root, href, "index.html") : join(root, href);
     try { await stat(target); } catch { throw new Error(`${path}: broken internal link ${href}`); }
   }
 }
+for (const url of sitemapUrls) if (!checkedUrls.has(url)) throw new Error(`${url}: sitemap URL has no validated local page`);
 const data = JSON.parse(await readFile(join(root, "data/projects.json"), "utf8"));
 if (data.projects.length !== 12) throw new Error("Expected exactly twelve tracked projects");
 for (const project of data.projects) {
