@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-25",
+  "cycle_day": 5,
+  "sync": "Clean checkout fast-forwarded to 799a348; upstream latest capture was October 24, so no same-day snapshot was duplicated.",
+  "work": "Refreshed twelve project snapshots; eleven projects have real public-field changes. Preserved scores and editorial conclusions. Re-ran sitemap/canonical/indexability and link checks; kept existing content experiments stable pending the October 27 indexing checkpoint.",
+  "growth_decision": "Independent property has only nine available days and one observed impression; insufficient evidence to expand VS pages, rewrite titles or infer installation-query demand. Observation is justified separately from routine metric maintenance.",
+  "commit": "0b66008",
+  "snapshot": "2026-10-25T02:00:42.257Z",
+  "production_json": "Custom-domain projects.json exactly matches the local snapshot, verified with curl and parsed JSON comparison.",
+  "validation": "18 tests passed; 21 HTML pages and twelve project snapshots passed site and link checks.",
+  "publication": {"pushed": true, "worker": "ipunk-ai", "version": "ef0ab0d5-5dbb-4937-a733-0d877216d59b", "deployed": true, "production_html": "OpenCode returned HTTP 200 with current capture, self canonical, no blocking robots meta and no X-Robots-Tag."},
+  "search": {
+    "source": "Authenticated Search Console UI, October 25",
+    "property": "https://ai.ipunk.cn/",
+    "search_type": "web",
+    "requested_days": 28,
+    "available_start": "2026-10-14",
+    "available_end": "2026-10-22",
+    "freshness": "3.5 hours ago",
+    "impressions": 1,
+    "clicks": 0,
+    "pages_with_impressions": 1,
+    "pages_with_clicks": 0,
+    "page": "https://ai.ipunk.cn/projects/rea/",
+    "complete_28_day_baseline": null,
+    "two_complete_weeks": null,
+    "qualification": "Nine available days cannot support two full comparable weeks or a 28-day baseline. Do not treat unavailable earlier history as zero."
+  },
+  "next": "Inspect ordinary indexing October 27; retain current editorial scores and wait for complete query evidence before choosing another content experiment.",
+  "acceptance": "Incomplete. AI numeric traffic target remains unconfirmed; metrics refresh is not proof of search growth."
+}
