@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-26",
+  "cycle_day": 6,
+  "scope": "Same-day follow-up; first independent English edition of an existing project, not a new demand-validated topic",
+  "route": "https://ai.ipunk.cn/en/projects/opencode/",
+  "changes": ["Static English article with English metadata and self canonical", "Reciprocal zh-CN/en/x-default alternates and clickable language links", "Chinese route keeps existing title and ignores stored English toggle preference", "New route added to sitemap"],
+  "content": "Adapted source-based analysis with migration, security boundaries and an explicitly proposed trial checklist. No hands-on benchmark, pricing, score improvement or search-demand claim.",
+  "sources_rechecked": ["https://opencode.ai/v2/docs/migrate-v1/", "https://github.com/anomalyco/opencode/blob/dev/SECURITY.md"],
+  "validation": "21 tests passed; site checker passed 22 HTML pages and 12 project snapshots. Local HTTP 200, English visible in browser, Chinese/English round trip verified, desktop screenshot inspected.",
+  "limits": "Only OpenCode receives independent language routes in this iteration. Other projects retain their existing toggle. No new GSC inspection or traffic measurement in this follow-up; deployment does not establish indexing.",
+  "next": "Check new URL discovery and Google-selected canonical after publication; observe complete post-crawl windows before judging English search coverage."
+}

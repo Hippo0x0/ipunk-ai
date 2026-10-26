@@ -1,7 +1,7 @@
 const radarStyles=document.createElement('link');radarStyles.rel='stylesheet';radarStyles.href='/radar.css';document.head.append(radarStyles);
 const button=document.querySelector('[data-language]');
 const saved=localStorage.getItem('ipunk-ai-language');
-if(saved==='en') document.body.classList.add('en');
+if(saved==='en'&&!document.documentElement.dataset.pageLanguage) document.body.classList.add('en');
 let projectData=null;
 let activeFilter='all';
 
