@@ -1,0 +1,68 @@
+{
+  "observed_at": "2026-10-27T16:51:52+08:00",
+  "source": "Authenticated Google Search Console UI and verified production responses",
+  "property": "https://ai.ipunk.cn/",
+  "performance": {
+    "search_type": "web",
+    "requested_window_days": 28,
+    "available_start": "2026-10-14",
+    "available_end": "2026-10-25",
+    "available_days": 12,
+    "clicks": 0,
+    "impressions": 1,
+    "average_position": 99,
+    "visible_pages": [
+      {
+        "url": "https://ai.ipunk.cn/projects/rea/",
+        "clicks": 0,
+        "impressions": 1
+      }
+    ],
+    "qualification": "Only twelve days are available, so this is not a complete 28-day baseline. Missing history is not zero traffic."
+  },
+  "index_coverage": {
+    "report_updated": "2026-10-23",
+    "indexed": 1,
+    "not_indexed": 18,
+    "not_indexed_reason": "Discovered - currently not indexed",
+    "last_crawl_for_all_18": null,
+    "known_indexed_url": "https://ai.ipunk.cn/projects/rea/",
+    "new_english_opencode_note": "The English OpenCode URL published on October 26 is not yet represented in this October 23 coverage report."
+  },
+  "crawl_stats": {
+    "property": "sc-domain:ipunk.cn",
+    "host": "ai.ipunk.cn",
+    "report_updated": "2026-10-22",
+    "window": "past 90 days",
+    "requests": 14,
+    "downloaded_bytes": 36730,
+    "average_response_ms": 184,
+    "host_status": "No problems in the past 90 days",
+    "response_mix": {
+      "success_200_percent": 93,
+      "not_found_404_percent": 7
+    },
+    "purpose_mix": {
+      "refresh_percent": 100,
+      "discovery_percent": 0
+    },
+    "googlebot_mix": {
+      "page_resource_load_percent": 71,
+      "smartphone_percent": 14,
+      "desktop_percent": 7,
+      "image_percent": 7
+    }
+  },
+  "diagnosis": "The AI host is healthy but receives almost no page discovery crawling. Index coverage and external discovery are the limiting factors; adding more thin project pages would expand the unprocessed queue.",
+  "action": {
+    "main_site_commit": "69cad79",
+    "main_site_deployment": "https://c2d32c1e.ipunk-root.pages.dev",
+    "production_links": [
+      "https://ipunk.cn/",
+      "https://ipunk.cn/topic/ai-tools/"
+    ],
+    "destination": "https://ai.ipunk.cn/",
+    "validation": "Both production source pages expose a visible followed link; the topic page includes a contextual description. Main-site lint, 323 tests, 103-page static export and SEO audit passed before deployment."
+  },
+  "experiment_rule": "Keep the AI homepage and indexed REA page stable. Re-check host discovery crawl share, indexed count and performance after the reports refresh; do not claim that the cross-site links caused future crawling or rankings."
+}

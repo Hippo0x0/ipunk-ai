@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "repository_sync": {
+    "method": "Protected local report changes with a recoverable stash, then fast-forwarded origin/main and reapplied them without conflict.",
+    "remote_commits_reused": [
+      "3cd36eb data: update daily project snapshot",
+      "80ca228 data: update daily project snapshot"
+    ],
+    "latest_available_snapshot": "2026-10-28"
+  },
+  "metrics": {
+    "october_29_snapshot_available": false,
+    "attempts": 2,
+    "result": "Both bounded runs of node scripts/update-projects.mjs failed before TLS setup with ECONNRESET to api.github.com. No project data, history or generated HTML was written.",
+    "decision": "Do not manufacture a timestamp-only snapshot or commit. Reuse a successful same-day Actions snapshot if one appears later."
+  },
+  "growth_action": {
+    "status": "experiment_retained_and_production_verified",
+    "basis": "The October 27 independent Search Console checkpoint found 1 indexed URL, 18 discovered-not-indexed URLs and 0% discovery-purpose crawling. The highest-impact scoped action was therefore external discovery from the established main site, not another project page.",
+    "verification": [
+      "https://ai.ipunk.cn/ returned its self-canonical homepage and project links.",
+      "https://ipunk.cn/ still exposes a visible followed footer link to https://ai.ipunk.cn/.",
+      "https://ipunk.cn/topic/ai-tools/ still exposes the contextual iPunk AI project-radar link."
+    ],
+    "change_today": "No new content or title experiment. The October 27 cross-site discovery change is intentionally held stable while Google processes it."
+  },
+  "search_console": {
+    "refreshed_today": false,
+    "latest_evidence": "data/reports/2026-10-27-index-checkpoint.json",
+    "reason": "No new complete comparable window was collected in this run; missing data is not recorded as zero."
+  },
+  "validation": {
+    "command": "node scripts/check-site.mjs",
+    "result": "Passed: 22 HTML pages and 12 project snapshots"
+  },
+  "next": "Keep the cross-site links and existing AI URLs stable. Recheck ordinary index coverage, independent performance and discovery-purpose crawl share after Search Console reports refresh; do not attribute any future change to the links without a comparable window."
+}
