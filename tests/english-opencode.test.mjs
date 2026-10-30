@@ -37,13 +37,18 @@ test("Chinese URL ignores a remembered English preference without changing other
   const script = await readFile(new URL("../dist/app.js", import.meta.url), "utf8");
   const { runInNewContext } = await import("node:vm");
   const initialLanguage = script.slice(0, script.indexOf("let projectData"));
-  for (const fixed of [true, false]) {
+  for (const { fixed, pathname, expected } of [
+    { fixed: true, pathname: "/projects/opencode/", expected: [] },
+    { fixed: false, pathname: "/", expected: ["en"] },
+    { fixed: false, pathname: "/projects/jev/", expected: [] },
+  ]) {
     const classes = [];
     runInNewContext(initialLanguage, {
       localStorage: { getItem: () => "en" },
+      location: { pathname },
       document: { createElement: () => ({}), head: { append() {} }, querySelector: () => null,
         documentElement: { dataset: fixed ? { pageLanguage: "zh" } : {} }, body: { classList: { add: (value) => classes.push(value) } } },
     });
-    assert.deepEqual(classes, fixed ? [] : ["en"]);
+    assert.deepEqual(classes, expected);
   }
 });

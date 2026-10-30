@@ -1,25 +1,43 @@
 const radarStyles=document.createElement('link');radarStyles.rel='stylesheet';radarStyles.href='/radar.css';document.head.append(radarStyles);
 const button=document.querySelector('[data-language]');
 const saved=localStorage.getItem('ipunk-ai-language');
-if(saved==='en'&&!document.documentElement.dataset.pageLanguage) document.body.classList.add('en');
+const chineseOnlyProject=/^\/projects\/[^/]+\/?$/.test(location.pathname)&&!document.documentElement.dataset.pageLanguage;
+if(saved==='en'&&!document.documentElement.dataset.pageLanguage&&!chineseOnlyProject) document.body.classList.add('en');
 let projectData=null;
 let activeFilter='all';
 
 function isEnglish(){return document.body.classList.contains('en')}
 function update(){
   if(!button)return;
+  if(chineseOnlyProject){
+    document.body.classList.remove('en');
+    document.documentElement.lang='zh-CN';
+    button.textContent='English summaries';
+    button.setAttribute('aria-label','Browse English project summaries');
+    return;
+  }
   const en=isEnglish();
   button.textContent=en?'中文':'English';
   button.setAttribute('aria-label',en?'切换到中文':'Switch to English');
   document.documentElement.lang=en?'en':'zh-CN';
   const search=document.querySelector('[data-search]');if(search)search.placeholder=en?'Search project, repository or use case':'搜索项目、仓库或用途';
+  const searchLabel=document.querySelector('.searchbox .sr-only');if(searchLabel)searchLabel.textContent=en?'Search projects':'搜索项目';
+  const tools=document.querySelector('.radar-tools');if(tools)tools.setAttribute('aria-label',en?'Project filters and sorting':'项目筛选与排序');
+  const filters=document.querySelector('.filters');if(filters)filters.setAttribute('aria-label',en?'Project type':'项目类型');
   const options=document.querySelectorAll('[data-sort] option');
   const labels=en?['Editorial score','Snapshot growth','Total stars','Confidence']:['综合评分','快照增量','Star 总数','置信度'];
   options.forEach((option,index)=>{option.textContent=labels[index]});
+  for(const slug of ['rea','opencode']){
+    const card=document.querySelector(`#projects .card[data-project="${slug}"]`);
+    if(card)card.href=en?`/en/projects/${slug}/`:`/projects/${slug}/`;
+  }
   renderCaptureLabels();
   window.dispatchEvent(new CustomEvent('languagechange'));
 }
-button?.addEventListener('click',()=>{document.body.classList.toggle('en');localStorage.setItem('ipunk-ai-language',isEnglish()?'en':'zh');update()});
+button?.addEventListener('click',()=>{
+  if(chineseOnlyProject){localStorage.setItem('ipunk-ai-language','en');location.assign('/#projects');return}
+  document.body.classList.toggle('en');localStorage.setItem('ipunk-ai-language',isEnglish()?'en':'zh');update()
+});
 for(const link of document.querySelectorAll('a.back')) link.href='/#projects';
 const nav=document.querySelector('.navlinks');
 if(nav&&!nav.querySelector('[data-trends-link]')){
