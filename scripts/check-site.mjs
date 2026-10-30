@@ -5,6 +5,10 @@ import { checkIndexableHtml } from "./seo-guard.mjs";
 
 const root = fileURLToPath(new URL("../dist/", import.meta.url));
 const sitemap = await readFile(join(root, "sitemap.xml"), "utf8");
+const favicon = await readFile(join(root, "favicon.ico"));
+if (favicon.length < 6 || favicon.readUInt32LE(0) !== 0x00010000 || favicon.readUInt16LE(4) < 1) {
+  throw new Error("Missing or invalid favicon.ico");
+}
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
 if (new Set(sitemapUrls).size !== sitemapUrls.length) throw new Error("Duplicate sitemap URLs");
 const checkedUrls = new Set();
