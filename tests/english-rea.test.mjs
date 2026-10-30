@@ -32,3 +32,8 @@ test("English REA edition is complete static English and Chinese URL resists sav
   assert.match(chinese, /data-page-language="zh"/);
   assert.doesNotMatch(chinese, /data-language type="button"/);
 });
+
+test("the homepage has an ordinary HTML path to the English REA guide", async () => {
+  const home = await readFile(new URL("../dist/index.html", import.meta.url), "utf8");
+  assert.match(home, /<a href="\/en\/projects\/rea\/">REA<\/a>/);
+});
