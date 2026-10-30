@@ -2,6 +2,7 @@ import { mkdir, readdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { renderSnapshotFiles } from "./render-snapshot.mjs";
+import { hasPublicMetricChange } from "./project-metrics.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dataPath = resolve(root, "dist/data/projects.json");
@@ -52,6 +53,11 @@ if (!timelineOnly) {
       stars_since_previous_capture: previous ? item.stargazers_count - previous.stars : null,
       forks_since_previous_capture: previous ? item.forks_count - previous.forks : null,
     });
+  }
+
+  if (!hasPublicMetricChange(existing.projects, projects)) {
+    console.log("No public GitHub metric changes; retained the previous snapshot");
+    process.exit(0);
   }
 
   const snapshot = { captured_at: capturedAt, source: "GitHub REST API", baseline_only: false, projects };

@@ -40,12 +40,14 @@ jobs:
           node scripts/check-site.mjs
 
       - name: Commit a changed snapshot
+        id: snapshot_change
         shell: bash
         run: |
           set -euo pipefail
 
           if [[ -z "$(git status --porcelain -- dist/data/projects.json dist/data/timeline.json dist/data/history dist/index.html dist/projects)" ]]; then
             echo "No metric changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -59,3 +61,36 @@ jobs:
             git pull --rebase origin main
             git push origin HEAD:main
           fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Check existing Cloudflare deployment credentials
+        id: cloudflare_auth
+        if: steps.snapshot_change.outputs.changed == 'true'
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [[ -n "$CLOUDFLARE_API_TOKEN" && -n "$CLOUDFLARE_ACCOUNT_ID" ]]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::warning title=AI Worker not deployed::Existing Cloudflare credentials are missing in this repository; the changed snapshot remains committed for manual deployment."
+          fi
+
+      - name: Deploy changed snapshot to existing AI Worker
+        if: steps.cloudflare_auth.outputs.available == 'true'
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --config wrangler.jsonc
+
+      - name: Verify published snapshot on custom domain
+        if: steps.cloudflare_auth.outputs.available == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --ipv4 --fail --silent --show-error --location --retry 2 --retry-delay 2 --max-time 20 \
+            https://ai.ipunk.cn/data/projects.json -o /tmp/ipunk-ai-live-projects.json
+          cmp dist/data/projects.json /tmp/ipunk-ai-live-projects.json
