@@ -1,0 +1,50 @@
+{
+  "observed_at_local": "2026-10-30 22:53 Asia/Shanghai",
+  "search_console_property": "https://ai.ipunk.cn/",
+  "aggregate_report": {
+    "last_updated_display": "2026/10/23",
+    "indexed_pages_display": 1,
+    "discovered_not_indexed_display": 18,
+    "indexed_example_from_aggregate": "https://ai.ipunk.cn/projects/rea/",
+    "aggregate_is_not_current_total": true
+  },
+  "url_inspection": [
+    {
+      "url": "https://ai.ipunk.cn/projects/rea/",
+      "status": "indexed",
+      "last_ordinary_crawl_display": "2026-10-30 04:09:39",
+      "crawler": "Googlebot smartphone",
+      "fetch_succeeded": true,
+      "crawl_allowed": true,
+      "indexing_allowed": true,
+      "sitemap_discovery": "https://ai.ipunk.cn/sitemap.xml",
+      "google_selected_canonical": "inspected URL",
+      "crawled_html": {
+        "title": "REA 项目分析：用途、成熟度、风险与评分｜iPunk AI Radar",
+        "canonical": "https://ai.ipunk.cn/projects/rea/",
+        "date_modified": "2026-10-14",
+        "note": "The ordinary crawl preceded the 2026-10-30 REA content update. It contained the public static AI Radar page, not a redirect to the old ChatGPT Site."
+      }
+    },
+    {
+      "url": "https://ai.ipunk.cn/",
+      "status": "discovered_not_indexed",
+      "last_ordinary_crawl_display": null,
+      "sitemap_discovery": "https://ai.ipunk.cn/sitemap.xml"
+    },
+    {
+      "url": "https://ai.ipunk.cn/projects/opencode/",
+      "status": "discovered_not_indexed",
+      "last_ordinary_crawl_display": null,
+      "sitemap_discovery": "https://ai.ipunk.cn/sitemap.xml",
+      "referring_page_display": "https://ai.ipunk.cn/en/projects/opencode/"
+    }
+  ],
+  "public_checks": {
+    "homepage_http_status": 200,
+    "robots_browser": "User-agent: *; Allow: /; Sitemap: https://ai.ipunk.cn/sitemap.xml",
+    "sitemap_browser": "XML rendered with 21 URLs including homepage, REA, OpenCode, and English versions"
+  },
+  "interpretation": "Google has performed an ordinary recrawl of one indexed project page, so a site-wide crawl block is not supported. Crawl and indexing are selective; homepage and OpenCode remain pending. The October 23 aggregate is older than the URL inspection and cannot serve as today's site-wide indexed count.",
+  "next": "Keep homepage and project URLs stable. Wait for ordinary homepage/OpenCode crawls and a complete AI-property performance week; do not submit repeated index requests or add thin project pages."
+}
