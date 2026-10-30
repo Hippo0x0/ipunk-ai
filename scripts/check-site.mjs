@@ -1,7 +1,7 @@
 import { readdir, readFile, stat } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import { checkIndexableHtml } from "./seo-guard.mjs";
+import { checkIndexableHtml, checkModifiedDate } from "./seo-guard.mjs";
 
 const root = fileURLToPath(new URL("../dist/", import.meta.url));
 const sitemap = await readFile(join(root, "sitemap.xml"), "utf8");
@@ -11,6 +11,14 @@ if (favicon.length < 6 || favicon.readUInt32LE(0) !== 0x00010000 || favicon.read
 }
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
 if (new Set(sitemapUrls).size !== sitemapUrls.length) throw new Error("Duplicate sitemap URLs");
+const sitemapDates = new Map();
+for (const [, entry] of sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+  const url = entry.match(/<loc>([^<]+)<\/loc>/)?.[1];
+  const date = entry.match(/<lastmod>(\d{4}-\d{2}-\d{2})<\/lastmod>/)?.[1];
+  if (!url || !date) throw new Error("Sitemap entry is missing loc or date-only lastmod");
+  sitemapDates.set(url, date);
+}
+if (sitemapDates.size !== sitemapUrls.length) throw new Error("Sitemap URL and lastmod entries differ");
 const checkedUrls = new Set();
 const files = [];
 async function walk(directory) {
@@ -29,6 +37,7 @@ for (const path of htmlFiles) {
     const route = relative(root, path).replaceAll("\\", "/").replace(/index\.html$/, "");
     const url = `https://ai.ipunk.cn/${route}`;
     checkIndexableHtml(html, url);
+    checkModifiedDate(html, url, sitemapDates.get(url));
     if (!sitemapUrls.includes(url)) throw new Error(`${url}: missing from sitemap`);
     checkedUrls.add(url);
   }

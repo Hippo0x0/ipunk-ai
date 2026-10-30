@@ -15,3 +15,10 @@ export function checkIndexableHtml(html, expectedUrl) {
   if (!meta.some(a => a.name?.toLowerCase() === "description" && a.content?.trim())) throw new Error(`${expectedUrl}: missing description in head`);
   if (!/<title>[^<]+<\/title>/i.test(head)) throw new Error(`${expectedUrl}: missing title in head`);
 }
+
+export function checkModifiedDate(html, expectedUrl, sitemapDate) {
+  const dates = [...html.matchAll(/"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})"/g)].map(([, date]) => date);
+  if (dates.some((date) => date !== sitemapDate)) {
+    throw new Error(`${expectedUrl}: sitemap lastmod differs from structured dateModified`);
+  }
+}
