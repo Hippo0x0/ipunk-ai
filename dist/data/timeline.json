@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T07:20:46.536Z",
+  "generated_at": "2026-10-31T02:02:37.373Z",
   "source": "Daily GitHub REST API snapshots",
   "snapshots": [
     {
@@ -1071,6 +1071,72 @@
           "slug": "deepseek-harness",
           "stars": 266196,
           "forks": 32275
+        }
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "captured_at": "2026-10-31T02:02:37.373Z",
+      "projects": [
+        {
+          "slug": "rea",
+          "stars": 412477,
+          "forks": 103179
+        },
+        {
+          "slug": "openclaw",
+          "stars": 393481,
+          "forks": 82702
+        },
+        {
+          "slug": "jev",
+          "stars": 0,
+          "forks": 0
+        },
+        {
+          "slug": "gemini-cli",
+          "stars": 108638,
+          "forks": 14886
+        },
+        {
+          "slug": "browser-use",
+          "stars": 119601,
+          "forks": 13314
+        },
+        {
+          "slug": "markitdown",
+          "stars": 193089,
+          "forks": 14456
+        },
+        {
+          "slug": "claude-code",
+          "stars": 153986,
+          "forks": 26090
+        },
+        {
+          "slug": "codex-cli",
+          "stars": 132012,
+          "forks": 20865
+        },
+        {
+          "slug": "qwen-code",
+          "stars": 28840,
+          "forks": 3290
+        },
+        {
+          "slug": "opencode",
+          "stars": 223346,
+          "forks": 29975
+        },
+        {
+          "slug": "cline",
+          "stars": 71082,
+          "forks": 7810
+        },
+        {
+          "slug": "deepseek-harness",
+          "stars": 266758,
+          "forks": 32345
         }
       ]
     }
