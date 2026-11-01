@@ -1,6 +1,19 @@
 {
   "date": "2026-11-01",
-  "status": "validated_pending_publication",
+  "status": "published_and_verified",
+  "publication": {
+    "content_commit": "648789b9a323bc7960024d6d2a2cd088229350f9",
+    "github_and_sites_source": "pushed",
+    "cloudflare_worker": "ipunk-ai",
+    "cloudflare_version": "f2b3e360-be66-4353-9706-1ddd7fe39b8f",
+    "sites_version": 3,
+    "sites_version_id": "appgprj_6acf2795fc4c8191a167d559eb6bc142~appgver_a2bc8e0e93c48191b89eea76cc78a7e4",
+    "sites_deployment": "appgdep_6ae74daf51a88191b8564dfebde2cf0d",
+    "sites_url": "https://ipunk-ai-radar.butub666.chatgpt.site",
+    "sites_status": "succeeded",
+    "production_checks": "Article, JSON evidence, reproduction script, homepage, OpenClaw discovery link and sitemap all HTTP 200; required content and canonical read back",
+    "screenshot": "Saved outside this repository for handoff only; not embedded in public article"
+  },
   "article_url": "https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/",
   "source": "Owner-authorized existing local Mac mini M4/32GB test conversation, benchmark script, 13 numeric log groups, offload state and engine unit-conversion code",
   "not_a_new_inference_run": true,
