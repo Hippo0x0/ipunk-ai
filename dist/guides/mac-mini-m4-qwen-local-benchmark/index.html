@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN" data-page-language="zh">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mac mini M4 32GB 跑 Qwen 实测：9B、27B、35B 速度与内存｜iPunk AI</title>
+<meta name="description" content="同一台 Mac mini M4 32GB 的 Qwen 本地推理记录：9B 4bit/8bit、27B MTP、35B-A3B，附 oMLX 专家卸载、首字等待、缓存异常和脱敏逐次数据。">
+<link rel="canonical" href="https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/benchmark.css">
+<meta property="og:type" content="article"><meta property="og:title" content="Mac mini M4 32GB 跑 Qwen：速度、内存与首字等待实测"><meta property="og:description" content="不只看最快 token/s：保留冷态、缓存命中和 SSD 专家卸载的代价。"><meta property="og:url" content="https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Mac mini M4 32GB 跑 Qwen 实测：9B、27B、35B 速度与内存","datePublished":"2026-11-01","dateModified":"2026-11-01","inLanguage":"zh-CN","author":{"@type":"Organization","name":"iPunk AI Radar"},"mainEntityOfPage":"https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/"}</script>
+</head>
+<body>
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/"><span>iP</span>AI Radar</a><nav class="navlinks"><a href="/projects/openclaw/">OpenClaw</a><a href="/guides/ai-coding-agent-security/">安全指南</a><a href="/methodology/">证据方法</a></nav></div></header>
+<main>
+<section class="project-hero"><div class="wrap"><a class="back" href="/">← 返回 AI Radar</a><p class="eyebrow" style="margin-top:35px">FIELD NOTES / LOCAL INFERENCE</p><h1 class="bench-title">Mac mini M4 跑 Qwen：<br>不只看 token/s。</h1><p class="bench-deck">32GB 统一内存，同机不同轮次的 9B、27B、35B 测试；再看 oMLX 专家卸载和前缀缓存如何改变等待体验。</p><p class="bench-byline">iPunk 实测记录 · 发布与复核：<time datetime="2026-11-01">2026-11-01</time> · 约 12 分钟</p><div class="hero-meta"><span class="pill">M4 · 非 M4 Pro</span><span class="pill">32GB 统一内存</span><span class="pill">单并发 · 文本短测</span><span class="pill">逐次数据可下载</span></div></div></section>
+<div class="wrap project-layout">
+<article class="article bench-article">
+<div class="notice"><strong>先给结论：</strong>在这台机器和已记录的短输入下，35B-A3B 4bit 全常驻输出约 43–45 token/s；9B 4bit 约 19.5 token/s，但内存更小。专家卸载能降低 oMLX 的模型加载分配，却明显增加等待。它们都不是回答准确率、全天稳定性或其他 Mac 的性能保证。</div>
+<nav class="bench-toc" aria-label="文章目录"><strong>本页内容</strong><ol><li><a href="#environment">测试环境与口径</a></li><li><a href="#four-models">四模型逐项对照</a></li><li><a href="#offload">专家常驻 100%／75%／50%</a></li><li><a href="#latency">首字、冷态与缓存异常</a></li><li><a href="#choice">如何选，不做能力排名</a></li><li><a href="#reproduce">复查数据与复现方法</a></li></ol></nav>
+
+<section id="environment"><h2>测了什么，又没有测什么？</h2>
+<p>这是一组真实部署过程中的工程记录，目的是为本地助手选择兜底模型，不是先设计好的标准评测。机器是同一台基础款 Mac mini M4、32GB 统一内存；27B 的预热记录来自此前测试，9B、35B 与 oMLX 的追加记录在 11 月 1 日核对。不同轮次、引擎和缓存状态不能假装成严格受控的横评。</p>
+<div class="bench-table" tabindex="0" role="region" aria-label="测试条件"><table><caption>已记录的性能测试条件</caption><thead><tr><th scope="col">项目</th><th scope="col">本次记录</th></tr></thead><tbody>
+<tr><th scope="row">机器</th><td>Mac mini M4／32GB；不是 M4 Pro、Max 或 Ultra</td></tr>
+<tr><th scope="row">推理后端</th><td>Rapid-MLX 0.16.10；oMLX 0.7.3。仅对应测试时版本，不表示当前最新版</td></tr>
+<tr><th scope="row">请求</th><td>单并发、流式输出、temperature=0、max_tokens=64、关闭 thinking</td></tr>
+<tr><th scope="row">输入</th><td>同一对短／中提示，本次服务分别报告约 32／916 输入 tokens</td></tr>
+<tr><th scope="row">MTP 与缓存</th><td>27B 使用 MTP；其他主对照不使用。27B 预热样本命中前缀缓存，不能拿它的首字时间做公平排名</td></tr>
+<tr><th scope="row">磁盘</th><td>卸载试验使用外接 USB workspace 盘；没有清空整机文件缓存，没有测得独立冷读带宽</td></tr>
+<tr><th scope="row">未覆盖</th><td>统一 OS build、长输出、多并发、长上下文、功耗、p95 延迟和长时间稳定性均未完整记录或验证</td></tr>
+</tbody></table></div>
+<p><strong>生成速度不是整段任务速度。</strong>本文客户端解码速度按 <code>(输出 token 数 − 1) ÷ (请求总秒数 − 首字秒数)</code> 计算。首字等待包含加载、调度、预填充等成本；不能直接把 916 除以首字时间，当作纯 prefill 性能。后端另报的 generation tokens/s 与客户端公式可能略有差异。</p></section>
+
+<section id="four-models"><h2>四模型对照：参数更多，不一定输出更慢</h2>
+<p>下表选取每个模型记录中的同一条 916-token 中提示，均输出 64 tokens。每行是一个实际记录，不是多次均值；完整短提示与其他轮次见文末 JSON。token 不是汉字，不能把 44 token/s 写成“每秒 44 个汉字”。</p>
+<div class="bench-table" tabindex="0" role="region" aria-label="Qwen 四模型性能记录"><table><caption>Rapid-MLX 中提示记录：缓存状态并不完全一致</caption><thead><tr><th scope="col">模型</th><th scope="col">草稿解码</th><th scope="col">客户端生成速度</th><th scope="col">首字等待</th><th scope="col">已缓存输入 tokens</th></tr></thead><tbody>
+<tr><th scope="row">Qwen3.8-27B 4bit</th><td>MTP</td><td>9.19 token/s</td><td>0.84 秒</td><td>896／916</td></tr>
+<tr><th scope="row">Qwen3.5-9B 8bit</th><td>无</td><td>10.23 token/s</td><td>4.51 秒</td><td>原记录未返回该字段</td></tr>
+<tr><th scope="row">Qwen3.5-9B 4bit</th><td>无</td><td>19.54 token/s</td><td>4.33 秒</td><td>原记录未返回该字段</td></tr>
+<tr><th scope="row">Qwen3.6-35B-A3B 4bit</th><td>无</td><td>44.57 token/s</td><td>3.52 秒</td><td>原记录未返回该字段</td></tr>
+</tbody></table></div>
+<p>此前对话速览把 27B 写作约 9.1 token/s；那对应短提示的 9.10，中提示则是 9.19。这里直接标明所选样本，不把两个数混成平均值，也不把“缓存字段缺失”写成确认未命中。</p>
+<p><a href="https://huggingface.co/Qwen/Qwen3.6-35B-A3B" rel="noreferrer">Qwen 官方模型卡</a>把 35B-A3B 定义为稀疏 MoE：总参数与每个 token 激活的参数不是一回事。这解释了为什么不能只按“9B 比 35B 小”推断速度；但激活约 3B 也不意味着全部模型权重只需 3B 的内存。本机结果更不能证明 35B 在所有任务、精度和上下文上都更快。</p>
+<h3>先纠正截图里的 GB／GiB</h3>
+<p>原对话速览中的内存单位需要更正。核对本机 Rapid-MLX health 路由及调度器后，<code>active_memory_gb</code> 来自字节数除以 <code>1e9</code>，是十进制 GB；oMLX 下文使用字节数除以 <code>2**30</code>，是 GiB。1 GiB = 1,073,741,824 字节。两种口径不能直接相减。</p>
+<div class="bench-table" tabindex="0" role="region" aria-label="Rapid-MLX 内存记录"><table><caption>9B 独立测试的 MLX 活跃／峰值内存，不是整机内存</caption><thead><tr><th scope="col">模型</th><th scope="col">活跃内存</th><th scope="col">峰值</th></tr></thead><tbody><tr><th scope="row">9B 8bit</th><td>9.78 GB</td><td>11.12 GB</td></tr><tr><th scope="row">9B 4bit</th><td>5.30 GB</td><td>6.79 GB</td></tr></tbody></table></div>
+<p>27B／35B 的旧对话内存速记与速度样本没有统一的同步采样，我们不把它们补成一张“精确内存排行榜”。尤其不能用 Rapid-MLX 活跃内存与 oMLX 加载分配的差值，声称换引擎省了多少整机内存。</p></section>
+
+<section id="offload"><h2>oMLX 专家卸载：内存下降，速度也下降</h2>
+<p>复用同一份 35B-A3B 4bit 权重，在 oMLX 0.7.3 中比较专家常驻比例。<a href="https://github.com/jundot/omlx/pull/2595" rel="noreferrer">项目的专家卸载实现</a>按需从检查点读取非驻留专家；75%／50% 是常驻预算，不是永久删除或禁用另一部分专家。对照阶段关闭了前缀缓存，但操作系统文件缓存没有清空。</p>
+<div class="bench-table" tabindex="0" role="region" aria-label="专家常驻比例对照"><table><caption>预热后的 repeat 中提示：916 输入／64 输出，前缀缓存命中为 0</caption><thead><tr><th scope="col">专家常驻比例</th><th scope="col">模型加载分配</th><th scope="col">客户端生成速度</th><th scope="col">首字等待</th></tr></thead><tbody>
+<tr><th scope="row">100%</th><td>18.48 GiB</td><td>43.50 token/s</td><td>1.96 秒</td></tr>
+<tr><th scope="row">75%</th><td>14.37 GiB</td><td>17.01 token/s</td><td>3.17 秒</td></tr>
+<tr><th scope="row">50%</th><td>10.16 GiB</td><td>13.53 token/s</td><td>5.94 秒</td></tr>
+</tbody></table></div>
+<p>加载分配由该轮服务状态的 <code>actual_size</code> 字节值换算。截图中的 18.6 GiB 来自后续重载记录；这里采用卸载对照轮次的 18.48 GiB，避免把不同轮次拼成一组。</p>
+<p>可以确认的是：这组记录中，降低常驻比例减少了加载分配，并牺牲了速度。不能确认的是“50% 在任意 SSD 上都能跑 13.5 token/s”，也不能把它等同于整机节省 8 GiB。RSS 会遗漏部分 Metal 内存；文件页、KV 缓存、临时缓冲和其他进程都可能影响实际内存压力。</p>
+<p>我们没有测 90% 档位，也没有测更换内置／外接 SSD 后的受控差异。不要根据这三个点插值承诺某个比例一定达到 20–30 token/s，更不要为了追求驻留比例同时启动两套后端抢内存。</p></section>
+
+<section id="latency"><h2>为什么生成很快，第一句话仍然等很久？</h2>
+<p>至少要分开四件事：模型冷加载、输入预填充、前缀缓存复用，以及首字之后的持续生成。Rapid-MLX 的 35B 记录里，恢复服务后的第一条短请求首字等待约 59.93 秒，而随后中提示约 3.52 秒；两条的输出生成都约 44.6 token/s。只看后一个指标，会漏掉真实等待。</p>
+<p>日常 oMLX 服务后来打开了有上限的内存前缀缓存，再做同提示和追问检查。下表不是冷启动对比，也不是统计意义上的平均改善：</p>
+<div class="bench-table" tabindex="0" role="region" aria-label="前缀缓存延迟记录"><table><caption>100% 常驻的缓存专项检查，各行是独立观测</caption><thead><tr><th scope="col">请求</th><th scope="col">输入／缓存 tokens</th><th scope="col">客户端首字等待</th><th scope="col">说明</th></tr></thead><tbody>
+<tr><th scope="row">首轮中提示</th><td>916／0</td><td>2.084 秒</td><td>未复用前缀</td></tr>
+<tr><th scope="row">重复同一中提示</th><td>916／909</td><td>0.119 秒</td><td>命中大量已有前缀，仍在重新生成答案</td></tr>
+<tr><th scope="row">追加追问</th><td>994／909</td><td>0.559 秒</td><td>保留可复用前缀，输出 23 tokens</td></tr>
+<tr><th scope="row">另一次重复短提示</th><td>32／25</td><td>8.944 秒</td><td>明显慢样本；原因未被单独隔离</td></tr>
+</tbody></table></div>
+<p><strong>0.119 秒不是“开启缓存后每次都这样快”。</strong>重复短提示的 8.944 秒说明，字段显示缓存命中仍不能保证低延迟。日志不足以确定那一次慢在调度、运行时还是其他环节，所以保留样本，不擅自解释。重启、空闲卸载、缓存驱逐、提示前缀改变都需要重新测。</p>
+<p>“支持 128K 上下文”的配置声明也不等于本机在 128K 下能保持上述速度：主对照只有 32／916-token 输入。给助手接很多工具时，系统提示和工具 schema 会增大输入；不能用短聊天速度预测完整 Agent 工作流。</p></section>
+
+<section id="choice"><h2>按自己的任务选，不把速度表当能力榜</h2>
+<ul><li><strong>内存更紧张：</strong>9B 4bit 的活跃内存记录最低，输出约 19.5 token/s；值得用自己的问答、格式和工具样本再验证，不代表它对所有任务“够用”。</li>
+<li><strong>这台 32GB Mac 上重视连续输出：</strong>35B-A3B 4bit 全常驻是已测的较快方案，但还要为系统和其他应用留空间，观察内存压力与 swap。</li>
+<li><strong>模型能加载，但需要腾出常驻预算：</strong>75%／50% 卸载是可测的取舍。本机速度下降明显；如果 17 或 13.5 token/s 无法接受，不要只看省内存数字。</li>
+<li><strong>首字慢：</strong>先记录输入长度、是否冷态、缓存命中和并发，再决定是否换模型。不要把所有等待都归因于 decode。</li></ul>
+<p>质量检查也没有给出胜负：9B 的 4bit 与 8bit 在同组 7 项手写小检查中均为 5 项通过，包含两道算术／推理失败；当前 35B 在同两道无 thinking 检查中也出错。这些少量检查不能推导出整体能力，也不意味着三者质量相同。工具调用格式成功同样不等于 Agent 能安全、正确地完成真实操作。</p>
+<p>我们最终在这台机器上选择了 35B＋oMLX 全常驻，主要依据是这次部署的输出体验与可用内存，不是宣称某个推理引擎“全面胜出”。阅读 <a href="/projects/openclaw/">OpenClaw 部署边界</a>和 <a href="/guides/ai-coding-agent-security/">Agent 安全指南</a>，再决定如何暴露接口；本机服务默认只监听 loopback，不把无认证端口直接放到公网。</p></section>
+
+<section id="reproduce"><h2>逐次数据、复现与未解决问题</h2>
+<p><a href="/evidence/mac-mini-m4-qwen-2026-11-01.json">下载脱敏逐次数据 JSON</a>：包含 13 组记录、客户端时间、输入／输出长度、缓存字段、加载字节数及原记录 SHA-256。只导出白名单指标，没有私有对话、API Key、账号、本机目录或设备标识。哈希用于追溯本次提取来源，不是第三方审计证明。</p>
+<p><a href="/evidence/benchmark-qwen-stream.py" download>下载独立流式测速脚本</a>。它不安装模型、不切换服务、不读取助手配置；使用与原测试相同的两条非私密提示、单并发、64-token 输出和客户端计时公式。先自行启动已配置的本机 OpenAI 兼容服务，再替换下面的端口与模型 ID；不必接入任何聊天机器人。</p>
+<pre><code>python3 benchmark-qwen-stream.py \
+  --base-url http://127.0.0.1:8080/v1 \
+  --model YOUR_MODEL_ID</code></pre>
+<p>服务需要认证时，通过环境变量 <code>LOCAL_LLM_API_KEY</code> 注入，脚本不会打印它。不要把真实令牌写进文章评论、命令截图或公开仓库。每次测试记录引擎版本、量化来源、MTP、缓存开关、输入长度和机器状态；分别保留首次与重复请求，不把最好的那次改名为“平均值”。</p>
+<p>需要继续补测的内容包括：统一 OS build、更多提示与长输出、多轮延迟分布、冷磁盘／系统页缓存的影响、同口径进程峰值、长上下文和真实工具任务正确率。本文没有重新启动、下载或改动正在使用的模型服务，也没有执行新的推理负载；它是对已有本机实测的审计整理。</p>
+<h3>一手参考与证据边界</h3><ul>
+<li><a href="https://huggingface.co/Qwen/Qwen3.6-35B-A3B" rel="noreferrer">Qwen 官方 35B-A3B 模型卡</a>：解释模型结构，不为本站速度背书。</li>
+<li><a href="https://rapidmlx.com/docs/models/alias-catalog" rel="noreferrer">Rapid-MLX 官方模型别名目录</a>：核对仓库名称；目录当前版本可能晚于本次 0.16.10 环境。</li>
+<li><a href="https://github.com/jundot/omlx/releases/tag/v0.7.3" rel="noreferrer">oMLX 0.7.3 发布页</a>与<a href="https://github.com/jundot/omlx/pull/2595" rel="noreferrer">专家卸载实现</a>：核对测试时版本与功能机制。</li>
+</ul><p>数值来自 iPunk 自有测试文件，而不是复制这些项目的宣传成绩。本文没有商业合作或付费排名；后续修订会保留旧样本和口径变化记录。</p>
+</section>
+</article>
+<aside class="side"><div class="scorebox"><div class="eyebrow">MEASURED, NOT PROMISED</div><h2>同一台 Mac。<br>不同取舍。</h2><p>没有综合跑分。先看测试条件，再看数字。</p></div><div class="snapshot"><strong>读表前检查</strong><ul><li>GB 不等于 GiB</li><li>加载分配不是整机内存</li><li>首字时间不是生成速度</li><li>命中缓存不保证低延迟</li><li>短测不代表长期稳定</li></ul><a href="/evidence/mac-mini-m4-qwen-2026-11-01.json">查看脱敏逐次记录 →</a></div><div class="snapshot"><strong>下一步</strong><p><a href="/projects/openclaw/">接入助手前的边界检查</a></p><p><a href="https://ipunk.cn/article/mac-system-data-too-large-cleanup/">Mac 储存与可用空间排查</a></p></div></aside>
+</div></main><footer class="footer"><div class="wrap footer-inner"><strong>iPunk AI Radar</strong><span>只发布核对过的数据，不把推测写成实测。</span><a href="/">返回首页</a></div></footer>
+</body></html>

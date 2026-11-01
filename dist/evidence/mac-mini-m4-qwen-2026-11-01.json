@@ -1,0 +1,413 @@
+{
+  "schema_version": 1,
+  "published_date": "2026-11-01",
+  "hardware": {
+    "model": "Mac mini",
+    "chip": "Apple M4 (not Pro)",
+    "unified_memory_gb": 32,
+    "source": "Original test engineering notes; original OS build not consistently recorded"
+  },
+  "method": {
+    "concurrency": 1,
+    "temperature": 0,
+    "max_completion_tokens": 64,
+    "thinking": false,
+    "stream": true,
+    "ttft": "Client monotonic elapsed time to first non-empty content or reasoning chunk",
+    "decode_tps": "(completion_tokens - 1) / (totalSeconds - ttftSeconds)",
+    "limitation": "Not a standard benchmark; short single-record samples, no p95, no long-context validation; cache states and MTP differ across some model runs."
+  },
+  "measurements": [
+    {
+      "source_file": "benchmark-mlx-mtp-warm.json",
+      "source_sha256": "8d05315d819eb34f730efd6746568de0ac9fc06d05c5b8e6d5dac9cfb8da67fc",
+      "samples": [
+        {
+          "case": "short",
+          "label": "mlx-mtp-warm",
+          "ttft_seconds": 0.3550246669910848,
+          "total_seconds": 7.276099459035322,
+          "decode_tokens_per_second": 9.102632451309209,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 31,
+          "server_generation_tokens_per_second": null
+        },
+        {
+          "case": "medium",
+          "label": "mlx-mtp-warm",
+          "ttft_seconds": 0.8442154580261558,
+          "total_seconds": 7.700944375013933,
+          "decode_tokens_per_second": 9.188054648611727,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 896,
+          "server_generation_tokens_per_second": null
+        }
+      ]
+    },
+    {
+      "source_file": "benchmark-qwen35-9b-q8.json",
+      "source_sha256": "325f8ca5cb5be0d3af49078cfe88181ffbf31b7d735183d2f9a1a345cc7bc308",
+      "samples": [
+        {
+          "case": "short",
+          "label": "qwen35-9b-q8",
+          "ttft_seconds": 0.38271516701206565,
+          "total_seconds": 6.435005791950971,
+          "decode_tokens_per_second": 10.40928202297555,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": null,
+          "server_generation_tokens_per_second": null
+        },
+        {
+          "case": "medium",
+          "label": "qwen35-9b-q8",
+          "ttft_seconds": 4.510134957963601,
+          "total_seconds": 10.671459791949019,
+          "decode_tokens_per_second": 10.225073616066563,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": null,
+          "server_generation_tokens_per_second": null
+        }
+      ]
+    },
+    {
+      "source_file": "benchmark-qwen35-9b-q4.json",
+      "source_sha256": "dad8c65d03fa9d9daa02cbc97daea61b5cc5ffa7edd1ebb2ce09a39bfca815f6",
+      "samples": [
+        {
+          "case": "short",
+          "label": "qwen35-9b-q4",
+          "ttft_seconds": 0.29397283401340246,
+          "total_seconds": 3.4777001249603927,
+          "decode_tokens_per_second": 19.788127010483,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": null,
+          "server_generation_tokens_per_second": null
+        },
+        {
+          "case": "medium",
+          "label": "qwen35-9b-q4",
+          "ttft_seconds": 4.325553125003353,
+          "total_seconds": 7.549196833977476,
+          "decode_tokens_per_second": 19.54310267745092,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": null,
+          "server_generation_tokens_per_second": null
+        }
+      ]
+    },
+    {
+      "source_file": "benchmark-qwen36-35b-current.json",
+      "source_sha256": "e78534d712f568fabcdaf1d9246c87267085e6a22bb3925815761563afa7ced3",
+      "samples": [
+        {
+          "case": "short",
+          "label": "qwen36-35b-a3b-current",
+          "ttft_seconds": 59.933312667068094,
+          "total_seconds": 61.34200037503615,
+          "decode_tokens_per_second": 44.72247443038568,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": null,
+          "server_generation_tokens_per_second": null
+        },
+        {
+          "case": "medium",
+          "label": "qwen36-35b-a3b-current",
+          "ttft_seconds": 3.5187461669556797,
+          "total_seconds": 4.932248291792348,
+          "decode_tokens_per_second": 44.570148776592546,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": null,
+          "server_generation_tokens_per_second": null
+        }
+      ]
+    },
+    {
+      "source_file": "benchmark-omlx-offload-100-first.json",
+      "source_sha256": "7d1f2ec929c07bfa1ec145bd30d2f9cbac72defedfbe0be7032362aeba1ff8b8",
+      "samples": [
+        {
+          "case": "short",
+          "label": "omlx-100-first",
+          "ttft_seconds": 31.060065625002608,
+          "total_seconds": 32.57580116693862,
+          "decode_tokens_per_second": 41.563978845235575,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 42.14
+        },
+        {
+          "case": "medium",
+          "label": "omlx-100-first",
+          "ttft_seconds": 1.996767999837175,
+          "total_seconds": 3.5051357499323785,
+          "decode_tokens_per_second": 41.76700277238335,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 42.34
+        }
+      ]
+    },
+    {
+      "source_file": "benchmark-omlx-offload-100-repeat.json",
+      "source_sha256": "a390ead0e55f9fac3e7741ba21f80227572d89798be9ada3cd42d2a2b5eb7047",
+      "samples": [
+        {
+          "case": "short",
+          "label": "omlx-100-repeat",
+          "ttft_seconds": 0.23128470801748335,
+          "total_seconds": 1.7143766251392663,
+          "decode_tokens_per_second": 42.47882364719732,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 43.07
+        },
+        {
+          "case": "medium",
+          "label": "omlx-100-repeat",
+          "ttft_seconds": 1.9605034578125924,
+          "total_seconds": 3.4087746248114854,
+          "decode_tokens_per_second": 43.50014102024041,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 44.1
+        }
+      ]
+    },
+    {
+      "source_file": "benchmark-omlx-offload-75-first.json",
+      "source_sha256": "feb9ef818ed6d1530c34ef356cecd94ee7f9b65e599dbad5682550e76d810642",
+      "samples": [
+        {
+          "case": "short",
+          "label": "omlx-75-first",
+          "ttft_seconds": 13.492841041879728,
+          "total_seconds": 19.812992166960612,
+          "decode_tokens_per_second": 9.968116070831098,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 10.12
+        },
+        {
+          "case": "medium",
+          "label": "omlx-75-first",
+          "ttft_seconds": 11.616000666981563,
+          "total_seconds": 15.602110750041902,
+          "decode_tokens_per_second": 15.804882124989309,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 16.05
+        }
+      ]
+    },
+    {
+      "source_file": "benchmark-omlx-offload-75-repeat.json",
+      "source_sha256": "7e1be5fe1fca5a643c3ccc3f10279cc8f1f465a6de3cd72d6ef1a7443f8e1280",
+      "samples": [
+        {
+          "case": "short",
+          "label": "omlx-75-repeat",
+          "ttft_seconds": 0.917853333055973,
+          "total_seconds": 4.551748667145148,
+          "decode_tokens_per_second": 17.336767905504566,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 17.61
+        },
+        {
+          "case": "medium",
+          "label": "omlx-75-repeat",
+          "ttft_seconds": 3.172647041035816,
+          "total_seconds": 6.876248250016943,
+          "decode_tokens_per_second": 17.010470740539454,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 17.28
+        }
+      ]
+    },
+    {
+      "source_file": "benchmark-omlx-offload-50-first.json",
+      "source_sha256": "f3c3af5844cc0917b962dfbfe3ebfa26c42184e8aab00af2496b36a74ac188e4",
+      "samples": [
+        {
+          "case": "short",
+          "label": "omlx-50-first",
+          "ttft_seconds": 12.413835416082293,
+          "total_seconds": 18.307063250103965,
+          "decode_tokens_per_second": 10.690236619785896,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 10.86
+        },
+        {
+          "case": "medium",
+          "label": "omlx-50-first",
+          "ttft_seconds": 10.52163033396937,
+          "total_seconds": 15.254510292084888,
+          "decode_tokens_per_second": 13.311134141903018,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 13.52
+        }
+      ]
+    },
+    {
+      "source_file": "benchmark-omlx-offload-50-repeat.json",
+      "source_sha256": "dbbef810e72b17da15f0fd92a6c4547b66caff806a429c2141612eec33fbcb16",
+      "samples": [
+        {
+          "case": "short",
+          "label": "omlx-50-repeat",
+          "ttft_seconds": 2.1041204999201,
+          "total_seconds": 6.580172415822744,
+          "decode_tokens_per_second": 14.074903773160408,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 14.3
+        },
+        {
+          "case": "medium",
+          "label": "omlx-50-repeat",
+          "ttft_seconds": 5.943367375060916,
+          "total_seconds": 10.60013374988921,
+          "decode_tokens_per_second": 13.528701018917436,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 13.74
+        }
+      ]
+    },
+    {
+      "source_file": "benchmark-omlx-prefix-first.json",
+      "source_sha256": "ada658c7c0c114d24748da7ca7eba683a021c87acac31c608f49c257ddcdcb9e",
+      "samples": [
+        {
+          "case": "short",
+          "label": "omlx-prefix-first",
+          "ttft_seconds": 0.3143664998933673,
+          "total_seconds": 1.7119816660415381,
+          "decode_tokens_per_second": 45.07678617543059,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 45.67
+        },
+        {
+          "case": "medium",
+          "label": "omlx-prefix-first",
+          "ttft_seconds": 2.0836019590497017,
+          "total_seconds": 3.488377792062238,
+          "decode_tokens_per_second": 44.84701296782473,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 0,
+          "server_generation_tokens_per_second": 45.49
+        }
+      ]
+    },
+    {
+      "source_file": "benchmark-omlx-prefix-repeat.json",
+      "source_sha256": "7965ae862144b842f16279c78e6718f1561080b8db31b2db513c7f0d375b0211",
+      "samples": [
+        {
+          "case": "short",
+          "label": "omlx-prefix-repeat",
+          "ttft_seconds": 8.94359370903112,
+          "total_seconds": 10.332542167045176,
+          "decode_tokens_per_second": 45.35805460346495,
+          "prompt_tokens": 32,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 25,
+          "server_generation_tokens_per_second": 45.99
+        },
+        {
+          "case": "medium",
+          "label": "omlx-prefix-repeat",
+          "ttft_seconds": 0.11931987502612174,
+          "total_seconds": 1.5203105001710355,
+          "decode_tokens_per_second": 44.968180992277155,
+          "prompt_tokens": 916,
+          "completion_tokens": 64,
+          "cached_prompt_tokens": 909,
+          "server_generation_tokens_per_second": 45.61
+        }
+      ]
+    },
+    {
+      "source_file": "omlx-prefix-followup.json",
+      "source_sha256": "75dfc79431819f0a16b466ad674fefccdace17f1166f7da2e48e3713406af052",
+      "samples": [
+        {
+          "case": "followup",
+          "label": "omlx-followup",
+          "ttft_seconds": 0.5592949588317424,
+          "total_seconds": 1.0720136668533087,
+          "decode_tokens_per_second": null,
+          "prompt_tokens": 994,
+          "completion_tokens": 23,
+          "cached_prompt_tokens": 909,
+          "server_generation_tokens_per_second": 44.46
+        }
+      ]
+    }
+  ],
+  "omlx_offload": [
+    {
+      "resident_fraction": 1,
+      "loaded_allocation_bytes": 19840227976,
+      "loaded_allocation_gib": 18.477652199566364,
+      "metric": "oMLX loaded model actual_size; not total process memory or system use",
+      "note": "Prompt cache disabled, OS file cache not cleared"
+    },
+    {
+      "resident_fraction": 0.75,
+      "loaded_allocation_bytes": 15434040904,
+      "loaded_allocation_gib": 14.374070711433887,
+      "metric": "oMLX loaded model actual_size; not total process memory or system use",
+      "note": "Prompt cache disabled, OS file cache not cleared"
+    },
+    {
+      "resident_fraction": 0.5,
+      "loaded_allocation_bytes": 10911532520,
+      "loaded_allocation_gib": 10.16215655952692,
+      "metric": "oMLX loaded model actual_size; not total process memory or system use",
+      "note": "Prompt cache disabled, OS file cache not cleared"
+    }
+  ],
+  "rapid_memory": [
+    {
+      "source_file": "qwen35-9b-q8-summary.json",
+      "active_memory_decimal_gb": 9.78,
+      "peak_memory_decimal_gb": 11.12,
+      "metric": "Rapid-MLX health route derives metal_active_memory_gb from bytes / 1e9; GB, not GiB"
+    },
+    {
+      "source_file": "qwen35-9b-q4-summary.json",
+      "active_memory_decimal_gb": 5.3,
+      "peak_memory_decimal_gb": 6.79,
+      "metric": "Rapid-MLX health route derives metal_active_memory_gb from bytes / 1e9; GB, not GiB"
+    }
+  ],
+  "privacy": "Whitelisted numeric metrics only; no credentials, service configuration, home paths, device identifiers, private conversations or generated answer bodies"
+}

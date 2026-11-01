@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-01",
+  "status": "validated_pending_publication",
+  "article_url": "https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/",
+  "source": "Owner-authorized existing local Mac mini M4/32GB test conversation, benchmark script, 13 numeric log groups, offload state and engine unit-conversion code",
+  "not_a_new_inference_run": true,
+  "corrections": ["Rapid-MLX health active/peak fields are decimal GB, not GiB", "Use 18.48 GiB from the offload comparison, not a later 18.6 GiB reload", "27B warm sample cached 896 of 916 tokens", "Retain 59.93-second first short request and 8.944-second cached short anomaly", "Single records are not medians, p95, quality rankings or long-context validation"],
+  "privacy": "Public evidence is a numeric allowlist with source-file hashes. No private conversation dump, keys, home/volume paths, account data, generated answers or screenshots were published.",
+  "discovery": ["homepage static HTML link", "OpenClaw project contextual link", "sitemap entry"],
+  "validation": { "tests": "31 passed", "site_check": "24 HTML pages / 12 projects; canonical, dates and local links passed", "python": "AST parsed; no inference or service mutation", "browser": "Local HTML read back; tables inspected; 390px responsive check keeps tables in their own scroll container and document within viewport" },
+  "source_reconciliation": "Preserved current GitHub tree and both histories; backed up pre-merge GitHub and old Sites branch. Old Sites interactive-radar changes were already superseded by the newer GitHub implementation.",
+  "growth_claim": "No search-volume, ranking, indexing, click or revenue lift is asserted for this new article."
+}

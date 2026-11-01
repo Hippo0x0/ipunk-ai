@@ -1,0 +1,13 @@
+.project-hero .bench-title{font-size:clamp(38px,6.5vw,78px);line-height:1.12;letter-spacing:-.055em;max-width:1050px}
+.bench-deck{max-width:760px;font-size:19px;line-height:1.8;color:var(--muted)}
+.bench-byline{font-size:14px;color:var(--muted);line-height:1.6}
+.bench-article{min-width:0}.bench-article h2{font-size:clamp(25px,3.5vw,33px);line-height:1.35}
+.bench-article h3{font-size:22px;margin-top:30px;line-height:1.5}
+.bench-toc{margin:28px 0;padding:22px;background:var(--white);border:1px solid var(--line)}
+.bench-toc li{margin:5px 0}.bench-table{overflow-x:auto;max-width:100%;margin:24px 0;border:1px solid var(--line)}
+.bench-article .bench-table table{margin:0;min-width:560px;font-size:14px;line-height:1.65;border:0}
+.bench-table caption{text-align:left;padding:12px;font-size:13px;color:var(--muted)}
+.bench-table th{font-weight:750}.bench-table thead{background:var(--ink);color:var(--white)}
+.bench-article pre{max-width:100%;overflow-x:auto;padding:20px;background:var(--ink);color:var(--white);font:13px/1.7 var(--mono)}
+.bench-article section{scroll-margin-top:100px}.bench-table:focus-visible,.bench-toc a:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.side .snapshot{line-height:1.7}.side h2{font-size:27px;line-height:1.4}
