@@ -1,0 +1,32 @@
+{
+  "observed_at_local": "2026-11-02 11:34 Asia/Shanghai",
+  "property": "https://ai.ipunk.cn/",
+  "url": "https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/",
+  "ordinary_inspection": {
+    "status": "Google 无法识别此网址",
+    "referring_sitemap_display": "未检测到任何引荐站点地图",
+    "referring_page_display": "未检测到引荐来源网页",
+    "last_crawl_display": "不适用"
+  },
+  "public_site": {
+    "html_status": 200,
+    "canonical": "https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/",
+    "noindex": false,
+    "robots_status": 200,
+    "robots_allows_crawl": true,
+    "sitemap_status": 200,
+    "sitemap_contains_url": true,
+    "sitemap_url_count": 23
+  },
+  "google_live_test": {
+    "tested_at_local_display": "2026-11-02 11:34",
+    "status": "网址可编入 Google 索引",
+    "retrieved_html_contains_self_canonical": true,
+    "retrieved_html_contains_2026_11_01_article_date": true,
+    "retrieved_html_contains_measured_qwen_content": true
+  },
+  "action": "仅对此篇原始实测新文请求编入索引一次",
+  "action_result": "已请求编入索引；已将网址添加到优先抓取队列",
+  "limitation": "实时测试和提交入队都不是普通 Googlebot 抓取、收录、搜索展示或点击；独立索引汇总仍更新于 2026-10-23。",
+  "next_check": "等待 AI sitemap 处理到 23 URL 和该页普通抓取，之后按独立完整 Web 周窗口看获得展示/点击的页面数；不重复提交。"
+}
