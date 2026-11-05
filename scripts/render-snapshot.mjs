@@ -56,11 +56,38 @@ export function renderHomeSnapshot(html, snapshot) {
   return html.replace(/(<span data-captured>)[^<]*(<\/span>)/g, (_, start, end) => `${start}${new Date(snapshot.captured_at).toISOString()}${end}`);
 }
 
+export function renderEnglishHome(chineseHome) {
+  const replacements = [
+    ['<html lang="zh-CN">', '<html lang="en">'],
+    ['<title>iPunk AI Radar｜热门 AI 开源项目分析与评分</title>', '<title>AI Project Reviews and Daily Watchlist | iPunk AI Radar</title>'],
+    ['<meta name="description" content="持续追踪热门 AI 开源项目的真实增长、可用性、成本和风险。十二个项目独立分析，每日更新 GitHub 数据。">', '<meta name="description" content="Explore 12 AI projects with daily public GitHub snapshots, editorial scores, practical reviews and clear limits on what has been tested.">'],
+    ['<link rel="canonical" href="https://ai.ipunk.cn/">', '<link rel="canonical" href="https://ai.ipunk.cn/en/">'],
+    ['<meta property="og:description" content="不是又一张 Star 榜，而是持续更新的 AI 项目体检。">', '<meta property="og:description" content="Daily public metrics and evidence-led AI project reviews, with scores kept separate from GitHub popularity.">'],
+    ['<meta property="og:url" content="https://ai.ipunk.cn/">', '<meta property="og:url" content="https://ai.ipunk.cn/en/">'],
+    ['"url":"https://ai.ipunk.cn/"', '"url":"https://ai.ipunk.cn/en/"'],
+    ['"inLanguage":"zh-CN"', '"inLanguage":"en"'],
+    ['<body>', '<body class="en">'],
+    ['<a class="brand" href="/">', '<a class="brand" href="/en/">'],
+    ['<a class="lang" data-language href="/en/">English</a>', '<a class="lang" data-language href="/">中文</a>'],
+    ['aria-label="主导航"', 'aria-label="Main navigation"'],
+    ['<a class="card" href="/projects/rea/">', '<a class="card" href="/en/projects/rea/">'],
+    ['<a class="card" href="/projects/opencode/">', '<a class="card" href="/en/projects/opencode/">'],
+  ];
+  let englishHome = chineseHome;
+  for (const [before, after] of replacements) {
+    if (englishHome.split(before).length !== 2) throw new Error(`Cannot derive English home: ${before}`);
+    englishHome = englishHome.replace(before, after);
+  }
+  return englishHome;
+}
+
 export async function renderSnapshotFiles(root) {
   const snapshot = JSON.parse(await readFile(resolve(root, "dist/data/projects.json"), "utf8"));
   const updates = [];
   const home = resolve(root, "dist/index.html");
-  updates.push([home, renderHomeSnapshot(await readFile(home, "utf8"), snapshot)]);
+  const chineseHome = renderHomeSnapshot(await readFile(home, "utf8"), snapshot);
+  updates.push([home, chineseHome]);
+  updates.push([resolve(root, "dist/en/index.html"), renderEnglishHome(chineseHome)]);
   for (const project of snapshot.projects) {
     const path = resolve(root, "dist/projects", project.slug, "index.html");
     updates.push([path, renderProjectSnapshot(await readFile(path, "utf8"), project, snapshot.captured_at)]);

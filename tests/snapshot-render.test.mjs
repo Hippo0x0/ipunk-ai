@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
-import { renderHomeSnapshot, renderProjectSnapshot, snapshotFields } from "../scripts/render-snapshot.mjs";
+import { renderEnglishHome, renderHomeSnapshot, renderProjectSnapshot, snapshotFields } from "../scripts/render-snapshot.mjs";
 
 const snapshot = JSON.parse(await readFile(new URL("../dist/data/projects.json", import.meta.url), "utf8"));
 for (const project of snapshot.projects) {
@@ -24,6 +24,20 @@ test("home HTML metrics match the current snapshot without touching scores", asy
   const rendered = renderHomeSnapshot(html, modified);
   assert.notEqual(rendered, html);
   assert.deepEqual([...rendered.matchAll(/class="score">([^<]+)/g)].map(m=>m[1]), [...html.matchAll(/class="score">([^<]+)/g)].map(m=>m[1]), "Scores unchanged");
+});
+test("English home is a current, indexable language alternate of the Chinese home", async () => {
+  const chinese = await readFile(new URL("../dist/index.html", import.meta.url), "utf8");
+  const english = await readFile(new URL("../dist/en/index.html", import.meta.url), "utf8");
+  assert.equal(renderEnglishHome(chinese), english, "Regenerate the English home after editing the watchlist");
+  for (const html of [chinese, english]) {
+    assert.match(html, /<link rel="alternate" hreflang="zh-CN" href="https:\/\/ai\.ipunk\.cn\/">/);
+    assert.match(html, /<link rel="alternate" hreflang="en" href="https:\/\/ai\.ipunk\.cn\/en\/">/);
+  }
+  assert.match(english, /<html lang="en">/);
+  assert.match(english, /<body class="en">/);
+  assert.match(english, /<link rel="canonical" href="https:\/\/ai\.ipunk\.cn\/en\/">/);
+  assert.match(english, /<a class="card" href="\/en\/projects\/opencode\/">/);
+  assert.match(english, /<a class="card" href="\/en\/projects\/rea\/">/);
 });
 test("unknown fields are explicit and unsafe values are escaped", async () => {
   const original = snapshot.projects[0];

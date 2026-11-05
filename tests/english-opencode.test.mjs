@@ -39,7 +39,8 @@ test("Chinese URL ignores a remembered English preference without changing other
   const initialLanguage = script.slice(0, script.indexOf("let projectData"));
   for (const { fixed, pathname, expected } of [
     { fixed: true, pathname: "/projects/opencode/", expected: [] },
-    { fixed: false, pathname: "/", expected: ["en"] },
+    { fixed: false, pathname: "/", expected: [] },
+    { fixed: false, pathname: "/en/", expected: ["en"] },
     { fixed: false, pathname: "/projects/jev/", expected: [] },
   ]) {
     const classes = [];

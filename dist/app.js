@@ -1,8 +1,9 @@
 const radarStyles=document.createElement('link');radarStyles.rel='stylesheet';radarStyles.href='/radar.css';document.head.append(radarStyles);
 const button=document.querySelector('[data-language]');
 const saved=localStorage.getItem('ipunk-ai-language');
+const homeLanguage=location.pathname==='/'?'zh':location.pathname==='/en/'?'en':null;
 const chineseOnlyProject=/^\/projects\/[^/]+\/?$/.test(location.pathname)&&!document.documentElement.dataset.pageLanguage;
-if(saved==='en'&&!document.documentElement.dataset.pageLanguage&&!chineseOnlyProject) document.body.classList.add('en');
+if(homeLanguage==='en'||(homeLanguage===null&&saved==='en'&&!document.documentElement.dataset.pageLanguage&&!chineseOnlyProject)) document.body.classList.add('en');
 let projectData=null;
 let activeFilter='all';
 
@@ -35,7 +36,8 @@ function update(){
   window.dispatchEvent(new CustomEvent('languagechange'));
 }
 button?.addEventListener('click',()=>{
-  if(chineseOnlyProject){localStorage.setItem('ipunk-ai-language','en');location.assign('/#projects');return}
+  if(homeLanguage){localStorage.setItem('ipunk-ai-language',homeLanguage==='en'?'zh':'en');return}
+  if(chineseOnlyProject){localStorage.setItem('ipunk-ai-language','en');location.assign('/en/#projects');return}
   document.body.classList.toggle('en');localStorage.setItem('ipunk-ai-language',isEnglish()?'en':'zh');update()
 });
 for(const link of document.querySelectorAll('a.back')) link.href='/#projects';
