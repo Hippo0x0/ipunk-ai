@@ -26,6 +26,13 @@ const prior = new Map(existing.projects.map((project) => [project.repo, project]
 const capturedAt = timelineOnly ? existing.captured_at : new Date().toISOString();
 const date = capturedAt.slice(0, 10);
 
+// History files are keyed by UTC date. Reusing an existing day's capture
+// preserves its baseline and avoids replacing it during a second run.
+if (!timelineOnly && existing.captured_at.slice(0, 10) === date) {
+  console.log(`Already captured public GitHub metrics for ${date}; retained the previous snapshot`);
+  process.exit(0);
+}
+
 const projects = [];
 if (!timelineOnly) {
   for (const [slug, repo] of repositories) {
