@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T06:01:38.577Z",
+  "generated_at": "2026-11-05T08:00:07.385Z",
   "source": "Daily GitHub REST API snapshots",
   "snapshots": [
     {
@@ -1406,17 +1406,17 @@
     },
     {
       "date": "2026-11-05",
-      "captured_at": "2026-11-05T06:01:38.577Z",
+      "captured_at": "2026-11-05T08:00:07.385Z",
       "projects": [
         {
           "slug": "rea",
-          "stars": 431763,
-          "forks": 107294
+          "stars": 432121,
+          "forks": 107373
         },
         {
           "slug": "openclaw",
-          "stars": 393929,
-          "forks": 82786
+          "stars": 393935,
+          "forks": 82785
         },
         {
           "slug": "jev",
@@ -1425,48 +1425,48 @@
         },
         {
           "slug": "gemini-cli",
-          "stars": 108734,
+          "stars": 108732,
           "forks": 14917
         },
         {
           "slug": "browser-use",
-          "stars": 120061,
-          "forks": 13389
+          "stars": 120074,
+          "forks": 13394
         },
         {
           "slug": "markitdown",
-          "stars": 193937,
-          "forks": 14568
+          "stars": 193947,
+          "forks": 14569
         },
         {
           "slug": "claude-code",
-          "stars": 154578,
-          "forks": 25558
+          "stars": 154586,
+          "forks": 25566
         },
         {
           "slug": "codex-cli",
-          "stars": 133239,
-          "forks": 21104
+          "stars": 133262,
+          "forks": 21107
         },
         {
           "slug": "qwen-code",
-          "stars": 29015,
+          "stars": 29016,
           "forks": 3315
         },
         {
           "slug": "opencode",
-          "stars": 224645,
-          "forks": 30278
+          "stars": 224667,
+          "forks": 30279
         },
         {
           "slug": "cline",
-          "stars": 71325,
-          "forks": 7862
+          "stars": 71331,
+          "forks": 7863
         },
         {
           "slug": "deepseek-harness",
-          "stars": 272939,
-          "forks": 33256
+          "stars": 273104,
+          "forks": 33283
         }
       ]
     }
