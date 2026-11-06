@@ -29,6 +29,7 @@
 <tr><th scope="row">磁盘</th><td>卸载试验使用外接 USB workspace 盘；没有清空整机文件缓存，没有测得独立冷读带宽</td></tr>
 <tr><th scope="row">未覆盖</th><td>统一 OS build、长输出、多并发、长上下文、功耗、p95 延迟和长时间稳定性均未完整记录或验证</td></tr>
 </tbody></table></div>
+<p>若准备把模型文件或工作区放到外接盘，先按 <a href="https://ipunk.cn/article/mac-mini-external-ssd/">Mac mini 外接 SSD 设置指南</a>核对接口、格式与备份。本文的 USB 盘试验没有测得独立冷读带宽，不能据此推断其他外接 SSD 的推理表现。</p>
 <p><strong>生成速度不是整段任务速度。</strong>本文客户端解码速度按 <code>(输出 token 数 − 1) ÷ (请求总秒数 − 首字秒数)</code> 计算。首字等待包含加载、调度、预填充等成本；不能直接把 916 除以首字时间，当作纯 prefill 性能。后端另报的 generation tokens/s 与客户端公式可能略有差异。</p></section>
 
 <section id="four-models"><h2>四模型对照：参数更多，不一定输出更慢</h2>
