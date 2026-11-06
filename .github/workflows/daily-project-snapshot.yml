@@ -63,9 +63,24 @@ jobs:
           fi
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
+      - name: Check whether the published snapshot is behind
+        id: production_snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! curl --ipv4 --fail --silent --show-error --location --retry 1 --retry-delay 2 --max-time 20 \
+            https://ai.ipunk.cn/data/projects.json -o /tmp/ipunk-ai-live-projects.json; then
+            echo "stale=unknown" >> "$GITHUB_OUTPUT"
+            echo "::warning title=AI Worker status unknown::Could not compare the published snapshot; no stale-only deployment will be attempted."
+          elif cmp --silent dist/data/projects.json /tmp/ipunk-ai-live-projects.json; then
+            echo "stale=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "stale=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Check existing Cloudflare deployment credentials
         id: cloudflare_auth
-        if: steps.snapshot_change.outputs.changed == 'true'
+        if: steps.snapshot_change.outputs.changed == 'true' || steps.production_snapshot.outputs.stale == 'true'
         shell: bash
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
