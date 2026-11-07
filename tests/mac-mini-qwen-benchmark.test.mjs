@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { checkIndexableHtml } from "../scripts/seo-guard.mjs";
@@ -58,4 +59,21 @@ test("reproduction script uses loopback and an environment secret, never real se
   assert.match(script, /parsed\.hostname not in/);
   assert.match(script, /os\.environ\['LOCAL_LLM_API_KEY'\]/);
   assert.doesNotMatch(script, /openclaw\.json|launchctl|subprocess|local-only|\/Users\/|\/Volumes\//);
+});
+
+test("dated Qwen recheck preserves measured rows, cache counts and incomplete attempts", async () => {
+  const filename = "mac-mini-m4-qwen-2026-11-07.json";
+  const next = JSON.parse(await readFile(new URL("../dist/evidence/" + filename, import.meta.url), "utf8"));
+  const script = await readFile(new URL("../dist/evidence/benchmark-qwen-stream.py", import.meta.url));
+  assert.equal(next.method.script_sha256, createHash("sha256").update(script).digest("hex"));
+  assert.equal(next.method.initial_loaded_model_count, 0);
+  assert.deepEqual(next.measurements.map(r => [r.round, r.case]), [[1, "short"], [1, "medium"], [2, "short"], [2, "medium"]]);
+  assert.ok(next.incomplete_attempts.every(r => r.valid_samples === 0));
+  assert.match(html, /"datePublished":"2026-11-01","dateModified":"2026-11-07"/);
+  assert.ok(html.includes("/evidence/" + filename));
+  for (const r of next.measurements) {
+    assert.ok(Math.abs(r.decode_tokens_per_second - (r.completion_tokens - 1) / (r.total_seconds - r.ttft_seconds)) < 1e-8);
+    assert.ok(html.includes(`<td>${r.prompt_tokens}</td><td>${r.cached_prompt_tokens}</td><td>${r.ttft_seconds.toFixed(2)} 秒</td><td>${r.decode_tokens_per_second.toFixed(2)} token/s</td>`));
+  }
+  assert.doesNotMatch(JSON.stringify(next), /\/Users\/|\/Volumes\/|@gmail\.com|"(?:api_key|secret_key|text|headers)"/);
 });

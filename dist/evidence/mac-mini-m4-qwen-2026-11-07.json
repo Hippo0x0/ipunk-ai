@@ -1,0 +1,99 @@
+{
+  "date": "2026-11-07",
+  "timezone": "Asia/Shanghai",
+  "hardware": {
+    "device": "Mac mini",
+    "chip": "Apple M4",
+    "unified_memory_bytes": 34359738368,
+    "macos_build": "25E253"
+  },
+  "backend": {
+    "name": "oMLX",
+    "version": "0.7.3",
+    "model_id": "qwen3.6-35b-a3b",
+    "configured_expert_offload": false,
+    "configured_mtp": false
+  },
+  "method": {
+    "script": "benchmark-qwen-stream.py",
+    "script_sha256": "f98dea977068f5632ced4484886c16b383d59f498bdd12b00759c3f98f99b6a2",
+    "concurrency": 1,
+    "max_tokens": 64,
+    "temperature": 0,
+    "thinking": false,
+    "case_order": [
+      "short",
+      "medium"
+    ],
+    "initial_loaded_model_count": 0,
+    "os_file_cache_controlled": false
+  },
+  "measurements": [
+    {
+      "round": 1,
+      "case": "short",
+      "prompt_tokens": 32,
+      "completion_tokens": 64,
+      "cached_prompt_tokens": 0,
+      "ttft_seconds": 129.1232076670276,
+      "total_seconds": 130.97734116698848,
+      "decode_tokens_per_second": 33.97813587928226
+    },
+    {
+      "round": 1,
+      "case": "medium",
+      "prompt_tokens": 916,
+      "completion_tokens": 64,
+      "cached_prompt_tokens": 0,
+      "ttft_seconds": 3.6091748750186525,
+      "total_seconds": 5.31493416702142,
+      "decode_tokens_per_second": 36.93369884916787
+    },
+    {
+      "round": 2,
+      "case": "short",
+      "prompt_tokens": 32,
+      "completion_tokens": 64,
+      "cached_prompt_tokens": 25,
+      "ttft_seconds": 0.5840708750183694,
+      "total_seconds": 2.402357708022464,
+      "decode_tokens_per_second": 34.647998795610334
+    },
+    {
+      "round": 2,
+      "case": "medium",
+      "prompt_tokens": 916,
+      "completion_tokens": 64,
+      "cached_prompt_tokens": 909,
+      "ttft_seconds": 0.16951145802158862,
+      "total_seconds": 1.7833625830244273,
+      "decode_tokens_per_second": 39.03705801852645
+    }
+  ],
+  "engine_pool_after_round": [
+    {
+      "round": 1,
+      "loaded_model_count": 1,
+      "model_allocation_bytes": 20484514864
+    },
+    {
+      "round": 2,
+      "loaded_model_count": 1,
+      "model_allocation_bytes": 20484514864
+    }
+  ],
+  "incomplete_attempts": [
+    {
+      "attempt": "round_3",
+      "stage": "pre_round_health_check",
+      "error": "ECONNRESET",
+      "valid_samples": 0
+    },
+    {
+      "attempt": "retry",
+      "stage": "benchmark",
+      "error": "nonzero exit",
+      "valid_samples": 0
+    }
+  ]
+}
