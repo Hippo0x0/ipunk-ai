@@ -6,6 +6,12 @@ This static radar separates observed GitHub metrics from editorial scores and ke
 
 The home page supports search, category filtering and evidence-aware sorting. `/compare/` lets readers compare two or three projects side by side and creates a shareable query-string selection; `/choose/` builds an explainable shortlist from workflow, license and evidence preferences; `/trends/` separates the latest snapshot delta from an available-history timeline generated from up to 30 daily captures.
 
+## Field notes and Mac setup
+
+- [Mac mini M4 32GB running Qwen locally](https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/) records one machine's model, speed and memory observations; it is not a general performance guarantee.
+- [Set up headless Mac mini access](https://ipunk.cn/en/article/mac-mini-headless-remote-access/) covers Screen Sharing, SSH and restart checks before leaving a local model host unattended.
+- [Set up an external SSD for Mac mini](https://ipunk.cn/en/article/mac-mini-external-ssd/) covers format choices, file moves and connection checks when model files outgrow internal storage.
+
 ## Update project data
 
 ```bash
