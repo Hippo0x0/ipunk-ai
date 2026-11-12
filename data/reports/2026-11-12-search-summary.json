@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-12",
+  "property": "https://ai.ipunk.cn/",
+  "search_type": "Web",
+  "timezone": "America/Los_Angeles",
+  "reported_update": "3.5 hours ago at collection",
+  "source": "Authenticated Search Console UI",
+  "raw_evidence": "2026-11-12-search-visible.json",
+  "qualification": "Full requested periods ending November 8. UI does not expose day-level final flags; cutoff agrees with main-site final API snapshot. Visible page tables contained all displayed rows, not an index count.",
+  "window_28d": {
+    "start": "2026-10-12",
+    "end": "2026-11-08",
+    "impressions": 17,
+    "clicks": 0,
+    "average_position": 19.6,
+    "pages": [
+      {
+        "url": "https://ai.ipunk.cn/en/projects/opencode/",
+        "impressions": 6,
+        "clicks": 0
+      },
+      {
+        "url": "https://ai.ipunk.cn/",
+        "impressions": 4,
+        "clicks": 0
+      },
+      {
+        "url": "https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/",
+        "impressions": 3,
+        "clicks": 0
+      },
+      {
+        "url": "https://ai.ipunk.cn/projects/rea/",
+        "impressions": 2,
+        "clicks": 0
+      },
+      {
+        "url": "https://ai.ipunk.cn/en/projects/rea/",
+        "impressions": 1,
+        "clicks": 0
+      },
+      {
+        "url": "https://ai.ipunk.cn/choose/",
+        "impressions": 1,
+        "clicks": 0
+      }
+    ]
+  },
+  "weekly_windows": [
+    {
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "impressions": 4,
+      "clicks": 0,
+      "pages": [
+        {
+          "url": "https://ai.ipunk.cn/en/projects/opencode/",
+          "impressions": 3,
+          "clicks": 0
+        },
+        {
+          "url": "https://ai.ipunk.cn/projects/rea/",
+          "impressions": 1,
+          "clicks": 0
+        }
+      ]
+    },
+    {
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "impressions": 12,
+      "clicks": 0,
+      "pages": [
+        {
+          "url": "https://ai.ipunk.cn/",
+          "impressions": 4,
+          "clicks": 0
+        },
+        {
+          "url": "https://ai.ipunk.cn/en/projects/opencode/",
+          "impressions": 3,
+          "clicks": 0
+        },
+        {
+          "url": "https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/",
+          "impressions": 3,
+          "clicks": 0
+        },
+        {
+          "url": "https://ai.ipunk.cn/en/projects/rea/",
+          "impressions": 1,
+          "clicks": 0
+        },
+        {
+          "url": "https://ai.ipunk.cn/choose/",
+          "impressions": 1,
+          "clicks": 0
+        }
+      ]
+    }
+  ],
+  "retained_impression_urls": [
+    "https://ai.ipunk.cn/en/projects/opencode/"
+  ],
+  "repeat_clicked_urls": [],
+  "interpretation": "Sparse independent observations, not stable search growth or a causal result. Domain-level 30,000/1,000 is not an AI target."
+}

@@ -1,0 +1,22 @@
+{
+  "property": "https://ai.ipunk.cn/",
+  "search_type": "Web",
+  "timezone": "America/Los_Angeles",
+  "reported_update": "3.5 hours ago",
+  "qualification": "UI observations; full periods ending November 8, consistent with main API final cutoff. UI does not expose per-day final flags.",
+  "window_28d": {
+    "queried_at": "2026-11-12T02:00:48.678Z",
+    "url": "https://search.google.com/search-console/performance/search-analytics?resource_id=https%3A%2F%2Fai.ipunk.cn%2F&start_date=20261012&end_date=20261108&breakdown=page",
+    "visible_text": "help_outline\n帮助\nmanage_accounts\n用户设置\n\t\nnotifications\n留言\n\nhome\n概述\nlightbulb_2\n数据洞见\ntrending_up\n效果\nsearch\n网址检查\n编制索引\nkeyboard_arrow_up\nfile_copy\n网页\naccount_tree\n站点地图\nvisibility_off\n移除\n体验\nkeyboard_arrow_up\nspeed\n核心网页指标\nlock\nHTTPS\n安全问题和人工处置措施\nkeyboard_arrow_down\nlink_2\n链接数量\ntrophy\n成就\nsettings\n设置\nfeedback\n提交反馈\ninfo\nSearch Console 简介\n隐私权条款\n效果\n\n导出\n24 小时\n7 天\n28 天\n3 个月\n自定义\narrow_drop_down\n搜索类型：网页（文本）\narrow_drop_down\n搜索类型：网页（文本）\nadd\n添加过滤条件\n添加过滤条件\nfilter_list_spark\n使用 AI 自定义效果报告\n重置过滤条件\n重置过滤条件\n上次更新日期：3.5小时前\n\n总点击次数\n0\n\n\n总曝光次数\n17\n\n平均点击率\n0%\n\n平均排名\n19.6\n\n每日\n点击次数\n展示\n2026/10/14\n2026/10/18\n2026/10/22\n2026/10/26\n2026/10/30\n2026/11/3\n2026/11/7\n3\n2\n1\n0\n3\n2\n1\n0\n图表，包含从 2026年10月14日到 2026年11月8日的总点击次数、总曝光次数、平均点击率和平均排名计数\n查询数\n网页\n国家/地区\n设备\n搜索结果呈现\n天\n\n排名靠前的网页\n\t\n点击次数\n\t\n展示\n\nhttps://ai.ipunk.cn/en/projects/opencode/\t0\t6\nhttps://ai.ipunk.cn/\t0\t4\nhttps://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/\t0\t3\nhttps://ai.ipunk.cn/projects/rea/\t0\t2\nhttps://ai.ipunk.cn/en/projects/rea/\t0\t1\nhttps://ai.ipunk.cn/choose/\t0\t1\n每页行数：\n5\n10\n25\n50\n100\n250\n500\n第 1-6 行，共 6 行\n上一页\n下一页"
+  },
+  "previous_week": {
+    "queried_at": "2026-11-12T02:01:20.691Z",
+    "url": "https://search.google.com/search-console/performance/search-analytics?resource_id=https%3A%2F%2Fai.ipunk.cn%2F&start_date=20261026&end_date=20261101&breakdown=page",
+    "visible_text": "help_outline\n帮助\nmanage_accounts\n用户设置\n\t\nnotifications\n留言\n\nhome\n概述\nlightbulb_2\n数据洞见\ntrending_up\n效果\nsearch\n网址检查\n编制索引\nkeyboard_arrow_up\nfile_copy\n网页\naccount_tree\n站点地图\nvisibility_off\n移除\n体验\nkeyboard_arrow_up\nspeed\n核心网页指标\nlock\nHTTPS\n安全问题和人工处置措施\nkeyboard_arrow_down\nlink_2\n链接数量\ntrophy\n成就\nsettings\n设置\nfeedback\n提交反馈\ninfo\nSearch Console 简介\n隐私权条款\n效果\n\n导出\n24 小时\n7 天\n28 天\n3 个月\n自定义\narrow_drop_down\n搜索类型：网页（文本）\narrow_drop_down\n搜索类型：网页（文本）\nadd\n添加过滤条件\n添加过滤条件\nfilter_list_spark\n使用 AI 自定义效果报告\n重置过滤条件\n重置过滤条件\n上次更新日期：3.5小时前\n\n总点击次数\n0\n\n\n总曝光次数\n4\n\n平均点击率\n0%\n\n平均排名\n8\n\n每日\n点击次数\n展示\n2026/10/26\n2026/10/27\n2026/10/28\n2026/10/29\n2026/10/30\n2026/10/31\n2026/11/1\n3\n2\n1\n0\n3\n2\n1\n0\n图表，包含从 2026年10月26日到 2026年11月1日的总点击次数、总曝光次数、平均点击率和平均排名计数\n查询数\n网页\n国家/地区\n设备\n搜索结果呈现\n天\n\n排名靠前的网页\n\t\n点击次数\n\t\n展示\n\nhttps://ai.ipunk.cn/en/projects/opencode/\t0\t3\nhttps://ai.ipunk.cn/projects/rea/\t0\t1\n每页行数：\n5\n10\n25\n50\n100\n250\n500\n第 1-2 行，共 2 行\n上一页\n下一页"
+  },
+  "current_week": {
+    "queried_at": "2026-11-12T02:02:02.364Z",
+    "url": "https://search.google.com/search-console/performance/search-analytics?resource_id=https%3A%2F%2Fai.ipunk.cn%2F&start_date=20261102&end_date=20261108&breakdown=page",
+    "visible_text": "help_outline\n帮助\nmanage_accounts\n用户设置\n\t\nnotifications\n留言\n\nhome\n概述\nlightbulb_2\n数据洞见\ntrending_up\n效果\nsearch\n网址检查\n编制索引\nkeyboard_arrow_up\nfile_copy\n网页\naccount_tree\n站点地图\nvisibility_off\n移除\n体验\nkeyboard_arrow_up\nspeed\n核心网页指标\nlock\nHTTPS\n安全问题和人工处置措施\nkeyboard_arrow_down\nlink_2\n链接数量\ntrophy\n成就\nsettings\n设置\nfeedback\n提交反馈\ninfo\nSearch Console 简介\n隐私权条款\n效果\n\n导出\n24 小时\n7 天\n28 天\n3 个月\n自定义\narrow_drop_down\n搜索类型：网页（文本）\narrow_drop_down\n搜索类型：网页（文本）\nadd\n添加过滤条件\n添加过滤条件\nfilter_list_spark\n使用 AI 自定义效果报告\n重置过滤条件\n重置过滤条件\n上次更新日期：3.5小时前\n\n总点击次数\n0\n\n\n总曝光次数\n12\n\n平均点击率\n0%\n\n平均排名\n16.9\n\n每日\n点击次数\n展示\n2026/11/2\n2026/11/3\n2026/11/4\n2026/11/5\n2026/11/6\n2026/11/7\n2026/11/8\n3\n2\n1\n0\n3\n2\n1\n0\n图表，包含从 2026年11月2日到 2026年11月8日的总点击次数、总曝光次数、平均点击率和平均排名计数\n查询数\n网页\n国家/地区\n设备\n搜索结果呈现\n天\n\n排名靠前的网页\n\t\n点击次数\n\t\n展示\n\nhttps://ai.ipunk.cn/\t0\t4\nhttps://ai.ipunk.cn/en/projects/opencode/\t0\t3\nhttps://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/\t0\t3\nhttps://ai.ipunk.cn/en/projects/rea/\t0\t1\nhttps://ai.ipunk.cn/choose/\t0\t1\n每页行数：\n5\n10\n25\n50\n100\n250\n500\n第 1-5 行，共 5 行\n上一页\n下一页"
+  }
+}
