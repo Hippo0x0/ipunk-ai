@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-11-15T02:06:20.503184+00:00",
+  "repositories": {
+    "main": {
+      "head": "209e601",
+      "tracked_changes_at_start": false,
+      "fetch": "Permission denied (publickey)"
+    },
+    "ai": {
+      "head": "55afdec",
+      "tracked_changes_at_start": false,
+      "fetch": "Permission denied (publickey)"
+    }
+  },
+  "search_console_auth": "not_connected",
+  "new_search_windows_collected": false,
+  "ai_site_check": {
+    "passed": true,
+    "html_pages": 25,
+    "projects": 12
+  },
+  "ai_metrics": {
+    "new_capture": false,
+    "reason": "Remote synchronization unavailable; cannot determine whether Actions already captured today. Preserve validated pending snapshot rather than create duplicate captures.",
+    "production": {
+      "checked_at": "2026-11-15T02:05:43.138939+00:00",
+      "url": "https://ai.ipunk.cn/data/projects.json",
+      "status": 200,
+      "captured_at": "2026-11-11T02:01:57.463Z"
+    }
+  },
+  "changed_site_urls": [],
+  "deployed": false,
+  "next_priority": "Restore existing SSH identity, reconcile remote with local pending reports without overwriting changes, reuse any same-day Actions snapshot, then close AI Worker release gap."
+}

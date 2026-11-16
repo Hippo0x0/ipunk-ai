@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-11-13T02:26:47.211831+00:00",
+  "client": "iPunkProductionAudit/1.0",
+  "checks": [
+    {
+      "url": "https://ai.ipunk.cn/data/projects.json",
+      "status": 200,
+      "bytes": 4755,
+      "robots_header": null,
+      "captured_at": "2026-11-11T02:01:57.463Z"
+    },
+    {
+      "url": "https://ai.ipunk.cn/en/projects/opencode/",
+      "status": 200,
+      "bytes": 9474,
+      "robots_header": null,
+      "canonical": [
+        "https://ai.ipunk.cn/en/projects/opencode/"
+      ],
+      "h1_count": 1,
+      "noindex_meta": false,
+      "dateModified": [
+        "2026-10-29"
+      ],
+      "permission_section": true
+    },
+    {
+      "url": "https://ai.ipunk.cn/sitemap.xml",
+      "status": 200,
+      "bytes": 2287,
+      "robots_header": null,
+      "url_count": 24
+    }
+  ],
+  "qualification": "Public HTTP checks, not Google crawl/index evidence. Network failures are not indexed zero values."
+}

@@ -1,0 +1,37 @@
+{
+  "captured_via": "authenticated GitHub connector REST GET",
+  "repositories": [
+    "morluto/rea",
+    "openclaw/openclaw",
+    "jevmodel/jev-ai",
+    "google-gemini/gemini-cli",
+    "browser-use/browser-use",
+    "microsoft/markitdown",
+    "anthropics/claude-code",
+    "openai/codex",
+    "QwenLM/qwen-code",
+    "anomalyco/opencode",
+    "cline/cline",
+    "deepseek-ai/deepseek-harness"
+  ],
+  "failures": [],
+  "observed_at": "2026-11-16T06:43:28.261Z",
+  "anonymous_attempt": "403 before writing files",
+  "processing": "Original update-projects.mjs used authenticated REST response fields through a temporary local fetch adapter; adapter/cache are not part of the deployed site.",
+  "repository_base": "4f7ce23cea198c2cd6be102759dd7220c04f58e9",
+  "main_repo_access": "GitHub get_repo / compare returned 404",
+  "write_attempt": "GitHub create_tree returned 403 Resource not accessible by integration",
+  "pushed": false,
+  "deployed": false,
+  "validation": {
+    "html_pages": 25,
+    "projects": 12,
+    "tests_passed": 33
+  },
+  "cloudflare_workflow_evidence": {
+    "run_id": 43692317162,
+    "job_id": 132745379068,
+    "deploy_step": "skipped",
+    "warning": "Existing Cloudflare credentials are missing in this repository"
+  }
+}

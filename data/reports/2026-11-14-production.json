@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-11-14T01:57:33.959897+00:00",
+  "checks": [
+    {
+      "url": "https://ai.ipunk.cn/data/projects.json",
+      "status": 200,
+      "robots_header": null,
+      "captured_at": "2026-11-11T02:01:57.463Z"
+    },
+    {
+      "url": "https://ai.ipunk.cn/en/projects/opencode/",
+      "status": 200,
+      "robots_header": null,
+      "canonical": [
+        "https://ai.ipunk.cn/en/projects/opencode/"
+      ],
+      "h1_count": 1,
+      "noindex_meta": false,
+      "dateModified": [
+        "2026-10-29"
+      ]
+    }
+  ],
+  "qualification": "Production HTTP sample only; not Google index, crawl or new performance evidence."
+}

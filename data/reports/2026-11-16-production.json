@@ -1,0 +1,58 @@
+{
+  "checked_at": "2026-11-16T01:58:11.442478+00:00",
+  "scope": "AI OpenCode production bilingual discovery and actual content date consistency",
+  "checks": [
+    {
+      "url": "https://ai.ipunk.cn/en/projects/opencode/",
+      "status": 200,
+      "html_lang": "en",
+      "canonical": [
+        "https://ai.ipunk.cn/en/projects/opencode/"
+      ],
+      "alternates": {
+        "zh-CN": "https://ai.ipunk.cn/projects/opencode/",
+        "en": "https://ai.ipunk.cn/en/projects/opencode/",
+        "x-default": "https://ai.ipunk.cn/projects/opencode/"
+      },
+      "dateModified": [
+        "2026-10-29"
+      ],
+      "noindex_meta": false
+    },
+    {
+      "url": "https://ai.ipunk.cn/projects/opencode/",
+      "status": 200,
+      "html_lang": "zh-CN",
+      "canonical": [
+        "https://ai.ipunk.cn/projects/opencode/"
+      ],
+      "alternates": {
+        "zh-CN": "https://ai.ipunk.cn/projects/opencode/",
+        "en": "https://ai.ipunk.cn/en/projects/opencode/",
+        "x-default": "https://ai.ipunk.cn/projects/opencode/"
+      },
+      "dateModified": [
+        "2026-10-29"
+      ],
+      "noindex_meta": false
+    },
+    {
+      "url": "https://ai.ipunk.cn/sitemap.xml",
+      "status": 200,
+      "opencode_lastmod": {
+        "https://ai.ipunk.cn/en/projects/opencode/": "2026-10-29",
+        "https://ai.ipunk.cn/projects/opencode/": "2026-10-29"
+      }
+    }
+  ],
+  "qualification": "Production metadata and sitemap checks only, not Google ordinary crawl or a search performance result.",
+  "snapshot": [
+    {
+      "url": "https://ai.ipunk.cn/data/projects.json",
+      "status": 200,
+      "final_url": "https://ai.ipunk.cn/data/projects.json",
+      "robots_header": null,
+      "captured_at": "2026-11-11T02:01:57.463Z"
+    }
+  ]
+}

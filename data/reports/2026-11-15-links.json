@@ -1,0 +1,94 @@
+{
+  "checked_at": "2026-11-15T02:05:54.291508+00:00",
+  "qualification": "HTTP/link sample, not a sitewide SEO audit or Google crawl/index/performance evidence. Transport failures are not confirmed broken links; no cross-site external links requested.",
+  "host": "ai.ipunk.cn",
+  "roots": [
+    {
+      "url": "https://ai.ipunk.cn/en/projects/opencode/",
+      "status": 200,
+      "final_url": "https://ai.ipunk.cn/en/projects/opencode/",
+      "canonical": "https://ai.ipunk.cn/en/projects/opencode/",
+      "noindex_meta": false,
+      "robots_header": null
+    }
+  ],
+  "destinations": [
+    {
+      "url": "https://ai.ipunk.cn/en/",
+      "status": 200,
+      "final_url": "https://ai.ipunk.cn/en/",
+      "canonical": "https://ai.ipunk.cn/en/",
+      "noindex_meta": false,
+      "robots_header": null
+    },
+    {
+      "url": "https://ai.ipunk.cn/guides/ai-coding-agent-security/",
+      "status": 200,
+      "final_url": "https://ai.ipunk.cn/guides/ai-coding-agent-security/",
+      "canonical": "https://ai.ipunk.cn/guides/ai-coding-agent-security/",
+      "noindex_meta": false,
+      "robots_header": null
+    },
+    {
+      "url": "https://ai.ipunk.cn/methodology/",
+      "status": 200,
+      "final_url": "https://ai.ipunk.cn/methodology/",
+      "canonical": "https://ai.ipunk.cn/methodology/",
+      "noindex_meta": false,
+      "robots_header": null
+    },
+    {
+      "url": "https://ai.ipunk.cn/projects/opencode/",
+      "status": 200,
+      "final_url": "https://ai.ipunk.cn/projects/opencode/",
+      "canonical": "https://ai.ipunk.cn/projects/opencode/",
+      "noindex_meta": false,
+      "robots_header": null
+    }
+  ],
+  "fragments": [
+    {
+      "source": "https://ai.ipunk.cn/en/projects/opencode/",
+      "target": "https://ai.ipunk.cn/en/#projects",
+      "base": "https://ai.ipunk.cn/en/",
+      "fragment": "projects",
+      "result": "present"
+    },
+    {
+      "source": "https://ai.ipunk.cn/en/projects/opencode/",
+      "target": "https://ai.ipunk.cn/en/projects/opencode/#fit",
+      "base": "https://ai.ipunk.cn/en/projects/opencode/",
+      "fragment": "fit",
+      "result": "present"
+    },
+    {
+      "source": "https://ai.ipunk.cn/en/projects/opencode/",
+      "target": "https://ai.ipunk.cn/en/projects/opencode/#migration",
+      "base": "https://ai.ipunk.cn/en/projects/opencode/",
+      "fragment": "migration",
+      "result": "present"
+    },
+    {
+      "source": "https://ai.ipunk.cn/en/projects/opencode/",
+      "target": "https://ai.ipunk.cn/en/projects/opencode/#safety",
+      "base": "https://ai.ipunk.cn/en/projects/opencode/",
+      "fragment": "safety",
+      "result": "present"
+    },
+    {
+      "source": "https://ai.ipunk.cn/en/projects/opencode/",
+      "target": "https://ai.ipunk.cn/en/projects/opencode/#trial",
+      "base": "https://ai.ipunk.cn/en/projects/opencode/",
+      "fragment": "trial",
+      "result": "present"
+    },
+    {
+      "source": "https://ai.ipunk.cn/en/projects/opencode/",
+      "target": "https://ai.ipunk.cn/en/projects/opencode/#sources",
+      "base": "https://ai.ipunk.cn/en/projects/opencode/",
+      "fragment": "sources",
+      "result": "present"
+    }
+  ],
+  "limited_retry": null
+}
