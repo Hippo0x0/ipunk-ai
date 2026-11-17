@@ -6,6 +6,10 @@ This static radar separates observed GitHub metrics from editorial scores and ke
 
 The home page supports search, category filtering and evidence-aware sorting. `/compare/` lets readers compare two or three projects side by side and creates a shareable query-string selection; `/choose/` builds an explainable shortlist from workflow, license and evidence preferences; `/trends/` separates the latest snapshot delta from an available-history timeline generated from up to 30 daily captures.
 
+## Hardware guides
+
+- [NVIDIA server GPU comparison](https://ai.ipunk.cn/guides/nvidia-server-gpu-comparison/) compares architecture, memory, bandwidth and dated channel price samples, with separate PCIe, SXM and HGX cost scopes.
+
 ## Field notes and Mac setup
 
 - [Mac mini M4 32GB running Qwen locally](https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/) records one machine's model, speed and memory observations; it is not a general performance guarantee.
