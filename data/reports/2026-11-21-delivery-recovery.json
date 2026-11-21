@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-21",
+  "status": "published_and_verified",
+  "source_commit": "55e1630918e6af6ea25c74444c72b5512db7a285",
+  "source_sync": "Fast-forwarded a clean local checkout from 93d457c to the existing GitHub main; preserved all 23 intervening commits.",
+  "before": {
+    "production_captured_at": "2026-11-11T02:01:57.463Z",
+    "local_captured_at": "2026-11-21T01:59:07.259Z",
+    "production_http_status": 200
+  },
+  "publication": {
+    "worker": "ipunk-ai",
+    "version_id": "315c94bd-2aef-4bb8-b186-0ec204137ac3",
+    "worker_url": "https://ipunk-ai.butub666.workers.dev",
+    "formal_url": "https://ai.ipunk.cn/",
+    "uploaded_new_or_modified_assets": 31,
+    "sites_version": 5,
+    "sites_url": "https://ipunk-ai-radar.butub666.chatgpt.site",
+    "sites_status": "succeeded",
+    "used_existing_authorized_local_wrangler": true,
+    "created_resources_or_changed_dns": false
+  },
+  "verification": {
+    "checked_at": "2026-11-21T11:42:52.292Z",
+    "tests_passed": 33,
+    "static_html_files_including_404": 26,
+    "sitemap_canonical_html_pages": 25,
+    "formal_html_exact_local_hash_matches": 25,
+    "production_captured_at": "2026-11-21T01:59:07.259Z",
+    "project_count": 12,
+    "production_projects_json_hash_matches_local": true,
+    "unknown_route_status": 404,
+    "local_browser_widths": [390, 1280],
+    "document_horizontal_overflow": false,
+    "mobile_gpu_table_has_own_scroll_container": true,
+    "browser_qa_used_localhost": true
+  },
+  "qwen_evidence_recheck": {
+    "november_7_json_already_published_before_this_deployment": true,
+    "article_and_json_predeployment_hashes_matched_local": true,
+    "new_inference_run_performed": false,
+    "default_model_changed": false,
+    "qualification": "Current local default differs from Qwen. No model loading, inference, server restart, configuration change or synthetic benchmark result was introduced. Retained the published November 7 cold-start and cache-hit samples unchanged."
+  },
+  "remaining": "Scheduled Worker publication still depends on separately configured Cloudflare Actions credentials. This manual deployment does not prove those secrets exist or fix automatic delivery.",
+  "not_growth_evidence": "Project stars, successful publication and matching hashes are not search volume, indexing, clicks, RPM or income. AI host remains separate from the main site's three-host Cloudflare traffic whitelist. No AdSense review was submitted or advertising enabled."
+}
