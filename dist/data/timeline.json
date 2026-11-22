@@ -1,73 +1,7 @@
 {
-  "generated_at": "2026-11-21T01:59:07.259Z",
+  "generated_at": "2026-11-22T02:05:35.848Z",
   "source": "Daily GitHub REST API snapshots",
   "snapshots": [
-    {
-      "date": "2026-10-23",
-      "captured_at": "2026-10-23T06:07:50.176Z",
-      "projects": [
-        {
-          "slug": "rea",
-          "stars": 367920,
-          "forks": 92193
-        },
-        {
-          "slug": "openclaw",
-          "stars": 392800,
-          "forks": 82562
-        },
-        {
-          "slug": "jev",
-          "stars": 0,
-          "forks": 0
-        },
-        {
-          "slug": "gemini-cli",
-          "stars": 107533,
-          "forks": 14754
-        },
-        {
-          "slug": "browser-use",
-          "stars": 118916,
-          "forks": 13205
-        },
-        {
-          "slug": "markitdown",
-          "stars": 191703,
-          "forks": 14287
-        },
-        {
-          "slug": "claude-code",
-          "stars": 152939,
-          "forks": 26774
-        },
-        {
-          "slug": "codex-cli",
-          "stars": 130521,
-          "forks": 20578
-        },
-        {
-          "slug": "qwen-code",
-          "stars": 28661,
-          "forks": 3252
-        },
-        {
-          "slug": "opencode",
-          "stars": 220305,
-          "forks": 29451
-        },
-        {
-          "slug": "cline",
-          "stars": 70748,
-          "forks": 7725
-        },
-        {
-          "slug": "deepseek-harness",
-          "stars": 258511,
-          "forks": 31199
-        }
-      ]
-    },
     {
       "date": "2026-10-24",
       "captured_at": "2026-10-24T06:03:07.974Z",
@@ -1979,6 +1913,72 @@
           "slug": "deepseek-harness",
           "stars": 284719,
           "forks": 35388
+        }
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "captured_at": "2026-11-22T02:05:35.848Z",
+      "projects": [
+        {
+          "slug": "rea",
+          "stars": 472860,
+          "forks": 115410
+        },
+        {
+          "slug": "openclaw",
+          "stars": 394997,
+          "forks": 82951
+        },
+        {
+          "slug": "jev",
+          "stars": 0,
+          "forks": 0
+        },
+        {
+          "slug": "gemini-cli",
+          "stars": 108975,
+          "forks": 14967
+        },
+        {
+          "slug": "browser-use",
+          "stars": 121684,
+          "forks": 13598
+        },
+        {
+          "slug": "markitdown",
+          "stars": 197567,
+          "forks": 14951
+        },
+        {
+          "slug": "claude-code",
+          "stars": 156582,
+          "forks": 25082
+        },
+        {
+          "slug": "codex-cli",
+          "stars": 136066,
+          "forks": 21584
+        },
+        {
+          "slug": "qwen-code",
+          "stars": 30851,
+          "forks": 3575
+        },
+        {
+          "slug": "opencode",
+          "stars": 228439,
+          "forks": 31042
+        },
+        {
+          "slug": "cline",
+          "stars": 71810,
+          "forks": 7943
+        },
+        {
+          "slug": "deepseek-harness",
+          "stars": 285108,
+          "forks": 35442
         }
       ]
     }
