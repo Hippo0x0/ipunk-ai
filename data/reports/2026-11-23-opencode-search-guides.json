@@ -1,6 +1,6 @@
 {
   "date": "2026-11-23",
-  "status": "implemented_validated_not_published",
+  "status": "draft_requires_topic_evidence_review",
   "scope": "Two OpenCode task guides, independent Chinese and English URLs (four pages)",
   "baseline": {
     "source": "../websites/data/search-console/2026-11-23.json",
@@ -50,11 +50,29 @@
     "result": "Cloudflare API: No access to the specified service",
     "credential_observation": "Current OAuth token has pages write but lacks workers write scopes; no permission escalation, resource creation or DNS change performed",
     "formal_site_updated": false,
-    "sites_mirror": "Existing public mirror identified but not republished; it is a different hostname and does not close formal-domain deployment."
+    "sites_mirror": "Existing public mirror identified but not republished; it is a different hostname and does not close formal-domain deployment.",
+    "content_approval": false,
+    "deployment_access_alone_is_insufficient": true
   },
   "measurement_plan": {
-    "start": "After verified formal-domain publication and ordinary crawl",
+    "start": "Only after topic review approval, verified formal-domain publication and ordinary crawl",
     "compare": "Separate AI host, exact URLs and language. Collect complete final 7-day windows after crawl and a following window; retain query-country-device mix and publication/crawl timestamps. Track impressions, clicks, CTR and query position; no growth claim from page count or tests.",
-    "next_action": "Restore existing Worker deployment access, publish the reviewed commit, verify the four exact URLs/canonicals and then evaluate Search Console data."
+    "next_action": "Collect scoped demand and competition evidence, evaluate distinct intent and unique value, then decide to publish, merge into an existing page or abandon. Restoring Worker access alone does not authorize publication."
+  },
+  "selection_review": {
+    "reviewed_at": "2026-11-23",
+    "status": "not_approved_for_new_page_publication",
+    "reference": "../websites/docs/CONTENT-INVESTMENT-POLICY.md",
+    "scope_note": "Audit against the project requirements supplied in this chat; the referenced file resides in the main-site checkout.",
+    "missing": [
+      "Task-specific positive official demand evidence: aggregate project-page impressions do not establish demand for the two new task intents.",
+      "Explicit target geography for each language; search-volume scope remains unknown.",
+      "Recorded same-market competitor sampling and concrete answer gaps.",
+      "Evidence of unique reader value beyond official-document synthesis and an audit showing why enhancing an existing URL cannot serve the same task.",
+      "Candidate market/publication_review records and an explicit allocation decision for this additional work."
+    ],
+    "qualified_work": "Static technical checks and source reviews were completed. They do not approve the topics or prove traffic potential.",
+    "volume_rule": "No universal minimum monthly search volume is required by the repository. Unknown market size must remain unknown; another valid positive official demand signal may open research, but publishing still requires the other evidence.",
+    "additional_topics": "Ollama memory-error and memory-calculator ideas remain research suggestions only; no second-batch pages were written."
   }
 }
