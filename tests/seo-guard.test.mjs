@@ -15,6 +15,6 @@ test("rejects indexing blocks and missing search descriptions", () => {
 });
 test("published OpenCode editorial date agrees with its sitemap entry", async () => {
   const html = await readFile(new URL("../dist/projects/opencode/index.html", import.meta.url), "utf8");
-  assert.doesNotThrow(() => checkModifiedDate(html, url, "2026-10-29"));
+  assert.doesNotThrow(() => checkModifiedDate(html, url, "2026-11-23"));
   assert.throws(() => checkModifiedDate(html, url, "2026-10-22"), /lastmod differs/);
 });

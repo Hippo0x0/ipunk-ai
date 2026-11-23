@@ -17,7 +17,8 @@ test("REA editions have reciprocal HTML links, canonical URLs, and matching site
       assert.ok(html.includes(`<link rel="alternate" hreflang="${language}" href="${base}${target}">`));
     }
     assert.ok(html.includes(`href="${route === zh ? en : zh}"`));
-    assert.ok(sitemap.includes(`<loc>${base}${route}</loc><lastmod>2026-10-30</lastmod>`));
+    const modified = html.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/)[1];
+    assert.ok(sitemap.includes(`<loc>${base}${route}</loc><lastmod>${modified}</lastmod>`));
   }
 });
 
@@ -25,7 +26,7 @@ test("English REA edition is complete static English and Chinese URL resists sav
   const english = await read(en);
   const chinese = await read(zh);
   assert.match(english, /<html lang="en">/);
-  assert.match(english, /documentation-based guide/);
+  assert.match(english, /static CLI check/);
   assert.match(english, /analyze-javascript-application/);
   assert.doesNotMatch(english, /class="(?:zh-only|en-only)"|src="\/app.js"/);
   for (const [, id] of english.matchAll(/href="#([^"]+)"/g)) assert.ok(english.includes(`id="${id}"`));

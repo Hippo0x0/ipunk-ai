@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-23",
+  "status": "implemented_static_checks_passed_browser_and_publication_pending",
+  "scope": {
+    "modified_existing_canonical_pages": 4,
+    "new_html_urls": 0,
+    "unapproved_new_guides_included": false,
+    "source_commit_for_full_draft": "23c9be8",
+    "baseline": "bfcde4846cffcec39455e1dbd5b7d1a2635a44b6"
+  },
+  "decision": {
+    "policy": "Main-site CONTENT-INVESTMENT-POLICY.md supplied for this task",
+    "basis": "Existing-page task and source repairs can proceed without a new-topic search-volume claim. Keep the original four new-guide draft URLs on hold.",
+    "official_signals": [
+      {
+        "query": "opencode 安全性",
+        "page": "https://ai.ipunk.cn/projects/opencode/",
+        "country": "hkg",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 5
+      },
+      {
+        "query": "rea framework",
+        "page": "https://ai.ipunk.cn/en/projects/rea/",
+        "country": "usa",
+        "clicks": 0,
+        "impressions": 1,
+        "position": 6
+      }
+    ],
+    "window": "GSC final queries ending 2026-11-19, read via connected AI URL property",
+    "qualification": "Sparse visible first-party observations guide an existing-page repair, not market volume or predicted traffic."
+  },
+  "changes": [
+    "OpenCode bilingual pages now give native V2 edit/shell/external-directory ask rules, preserve the dated V1 example and review boundary, and correct the current docs generation label.",
+    "REA bilingual pages now include an executed, version-pinned local JavaScript fixture, unchanged raw Evidence, downloadable fixture and field-checking script. Moved installation/CLI sources point at current getting-started paths.",
+    "Native SVG branching uses separate HTML step links with a declared 44 CSS-px minimum height; uncertain routes and existing anchors remain.",
+    "Historical publication/review/score dates are preserved; only real content-edit and source/test dates are new. No ratings were recalculated."
+  ],
+  "executed_evidence": {
+    "rea_version": "6.10.1",
+    "node_version": "22.23.4",
+    "platform": "macOS 26.2 (25C56), arm64",
+    "target": "Authored three-file ES-module fixture plus package.json",
+    "outcome": "CLI exit 0; three parsed JS files, zero parse failures, two entry import relationships, dynamic import unresolved",
+    "portable_reproduction": "Archive extracted to another temporary path and reanalyzed successfully; two authored-source truth checks passed separately.",
+    "negative_controls": "Verifier rejects missing source-module data and a falsely resolved dynamic import.",
+    "scope": "No native engine, real Electron/ASAR, obfuscation, MCP registration, model request, performance or stability benchmark tested.",
+    "public_summary": "dist/evidence/rea-js-6.10.1-2026-11-23-summary.json"
+  },
+  "verification": {
+    "node_tests": "33 passed on the isolated repair branch",
+    "static_site": "26 HTML files, 12 project snapshots, 25 canonical HTML routes; all passed",
+    "links_and_examples": "Four changed pages have unique IDs, valid local/fragment targets and parseable JSON examples",
+    "evidence": "Original SHA256, fixture archive, verifier positive/negative controls checked",
+    "browser_qa": "Not performed: browser tool returns Local browser use is disabled in Work settings. Do not label desktop/390px verification as passed."
+  },
+  "publication": {
+    "worker": "ipunk-ai",
+    "deployed": false,
+    "latest_readonly_check": "Current Wrangler OAuth reports pages-write but lacks Worker write scopes; earlier API deployment attempt reported no access to the service.",
+    "new_resources_or_dns_changes": false,
+    "next_required": "Complete desktop/mobile browser QA, then use an identity authorized for the existing Worker to publish only this repair branch."
+  },
+  "growth_claim": "None. Ranking, clicks and impressions after this change are unverified. The requested new high-performing pages are not complete.",
+  "openseo_paid_lookups_this_round": 0
+}

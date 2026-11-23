@@ -38,6 +38,7 @@ jobs:
         run: |
           node --test tests/*.test.mjs
           node scripts/check-site.mjs
+          python3 dist/evidence/verify-rea-fixture.py dist/evidence/rea-js-6.10.1-2026-11-23-original.json
 
       - name: Commit a changed snapshot
         id: snapshot_change

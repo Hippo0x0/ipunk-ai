@@ -1,0 +1,46 @@
+{
+  "tested_on": "2026-11-23",
+  "scope": "Static JavaScript CLI on an authored fixture, not agent setup, native reverse engineering or an app reconstruction benchmark",
+  "rea_version": "6.10.1",
+  "node_version": "22.23.4",
+  "platform": "macOS 26.2 (25C56), arm64",
+  "installation": "Temporary prefix from npm registry; ignore-scripts and omit optional dependencies; no global installation and no setup command",
+  "package_integrity": "sha512-3AWrfFEXppvC98FWhZR2Tzulnqs5xJQrSKmAub6+QME/I58Pr3h8pHqqwM30z2DvlnIx/8Hsu8woMngfi4SNyg==",
+  "process_exit_code": 0,
+  "fixture_files": {
+    "index.js": "be5ae732196b99db8030a0a21286e53e075c27aad9dd39bdb3c8830c5a5e726e",
+    "lib/plugin.js": "5811d16e1c1ad9b5405e545f8c6dc2cb3b649fe8d4187572641f7146b41d0ef0",
+    "lib/price.js": "6e9f1d9711dbed98525bf40dcaafa910dfab44d0784f157bf3c48342a5613c5a",
+    "package.json": "1603da22166d3f469ab3467023929910c031cb7d6dce30037b0de1503ad18178"
+  },
+  "fixture_truth_checks": {
+    "invoice_20_3_0_1": 54,
+    "invoice_5_2_0": 10,
+    "performed_by": "Separate Node assertions on authored source, not recovered or verified by REA"
+  },
+  "observations": {
+    "parsed_javascript_files": 3,
+    "parse_failures": 0,
+    "source_module_files": [
+      "index.js",
+      "lib/price.js",
+      "lib/plugin.js"
+    ],
+    "entry_import_relationships": 2,
+    "dynamic_import": "unresolved",
+    "javascript_module_graph_nodes": 8,
+    "graph_nodes": 15,
+    "graph_edges": 20,
+    "semantic_unknown_records": 16
+  },
+  "raw_evidence_sha256": "abb4aaca1e437b82ac3e9b3d18f428146c8b4362bfe9607bbad9c6db85c47ed4",
+  "raw_evidence": "/evidence/rea-js-6.10.1-2026-11-23-original.json",
+  "fixture_zip": "/evidence/rea-js-fixture-2026-11-23.zip",
+  "verifier": "/evidence/verify-rea-fixture.py",
+  "limitations": [
+    "Three authored ES modules and package.json only; no ASAR, real Electron app, native engine, obfuscation, MCP client or model request tested.",
+    "Static graph nodes include derived observations and are not counts of source files.",
+    "Variable import target remains unresolved. The graph does not prove runtime invocation or numeric business correctness.",
+    "Only JSON/output assertions were performed; this is not a performance or stability benchmark."
+  ]
+}
