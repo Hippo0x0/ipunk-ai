@@ -1,6 +1,223 @@
 {
   "date": "2026-11-23",
-  "status": "research_complete_new_pages_not_approved",
+  "status": "gsc_connected_checked_new_pages_not_approved",
+  "gsc_followup": {
+    "checked_at": "2026-11-23",
+    "connection": {
+      "connected": true,
+      "selected_property": "https://ai.ipunk.cn/",
+      "permission": "siteOwner"
+    },
+    "striking": {
+      "ok": true,
+      "siteUrl": "https://ai.ipunk.cn/",
+      "startDate": "2026-10-23",
+      "endDate": "2026-11-19",
+      "dimensions": [
+        "query",
+        "page"
+      ],
+      "rowCount": 0,
+      "rows": [],
+      "hasMore": false,
+      "meta": {
+        "projectId": "d805176c-6e1f-4ca4-834b-9aa48dfd74a0",
+        "url": "https://app.openseo.so/p/d805176c-6e1f-4ca4-834b-9aa48dfd74a0/search-performance"
+      },
+      "resultId": "d0536967-aeca-4116-a9ac-7091b42164dd"
+    },
+    "queries_90_days": {
+      "ok": true,
+      "siteUrl": "https://ai.ipunk.cn/",
+      "startDate": "2026-08-23",
+      "endDate": "2026-11-19",
+      "dimensions": [
+        "query",
+        "page"
+      ],
+      "rowCount": 7,
+      "rows": [
+        {
+          "keys": [
+            "coding agent 排名",
+            "https://ai.ipunk.cn/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 3
+        },
+        {
+          "keys": [
+            "duckcoding",
+            "https://ai.ipunk.cn/choose/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 84
+        },
+        {
+          "keys": [
+            "opencode 好用吗",
+            "https://ai.ipunk.cn/projects/opencode/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 45
+        },
+        {
+          "keys": [
+            "opencode 安全性",
+            "https://ai.ipunk.cn/projects/opencode/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "keys": [
+            "rea",
+            "https://ai.ipunk.cn/en/projects/rea/"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 38.3
+        },
+        {
+          "keys": [
+            "rea aimn",
+            "https://ai.ipunk.cn/en/projects/rea/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 29
+        },
+        {
+          "keys": [
+            "rea framework",
+            "https://ai.ipunk.cn/en/projects/rea/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        }
+      ],
+      "hasMore": false,
+      "meta": {
+        "projectId": "d805176c-6e1f-4ca4-834b-9aa48dfd74a0",
+        "url": "https://app.openseo.so/p/d805176c-6e1f-4ca4-834b-9aa48dfd74a0/search-performance"
+      },
+      "resultId": "f002b8b5-e063-473f-9a3f-24546e915804"
+    },
+    "queries_country": {
+      "ok": true,
+      "siteUrl": "https://ai.ipunk.cn/",
+      "startDate": "2026-10-23",
+      "endDate": "2026-11-19",
+      "dimensions": [
+        "query",
+        "country"
+      ],
+      "rowCount": 8,
+      "rows": [
+        {
+          "keys": [
+            "coding agent 排名",
+            "hkg"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 3
+        },
+        {
+          "keys": [
+            "duckcoding",
+            "hkg"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 84
+        },
+        {
+          "keys": [
+            "opencode 好用吗",
+            "usa"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 45
+        },
+        {
+          "keys": [
+            "opencode 安全性",
+            "hkg"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "keys": [
+            "rea",
+            "mys"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 36
+        },
+        {
+          "keys": [
+            "rea",
+            "sgp"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 43
+        },
+        {
+          "keys": [
+            "rea aimn",
+            "bra"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 29
+        },
+        {
+          "keys": [
+            "rea framework",
+            "usa"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        }
+      ],
+      "hasMore": false,
+      "meta": {
+        "projectId": "d805176c-6e1f-4ca4-834b-9aa48dfd74a0",
+        "url": "https://app.openseo.so/p/d805176c-6e1f-4ca4-834b-9aa48dfd74a0/search-performance"
+      },
+      "resultId": "1fc57076-e4ad-4cf7-b67c-46962f9138c5"
+    },
+    "conclusion": "Connection is working. Existing visible demand does not establish the Go/Skills/Plugins task intents. The minImpressions=50 striking-distance filter is an exploratory screen, not a repository publication minimum. Missing/hidden queries are unknown, not zero demand.",
+    "official_trends_attempt": "Official US Explore page for opencode go/opencode skills could not be read via web tool; browser execution still returns Work-settings disabled.",
+    "next_required_evidence": "Scoped official keyword research or reviewed official Trends data for a selected new task, plus original evidence and complete publication review. Do not ask user to reconnect Search Console again."
+  },
   "openseo_report_id": "89265cce-80ff-40e1-94d2-ac9272ac1b03",
   "openseo_report_visibility": "private",
   "project_id": "d805176c-6e1f-4ca4-834b-9aa48dfd74a0",
@@ -877,10 +1094,11 @@
   ],
   "first_party_reference": "data/reports/2026-11-23-ai-topic-publication-gate.json",
   "gsc_connection": {
-    "openseo_bound": false,
+    "openseo_bound": true,
     "posthog_existing_capture_reused": true,
     "connect_url": "https://app.openseo.so/p/d805176c-6e1f-4ca4-834b-9aa48dfd74a0/search-performance",
-    "note": "Connecting OpenSEO is useful for direct ongoing official query review but cannot guarantee that the missing candidate queries will appear."
+    "note": "Connection completed and verified directly. Do not ask for reconnection. Missing evidence concerns the new task intents, not source access.",
+    "selected_site": "https://ai.ipunk.cn/"
   },
   "unsupported_market_attempt": {
     "geo": "CN",
