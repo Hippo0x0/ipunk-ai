@@ -69,7 +69,8 @@ test("dated Qwen recheck preserves measured rows, cache counts and incomplete at
   assert.equal(next.method.initial_loaded_model_count, 0);
   assert.deepEqual(next.measurements.map(r => [r.round, r.case]), [[1, "short"], [1, "medium"], [2, "short"], [2, "medium"]]);
   assert.ok(next.incomplete_attempts.every(r => r.valid_samples === 0));
-  assert.match(html, /"datePublished":"2026-11-01","dateModified":"2026-11-07"/);
+  assert.match(html, /"datePublished":"2026-11-01","dateModified":"2026-11-23"/);
+  assert.match(html, /最近复测：<time datetime="2026-11-07">2026-11-07<\/time>/);
   assert.ok(html.includes("/evidence/" + filename));
   for (const r of next.measurements) {
     assert.ok(Math.abs(r.decode_tokens_per_second - (r.completion_tokens - 1) / (r.total_seconds - r.ttft_seconds)) < 1e-8);

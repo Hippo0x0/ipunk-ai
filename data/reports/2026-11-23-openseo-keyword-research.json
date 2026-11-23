@@ -1,0 +1,1117 @@
+{
+  "date": "2026-11-23",
+  "status": "gsc_connected_checked_new_pages_not_approved",
+  "gsc_followup": {
+    "checked_at": "2026-11-23",
+    "connection": {
+      "connected": true,
+      "selected_property": "https://ai.ipunk.cn/",
+      "permission": "siteOwner"
+    },
+    "striking": {
+      "ok": true,
+      "siteUrl": "https://ai.ipunk.cn/",
+      "startDate": "2026-10-23",
+      "endDate": "2026-11-19",
+      "dimensions": [
+        "query",
+        "page"
+      ],
+      "rowCount": 0,
+      "rows": [],
+      "hasMore": false,
+      "meta": {
+        "projectId": "d805176c-6e1f-4ca4-834b-9aa48dfd74a0",
+        "url": "https://app.openseo.so/p/d805176c-6e1f-4ca4-834b-9aa48dfd74a0/search-performance"
+      },
+      "resultId": "d0536967-aeca-4116-a9ac-7091b42164dd"
+    },
+    "queries_90_days": {
+      "ok": true,
+      "siteUrl": "https://ai.ipunk.cn/",
+      "startDate": "2026-08-23",
+      "endDate": "2026-11-19",
+      "dimensions": [
+        "query",
+        "page"
+      ],
+      "rowCount": 7,
+      "rows": [
+        {
+          "keys": [
+            "coding agent 排名",
+            "https://ai.ipunk.cn/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 3
+        },
+        {
+          "keys": [
+            "duckcoding",
+            "https://ai.ipunk.cn/choose/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 84
+        },
+        {
+          "keys": [
+            "opencode 好用吗",
+            "https://ai.ipunk.cn/projects/opencode/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 45
+        },
+        {
+          "keys": [
+            "opencode 安全性",
+            "https://ai.ipunk.cn/projects/opencode/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "keys": [
+            "rea",
+            "https://ai.ipunk.cn/en/projects/rea/"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 38.3
+        },
+        {
+          "keys": [
+            "rea aimn",
+            "https://ai.ipunk.cn/en/projects/rea/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 29
+        },
+        {
+          "keys": [
+            "rea framework",
+            "https://ai.ipunk.cn/en/projects/rea/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        }
+      ],
+      "hasMore": false,
+      "meta": {
+        "projectId": "d805176c-6e1f-4ca4-834b-9aa48dfd74a0",
+        "url": "https://app.openseo.so/p/d805176c-6e1f-4ca4-834b-9aa48dfd74a0/search-performance"
+      },
+      "resultId": "f002b8b5-e063-473f-9a3f-24546e915804"
+    },
+    "queries_country": {
+      "ok": true,
+      "siteUrl": "https://ai.ipunk.cn/",
+      "startDate": "2026-10-23",
+      "endDate": "2026-11-19",
+      "dimensions": [
+        "query",
+        "country"
+      ],
+      "rowCount": 8,
+      "rows": [
+        {
+          "keys": [
+            "coding agent 排名",
+            "hkg"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 3
+        },
+        {
+          "keys": [
+            "duckcoding",
+            "hkg"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 84
+        },
+        {
+          "keys": [
+            "opencode 好用吗",
+            "usa"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 45
+        },
+        {
+          "keys": [
+            "opencode 安全性",
+            "hkg"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 5
+        },
+        {
+          "keys": [
+            "rea",
+            "mys"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 36
+        },
+        {
+          "keys": [
+            "rea",
+            "sgp"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 43
+        },
+        {
+          "keys": [
+            "rea aimn",
+            "bra"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 29
+        },
+        {
+          "keys": [
+            "rea framework",
+            "usa"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        }
+      ],
+      "hasMore": false,
+      "meta": {
+        "projectId": "d805176c-6e1f-4ca4-834b-9aa48dfd74a0",
+        "url": "https://app.openseo.so/p/d805176c-6e1f-4ca4-834b-9aa48dfd74a0/search-performance"
+      },
+      "resultId": "1fc57076-e4ad-4cf7-b67c-46962f9138c5"
+    },
+    "conclusion": "Connection is working. Existing visible demand does not establish the Go/Skills/Plugins task intents. The minImpressions=50 striking-distance filter is an exploratory screen, not a repository publication minimum. Missing/hidden queries are unknown, not zero demand.",
+    "official_trends_attempt": "Official US Explore page for opencode go/opencode skills could not be read via web tool; browser execution still returns Work-settings disabled.",
+    "next_required_evidence": "Scoped official keyword research or reviewed official Trends data for a selected new task, plus original evidence and complete publication review. Do not ask user to reconnect Search Console again."
+  },
+  "openseo_report_id": "89265cce-80ff-40e1-94d2-ac9272ac1b03",
+  "openseo_report_visibility": "private",
+  "project_id": "d805176c-6e1f-4ca4-834b-9aa48dfd74a0",
+  "market": {
+    "geo": "US",
+    "locationCode": 2840,
+    "language": "en",
+    "purpose": "research_target_not_proven_audience"
+  },
+  "policy": "../websites/docs/CONTENT-INVESTMENT-POLICY.md",
+  "data_source_classification": "Third-party OpenSEO/DataForSEO keyword metrics and geographically/language-scoped Google result samples. Do not re-label as a direct Google Ads export, first-party GSC evidence or guaranteed clicks.",
+  "keyword_metrics": [
+    {
+      "keyword": "opencode go",
+      "search_volume": 14800,
+      "keyword_difficulty": 0,
+      "main_intent": "informational",
+      "cpc": 11.8,
+      "competition": 0.06,
+      "competition_level": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 10,
+          "search_volume": 27100
+        },
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 33100
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 49500
+        }
+      ]
+    },
+    {
+      "keyword": "opencode zen",
+      "search_volume": 5400,
+      "keyword_difficulty": 22,
+      "main_intent": "informational",
+      "cpc": 9.75,
+      "competition": 0.09,
+      "competition_level": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 8100
+        },
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 6600
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 6600
+        }
+      ]
+    },
+    {
+      "keyword": "opencode skills",
+      "search_volume": 1900,
+      "keyword_difficulty": 19,
+      "main_intent": "informational",
+      "cpc": 5.66,
+      "competition": 0.01,
+      "competition_level": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 10,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 1000
+        }
+      ]
+    },
+    {
+      "keyword": "opencode plugins",
+      "search_volume": 1600,
+      "keyword_difficulty": 12,
+      "main_intent": "informational",
+      "cpc": 3.68,
+      "competition": 0,
+      "competition_level": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 10,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 1600
+        }
+      ]
+    },
+    {
+      "keyword": "opencode ollama",
+      "search_volume": 590,
+      "keyword_difficulty": 20,
+      "main_intent": "navigational",
+      "cpc": 1.12,
+      "competition": 0.01,
+      "competition_level": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 10,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 390
+        }
+      ]
+    },
+    {
+      "keyword": "opencode pricing",
+      "search_volume": 590,
+      "keyword_difficulty": 31,
+      "main_intent": "commercial",
+      "cpc": 8.6,
+      "competition": 0.05,
+      "competition_level": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 10,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 880
+        }
+      ]
+    },
+    {
+      "keyword": "is opencode free",
+      "search_volume": 390,
+      "keyword_difficulty": 17,
+      "main_intent": "informational",
+      "cpc": 10.73,
+      "competition": 0,
+      "competition_level": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 10,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 590
+        }
+      ]
+    },
+    {
+      "keyword": "llm vram calculator",
+      "search_volume": 170,
+      "keyword_difficulty": 23,
+      "main_intent": "informational",
+      "cpc": 4.73,
+      "competition": 0.01,
+      "competition_level": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 10,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 170
+        }
+      ]
+    },
+    {
+      "keyword": "mac mini llm performance",
+      "search_volume": 40,
+      "keyword_difficulty": 0,
+      "main_intent": "commercial",
+      "cpc": null,
+      "competition": 0.07,
+      "competition_level": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 10,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 9,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 20
+        }
+      ]
+    },
+    {
+      "keyword": "ollama out of memory",
+      "search_volume": 10,
+      "keyword_difficulty": null,
+      "main_intent": "informational",
+      "cpc": null,
+      "competition": 0,
+      "competition_level": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        }
+      ]
+    }
+  ],
+  "discovery": {
+    "seeds": [
+      {
+        "seed": "opencode",
+        "ok": true,
+        "source": "blended",
+        "rowCount": 149,
+        "usedFallback": false
+      },
+      {
+        "seed": "ollama",
+        "ok": true,
+        "source": "blended",
+        "rowCount": 149,
+        "usedFallback": false
+      },
+      {
+        "seed": "mac mini llm",
+        "ok": true,
+        "source": "blended",
+        "rowCount": 125,
+        "usedFallback": false
+      }
+    ],
+    "unique_volume_buckets_not_summed": true,
+    "reused_same_session_cache": true
+  },
+  "competition": [
+    {
+      "keyword": "opencode go",
+      "ok": true,
+      "items": [
+        {
+          "title": "Open Code Go? : r/opencode",
+          "url": "https://www.reddit.com/r/opencode/comments/1tl3tgf/open_code_go/?tl=sr",
+          "domain": "www.reddit.com",
+          "bestPosition": 1,
+          "seenIn": 3
+        },
+        {
+          "title": "Opencode Review | Pricing, Free Plan, Features & What to Know",
+          "url": "https://www.youtube.com/watch?v=YGGN8zfb3ag",
+          "domain": "www.youtube.com",
+          "bestPosition": 5,
+          "seenIn": 3
+        },
+        {
+          "title": "Go | OpenCode Console",
+          "url": "https://opencode.ai/console/go",
+          "domain": "opencode.ai",
+          "bestPosition": 1,
+          "seenIn": 2
+        },
+        {
+          "title": "OpenCode Go",
+          "url": "https://docs.docker.com/ai/docker-agent/providers/opencode-go/",
+          "domain": "docs.docker.com",
+          "bestPosition": 7,
+          "seenIn": 2
+        },
+        {
+          "title": "OpenCode Go Review: Is the $10 AI Coding Plan Worth It?",
+          "url": "https://thomas-wiegold.com/blog/opencode-go-review/",
+          "domain": "thomas-wiegold.com",
+          "bestPosition": 9,
+          "seenIn": 2
+        },
+        {
+          "title": "Opencode Go Pricing",
+          "url": "https://www.instagram.com/popular/opencode-go-pricing/",
+          "domain": "www.instagram.com",
+          "bestPosition": 2,
+          "seenIn": 1
+        },
+        {
+          "title": "How to Use OpenCode for Free: Beginner's Desktop Setup ...",
+          "url": "https://www.theneuron.ai/explainer-articles/how-to-use-opencode-for-free-beginners-desktop-setup-guide/",
+          "domain": "www.theneuron.ai",
+          "bestPosition": 3,
+          "seenIn": 1
+        },
+        {
+          "title": "Is OpenCode Go Worth $10/Month in 2026? Models ...",
+          "url": "https://docs.bswen.com/blog/2026-05-27-opencode-go-worth-it/",
+          "domain": "docs.bswen.com",
+          "bestPosition": 4,
+          "seenIn": 1
+        },
+        {
+          "title": "\"OpenCode Go\" (a subscription) lets you use lots of hosted ...",
+          "url": "https://news.ycombinator.com/item?id=47463610",
+          "domain": "news.ycombinator.com",
+          "bestPosition": 6,
+          "seenIn": 1
+        },
+        {
+          "title": "OpenCode Mobile: AI Coding - Apps on Google Play",
+          "url": "https://play.google.com/store/apps/details?id=cc.agentlabs.opencode&hl=en_US",
+          "domain": "play.google.com",
+          "bestPosition": 7,
+          "seenIn": 1
+        },
+        {
+          "title": "OpenCode Go (2026): Price, Models and Limits",
+          "url": "https://antigravityskills.com/docs/opencode-go",
+          "domain": "antigravityskills.com",
+          "bestPosition": 8,
+          "seenIn": 1
+        },
+        {
+          "title": "Opencode Go models Models & Pricing",
+          "url": "https://toolscout.ai/models/families/family--opencode-go-models",
+          "domain": "toolscout.ai",
+          "bestPosition": 9,
+          "seenIn": 1
+        }
+      ],
+      "locationCode": 2840,
+      "languageCode": "en",
+      "device": "desktop"
+    },
+    {
+      "keyword": "opencode skills",
+      "ok": true,
+      "items": [
+        {
+          "title": "Opencode Ai Agent Skills",
+          "url": "https://www.instagram.com/popular/opencode-ai-agent-skills/",
+          "domain": "www.instagram.com",
+          "bestPosition": 1,
+          "seenIn": 3
+        },
+        {
+          "title": "How to use skills in opencode desktop : r/opencodeCLI",
+          "url": "https://www.reddit.com/r/opencodeCLI/comments/1rdmssj/how_to_use_skills_in_opencode_desktop/",
+          "domain": "www.reddit.com",
+          "bestPosition": 2,
+          "seenIn": 3
+        },
+        {
+          "title": "opencode vs openclaw-master-skills",
+          "url": "https://skillsllm.com/compare/anomalyco-opencode-vs-openclaw-master-skills",
+          "domain": "skillsllm.com",
+          "bestPosition": 3,
+          "seenIn": 3
+        },
+        {
+          "title": "OpenCode Full Tutorial Free Models & Skills",
+          "url": "https://www.youtube.com/watch?v=nEi842k_Yio",
+          "domain": "www.youtube.com",
+          "bestPosition": 4,
+          "seenIn": 3
+        },
+        {
+          "title": "How to Manage Skills in Open Code - SkillMap Blog",
+          "url": "https://skillmaps.net/blog/open-code-manage-skills",
+          "domain": "skillmaps.net",
+          "bestPosition": 5,
+          "seenIn": 3
+        },
+        {
+          "title": "Opencode",
+          "url": "https://www.agensi.io/skills/opencode",
+          "domain": "www.agensi.io",
+          "bestPosition": 6,
+          "seenIn": 3
+        },
+        {
+          "title": "Opencode Agent | Claude Code Skill for Multi-Model Coding",
+          "url": "https://mcpmarket.com/tools/skills/opencode-agent-1",
+          "domain": "mcpmarket.com",
+          "bestPosition": 8,
+          "seenIn": 3
+        }
+      ],
+      "locationCode": 2840,
+      "languageCode": "en",
+      "device": "desktop"
+    },
+    {
+      "keyword": "opencode plugins",
+      "ok": true,
+      "items": [
+        {
+          "title": "I built plugins for OpenCode v2 once, now they work in the ...",
+          "url": "https://www.reddit.com/r/opencodeCLI/comments/1xhrqp7/i_built_plugins_for_opencode_v2_once_now_they/",
+          "domain": "www.reddit.com",
+          "bestPosition": 3,
+          "seenIn": 3
+        },
+        {
+          "title": "OpenCode - Coding Agent & Dev Environment",
+          "url": "https://genaipm.com/wiki/tools/opencode",
+          "domain": "genaipm.com",
+          "bestPosition": 1,
+          "seenIn": 2
+        },
+        {
+          "title": "What Is OpenCode?",
+          "url": "https://go.lightnode.com/tech/what-is-opencode",
+          "domain": "go.lightnode.com",
+          "bestPosition": 1,
+          "seenIn": 2
+        },
+        {
+          "title": "opencode Tutorials, Tools, and Guides | Developers Digest",
+          "url": "https://www.developersdigest.tech/topics/opencode",
+          "domain": "www.developersdigest.tech",
+          "bestPosition": 2,
+          "seenIn": 2
+        },
+        {
+          "title": "opencode: Essential Plugin Registry for AI Coding Agents",
+          "url": "https://www.blog.brightcoding.dev/2026/07/19/awesome-opencodeawesome-opencode-the-essential-plugin-registry-for-ai-coding-agents",
+          "domain": "www.blog.brightcoding.dev",
+          "bestPosition": 4,
+          "seenIn": 2
+        },
+        {
+          "title": "Opencode Is Probably The Best Coding Agent I've Ever Used",
+          "url": "https://www.youtube.com/watch?v=e9j2iEwJru0",
+          "domain": "www.youtube.com",
+          "bestPosition": 7,
+          "seenIn": 2
+        },
+        {
+          "title": "Plugins",
+          "url": "https://opencode.ai/docs/plugins/",
+          "domain": "opencode.ai",
+          "bestPosition": 1,
+          "seenIn": 1
+        },
+        {
+          "title": "OpenCode Plugins",
+          "url": "https://opencode.im/plugins",
+          "domain": "opencode.im",
+          "bestPosition": 2,
+          "seenIn": 1
+        },
+        {
+          "title": "awesome-opencode/awesome-opencode: A curated list of ...",
+          "url": "https://github.com/awesome-opencode/awesome-opencode",
+          "domain": "github.com",
+          "bestPosition": 3,
+          "seenIn": 1
+        },
+        {
+          "title": "opencode.cafe - Extensions & Plugins for OpenCode",
+          "url": "https://opencode.cafe/",
+          "domain": "opencode.cafe",
+          "bestPosition": 4,
+          "seenIn": 1
+        },
+        {
+          "title": "OpenCode plugins - OpenConnect",
+          "url": "https://openconnect.dagar.in/discover/opencode-plugins",
+          "domain": "openconnect.dagar.in",
+          "bestPosition": 6,
+          "seenIn": 1
+        },
+        {
+          "title": "7 OpenCode Plugins That Make AI Coding More Powerful https ...",
+          "url": "https://www.instagram.com/reel/DYRqlvZo0Jw/",
+          "domain": "www.instagram.com",
+          "bestPosition": 6,
+          "seenIn": 1
+        },
+        {
+          "title": "Plugins",
+          "url": "https://opencode.school/lessons/plugins/",
+          "domain": "opencode.school",
+          "bestPosition": 7,
+          "seenIn": 1
+        },
+        {
+          "title": "Best OpenCode Plugins to improve flow state coding in 2026",
+          "url": "https://composio.dev/content/best-opencode-plugins",
+          "domain": "composio.dev",
+          "bestPosition": 9,
+          "seenIn": 1
+        }
+      ],
+      "locationCode": 2840,
+      "languageCode": "en",
+      "device": "desktop"
+    }
+  ],
+  "existing_topic_samples": [
+    {
+      "keyword": "opencode ollama",
+      "ok": true,
+      "items": [
+        {
+          "title": "[FEATURE]: Ollama Cloud AUTH Login #4581",
+          "domain": "github.com",
+          "bestPosition": 4,
+          "seenIn": 3
+        },
+        {
+          "title": "Providers",
+          "domain": "opencode.ai",
+          "bestPosition": 1,
+          "seenIn": 2
+        },
+        {
+          "title": "How to Use Claude Code + OpenClaw for FREE (Ollama)",
+          "domain": null,
+          "bestPosition": 1,
+          "seenIn": 1
+        },
+        {
+          "title": "Isaac Johnson - Opencode and Ollama-Code",
+          "domain": null,
+          "bestPosition": 1,
+          "seenIn": 1
+        },
+        {
+          "title": "OpenCode",
+          "domain": "docs.ollama.com",
+          "bestPosition": 2,
+          "seenIn": 1
+        },
+        {
+          "title": "OpenCode opencode.jsonc",
+          "domain": "gist.github.com",
+          "bestPosition": 2,
+          "seenIn": 1
+        }
+      ]
+    },
+    {
+      "keyword": "duckcoding",
+      "ok": true,
+      "items": [
+        {
+          "title": "Activity · duck-coding/Articles",
+          "domain": "github.com",
+          "bestPosition": 2,
+          "seenIn": 3
+        },
+        {
+          "title": "AI-Coding - API Integration on GitHub | SkillsLLM",
+          "domain": "skillsllm.com",
+          "bestPosition": 1,
+          "seenIn": 2
+        },
+        {
+          "title": "现在入场Ai还是早期",
+          "domain": null,
+          "bestPosition": 2,
+          "seenIn": 2
+        },
+        {
+          "title": "Flapcode - Claude Code & CodeX 编程助手",
+          "domain": "flapcode.com",
+          "bestPosition": 3,
+          "seenIn": 2
+        },
+        {
+          "title": "code tag",
+          "domain": "devtalk.com",
+          "bestPosition": 4,
+          "seenIn": 2
+        },
+        {
+          "title": "OpenAI Just Killed Claude !! (In 3 Power Moves)",
+          "domain": "medium.com",
+          "bestPosition": 5,
+          "seenIn": 2
+        }
+      ]
+    },
+    {
+      "keyword": "opencode skills",
+      "ok": true,
+      "items": [
+        {
+          "title": "Opencode Ai Agent Skills",
+          "domain": null,
+          "bestPosition": 1,
+          "seenIn": 3
+        },
+        {
+          "title": "How to use skills in opencode desktop : r/opencodeCLI",
+          "domain": "reddit.com",
+          "bestPosition": 2,
+          "seenIn": 3
+        },
+        {
+          "title": "opencode vs localseoskills - AI Skills Comparison | SkillsLLM",
+          "domain": "skillsllm.com",
+          "bestPosition": 2,
+          "seenIn": 3
+        },
+        {
+          "title": "How to Manage Skills in Open Code - SkillMap Blog",
+          "domain": "skillmaps.net",
+          "bestPosition": 3,
+          "seenIn": 3
+        },
+        {
+          "title": "Opencode Agent | Claude Code Skill for Multi-Model Coding",
+          "domain": "mcpmarket.com",
+          "bestPosition": 5,
+          "seenIn": 3
+        },
+        {
+          "title": "OpenCode Full Tutorial Free Models & Skills",
+          "domain": null,
+          "bestPosition": 4,
+          "seenIn": 2
+        }
+      ]
+    },
+    {
+      "keyword": "mac mini llm performance",
+      "ok": true,
+      "items": [
+        {
+          "title": "Mac mini vs Mac Studio for AI: which to buy for local LLMs | MLX",
+          "domain": "mlx.app",
+          "bestPosition": 1,
+          "seenIn": 2
+        },
+        {
+          "title": "I benchmarked a bunch of Local LLMs on Ollama",
+          "domain": "skool.com",
+          "bestPosition": 1,
+          "seenIn": 2
+        },
+        {
+          "title": "M4 Mac Mini AI Model Speed Test: Llama & Gemma ...",
+          "domain": "gist.ly",
+          "bestPosition": 2,
+          "seenIn": 2
+        },
+        {
+          "title": "LLM (+more) - Which one to choose, M4 pro or basic?",
+          "domain": "reddit.com",
+          "bestPosition": 4,
+          "seenIn": 2
+        },
+        {
+          "title": "Mac M4 Mini vs Cloud LLMs: High Efficiency, But Cost Still ...",
+          "domain": "ludwigstumpp.com",
+          "bestPosition": 6,
+          "seenIn": 2
+        },
+        {
+          "title": "Anyone using Mac Mini Pro for home AI? : r/LocalLLaMA",
+          "domain": null,
+          "bestPosition": 1,
+          "seenIn": 1
+        }
+      ]
+    }
+  ],
+  "rea_disambiguation": [
+    {
+      "title": "REA: AI Reverse Engineering Tool Guide - Nextriva",
+      "domain": "nextriva.net",
+      "bestPosition": 1,
+      "seenIn": 2
+    },
+    {
+      "title": "REA: Reverse Engineer Anything — Let Your AI Coding ...",
+      "domain": "cyberscap.com",
+      "bestPosition": 2,
+      "seenIn": 2
+    },
+    {
+      "title": "REA Reverse Engineer Anything Explained- its potentials and ...",
+      "domain": null,
+      "bestPosition": 3,
+      "seenIn": 2
+    },
+    {
+      "title": "Reverse Engineer Anything (REA) Explained | How It Works & ...",
+      "domain": null,
+      "bestPosition": 4,
+      "seenIn": 2
+    },
+    {
+      "title": "Aikipedia: REA (Reverse Engineer Anything)",
+      "domain": "champaignmagazine.com",
+      "bestPosition": 4,
+      "seenIn": 2
+    },
+    {
+      "title": "What Is REA (Reverse Engineer Anything)? The MCP ...",
+      "domain": "apidog.com",
+      "bestPosition": 6,
+      "seenIn": 2
+    }
+  ],
+  "source_reviews": [
+    {
+      "url": "https://opencode.ai/docs/console/go/",
+      "checked_at": "2026-11-23",
+      "observation": "Current documentation explains optional plans, shared allowances, multiple reset windows and Extra Usage; not a hands-on subscription test."
+    },
+    {
+      "url": "https://opencode.ai/docs/skills/",
+      "checked_at": "2026-11-23",
+      "observation": "Current V2 documentation specifies discovery, IDs, override order and loading; no installed OpenCode executable was found for a runtime fixture test."
+    },
+    {
+      "url": "https://opencode.ai/docs/plugins/",
+      "checked_at": "2026-11-23",
+      "observation": "Current documentation distinguishes plugin paths, enable/disable entries, package management and desktop/terminal surfaces."
+    },
+    {
+      "url": "https://skillmaps.net/blog/open-code-manage-skills",
+      "checked_at": "2026-11-23",
+      "observation": "Reviewed page provides general organization/update/governance advice; it does not supply a concrete V2 discovery/conflict reproduction. This single sample does not establish a market-wide gap."
+    },
+    {
+      "url": "https://thomas-wiegold.com/blog/opencode-go-review/",
+      "checked_at": "2026-11-23",
+      "observation": "Reviewed dated April article already explains several quota windows and model costs. A generic Go-pricing summary would duplicate existing coverage; current mixed-model allowance examples or a validated calculator would need separate evidence."
+    }
+  ],
+  "intent_map": [
+    {
+      "keyword": "opencode go",
+      "proposed_url": "/en/guides/opencode-go-limits/",
+      "task": "Understand mixed-model allowance and extra usage before subscribing",
+      "priority": "research_first",
+      "existing_pages_reviewed": [
+        "/en/projects/opencode/",
+        "/guides/ai-coding-agent-security/"
+      ],
+      "intent_status": "provisional_new_task_not_full_publication_approval",
+      "unique_value_required": "Validate a transparent mixed-model allowance calculator and reversible operational path without inventing measured subscription experience.",
+      "official_task_demand": "missing",
+      "can_publish_new_page": false
+    },
+    {
+      "keyword": "opencode skills",
+      "proposed_url": "/en/guides/opencode-skills-not-loading/",
+      "task": "Create and discover a skill, diagnose duplicate IDs and loading",
+      "priority": "research_second",
+      "existing_pages_reviewed": [
+        "/en/projects/opencode/",
+        "/guides/ai-coding-agent-security/"
+      ],
+      "intent_status": "provisional_specialized_task",
+      "unique_value_required": "A versioned, executed fixture showing successful discovery and a reproducible conflict with real logs.",
+      "official_task_demand": "missing",
+      "can_publish_new_page": false
+    },
+    {
+      "keyword": "opencode plugins",
+      "proposed_url": null,
+      "task": "Install/manage plugins and distinguish UI versus server behavior",
+      "priority": "reserve",
+      "intent_status": "new_url_not_decided",
+      "unique_value_required": "Pin a working example and test reload/disable behavior; avoid a generic directory.",
+      "official_task_demand": "missing",
+      "can_publish_new_page": false
+    },
+    {
+      "keyword": "opencode ollama",
+      "proposed_url": "/en/guides/opencode-ollama-local-models/",
+      "priority": "existing_draft_lower_priority",
+      "decision": "Provider documents already rank and 3 recent monthly observations decrease; no volume-based automatic approval.",
+      "can_publish_new_page": false
+    },
+    {
+      "keyword": "llm vram calculator",
+      "proposed_url": null,
+      "priority": "reserve",
+      "decision": "Volume is much smaller than the stronger OpenCode task themes; no independent official demand signal or completed differentiated tool.",
+      "can_publish_new_page": false
+    },
+    {
+      "keyword": "ollama out of memory",
+      "proposed_url": null,
+      "priority": "defer",
+      "decision": "Small observed estimate and missing KD; do not call this a high-volume theme.",
+      "can_publish_new_page": false
+    },
+    {
+      "keyword": "mac mini llm performance",
+      "existing_url": "/guides/mac-mini-m4-qwen-local-benchmark/",
+      "priority": "existing_page_research",
+      "decision": "Use existing first-party observations where relevant; do not create a competing benchmark URL or copy the MLX speed into an Ollama claim."
+    },
+    {
+      "keyword": "rea framework",
+      "existing_url": "/en/projects/rea/",
+      "priority": "existing_page_research",
+      "decision": "US SERP contains REA reverse-engineering topics matching current project scope; keep existing URL rather than manufacture an additional framework page."
+    },
+    {
+      "keyword": "duckcoding",
+      "proposed_url": null,
+      "priority": "exclude_pending_identity_clarification",
+      "decision": "Ambiguous merged results; GSC occurrence and high CPC do not establish a suitable product intent or publisher revenue."
+    }
+  ],
+  "first_party_reference": "data/reports/2026-11-23-ai-topic-publication-gate.json",
+  "gsc_connection": {
+    "openseo_bound": true,
+    "posthog_existing_capture_reused": true,
+    "connect_url": "https://app.openseo.so/p/d805176c-6e1f-4ca4-834b-9aa48dfd74a0/search-performance",
+    "note": "Connection completed and verified directly. Do not ask for reconnection. Missing evidence concerns the new task intents, not source access.",
+    "selected_site": "https://ai.ipunk.cn/"
+  },
+  "unsupported_market_attempt": {
+    "geo": "CN",
+    "language": "zh",
+    "status": "unsupported_location_and_language",
+    "substituted_market": false
+  },
+  "decision": "No new public page approved or implemented in this research round. Prioritize Go and Skills evidence design; defer low-demand/ambiguous ideas. All existing drafts retain their publication hold. User's original page-creation goal remains incomplete.",
+  "next_actions": [
+    "Obtain scoped official positive demand evidence for a selected task, preserving unknown market size where direct official volume is absent.",
+    "Execute an original fixture/calculator test appropriate to the selected task and record its limits.",
+    "Complete publication_review with evidence and intent paths; only then build, validate and deploy new pages using existing hosting."
+  ],
+  "no_automated_tracking_started": true,
+  "keywords_saved": false
+}

@@ -7,7 +7,7 @@
 <link rel="canonical" href="https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/">
 <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/benchmark.css">
 <meta property="og:type" content="article"><meta property="og:title" content="Mac mini M4 32GB 跑 Qwen：速度、内存与首字等待实测"><meta property="og:description" content="不只看最快 token/s：保留冷态、缓存命中和 SSD 专家卸载的代价。"><meta property="og:url" content="https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Mac mini M4 32GB 跑 Qwen 实测：9B、27B、35B 速度与内存","datePublished":"2026-11-01","dateModified":"2026-11-07","inLanguage":"zh-CN","author":{"@type":"Organization","name":"iPunk AI Radar"},"mainEntityOfPage":"https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Mac mini M4 32GB 跑 Qwen 实测：9B、27B、35B 速度与内存","datePublished":"2026-11-01","dateModified":"2026-11-23","inLanguage":"zh-CN","author":{"@type":"Organization","name":"iPunk AI Radar"},"mainEntityOfPage":"https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/"}</script>
 </head>
 <body>
 <header class="topbar"><div class="wrap nav"><a class="brand" href="/"><span>iP</span>AI Radar</a><nav class="navlinks"><a href="/projects/openclaw/">OpenClaw</a><a href="/guides/ai-coding-agent-security/">安全指南</a><a href="/methodology/">证据方法</a></nav></div></header>
@@ -104,7 +104,7 @@
 <li><a href="https://github.com/jundot/omlx/releases/tag/v0.7.3" rel="noreferrer">oMLX 0.7.3 发布页</a>与<a href="https://github.com/jundot/omlx/pull/2595" rel="noreferrer">专家卸载实现</a>：核对测试时版本与功能机制。</li>
 </ul><p>数值来自 iPunk 自有测试文件，而不是复制这些项目的宣传成绩。本文没有商业合作或付费排名；后续修订会保留旧样本和口径变化记录。</p>
 </section>
-</article>
+<section id="opencode-next"><h2>把本地模型接入编程助手</h2><p>需要编程 Agent 时，可按 <a href="/guides/opencode-ollama-local-models/">OpenCode 接入 Ollama 指南</a>核对配置、上下文和工具调用。本文的 MLX 短测不等于 Ollama 或完整代码任务表现。</p></section></article>
 <aside class="side"><div class="scorebox"><div class="eyebrow">MEASURED, NOT PROMISED</div><h2>同一台 Mac。<br>不同取舍。</h2><p>没有综合跑分。先看测试条件，再看数字。</p></div><div class="snapshot"><strong>读表前检查</strong><ul><li>GB 不等于 GiB</li><li>加载分配不是整机内存</li><li>首字时间不是生成速度</li><li>命中缓存不保证低延迟</li><li>短测不代表长期稳定</li></ul><a href="/evidence/mac-mini-m4-qwen-2026-11-01.json">查看脱敏逐次记录 →</a></div><div class="snapshot"><strong>下一步</strong><p><a href="/projects/openclaw/">接入助手前的边界检查</a></p><p><a href="https://ipunk.cn/article/mac-system-data-too-large-cleanup/">Mac 储存与可用空间排查</a></p></div></aside>
 </div></main><footer class="footer"><div class="wrap footer-inner"><strong>iPunk AI Radar</strong><span>只发布核对过的数据，不把推测写成实测。</span><a href="/">返回首页</a></div></footer>
 </body></html>

@@ -58,6 +58,7 @@ export function renderHomeSnapshot(html, snapshot) {
 
 export function renderEnglishHome(chineseHome) {
   const replacements = [
+    ["<section class=\"section\" id=\"opencode-guides\"><div class=\"wrap\"><h2>OpenCode 配置与排错</h2><ul><li><a href=\"/guides/opencode-connection-errors/\">OpenCode 连接失败怎么办？401、模型不可用与超时排查</a></li><li><a href=\"/guides/opencode-ollama-local-models/\">OpenCode 接入 Ollama 本地模型：配置、64K 上下文与排错</a></li></ul></div></section>", "<section class=\"section\" id=\"opencode-guides\"><div class=\"wrap\"><h2>OpenCode setup and fixes</h2><ul><li><a href=\"/en/guides/opencode-connection-errors/\">OpenCode connection errors: fix 401, unavailable models and timeouts</a></li><li><a href=\"/en/guides/opencode-ollama-local-models/\">OpenCode with Ollama: local models, 64K context and troubleshooting</a></li></ul></div></section>"],
     ['<html lang="zh-CN">', '<html lang="en">'],
     ['<title>iPunk AI Radar｜热门 AI 开源项目分析与评分</title>', '<title>AI Project Reviews and Daily Watchlist | iPunk AI Radar</title>'],
     ['<meta name="description" content="持续追踪热门 AI 开源项目的真实增长、可用性、成本和风险。十二个项目独立分析，每日更新 GitHub 数据。">', '<meta name="description" content="Explore 12 AI projects with daily public GitHub snapshots, editorial scores, practical reviews and clear limits on what has been tested.">'],

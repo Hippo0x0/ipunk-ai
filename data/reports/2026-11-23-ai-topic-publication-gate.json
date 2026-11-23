@@ -1,0 +1,195 @@
+{
+  "date": "2026-11-23",
+  "status": "research_blocked_no_new_page_approved",
+  "policy": "../websites/docs/CONTENT-INVESTMENT-POLICY.md",
+  "scope": "ai.ipunk.cn; additional growth pages requested by user; previous four-page draft is not approved",
+  "demand_evidence": {
+    "source": "Google Search Console API via existing PostHog GoogleSearchConsole warehouse import",
+    "posthog_project": 739712,
+    "source_id": "01a20784-4780-0000-9d61-e356c5235b28",
+    "schema_id": "01a20784-4994-0000-17da-e84d06e01fd2",
+    "import_status": "Completed",
+    "imported_schema_rows": 625,
+    "source_last_synced_at": "2026-11-23T11:15:36.602948Z",
+    "window": {
+      "start": "2026-10-23",
+      "end": "2026-11-19",
+      "search_type": "web",
+      "cutoff": "Matches existing final GSC API snapshot; imported schema does not expose per-day final flags"
+    },
+    "sql": "SELECT query, page, sum(clicks) AS query_clicks, sum(impressions) AS query_impressions, sum(position * impressions) / sum(impressions) AS weighted_position, min(date) AS first_date, max(date) AS last_date FROM gsc_ipunkgooglesearchconsole_search_analytics_by_query_page WHERE date >= '2026-10-23' AND date <= '2026-11-19' AND search_type = 'web' AND page LIKE 'https://ai.ipunk.cn/%' GROUP BY query, page ORDER BY query_impressions DESC, query LIMIT 100",
+    "response": {
+      "content": [
+        {
+          "type": "text",
+          "text": "query|page|query_clicks|query_impressions|weighted_position|first_date|last_date\nrea|https://ai.ipunk.cn/en/projects/rea/|0|3|38.333333333333336|2026-11-10|2026-11-12\ncoding agent 排名|https://ai.ipunk.cn/|0|1|3.0|2026-11-06|2026-11-06\nduckcoding|https://ai.ipunk.cn/choose/|0|1|84.0|2026-11-07|2026-11-07\nopencode 好用吗|https://ai.ipunk.cn/projects/opencode/|0|1|45.0|2026-11-11|2026-11-11\nopencode 安全性|https://ai.ipunk.cn/projects/opencode/|0|1|5.0|2026-11-15|2026-11-15\nrea aimn|https://ai.ipunk.cn/en/projects/rea/|0|1|29.0|2026-11-13|2026-11-13\nrea framework|https://ai.ipunk.cn/en/projects/rea/|0|1|6.0|2026-11-17|2026-11-17"
+        }
+      ],
+      "structuredContent": null,
+      "isError": false
+    },
+    "qualification": "Only visible query/page rows. Not host totals, market volume or proof of absent demand for omitted queries. Country is not included in this table.",
+    "sync_cleanup": {
+      "should_sync": false,
+      "sync_frequency": "6hour",
+      "other_tables_unchanged": true,
+      "note": "One research import was completed and recurring sync disabled again. Imported table and its inferred date/query/page primary key remain available; the original null sync method was replaced by incremental/date configuration."
+    }
+  },
+  "official_research_access": {
+    "google_ads": {
+      "status": "no_keyword_volume_obtained",
+      "prior_observation": "Official planner redirected to account setup earlier in this chat; current UI not readable"
+    },
+    "bing": {
+      "status": "authentication_required",
+      "evidence": "../websites/data/discovery/bing-webmaster/2026-11-23-CN.json"
+    },
+    "google_trends": {
+      "status": "rate_limited",
+      "scope": {
+        "geo": "US",
+        "window": "past-12-months",
+        "property": "web",
+        "queries": [
+          "llm vram calculator",
+          "ollama out of memory"
+        ]
+      },
+      "http_status": 429,
+      "absolute_monthly_searches": null
+    },
+    "browser": {
+      "status": "tool_disabled",
+      "user_report": "User stated browser permission was enabled",
+      "retried_result": "Local browser use is disabled in Work settings",
+      "workaround_attempted": false
+    },
+    "geo_serp": {
+      "status": "not_obtained",
+      "note": "US/en Google result URLs were not accessible through web fetch; prior general search results are not certified same-market competition research."
+    }
+  },
+  "candidates": [
+    {
+      "id": "opencode-connection-errors",
+      "markets": [
+        {
+          "geo": "CN",
+          "language": "zh-CN"
+        },
+        {
+          "geo": "US",
+          "language": "en"
+        }
+      ],
+      "can_publish_new_page": false,
+      "positive_task_demand": "unverified",
+      "market_size": null,
+      "publication_review": {
+        "status": "not_approved",
+        "answer_gap": "unverified against same-market results",
+        "unique_value": "Documentation-based diagnostic flow drafted; comparative advantage unverified",
+        "distinct_intent": "not established by a complete existing-page audit"
+      },
+      "decision": "Keep existing four-page PR as draft; no permission-only deployment"
+    },
+    {
+      "id": "opencode-ollama-local-models",
+      "markets": [
+        {
+          "geo": "CN",
+          "language": "zh-CN"
+        },
+        {
+          "geo": "US",
+          "language": "en"
+        }
+      ],
+      "can_publish_new_page": false,
+      "positive_task_demand": "unverified",
+      "market_size": null,
+      "publication_review": {
+        "status": "not_approved",
+        "answer_gap": "unverified",
+        "unique_value": "Connection to MLX field notes does not constitute an Ollama hands-on test",
+        "distinct_intent": "unverified"
+      },
+      "decision": "Keep existing draft; research before publication"
+    },
+    {
+      "id": "ollama-memory-error",
+      "markets": [
+        {
+          "geo": "CN",
+          "language": "zh-CN"
+        },
+        {
+          "geo": "US",
+          "language": "en"
+        }
+      ],
+      "can_publish_new_page": false,
+      "positive_task_demand": "unverified",
+      "market_size": null,
+      "publication_review": {
+        "status": "not_approved",
+        "answer_gap": "unverified",
+        "unique_value": "No new reproduction or distinctive diagnostic evidence collected",
+        "distinct_intent": "unverified against existing local-model draft"
+      },
+      "decision": "Do not create pages yet"
+    },
+    {
+      "id": "llm-vram-calculator",
+      "markets": [
+        {
+          "geo": "CN",
+          "language": "zh-CN"
+        },
+        {
+          "geo": "US",
+          "language": "en"
+        }
+      ],
+      "can_publish_new_page": false,
+      "positive_task_demand": "unverified",
+      "market_size": null,
+      "publication_review": {
+        "status": "not_approved",
+        "answer_gap": "unverified",
+        "unique_value": "Formula transparency is an idea; competing tool gap and architecture support not verified",
+        "distinct_intent": "provisional only"
+      },
+      "decision": "Research reserve; do not implement yet"
+    }
+  ],
+  "existing_page_opportunities": [
+    {
+      "query": "opencode 安全性",
+      "page": "https://ai.ipunk.cn/projects/opencode/",
+      "impressions": 1,
+      "clicks": 0,
+      "position": 5,
+      "action": "Existing page already covers safety/permissions; evaluate an actual answer gap before editing. Do not create a competing safety URL."
+    },
+    {
+      "query": "opencode 好用吗",
+      "page": "https://ai.ipunk.cn/projects/opencode/",
+      "impressions": 1,
+      "clicks": 0,
+      "position": 45,
+      "action": "Existing review intent; not evidence for a connection-error tutorial."
+    },
+    {
+      "query": "rea framework",
+      "page": "https://ai.ipunk.cn/en/projects/rea/",
+      "impressions": 1,
+      "clicks": 0,
+      "position": 6,
+      "action": "Existing project explanation intent; not a separate new-page approval."
+    }
+  ],
+  "decision": "No new growth page approved in this round. Need scoped official demand/size research and same-market competition/unique-value/intent reviews before creating additional URLs. No traffic success claimed.",
+  "next_required_input": "Browser access must become available to this session, or a scoped official Google Ads/Bing keyword export must be provided. Do not request raw credentials."
+}
