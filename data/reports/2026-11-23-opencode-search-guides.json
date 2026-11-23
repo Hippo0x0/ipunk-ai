@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-23",
+  "status": "implemented_validated_not_published",
+  "scope": "Two OpenCode task guides, independent Chinese and English URLs (four pages)",
+  "baseline": {
+    "source": "../websites/data/search-console/2026-11-23.json",
+    "window": {
+      "start": "2026-10-23",
+      "end": "2026-11-19",
+      "state": "final"
+    },
+    "ai_host_page_impressions": 53,
+    "ai_host_page_clicks": 0,
+    "opencode_en_impressions": 13,
+    "opencode_en_average_position": 8.923076923076923,
+    "opencode_zh_impressions": 3,
+    "qualification": "AI-host filtered domain page table; not independent property totals, search volume or index count"
+  },
+  "selection": {
+    "topics": [
+      "OpenCode authentication, unavailable models and request timeouts",
+      "OpenCode with Ollama: discovery, context allocation and tool checks"
+    ],
+    "rationale": "Expand existing OpenCode visibility into distinct task intents and link the existing first-party Mac mini measurements. Public search results show these questions, but no reliable keyword volume was obtained; traffic potential remains a hypothesis.",
+    "overlap": "Project overview retains permission/migration assessment. New connection guide handles request failures; local-model guide handles Ollama setup. Existing test evidence and historical source-review dates remain unchanged."
+  },
+  "urls": [
+    "https://ai.ipunk.cn/guides/opencode-connection-errors/",
+    "https://ai.ipunk.cn/guides/opencode-ollama-local-models/",
+    "https://ai.ipunk.cn/en/guides/opencode-connection-errors/",
+    "https://ai.ipunk.cn/en/guides/opencode-ollama-local-models/"
+  ],
+  "content": {
+    "documentation_checked": "2026-11-23",
+    "new_inference_or_installation_test": false,
+    "decision_tree_coverage": "All four pages use native SVG, localized steps and an uncertain path, separate links and node highlighting, keyboard and zoom. Desktop mouse drag implemented; touch uses native scroll/zoom. Existing main-site flow component not imported because AI is buildless static HTML.",
+    "discovery": "Localized home and project entries, mutual guide links, existing benchmark next step, sitemap and reciprocal hreflang.",
+    "snapshot_safety": "English guide discovery section is preserved by renderEnglishHome; snapshot-render stability tests pass."
+  },
+  "validation": {
+    "site_check": "30 HTML files including 404; 12 tracked projects",
+    "tests": "33 passed",
+    "guide_link_check": "4 pages, 70 local links, unique IDs, valid JSON examples and schema languages",
+    "browser": "localhost only; all four pages at actual 390 CSS px have no horizontal document overflow or missing fragment targets. Desktop 1440px representative pages checked. Chinese click and Enter highlight leave hash unchanged, zoom reaches 150%, dedicated link navigates to network; English mobile highlight/zoom and discovery link checked.",
+    "dry_run": "Wrangler static bundle accepted",
+    "diff_check": "passed"
+  },
+  "publication": {
+    "attempted_existing_worker": "ipunk-ai",
+    "result": "Cloudflare API: No access to the specified service",
+    "credential_observation": "Current OAuth token has pages write but lacks workers write scopes; no permission escalation, resource creation or DNS change performed",
+    "formal_site_updated": false,
+    "sites_mirror": "Existing public mirror identified but not republished; it is a different hostname and does not close formal-domain deployment."
+  },
+  "measurement_plan": {
+    "start": "After verified formal-domain publication and ordinary crawl",
+    "compare": "Separate AI host, exact URLs and language. Collect complete final 7-day windows after crawl and a following window; retain query-country-device mix and publication/crawl timestamps. Track impressions, clicks, CTR and query position; no growth claim from page count or tests.",
+    "next_action": "Restore existing Worker deployment access, publish the reviewed commit, verify the four exact URLs/canonicals and then evaluate Search Console data."
+  }
+}

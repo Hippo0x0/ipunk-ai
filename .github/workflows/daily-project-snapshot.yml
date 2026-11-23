@@ -38,6 +38,7 @@ jobs:
         run: |
           node --test tests/*.test.mjs
           node scripts/check-site.mjs
+          node scripts/check-guide-links.mjs
 
       - name: Commit a changed snapshot
         id: snapshot_change
