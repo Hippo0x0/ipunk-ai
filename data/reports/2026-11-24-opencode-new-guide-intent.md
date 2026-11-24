@@ -1,0 +1,7 @@
+# OpenCode task intent check — 2026-11-24
+
+Reviewed the live route set from main and the complete English and Chinese OpenCode project reviews. The English review covers provider selection, migration, general permissions and evaluation; the Chinese review mentions skills as a feature. Neither supplies a deterministic local discovery fixture, duplicate path check, or inputs and formulas to diagnose a Go usage window. Adding the two task flows to the review would require separate answers, navigation and evidence for searches with different completion criteria. The review links to both new guides. No existing canonical URL covers either task.
+
+The Skills reader is finished when the expected file appears or loads and its source is established. The Go reader is finished when they identify the limiting window or can calculate the share used given their own usage and model limits. The Go guide does not serve general pricing comparisons or name every current model; the Skills guide does not serve broader provider or plugin setup.
+
+Target market: US English. No separate Chinese task demand was adjudicated this round, so the two pages are English only and have no language alternates. The existing zh/en review pair retains its alternates; the new articles are reachable through the English review. Both new topics contain decisions with distinct next steps, so both use the existing SVG interaction and three English section links.

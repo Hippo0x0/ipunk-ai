@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode Skills Not Loading? Check the File, ID and Scope | iPunk AI Radar</title>
+<meta name="description" content="Fix an OpenCode skill that is missing, ignored, or loading the wrong copy. Includes a reproducible V1 discovery check and separate V2 instructions.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-skills-not-loading/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "OpenCode Skills Not Loading? Check the File, ID and Scope", "datePublished": "2026-11-24", "dateModified": "2026-11-24", "inLanguage": "en", "mainEntityOfPage": "https://ai.ipunk.cn/en/guides/opencode-skills-not-loading/"}</script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/en/projects/opencode/">OpenCode review</a></nav></div></header>
+<main class="wrap guide-main">
+<div class="guide-header"><h1>OpenCode Skills Not Loading? Check the File, ID and Scope</h1><p class="guide-answer">Run <code>opencode --version</code>, then check for <code>.opencode/skills/&lt;id&gt;/SKILL.md</code> in the workspace you opened. In V1, list discovered skills from that workspace with <code>opencode debug skill --pure</code>. In V2, use the ID from the file path and check whether the selected agent can load it.</p></div>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#missing">Install a minimal skill and check discovery</a></li><li><a href="#not-used">Listed but not used: check loading and permissions</a></li><li><a href="#wrong-copy">Wrong content: find the winning copy</a></li><li><a href="#evidence">What the V1 discovery test showed</a></li></ol></nav>
+<section class="guide-decision"><h2>How is your OpenCode skill failing?</h2><div class="decision" data-flow><div class="flow-viewport" tabindex="0" aria-label="Decision tree"><svg class="flow-svg" viewBox="0 0 720 355" role="group" aria-label="How is your OpenCode skill failing?"><defs><marker id="arrow-guide" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs><path data-edge="missing" d="M360 123 C360 172 122 160 122 252" marker-end="url(#arrow-guide)"/><path data-edge="not-used" d="M360 123 C360 172 360 160 360 252" marker-end="url(#arrow-guide)"/><path data-edge="wrong-copy" d="M360 123 C360 172 598 160 598 252" marker-end="url(#arrow-guide)"/><g data-node="root" tabindex="0" role="button" aria-pressed="false" aria-label="How is your OpenCode skill failing?"><path class="node-shape" d="M360 12 L500 71 L360 130 L220 71Z"/><text x="360" y="78" text-anchor="middle">What do you see?</text></g><rect x="10" y="190" width="224" height="36" rx="6" fill="white"/><text x="122" y="216" text-anchor="middle">Missing</text><g data-node="missing" role="button" tabindex="0" aria-pressed="false" aria-label="Check the file and skill ID"><rect class="node-shape" x="12" y="261" width="220" height="84" rx="12"/><text x="122" y="294" text-anchor="middle">Check the file<tspan x="122" dy="27">and skill ID</tspan></text></g><rect x="248" y="190" width="224" height="36" rx="6" fill="white"/><text x="360" y="216" text-anchor="middle">Listed, never used</text><g data-node="not-used" role="button" tabindex="0" aria-pressed="false" aria-label="Check loading and permissions"><rect class="node-shape" x="250" y="261" width="220" height="84" rx="12"/><text x="360" y="294" text-anchor="middle">Check loading<tspan x="360" dy="27">and permissions</tspan></text></g><rect x="486" y="190" width="224" height="36" rx="6" fill="white"/><text x="598" y="216" text-anchor="middle">Wrong content</text><g data-node="wrong-copy" role="button" tabindex="0" aria-pressed="false" aria-label="Find the copy that wins"><rect class="node-shape" x="488" y="261" width="220" height="84" rx="12"/><text x="598" y="294" text-anchor="middle">Find the copy<tspan x="598" dy="27">that wins</tspan></text></g></svg></div><div class="decision-links"><a href="#missing" aria-label="See steps: Check the file and skill ID">See steps</a><a href="#not-used" aria-label="See steps: Check loading and permissions">See steps</a><a href="#wrong-copy" aria-label="See steps: Find the copy that wins">See steps</a></div><div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div></div></section>
+<section id="missing"><h2>Install a minimal skill and check discovery</h2>
+<p>From the repository root, create <code>.opencode/skills/ipunk-skill-check/SKILL.md</code> with the following contents. Use a new ID if that name already exists. For this folder-based skill, keep the filename uppercase.</p>
+<pre><code>---
+name: ipunk-skill-check
+description: Return a marker when asked to test skill loading
+---
+
+When asked for the skill marker, reply with PROJECT_SKILL_FIXTURE.
+Do not call tools or edit files.</code></pre>
+<ol>
+<li>In V1, run <code>opencode debug skill --pure</code> and find <code>ipunk-skill-check</code>. The recorded path should point to your workspace. A zero exit status alone does not show that your skill was found. This command may print skill content; keep private output local.</li>
+<li>In V2, use the exact path-derived ID <code>ipunk-skill-check</code> and mention it as <code>@ipunk-skill-check</code>. The YAML <code>name</code> is a display label in V2. For a folder-based skill, do not substitute a differently named Markdown file for <code>SKILL.md</code>.</li>
+<li>If uncertain where the app is looking, reopen the intended repo and try the minimal project-local file before adding global copies. If the minimal file works, compare the original path and frontmatter with the example.</li>
+</ol></section>
+<section id="not-used"><h2>Listed but not used: check loading and permissions</h2>
+<p>In V1, ask the agent to use the named skill and return its marker. Inspect the transcript for a successful <code>skill</code> call. Add a nonempty description even if the V1 CLI listed the entry without one. Check the selected agent’s <code>permission.skill</code> rules for the skill name.</p>
+<p>In V2, the description makes the skill discoverable to the model, and <code>opencode/autoinvoke: false</code> excludes it from automatic discovery. Try the explicit <code>@ipunk-skill-check</code> mention and verify it resolves. Check the selected agent’s <code>skill</code> permission for that exact ID; the last matching rule wins. Keep intentional denials in place and ask the owner if you need access.</p>
+<p>A marker in a reply by itself is weak proof. Check the tool result or resolved skill attachment, and avoid putting the marker value in the prompt.</p>
+</section>
+<section id="wrong-copy"><h2>Wrong content: find the winning copy</h2>
+<p>In V1, read <code>location</code> and the authored marker in the debug output. In the test below, a project copy won over one global copy. Check the path in your own run before moving either copy. In V2, check for duplicate IDs in global, project, and explicitly configured sources: a later source can override the project entry.</p>
+<p>To keep both definitions, give one a unique lowercase ID and use the new ID when loading it. In V1, also update the YAML name to match its directory. Rerun the discovery or explicit load check and confirm the expected file or marker.</p></section>
+<section id="evidence"><h2>What the V1 discovery test showed</h2>
+<ul><li><strong>Valid file:</strong> the project fixture appeared.</li><li><strong>Wrong filename:</strong> <code>guide.md</code> in the skill folder did not appear.</li><li><strong>Missing description:</strong> the fixture appeared without a description. This was a CLI listing, not proof the agent could discover or load it.</li><li><strong>Duplicate global and project:</strong> the returned path and marker were from the project.</li></ul>
+<p>Tested on macOS arm64 with OpenCode 1.19.6 on <time datetime="2026-11-24">Nov 24, 2026</time>, in isolated Git workspaces without model calls. <a href="/evidence/opencode-skills/v1-discovery.json">See the recorded fixture output</a>. V2 procedures are based on documentation and were not run in this fixture.</p>
+<p>Sources: <a href="https://opencode.ai/v1/docs/skills/">V1 agent skills</a> · <a href="https://opencode.ai/docs/skills/">V2 skills</a>. For broader configuration, see the <a href="/en/projects/opencode/#permission-start">OpenCode permission setup</a>.</p></section>
+<script src="/guide-flow.js" defer></script>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><span>Published <time datetime="2026-11-24">Nov 24, 2026</time></span></div></footer>
+</body></html>

@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-11-24",
+  "official_source": "https://opencode.ai/docs/console/go/#usage-limits",
+  "calculation": "sum(usage cost / monthly allowance by model), then divide by the selected cap as a fraction of the monthly allowance",
+  "example": {
+    "synthetic": true,
+    "model_values_usd": [
+      {
+        "window_usage": 2,
+        "single_model_monthly_limit": 20
+      },
+      {
+        "window_usage": 3,
+        "single_model_monthly_limit": 60
+      }
+    ],
+    "monthly_share_percent": 15,
+    "five_hour_share_percent": 75,
+    "weekly_share_percent_for_same_hypothetical_values_in_a_week": 30
+  },
+  "limits": "No live subscription, account meter or API was exercised. In production use the provider\u2019s actual readings. Calculator requires no keys and makes no account calls.",
+  "local_browser_qa": {
+    "viewport_widths_px": [
+      390,
+      1440
+    ],
+    "initial_5_hour_percent": 75,
+    "weekly_example_percent": 30,
+    "three_models_exactly_at_weekly_cap_percent": 100,
+    "incomplete_optional_row_rejected": true,
+    "no_js_worked_example_visible": true
+  }
+}

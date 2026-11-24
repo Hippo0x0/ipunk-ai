@@ -1,0 +1,60 @@
+{
+  "version": "1.19.6",
+  "platform": "Darwin arm64",
+  "command": "opencode debug skill --pure",
+  "reproduction": "Temporary Git repositories and isolated HOME/XDG paths; project and global marker files only. No model requests. Output filtered to the authored fixture name; temporary paths made relative.",
+  "cases": [
+    {
+      "case": "valid",
+      "filename": "SKILL.md",
+      "description": true,
+      "duplicate_global": false,
+      "exit_status": 0,
+      "observed": [
+        {
+          "name": "ipunk-skill-check",
+          "description": "Check discovery with a local marker",
+          "location": "repo/.opencode/skills/ipunk-skill-check/SKILL.md",
+          "content": "PROJECT_SKILL_FIXTURE\n"
+        }
+      ]
+    },
+    {
+      "case": "wrong-filename",
+      "filename": "guide.md",
+      "description": true,
+      "duplicate_global": false,
+      "exit_status": 0,
+      "observed": []
+    },
+    {
+      "case": "missing-description",
+      "filename": "SKILL.md",
+      "description": false,
+      "duplicate_global": false,
+      "exit_status": 0,
+      "observed": [
+        {
+          "name": "ipunk-skill-check",
+          "location": "repo/.opencode/skills/ipunk-skill-check/SKILL.md",
+          "content": "PROJECT_SKILL_FIXTURE\n"
+        }
+      ]
+    },
+    {
+      "case": "duplicate-global-project",
+      "filename": "SKILL.md",
+      "description": true,
+      "duplicate_global": true,
+      "exit_status": 0,
+      "observed": [
+        {
+          "name": "ipunk-skill-check",
+          "description": "Check discovery with a local marker",
+          "location": "repo/.opencode/skills/ipunk-skill-check/SKILL.md",
+          "content": "PROJECT_SKILL_FIXTURE\n"
+        }
+      ]
+    }
+  ]
+}

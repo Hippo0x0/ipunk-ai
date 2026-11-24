@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-24",
+  "official_demand": {
+    "kind": "reviewed_google_trends",
+    "url": "https://trends.google.com/trends/explore?geo=US&q=opencode%20skills,opencode%20go&hl=en",
+    "scope": "United States, Google Web Search, past 12 months, search terms; combined comparison. Browser chart and weekly table reviewed.",
+    "sample_weeks": [
+      "2026-11-01",
+      "2026-11-08",
+      "2026-11-15",
+      "2026-11-22 (partial)"
+    ],
+    "units": "normalized 0\u2013100; no official absolute monthly volume"
+  },
+  "competition_sample": {
+    "date": "2026-11-23",
+    "country": "US",
+    "language": "en",
+    "device": "desktop",
+    "source": "Existing OpenSEO research on branch codex/ai-opencode-search-guides (c787517); recorded URLs and estimates reused."
+  },
+  "baseline": {
+    "source": "2026-11-24-independent-search.json",
+    "window": [
+      "2026-10-24",
+      "2026-11-20"
+    ],
+    "impressions": 53,
+    "clicks": 0,
+    "scope": "Site-level daily rows, before release; not a new URL baseline."
+  },
+  "acceptance": "Check indexing and URL-level US Web impressions, clicks, CTR and position in complete comparable windows after indexing. Inspect actual queries where disclosed; do not infer rank or clicks from publication.",
+  "candidates": [
+    {
+      "keyword": "opencode go",
+      "path": "/en/guides/opencode-go-limits/",
+      "market": {
+        "geo": "US",
+        "language": "en"
+      },
+      "trends_mean": 43,
+      "trend_sample": [
+        68,
+        61,
+        67,
+        54
+      ],
+      "official_monthly_volume": null,
+      "third_party_monthly_estimate": 14800,
+      "third_party_difficulty": 0,
+      "publication_review": {
+        "status": "approved",
+        "geo": "US",
+        "language": "en",
+        "checked_at": "2026-11-24",
+        "distinct_intent": true,
+        "intent_audit_path": "data/reports/2026-11-24-opencode-new-guide-intent.md",
+        "task": "Identify the Go usage limit reached and compute usage across multiple models.",
+        "answer_gap": "Official Console shows account use and model terms; the sampled review describes pricing and earlier limits. The sampled answers do not offer the same editable, same-window calculation using per-model inputs.",
+        "unique_value": "A browser-only, multi-model calculator paired with a worked example, reset/credit checks, and a no-JavaScript answer.",
+        "competitor_urls": [
+          "https://opencode.ai/console/go",
+          "https://thomas-wiegold.com/blog/opencode-go-review/"
+        ],
+        "evidence_path": "data/reports/2026-11-24-opencode-go-calculator-evidence.json"
+      }
+    },
+    {
+      "keyword": "opencode skills",
+      "path": "/en/guides/opencode-skills-not-loading/",
+      "market": {
+        "geo": "US",
+        "language": "en"
+      },
+      "trends_mean": 16,
+      "trend_sample": [
+        9,
+        4,
+        6,
+        5
+      ],
+      "official_monthly_volume": null,
+      "third_party_monthly_estimate": 1900,
+      "third_party_difficulty": 19,
+      "publication_review": {
+        "status": "approved",
+        "geo": "US",
+        "language": "en",
+        "checked_at": "2026-11-24",
+        "distinct_intent": true,
+        "intent_audit_path": "data/reports/2026-11-24-opencode-new-guide-intent.md",
+        "task": "Install and diagnose a local skill that is missing, ignored or resolving to the wrong file.",
+        "answer_gap": "The sampled SkillMap post covers management and duplicate governance; the sampled desktop discussion addresses usage. They do not document the same controlled versioned CLI comparisons.",
+        "unique_value": "Four controlled V1 discovery fixtures including the unexpectedly listed skill without a description, with version boundaries and live troubleshooting steps.",
+        "competitor_urls": [
+          "https://skillmaps.net/blog/open-code-manage-skills",
+          "https://www.reddit.com/r/opencodeCLI/comments/1rdmssj/how_to_use_skills_in_opencode_desktop/"
+        ],
+        "evidence_path": "dist/evidence/opencode-skills/v1-discovery.json"
+      }
+    }
+  ]
+}

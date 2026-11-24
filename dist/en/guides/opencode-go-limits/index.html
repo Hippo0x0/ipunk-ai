@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode Go Limits and Usage Calculator | iPunk AI Radar</title>
+<meta name="description" content="Check OpenCode Go’s 5-hour, weekly and monthly limits. Calculate how multiple models share one allowance and see when Extra Usage can draw on credits.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-go-limits/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "OpenCode Go Limits and Usage Calculator", "datePublished": "2026-11-24", "dateModified": "2026-11-24", "inLanguage": "en", "mainEntityOfPage": "https://ai.ipunk.cn/en/guides/opencode-go-limits/"}</script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/en/projects/opencode/">OpenCode review</a></nav></div></header>
+<main class="wrap guide-main">
+<div class="guide-header"><h1>OpenCode Go Limits and Usage Calculator</h1><p class="guide-answer">OpenCode Go pools paid model usage across one allowance. The 5-hour window allows 20% of the monthly allowance and the week allows 50%. Check the Go page in OpenCode Console for the window you hit. Switching models does not reset the limit, and Extra Usage can draw on your credits.</p></div>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#check">Check which Go limit you hit</a></li><li><a href="#uncertain">No full window or unclear error?</a></li><li><a href="#calculator">Calculate how much of a window you used</a></li><li><a href="#example">Worked example for two models</a></li><li><a href="#plans">Use the limits for your Go plan</a></li></ol></nav>
+<section class="guide-decision"><h2>What does your Go usage meter show?</h2><div class="decision" data-flow><div class="flow-viewport" tabindex="0" aria-label="Decision tree"><svg class="flow-svg" viewBox="0 0 720 355" role="group" aria-label="What does your Go usage meter show?"><defs><marker id="arrow-guide" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs><path data-edge="check" d="M360 123 C360 172 122 160 122 252" marker-end="url(#arrow-guide)"/><path data-edge="calculator" d="M360 123 C360 172 360 160 360 252" marker-end="url(#arrow-guide)"/><path data-edge="uncertain" d="M360 123 C360 172 598 160 598 252" marker-end="url(#arrow-guide)"/><g data-node="root" tabindex="0" role="button" aria-pressed="false" aria-label="What does your Go usage meter show?"><path class="node-shape" d="M360 12 L500 71 L360 130 L220 71Z"/><text x="360" y="78" text-anchor="middle">What do you see?</text></g><rect x="10" y="190" width="224" height="36" rx="6" fill="white"/><text x="122" y="216" text-anchor="middle">A full window</text><g data-node="check" role="button" tabindex="0" aria-pressed="false" aria-label="Check the reset and Extra Usage"><rect class="node-shape" x="12" y="261" width="220" height="84" rx="12"/><text x="122" y="294" text-anchor="middle">Check the reset<tspan x="122" dy="27">and Extra Usage</tspan></text></g><rect x="248" y="190" width="224" height="36" rx="6" fill="white"/><text x="360" y="216" text-anchor="middle">Usage values</text><g data-node="calculator" role="button" tabindex="0" aria-pressed="false" aria-label="Calculate a shared allowance"><rect class="node-shape" x="250" y="261" width="220" height="84" rx="12"/><text x="360" y="294" text-anchor="middle">Calculate a<tspan x="360" dy="27">shared allowance</tspan></text></g><rect x="486" y="190" width="224" height="36" rx="6" fill="white"/><text x="598" y="216" text-anchor="middle">Not sure</text><g data-node="uncertain" role="button" tabindex="0" aria-pressed="false" aria-label="Check provider and model access"><rect class="node-shape" x="488" y="261" width="220" height="84" rx="12"/><text x="598" y="294" text-anchor="middle">Check provider<tspan x="598" dy="27">and model access</tspan></text></g></svg></div><div class="decision-links"><a href="#check" aria-label="See steps: Check the reset and Extra Usage">See steps</a><a href="#calculator" aria-label="See steps: Calculate a shared allowance">See steps</a><a href="#uncertain" aria-label="See steps: Check provider and model access">See steps</a></div><div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div></div></section><section id="check"><h2>Check which Go limit you hit</h2>
+<ol>
+<li>Open your workspace in <a href="https://opencode.ai/console">OpenCode Console</a> and open Go. For Teams, check the member whose API key made the requests.</li>
+<li>Compare the three usage readings. A full 5-hour window becomes available when the five hours end. The weekly window resets Monday at 00:00 UTC. Monthly usage resets when your next paid period begins.</li>
+<li>Check every window before retrying. If two windows are full, the earlier reset alone may leave you blocked. If none is full, verify the selected provider and chosen model before treating the error as a quota issue.</li>
+</ol>
+<p>If you want to avoid using credits after the included allowance runs out, check that Extra Usage is off before sending more requests. The <a href="https://opencode.ai/docs/console/go/#usage-beyond-limits">Go docs</a> say Teams starts with it on. To keep working without using Extra Usage credits, select an available free model or wait for the limiting windows to reset.</p>
+</section>
+<section id="uncertain"><h2>No full window or unclear error?</h2><p>Confirm the provider shows OpenCode Go and compare the selected model with the current Go model list. Use the Console for the same workspace and, on Teams, the same member. If the model is unavailable despite remaining allowance, check its access requirements and the exact provider error before retrying.</p></section>
+<section id="calculator"><h2>Calculate how much of a window you used</h2>
+<p>Enter the usage cost of each paid model in <strong>one window</strong> and its monthly limit for your plan. Find monthly limits in the <a href="https://opencode.ai/console/go">current Go model table</a>. These limits are model-specific usage values, separate from the subscription price. For usage that spans prices or plans, use the Console meter.</p>
+<form id="go-calculator" hidden>
+<label>Window <select name="window"><option value="20">5 hours</option><option value="50">Week</option><option value="100">Paid month</option></select></label>
+<div id="model-rows">
+<fieldset><legend>Model 1</legend><label>Usage in window ($)<input name="used" type="number" min="0" step="any" inputmode="decimal" value="2" required></label><label>Monthly model limit ($)<input name="limit" type="number" min="0.000001" step="any" inputmode="decimal" value="20" required></label></fieldset>
+<fieldset><legend>Model 2 (optional)</legend><label>Usage in window ($)<input name="used" type="number" min="0" step="any" inputmode="decimal" value="3"></label><label>Monthly model limit ($)<input name="limit" type="number" min="0.000001" step="any" inputmode="decimal" value="60"></label></fieldset>
+</div>
+<button type="button" id="add-model">Add a model</button> <button type="submit">Calculate</button>
+<p><output id="go-result" aria-live="polite"></output></p>
+</form>
+<p>For a single model, leave both fields in the second row blank. This calculator runs in your browser and does not read your account. To compare windows, calculate each separately using that window’s own usage.</p>
+</section>
+<section id="example"><h2>Worked example for two models</h2>
+<p>Suppose you used $2 on a model with a $20 monthly limit and $3 on one with a $60 limit, both in the same five hours. Divide each usage cost by its own limit: 2 ÷ 20 = 10%, and 3 ÷ 60 = 5%. Together that’s 15% of the monthly allowance. Divide 15% by the 5-hour cap of 20%: you used <strong>75% of that 5-hour window</strong>. Those values are hypothetical; your Console shows what actually counted.</p>
+<p>For a weekly calculation divide the summed monthly share by 50%; for a paid month divide by 100%. Reaching 100% of a window means you reached that cap in the example. It does not tell you when it resets or how many requests fit.</p>
+</section>
+<section id="plans"><h2>Use the limits for your Go plan</h2>
+<p>Go is $10 per month, Go Plus is $40 per month, and Go Teams is $20 per member per month with a two-member minimum. Teams members have separate allowances, each shared across their own paid models. Use the model limit for the member and plan you’re checking.</p>
+<p>Source: <a href="https://opencode.ai/docs/console/go/#usage-limits">OpenCode’s Go limits and model rules</a>, checked <time datetime="2026-11-24">Nov 24, 2026</time>. The provider’s per-request allowance and Console readings are the reference for actual usage.</p>
+</section>
+<script src="/go-usage.js" defer></script>
+<script src="/guide-flow.js" defer></script>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><span>Published <time datetime="2026-11-24">Nov 24, 2026</time></span></div></footer>
+</body></html>
