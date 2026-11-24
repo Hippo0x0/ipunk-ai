@@ -1,0 +1,238 @@
+{
+  "canonical_html_count": 27,
+  "asset_count": 5,
+  "results": [
+    {
+      "path": "/en/projects/opencode/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "def8f1ca882a26a7aed972e23465548d5d205ea3496157e31a4a399cd9e329e0"
+    },
+    {
+      "path": "/en/projects/rea/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "846fde42e0c72d649e8f663e4e1999ceade469c6a83d58d41f20c80b23fe7c61"
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "4e3f51969dad14507f4704613c317fb53d72f338f1613a6c4c341dcc3fe17f0d"
+    },
+    {
+      "path": "/en/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "b401a370b799fb0456231871d14da64817c93992195080b5e5689609053f3768"
+    },
+    {
+      "path": "/projects/rea/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "4374fb81dba9a0b9303adf1bbd270f57d0cbc05d80a4a3d24d61bffe1b70b9b7"
+    },
+    {
+      "path": "/projects/openclaw/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "bca8832bc503b4e5f5385d8f66ed22a0d0e7546963848d8f85230dd75516188c"
+    },
+    {
+      "path": "/guides/mac-mini-m4-qwen-local-benchmark/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "c032eac657a3686bbeec5cff6e5baa0d4ce2c683604ce4141cc1b623d3fc836d"
+    },
+    {
+      "path": "/projects/jev/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "0f604e70c901f9fa4c97d83a31afe314aa426923d4069f05a9ce0bd755f78617"
+    },
+    {
+      "path": "/projects/gemini-cli/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "ad4a88be9d47580be43f677d32a85d8737b9d0739cfa9cd6abe4ca5982123c4c"
+    },
+    {
+      "path": "/projects/browser-use/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "be416371448162c82c3a3d2df5b814903a2306240a4346baaf9559ae1e768bb9"
+    },
+    {
+      "path": "/projects/markitdown/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "db8960f33b981923e76967ec29d2e09eff32010d435c9f913193c5484f4b5682"
+    },
+    {
+      "path": "/projects/claude-code/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "ecbad833ee203d4a76e8a759983bcd369fe0275256bb22f0e3dfbb753b549943"
+    },
+    {
+      "path": "/projects/codex-cli/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "3e2e3fb8a5bee186984756be6519ce05450e2bcbcc7150a67fae03dcd8dd2d33"
+    },
+    {
+      "path": "/projects/qwen-code/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "932bdd8dd7bce900a2cea6563bbbc4bce3e490647b40e6f24abb8c6c456fa988"
+    },
+    {
+      "path": "/projects/opencode/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "634e4041f68e667ce884df8f58325ae3c088273140f642f854c6d15470ba592a"
+    },
+    {
+      "path": "/projects/cline/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "46774fba7547ff8d3edfcccc00ecb51f81b14e364879bfb0c4d5d466c14f3309"
+    },
+    {
+      "path": "/projects/deepseek-harness/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "5bcd2f6805e6977e606b0d809ec838bc8b3ac9f0a6a632b4b58b19b33b886ceb"
+    },
+    {
+      "path": "/guides/gemini-cli-vs-claude-code-vs-codex/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "2c4800b5f689d9eb12935d26d8fb93859f71732e4de584654e757958cb8d3890"
+    },
+    {
+      "path": "/guides/roo-code-shutdown-alternatives/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "4b40efc5936e23bb8d84eb6e0fdd181b56152ab7130f642010e179babcbb0a5a"
+    },
+    {
+      "path": "/guides/ai-coding-agent-security/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "2102622499f7e99b4bbcd879b60c05f01acfb8cdd32c895413f02e13f5fc2c8a"
+    },
+    {
+      "path": "/trends/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "077e5ca677e4078777cfeade9f4e5deb72a9b0abb5596154ec8d174bc114ccbf"
+    },
+    {
+      "path": "/compare/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "dc8433ac92579a2bd0ab0b288ce751b0d478f0dc0234db3a9b12d54c2c3ba577"
+    },
+    {
+      "path": "/choose/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "63a82b085d3759a829aa0b849cd45e98ea00357dd119bba86aea96edccdd6c66"
+    },
+    {
+      "path": "/methodology/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "ecefe98a54141e834131f39bf448e382fc0733fe7d526d5e2da42b9c646b53c1"
+    },
+    {
+      "path": "/guides/nvidia-server-gpu-comparison/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "562a89565a523445a921c50790a2b97f8165e1a1f32996bb76655c51d00a85b6"
+    },
+    {
+      "path": "/en/guides/opencode-go-limits/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "a3625a24b2823016ac859e6d7eb8abe050bd7d60f71af370ea96111fa8ccf237"
+    },
+    {
+      "path": "/en/guides/opencode-skills-not-loading/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "079305c39d8558b61f5127416ffa4a770bde5625353ab8822b7360d7182a032d"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "3c84e2863686e0d8fc2057ba2c3d4d0c656d6f719f4d49e82f45c8a35e02162c"
+    },
+    {
+      "path": "/go-usage.js",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "8307e1c2bbdb156d6c48cbae6145a4446482a947bf1fbcfb6e0312d090886ff9"
+    },
+    {
+      "path": "/guide-flow.js",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "5288014ad31e31aa4248cebbf84a1e0e759d7dfb070526f80d3bdd62bc3d003b"
+    },
+    {
+      "path": "/guides.css",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "1d7465d49f139affc1339c431fcc6f0c8e897eeb73d65ac200b2f02490e748bf"
+    },
+    {
+      "path": "/evidence/opencode-skills/v1-discovery.json",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "16dbbd7231922e9efabdd08e8a8cd41cdf85be248afe2b7d912d9f0988e9691b"
+    }
+  ],
+  "checked_at": "2026-11-24T08:07:13.759507+00:00",
+  "status": "passed",
+  "worker": "ipunk-ai",
+  "worker_version": "73ed6bba-f221-4b1d-89b4-d16cddbaf932",
+  "content_commit": "21342a6a2efc144d217d6901bd30dcbcc8a69fd2",
+  "tests": "33 passed; static site check passed for 28 HTML files",
+  "browser_qa": "Local Chrome, 390 and 1440 px, both SVGs and the Go calculator; static content and steps visible without JS.",
+  "production_verification": "HTTP only, no analytics JavaScript executed. Byte equality checked after excluding any Cloudflare analytics beacon script. Passing does not imply indexing or search performance."
+}
