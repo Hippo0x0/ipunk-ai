@@ -1,6 +1,6 @@
 {
   "date": "2026-11-23",
-  "status": "implemented_static_checks_passed_browser_and_publication_pending",
+  "status": "deployed_http_checks_passed_browser_qa_pending",
   "scope": {
     "modified_existing_canonical_pages": 4,
     "new_html_urls": 0,
@@ -58,10 +58,15 @@
   },
   "publication": {
     "worker": "ipunk-ai",
-    "deployed": false,
-    "latest_readonly_check": "Current Wrangler OAuth reports pages-write but lacks Worker write scopes; earlier API deployment attempt reported no access to the service.",
+    "deployed": true,
+    "latest_readonly_check": "Worker scope authorization succeeded; existing ipunk-ai service confirmed before deployment.",
     "new_resources_or_dns_changes": false,
-    "next_required": "Complete desktop/mobile browser QA, then use an identity authorized for the existing Worker to publish only this repair branch."
+    "next_required": "Desktop/mobile visual QA remains incomplete; monitor comparable GSC windows for search outcomes.",
+    "source_commit": "44a5e9bb30d8f184e63bef264cdc31da13a9be85",
+    "release_commit": "a88442e350c5ec6327a4cb6cf0bdfec9577ff242",
+    "worker_version_id": "c6b023cd-4704-4977-b0f0-d713141a84a3",
+    "deployed_date_asia_shanghai": "2026-11-24",
+    "verification_report": "data/reports/2026-11-24-production-release.json"
   },
   "growth_claim": "None. Ranking, clicks and impressions after this change are unverified. The requested new high-performing pages are not complete.",
   "openseo_paid_lookups_this_round": 0
