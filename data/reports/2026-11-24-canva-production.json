@@ -1,0 +1,90 @@
+{
+  "results": [
+    {
+      "route": "/en/guides/canva-ai-video-generator/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "7046ca81731ba1e796e57a51f39d1c6ed4ff307995a58cc6bbbd2954bb99f5b1"
+    },
+    {
+      "route": "/en/guides/best-ai-video-generator/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "ed0cc0ea3ecce607f01f9f0a36d31d3e91b49533fbd57910ef4a8523f310b124"
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "e2bc1a46811dd58c5f12e3eff268b6f7d65f2b7d71b4f4482da8f3059d1aafb4"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "a783db937c57b9483527cba34536f3f68dc828267325e35cbd7342a9c6d3e1c8"
+    },
+    {
+      "route": "/guides.css",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "feaf214a87ec9d516d1dcd8c3c225c4c3925572c35d65a06563c16ea660c4b88"
+    },
+    {
+      "route": "/video-file-check.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "0a79b33ccc12a07e83310bc685255bb34af8182f2a7f796005f2d0bfe859e2c0"
+    },
+    {
+      "route": "/video-fit-math.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "c24be26892c5592d6290d05edf21ac9c7a869e10628f5b0b175b488ee38a0e9d"
+    },
+    {
+      "route": "/guide-flow.js",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "5288014ad31e31aa4248cebbf84a1e0e759d7dfb070526f80d3bdd62bc3d003b"
+    },
+    {
+      "route": "/evidence/canva-video/synthetic-landscape-8s.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "c3bcd5459b5ec2dfdb2d7209b1efda04df1e672caec2e81a5636eb9f131a4cc4"
+    },
+    {
+      "route": "/evidence/canva-video/synthetic-portrait-6s.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "225cd09b8cce7ababd7cb88763936ad93dc419629190d18d64568a877581738c"
+    }
+  ],
+  "html_pages_verified": 3,
+  "assets_verified": 7,
+  "scope": "Changed pages and required assets; HTTP only, no analytics JavaScript.",
+  "status": "passed_full_resource_verification",
+  "checked_at": "2026-11-24T13:40:09.524184+00:00",
+  "content_commit": "2af8022",
+  "worker_version": "b86d2bbf-12f4-4ee5-9fe6-d5f6e2a7aca7",
+  "tests": "39 passed; static site check passed for31 HTML files",
+  "browser_qa": "Local in-app Chromium at390 and1440px; both video fixtures, aspect switch, invalid file, reset, keyboard branching, zoom and independent links passed. JS-disabled static answer and examples passed.",
+  "video_delivery": {
+    "ordinary_get": "Both MP4 files HTTP200 and byte-equal to the authored fixtures.",
+    "mime_type": "video/mp4 observed for landscape file",
+    "optional_range_probe": "Request returned200 headers then timed out;206/remote seeking not confirmed. This does not replace the successful full-file downloads. Checker reads user-selected local files, not remote media."
+  },
+  "analytics": "Formal verification used HTTP only and executed no website analytics JavaScript.",
+  "search": "No indexing or ranking improvement claimed; evaluate Search Console after ordinary indexing and complete comparable windows."
+}

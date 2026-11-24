@@ -67,5 +67,6 @@
     "paid account availability",
     "monthly allowance count",
     "audio track correctness in generated files"
-  ]
+  ],
+  "fixture_generator": "FFmpeg8.1.1; scripts/generate-video-check-fixtures.py"
 }
