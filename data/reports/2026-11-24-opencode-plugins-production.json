@@ -1,0 +1,41 @@
+{
+  "canonical_html_count": 2,
+  "asset_count": 2,
+  "results": [
+    {
+      "path": "/en/projects/opencode/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "8e74e624d44e7fe23cdfaee62253a2e1c205b19b341c1bebaafa13a8d9e30ef4"
+    },
+    {
+      "path": "/en/guides/opencode-plugins-not-loading/",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "4ada3aaaf1ea779f2881bad55f9b44d7b5c9c298c29705de063c2fcd8ef3d97e"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "b14f777707e93312cb98e3608ee74236b0d659bfaa0830c38110552de05f51f9"
+    },
+    {
+      "path": "/evidence/opencode-plugins/v2-paths.json",
+      "status": 200,
+      "content_equal": true,
+      "beacons_removed": 0,
+      "sha256": "820dfdb5f6835e880d88407e89f80376e116e0ae2f428c61300b90e7a62ff485"
+    }
+  ],
+  "status": "passed_changed_resources",
+  "checked_at": "2026-11-24T10:49:55.723219+00:00",
+  "worker_version": "99bed9ee-50b6-4e5d-8783-d768f4106994",
+  "content_commit": "0860f0289639e7a080e7296dcdd25c4a7599262c",
+  "browser_qa": "Local Chrome at 390 and 1440 px. No overflow; keyboard, zoom, step links passed; no-JS static answers visible.",
+  "tests": "33 passed; site check 29 HTML files",
+  "production_analytics": "HTTP only; no JS executed"
+}
