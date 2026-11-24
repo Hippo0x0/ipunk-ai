@@ -1,0 +1,94 @@
+{
+  "keyword": "best ai video generator",
+  "date": "2026-11-24",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "official_demand": {
+    "source": "Google Trends browser chart and weekly table",
+    "url": "https://trends.google.com/trends/explore?geo=US&q=best%20ai%20video%20generator,ai%20video%20generator,image%20to%20video%20ai&hl=en",
+    "scope": "US, Web Search, past 12 months, three search terms in one chart",
+    "chart_means": [
+      9,
+      44,
+      18
+    ],
+    "series_order": [
+      "best ai video generator",
+      "ai video generator",
+      "image to video ai"
+    ],
+    "weeks": {
+      "2026-11-01": [
+        4,
+        33,
+        9
+      ],
+      "2026-11-08": [
+        5,
+        36,
+        9
+      ],
+      "2026-11-15": [
+        4,
+        33,
+        8
+      ],
+      "2026-11-22 (partial)": [
+        4,
+        33,
+        8
+      ]
+    },
+    "absolute_monthly_searches": null
+  },
+  "third_party": {
+    "source": "2026-11-24-high-volume-discovery.json",
+    "estimate_monthly_searches": 22200,
+    "difficulty": 35,
+    "qualification": "Not clicks or verified official monthly volume."
+  },
+  "competition": {
+    "source": "OpenSEO live Google reads",
+    "resultId": "a758d2b5-cb1f-46aa-87ca-dd7cc0583bfc",
+    "market": "US/en desktop",
+    "best_keyword_sites": [
+      {
+        "domain": "crayo.ai",
+        "bestPosition": 1,
+        "seenIn": 2
+      },
+      {
+        "domain": "socialthink.io",
+        "bestPosition": 4,
+        "seenIn": 2
+      },
+      {
+        "domain": "zapier.com",
+        "bestPosition": 1,
+        "seenIn": 1
+      }
+    ],
+    "result_features": "AI overview, video, people also ask and discussions observed; these may reduce organic clicks. No CTR projection."
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-24",
+    "task": "Choose a short-shot generation route and check the allowance against total attempts before committing to a paid plan.",
+    "answer_gap": "The reviewed Zapier comparison mixes pricing and product capabilities. Its flat allowance list does not implement this same editable attempt-to-finished-clip calculation. No claim all competitors lack calculators or testing.",
+    "unique_value": "Original deterministic credit-budget tool, with per-model presets tied to three first-party price tables, exposed formula, editable values, exact/insufficient/zero and decimal-boundary verification.",
+    "competitor_urls": [
+      "https://zapier.com/blog/best-ai-video-generator/",
+      "https://runway.com/pricing",
+      "https://www.adobe.com/products/firefly/plans.html",
+      "https://lumalabs.ai/pricing"
+    ],
+    "evidence_path": "data/reports/2026-11-24-video-budget-evidence.json",
+    "intent_audit_path": "data/reports/2026-11-24-video-intent-audit.md",
+    "distinct_intent": true
+  },
+  "acceptance": "Verify indexing and ordinary recrawl, then compare complete URL-level Web windows for impressions, clicks and average position. Unknown monthly volume and revenue remain unknown. Deployment is not SEO success."
+}

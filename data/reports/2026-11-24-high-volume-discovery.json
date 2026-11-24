@@ -1,0 +1,110 @@
+{
+  "date": "2026-11-24",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "source": "OpenSEO keyword research; third-party blended estimates, not direct official volume or clicks",
+  "seeds": [
+    {
+      "seed": "ai tools",
+      "ok": false,
+      "error": "INSUFFICIENT_CREDITS"
+    },
+    {
+      "seed": "ai image generator",
+      "ok": false,
+      "error": "INSUFFICIENT_CREDITS"
+    },
+    {
+      "seed": "ai detector",
+      "ok": false,
+      "error": "INSUFFICIENT_CREDITS"
+    },
+    {
+      "seed": "ai coding assistant",
+      "ok": false,
+      "error": "INSUFFICIENT_CREDITS"
+    },
+    {
+      "seed": "ai video generator",
+      "ok": true,
+      "error": null
+    }
+  ],
+  "selected": [
+    {
+      "keyword": "ai video generator",
+      "searchVolume": 246000,
+      "keywordDifficulty": 65,
+      "cpc": 6.05,
+      "competition": 0.53,
+      "intent": "transactional"
+    },
+    {
+      "keyword": "canva ai video generator",
+      "searchVolume": 40500,
+      "keywordDifficulty": 12,
+      "cpc": 6.32,
+      "competition": 0.28,
+      "intent": "transactional"
+    },
+    {
+      "keyword": "invideo ai video generator",
+      "searchVolume": 33100,
+      "keywordDifficulty": 69,
+      "cpc": 8.73,
+      "competition": 0.39,
+      "intent": "transactional"
+    },
+    {
+      "keyword": "best ai video generator",
+      "searchVolume": 22200,
+      "keywordDifficulty": 35,
+      "cpc": 12.72,
+      "competition": 0.51,
+      "intent": "commercial"
+    },
+    {
+      "keyword": "sora ai video generator",
+      "searchVolume": 18100,
+      "keywordDifficulty": 43,
+      "cpc": 8.4,
+      "competition": 0.43,
+      "intent": "transactional"
+    },
+    {
+      "keyword": "runway ai video generator",
+      "searchVolume": 14800,
+      "keywordDifficulty": 30,
+      "cpc": 15.31,
+      "competition": 0.53,
+      "intent": "informational"
+    },
+    {
+      "keyword": "image to video ai",
+      "searchVolume": 33100,
+      "keywordDifficulty": 54,
+      "cpc": 3.77,
+      "competition": 0.39,
+      "intent": "informational"
+    },
+    {
+      "keyword": "ai video maker",
+      "searchVolume": 40500,
+      "keywordDifficulty": 60,
+      "cpc": 5.61,
+      "competition": 0.53,
+      "intent": "transactional"
+    },
+    {
+      "keyword": "image to video ai free",
+      "searchVolume": 12100,
+      "keywordDifficulty": 40,
+      "cpc": 2.57,
+      "competition": 0.33,
+      "intent": "transactional"
+    }
+  ],
+  "qualification": "Discovery only; no SERP opportunity or publication approval. Related variants may share volume; do not sum."
+}

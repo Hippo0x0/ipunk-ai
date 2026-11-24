@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-24",
+  "evidence_type": "published-plan source review and original deterministic browser calculation, not video output evaluation",
+  "first_party": {
+    "insufficient": {
+      "credits": 625,
+      "cost": 60,
+      "clips": 5,
+      "attempts": 3,
+      "required": 900,
+      "shortfall": 275,
+      "capacity": 3
+    },
+    "exact": {
+      "credits": 1500,
+      "cost": 100,
+      "clips": 5,
+      "attempts": 3,
+      "fits": true,
+      "capacity": 5
+    },
+    "zero_credits_capacity": 0,
+    "decimal_boundary_test": "0.3 credits / 0.1 per attempt = 3, no floating-point false shortfall"
+  },
+  "presets": [
+    {
+      "provider": "Runway Standard",
+      "credits": 625,
+      "cost": 60,
+      "duration_seconds": 5,
+      "model": "Gen-4.5",
+      "source": "https://runway.com/pricing"
+    },
+    {
+      "provider": "Firefly Standard",
+      "credits": 2000,
+      "cost": 100,
+      "duration_seconds": 5,
+      "cost_derivation": "2,000 credits / advertised up-to-20 five-second videos; only that advertised configuration",
+      "source": "https://www.adobe.com/products/firefly/plans.html"
+    },
+    {
+      "provider": "Luma Plus",
+      "credits": 10000,
+      "cost": 100,
+      "duration_seconds": 5,
+      "model": "Ray3.2 720p SDR, keyframe present",
+      "source": "https://lumalabs.ai/pricing"
+    }
+  ],
+  "qa": {
+    "browser": "in-app Chromium localhost",
+    "widths_px": [
+      390,
+      1440
+    ],
+    "page_overflow": false,
+    "anchors": "all resolve",
+    "keyboard_highlight": "Enter changes selection; hash unchanged",
+    "step_link": "goes to #photo",
+    "zoom": "in and out work",
+    "preset_switching": "Runway, Firefly and Luma passed"
+  },
+  "not_performed": [
+    "model image/video generation",
+    "quality ranking",
+    "provider generation panel or account API",
+    "billing or subscription changes"
+  ]
+}
