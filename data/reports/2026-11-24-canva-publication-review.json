@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-24",
+  "keyword": "canva ai video generator",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "third_party": {
+    "estimate_monthly_searches": 40500,
+    "keyword_difficulty": 12,
+    "source": "data/reports/2026-11-24-high-volume-discovery.json",
+    "qualification": "Not clicks, official absolute monthly volume or achievable traffic."
+  },
+  "official_demand": {
+    "source": "Google Trends rendered chart/table",
+    "scope": "US, Web Search, past12months, three search terms compared",
+    "url": "https://trends.google.com/trends/explore?geo=US&q=canva%20ai%20video%20generator,runway%20ai%20video%20generator,image%20to%20video%20ai%20free&hl=en",
+    "series_order": [
+      "canva ai video generator",
+      "runway ai video generator",
+      "image to video ai free"
+    ],
+    "chart_means": [
+      12,
+      21,
+      60
+    ],
+    "weeks": {
+      "2026-11-01": [
+        4,
+        0,
+        37
+      ],
+      "2026-11-08": [
+        5,
+        3,
+        41
+      ],
+      "2026-11-15": [
+        7,
+        4,
+        38
+      ],
+      "2026-11-22 (partial)": [
+        5,
+        3,
+        42
+      ]
+    },
+    "official_monthly_volume": null
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-24",
+    "task": "Find the Canva clip route, check the selected audio/access path, export and verify the actual downloaded file.",
+    "answer_gap": "Reviewed sampled tutorials cover older Runway or broad editor/template workflows. This guide uses the current official clip entry and route distinctions and adds an actual local export-metadata/crop check.",
+    "unique_value": "Browser-local video metadata and crop inspector tested with two original downloadable fixtures, plus path-specific current-source troubleshooting. No account or model output is claimed tested.",
+    "competitor_urls": [
+      "https://www.tutkit.com/en/text-tutorials/1454-create-quick-and-creative-ki-videos-using-canva-and-runway",
+      "https://vegavid.com/blog/how-to-use-canva-ai-video-generator"
+    ],
+    "evidence_path": "data/reports/2026-11-24-canva-evidence.json",
+    "intent_audit_path": "data/reports/2026-11-24-canva-intent.md",
+    "distinct_intent": true
+  },
+  "competition_evidence": "data/reports/2026-11-24-canva-serp.json",
+  "acceptance": "New URL ordinary indexing and full comparable Google Web performance windows; no forecasts or successful-growth claim."
+}

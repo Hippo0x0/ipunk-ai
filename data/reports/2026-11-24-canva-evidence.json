@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-24",
+  "scope": "Local metadata/crop checker tested with original synthetic files; Canva generation/account/export not executed",
+  "sources_checked": [
+    "https://www.canva.com/help/video-clip/",
+    "https://www.canva.com/features/ai-video-generator/",
+    "https://www.canva.com/help/download-as-video/"
+  ],
+  "source_conflict": "Current Help documents 8s audio and 6s silent routes; landing page summarizes up-to-8s 16:9. Article uses the specific current Help branches, without claiming all models or all accounts behave identically.",
+  "fixtures": [
+    {
+      "path": "dist/evidence/canva-video/synthetic-landscape-8s.mp4",
+      "sha256": "c3bcd5459b5ec2dfdb2d7209b1efda04df1e672caec2e81a5636eb9f131a4cc4",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1920,
+            "height": 1080
+          }
+        ],
+        "format": {
+          "duration": "8.000000"
+        }
+      }
+    },
+    {
+      "path": "dist/evidence/canva-video/synthetic-portrait-6s.mp4",
+      "sha256": "225cd09b8cce7ababd7cb88763936ad93dc419629190d18d64568a877581738c",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920
+          }
+        ],
+        "format": {
+          "duration": "6.000000"
+        }
+      }
+    }
+  ],
+  "browser_checks": {
+    "environment": "localhost in-app Chromium",
+    "widths": [
+      390,
+      1440
+    ],
+    "landscape": "1920x1080;8sec;portrait retained31.64%;crop607.5x1080",
+    "portrait": "1080x1920;6sec;portrait matches;landscape crop1080x607.5",
+    "invalid_file": "JSON fixture rejected; preview hidden",
+    "remove": "file and object URL released; preview hidden",
+    "mobile_overflow": false,
+    "desktop_overflow": false,
+    "anchors": "all resolve; independent link targets #export with heading top95px",
+    "keyboard": "Enter highlights selected branch without navigation",
+    "zoom": "in and out passed",
+    "no_javascript": "CDP disabled JS, reloaded; static example and3 step links present, interactive picker hidden; JS and viewport restored"
+  },
+  "not_verified": [
+    "Canva generated visual quality",
+    "paid account availability",
+    "monthly allowance count",
+    "audio track correctness in generated files"
+  ]
+}

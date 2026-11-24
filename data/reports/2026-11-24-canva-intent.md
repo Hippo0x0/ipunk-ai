@@ -1,0 +1,9 @@
+# Canva video task intent audit
+
+Read the complete existing video-budget page, sitemap and English homepage. The budget page compares three services and calculates allowance; it cannot perform or explain the account-specific Canva clip/export route and has no file metadata/crop task. The new page owns using Canva's clip entry, confirming audio/duration routes, exporting and checking the actual saved file. Both pages link to each other and the English homepage links to both. No page is added for synonyms ai video maker or a generic free image-to-video generator that we do not operate.
+
+US/en is the researched market, with no proven existing audience claim. Only an English page is published. The create/export/uncertain native SVG links to real English sections; a separate file checker handles exported metadata and crop geometry, not the same route decision. The checker accepts local videos and does no network upload. Two clearly labelled original synthetic videos make its results reproducible. Documentation review is not presented as successful use of a Canva account.
+
+Same-market sample (US English desktop) includes Tutkit's Canva/Runway tutorial and Vegavid's Canva guide. Tutkit uses an older integrated Runway route; Vegavid describes broad template/editor creation. The new page uses the current Canva Help distinction between 8-second audio and 6-second silent clips and its homepage entry, plus an actual local file verification task. Competitor pages are not claimed to have been operationally tested. This is a bounded answer gap, not a claim every rival lacks the information.
+
+Prior video comparison was deployed today. Its search-performance window is unavailable; this new page is a separate task, not a measured winner expansion. Extra investment covers one linked task and checker, with growth left to ordinary indexing and comparable Search Console windows.
