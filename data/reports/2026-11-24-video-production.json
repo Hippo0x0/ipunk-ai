@@ -1,0 +1,65 @@
+{
+  "results": [
+    {
+      "route": "/en/guides/best-ai-video-generator/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "29e6210a570bb9644e9c747741ceb46e3422c3d8f71b0167ef3b3678e0fd6f73"
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "83330a87d6b285ca400be6924265a4589b237f5433fe4c3f07535c2247132db0"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "88d842d0723c92cb3991ef966029703dc00737e363e143eb2dd1121d02a2ea9c"
+    },
+    {
+      "route": "/guides.css",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "dc042b22f44d878f6b79dbc220a66bd2df913e4174b540d319038463001a9ede"
+    },
+    {
+      "route": "/guide-flow.js",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "5288014ad31e31aa4248cebbf84a1e0e759d7dfb070526f80d3bdd62bc3d003b"
+    },
+    {
+      "route": "/video-budget.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "97f49b1eb0d6234ca4b1e05b41f3bb0899dc7540a11d6949671c0f660ecfeed8"
+    },
+    {
+      "route": "/video-budget-math.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "3c08d08ea4d6d4075ab39449888959d0ea574ea4754aab2411cc4a42fb11771c"
+    }
+  ],
+  "html_pages_verified": 2,
+  "assets_verified": 5,
+  "scope": "Changed pages and required assets; HTTP only, no analytics JavaScript.",
+  "status": "passed",
+  "checked_at": "2026-11-24T12:07:02.749165+00:00",
+  "content_commit": "06556df",
+  "release_commit": "140c82a",
+  "worker": "ipunk-ai",
+  "worker_version": "82e4d2a9-fb54-4e16-a875-93b4d652fb6b",
+  "tests": "36 passed; 30 HTML static checks passed",
+  "browser_qa": "localhost at 390 and 1440px; input presets, exact/insufficient allowance, keyboard branches, zoom, section targets and no full-page overflow passed.",
+  "qualification": "HTTP byte equality after removing any verified Cloudflare beacon. No production analytics JavaScript. Not proof of indexing, ranking or search clicks."
+}
