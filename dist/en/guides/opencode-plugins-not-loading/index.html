@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode Plugins Not Loading? Check V1, V2 and Plugin Scope | iPunk AI Radar</title>
+<meta name="description" content="Find why an OpenCode plugin is missing. Check the server config, Desktop or terminal plugin part, or V1-to-V2 compatibility with a local load probe.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-plugins-not-loading/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "OpenCode Plugins Not Loading? Check V1, V2 and Plugin Scope", "datePublished": "2026-11-24", "dateModified": "2026-11-24", "inLanguage": "en", "mainEntityOfPage": "https://ai.ipunk.cn/en/guides/opencode-plugins-not-loading/"}</script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/en/projects/opencode/">OpenCode review</a></nav></div></header>
+<main class="wrap guide-main">
+<div class="guide-header"><h1>OpenCode Plugins Not Loading? Check V1, V2 and Plugin Scope</h1><p class="guide-answer">Run <code>opencode --version</code> on the machine loading the plugin. Then check whether the missing feature runs on the server, in Desktop, or in the terminal. A V1 plugin needs a V2 implementation to run on V2; changing the config key alone cannot fix it.</p></div>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#server">Check a missing server plugin</a></li><li><a href="#interface">Check a missing Desktop panel or terminal command</a></li><li><a href="#version">Check whether the plugin targets V1 or V2</a></li><li><a href="#probe">Reproduce a server load with a local marker</a></li><li><a href="#sources">Sources and related checks</a></li></ol></nav>
+<section class="guide-decision"><h2>Where is your OpenCode plugin missing?</h2><div class="decision" data-flow><div class="flow-viewport" tabindex="0" aria-label="Decision tree"><svg class="flow-svg" viewBox="0 0 720 355" role="group" aria-label="Where is your OpenCode plugin missing?"><defs><marker id="arrow-guide" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs><path data-edge="server" d="M360 123 C360 172 122 160 122 252" marker-end="url(#arrow-guide)"/><path data-edge="interface" d="M360 123 C360 172 360 160 360 252" marker-end="url(#arrow-guide)"/><path data-edge="version" d="M360 123 C360 172 598 160 598 252" marker-end="url(#arrow-guide)"/><g data-node="root" tabindex="0" role="button" aria-pressed="false" aria-label="Where is your OpenCode plugin missing?"><path class="node-shape" d="M360 12 L500 71 L360 130 L220 71Z"/><text x="360" y="78" text-anchor="middle">What do you see?</text></g><rect x="10" y="190" width="224" height="36" rx="6" fill="white"/><text x="122" y="216" text-anchor="middle">Server feature</text><g data-node="server" role="button" tabindex="0" aria-pressed="false" aria-label="Check scope and package"><rect class="node-shape" x="12" y="261" width="220" height="84" rx="12"/><text x="122" y="294" text-anchor="middle">Check scope<tspan x="122" dy="27">and package</tspan></text></g><rect x="248" y="190" width="224" height="36" rx="6" fill="white"/><text x="360" y="216" text-anchor="middle">Panel or command</text><g data-node="interface" role="button" tabindex="0" aria-pressed="false" aria-label="Check the client and its entry"><rect class="node-shape" x="250" y="261" width="220" height="84" rx="12"/><text x="360" y="294" text-anchor="middle">Check the client<tspan x="360" dy="27">and its entry</tspan></text></g><rect x="486" y="190" width="224" height="36" rx="6" fill="white"/><text x="598" y="216" text-anchor="middle">Unsure / upgraded</text><g data-node="version" role="button" tabindex="0" aria-pressed="false" aria-label="Check the API generation"><rect class="node-shape" x="488" y="261" width="220" height="84" rx="12"/><text x="598" y="294" text-anchor="middle">Check the API<tspan x="598" dy="27">generation</tspan></text></g></svg></div><div class="decision-links"><a href="#server" aria-label="See steps: Check scope and package">See steps</a><a href="#interface" aria-label="See steps: Check the client and its entry">See steps</a><a href="#version" aria-label="See steps: Check the API generation">See steps</a></div><div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div></div></section><section id="server"><h2>Check a missing server plugin</h2>
+<ol><li>Run <code>opencode --version</code> on the machine running the server. If you are attached to a remote server, changes to your local project config may not reach it.</li>
+<li>Keep a backup of your configuration before editing. For V2, put the maintainer’s exact package specifier in the <code>plugins</code> array in <code>opencode.json(c)</code>. For a local plugin, use a directory path relative to that config file, or put it under <code>.opencode/plugins/</code> for discovery. A configured single-file path is skipped in V2. Use only packages you trust: a plugin runs code in OpenCode.</li>
+<li>Look for matching disable entries in all active V2 configs. The arrays combine, and a later rule can disable a plugin. For a global package install, <code>opencode plugin list</code> helps confirm the entry; then check the plugin’s own expected server feature in a fresh session. A listed package alone does not prove its server feature works.</li></ol>
+<p>If a trusted package is still missing, check for a package or load error before changing more settings. V2 can install missing packages after startup; check again once installation finishes. Keep startup logs local unless you have reviewed them for credentials and private paths.</p></section>
+<section id="interface"><h2>Check a missing Desktop panel or terminal command</h2>
+<p>In V2, check what the package actually exports. A server-only plugin has no Desktop panel or terminal UI. For Desktop, check that the package has a GUI part, put it in the global config for the app’s own server, and check <strong>Settings → Extensions → Plugins</strong>. Its switch controls the Desktop UI; it does not turn off the server part. If it shows a UI load failure, use <strong>Reload</strong> and confirm the intended panel or command appears.</p>
+<p>A terminal-only package belongs in the terminal client’s <code>cli.json</code>, under <code>plugins</code>. A package with both server and terminal parts can be configured on the server; check the package’s instructions for your client. Verify the named command or panel in the client where the package says it appears.</p></section>
+<section id="version"><h2>Check whether the plugin targets V1 or V2</h2>
+<p>Match the installed major version to the maintainer’s supported release. V1 uses <code>plugin</code> for package entries; native V2 uses <code>plugins</code>. V2 can read supported legacy configuration, but V1 plugin implementations need to be ported to the new API. A renamed setting or relocated file will not port the implementation.</p>
+<p>If you cannot determine the generation, start from the version command, check the package release notes, and test only a known compatible version in a scratch project. Before removing anything from your regular workspace, keep a copy of the configuration and change one entry at a time.</p></section>
+<section id="probe"><h2>Reproduce a server load with a local marker</h2>
+<p>Use an empty scratch Git project with OpenCode 2.4.1. Create <code>.opencode/plugins/local-probe/index.ts</code> with this fixture:</p>
+<pre><code>import { Plugin } from &quot;@opencode/plugin&quot;
+import { writeFileSync } from &quot;node:fs&quot;
+
+export default Plugin.define({
+  id: &quot;ipunk.local-probe&quot;,
+  async setup() {
+    writeFileSync(process.env.IPUNK_PLUGIN_MARKER, &quot;IPUNK_LOCAL_PLUGIN_READY&quot;)
+  },
+})</code></pre>
+<p>From the scratch project, run these commands (macOS or Linux shell):</p>
+<pre><code>IPUNK_PLUGIN_MARKER="$PWD/plugin-ready.txt" \
+  opencode debug agents --standalone --print-logs --log-level debug
+cat plugin-ready.txt</code></pre>
+<p>Use a fresh project or delete the marker from a previous run before comparing results. Seeing <code>IPUNK_LOCAL_PLUGIN_READY</code> in the file confirms this fixture's setup ran. This uses a private OpenCode server for the check and needs no model request.</p>
+<p>On macOS arm64, we compared the auto-discovered directory, an explicitly configured directory, and the same configured path pointing directly to <code>index.ts</code>. The first two wrote the marker when run with <code>debug agents</code>; the file entry was skipped with a directory warning. In these runs <code>plugin list</code> alone reported no plugins for all three. <a href="/evidence/opencode-plugins/v2-paths.json">See the recorded results</a>.</p>
+</section>
+<section id="sources"><h2>Sources and related checks</h2>
+<p><a href="https://opencode.ai/docs/plugins/">V2 plugin configuration</a> · <a href="https://opencode.ai/docs/build/plugins">V2 plugin parts and exports</a> · <a href="https://opencode.ai/docs/migrate-v1/#plugins">V1-to-V2 migration</a> · <a href="https://opencode.ai/v1/docs/plugins/">V1 plugin configuration</a>.</p>
+<p>If your extension is a Markdown instruction file, use the <a href="/en/guides/opencode-skills-not-loading/">OpenCode skill discovery check</a>.</p></section>
+<script src="/guide-flow.js" defer></script>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><span>Published <time datetime="2026-11-24">Nov 24, 2026</time></span></div></footer>
+</body></html>

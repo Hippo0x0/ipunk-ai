@@ -1,0 +1,40 @@
+{
+  "version": "opencode v2.4.1",
+  "commands": [
+    "opencode plugin list --standalone --print-logs --log-level debug",
+    "opencode debug agents --standalone --print-logs --log-level debug"
+  ],
+  "scope": "Three isolated temporary Git workspaces on macOS arm64; no model calls. Records local server setup for the fixture, not Desktop or TUI compatibility.",
+  "cases": [
+    {
+      "case": "discovered",
+      "plugin_list_exit_status": 0,
+      "plugin_list_reported_no_plugins": true,
+      "plugin_list_setup_marker": false,
+      "debug_agents_exit_status": 0,
+      "loader_logged_entrypoint": true,
+      "configured_file_warning": false,
+      "debug_agents_setup_marker": true
+    },
+    {
+      "case": "configured-directory",
+      "plugin_list_exit_status": 0,
+      "plugin_list_reported_no_plugins": true,
+      "plugin_list_setup_marker": false,
+      "debug_agents_exit_status": 0,
+      "loader_logged_entrypoint": true,
+      "configured_file_warning": false,
+      "debug_agents_setup_marker": true
+    },
+    {
+      "case": "configured-file",
+      "plugin_list_exit_status": 0,
+      "plugin_list_reported_no_plugins": true,
+      "plugin_list_setup_marker": false,
+      "debug_agents_exit_status": 0,
+      "loader_logged_entrypoint": false,
+      "configured_file_warning": true,
+      "debug_agents_setup_marker": false
+    }
+  ]
+}

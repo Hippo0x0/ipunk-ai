@@ -1,0 +1,83 @@
+{
+  "keyword": "opencode plugins",
+  "url": "https://ai.ipunk.cn/en/guides/opencode-plugins-not-loading/",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "official_demand": {
+    "source": "Google Trends",
+    "date": "2026-11-24",
+    "scope": "US, Web Search, past 12 months, exact search terms in one four-term comparison",
+    "url": "https://trends.google.com/trends/explore?geo=US&q=opencode%20plugins,opencode%20ollama,ollama%20out%20of%20memory,llm%20vram%20calculator&hl=en",
+    "weeks": [
+      "2026-10-25",
+      "2026-11-01",
+      "2026-11-08",
+      "2026-11-15",
+      "2026-11-22 (partial)"
+    ],
+    "plugins_indices": [
+      17,
+      12,
+      6,
+      8,
+      8
+    ],
+    "ollama_indices": [
+      22,
+      22,
+      15,
+      21,
+      25
+    ],
+    "chart_means": {
+      "opencode plugins": 12,
+      "opencode ollama": 39,
+      "ollama out of memory": 0,
+      "llm vram calculator": 0
+    },
+    "absolute_monthly_searches": null,
+    "qualification": "Normalized comparison, not monthly volume; zero here is insufficient signal, not absence of demand. Broad plugin keyword does not quantify the narrower troubleshooting intent."
+  },
+  "third_party": {
+    "date": "2026-11-23",
+    "market": "US/en desktop",
+    "search_volume_estimate": 1600,
+    "difficulty": 12,
+    "source": "Existing OpenSEO research record on c787517; no new paid lookup."
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-24",
+    "task": "Locate where a plugin is missing and distinguish a rejected path from a server startup issue or an absent client feature.",
+    "answer_gap": "The official guide documents directory layout and client scopes. The sampled directory and curated repository mainly help discovery. None of these sampled answers show the controlled V2 comparison of package list output versus setup execution for both directory and file cases.",
+    "unique_value": "Three controlled V2.4.1 cases and a user reproducible marker. Two directory paths trigger actual server setup with debug agents; the single-file config does not. Package listing alone showed no plugins for all three fixtures.",
+    "competitor_urls": [
+      "https://opencode.ai/docs/plugins/",
+      "https://opencode.im/plugins",
+      "https://github.com/awesome-opencode/awesome-opencode"
+    ],
+    "evidence_path": "dist/evidence/opencode-plugins/v2-paths.json",
+    "intent_audit_path": "data/reports/2026-11-24-opencode-plugins-intent.md",
+    "distinct_intent": true
+  },
+  "other_candidates": {
+    "opencode ollama": "Keep in research: positive Trends, but source review found current overlapping guides; no actual local model/Ollama run or comparable original evidence in this batch.",
+    "ollama out of memory": "No usable positive figure in this compared chart.",
+    "llm vram calculator": "No usable positive figure in this compared chart."
+  },
+  "search_acceptance": {
+    "recent_final_window": [
+      "2026-10-25",
+      "2026-11-21"
+    ],
+    "page_row_count": 8,
+    "page_impressions_sum": 56,
+    "page_clicks_sum": 0,
+    "prior_go_and_skills_url_inspection": "URL is unknown to Google on 2026-11-24; no comparable post-release window.",
+    "next": "Check ordinary indexing, then compare complete Google Web windows at each URL, retaining query visibility limits and US filter separately."
+  }
+}
