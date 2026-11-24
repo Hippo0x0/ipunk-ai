@@ -1,0 +1,417 @@
+{
+  "retrieved_on": "2026-11-24",
+  "source": "Google Search Console via existing OpenSEO connection",
+  "resource": "https://ai.ipunk.cn/",
+  "request": {
+    "startDate": "2026-10-24",
+    "endDate": "2026-11-20",
+    "dataState": "final",
+    "type": "web",
+    "rowLimit": 1000,
+    "timezone": "America/Los_Angeles"
+  },
+  "summary": {
+    "window": {
+      "start": "2026-10-24",
+      "end": "2026-11-20",
+      "impressions": 53,
+      "clicks": 0,
+      "zero_click_days": 28
+    },
+    "previous": {
+      "start": "2026-11-07",
+      "end": "2026-11-13",
+      "impressions": 21,
+      "clicks": 0,
+      "zero_click_days": 7
+    },
+    "current": {
+      "start": "2026-11-14",
+      "end": "2026-11-20",
+      "impressions": 19,
+      "clicks": 0,
+      "zero_click_days": 7
+    },
+    "visible_pages": 8,
+    "clicked_pages": 0,
+    "page_table_impressions": 56,
+    "independent_unfiltered_totals_available": false
+  },
+  "date_response": {
+    "ok": true,
+    "siteUrl": "https://ai.ipunk.cn/",
+    "startDate": "2026-10-24",
+    "endDate": "2026-11-20",
+    "dimensions": [
+      "date"
+    ],
+    "rowCount": 28,
+    "rows": [
+      {
+        "keys": [
+          "2026-10-24"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      {
+        "keys": [
+          "2026-10-25"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      {
+        "keys": [
+          "2026-10-26"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      {
+        "keys": [
+          "2026-10-27"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      {
+        "keys": [
+          "2026-10-28"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      {
+        "keys": [
+          "2026-10-29"
+        ],
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      {
+        "keys": [
+          "2026-10-30"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 17
+      },
+      {
+        "keys": [
+          "2026-10-31"
+        ],
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 4.5
+      },
+      {
+        "keys": [
+          "2026-11-01"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 6
+      },
+      {
+        "keys": [
+          "2026-11-02"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 4
+      },
+      {
+        "keys": [
+          "2026-11-03"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 3
+      },
+      {
+        "keys": [
+          "2026-11-04"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 8
+      },
+      {
+        "keys": [
+          "2026-11-05"
+        ],
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 25
+      },
+      {
+        "keys": [
+          "2026-11-06"
+        ],
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 3.7
+      },
+      {
+        "keys": [
+          "2026-11-07"
+        ],
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 47
+      },
+      {
+        "keys": [
+          "2026-11-08"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 8
+      },
+      {
+        "keys": [
+          "2026-11-09"
+        ],
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 28.5
+      },
+      {
+        "keys": [
+          "2026-11-10"
+        ],
+        "clicks": 0,
+        "impressions": 5,
+        "ctr": 0,
+        "position": 29.8
+      },
+      {
+        "keys": [
+          "2026-11-11"
+        ],
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 25.7
+      },
+      {
+        "keys": [
+          "2026-11-12"
+        ],
+        "clicks": 0,
+        "impressions": 5,
+        "ctr": 0,
+        "position": 12.4
+      },
+      {
+        "keys": [
+          "2026-11-13"
+        ],
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 35.3
+      },
+      {
+        "keys": [
+          "2026-11-14"
+        ],
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 4.5
+      },
+      {
+        "keys": [
+          "2026-11-15"
+        ],
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 7.5
+      },
+      {
+        "keys": [
+          "2026-11-16"
+        ],
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 6.5
+      },
+      {
+        "keys": [
+          "2026-11-17"
+        ],
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 4.5
+      },
+      {
+        "keys": [
+          "2026-11-18"
+        ],
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 6
+      },
+      {
+        "keys": [
+          "2026-11-19"
+        ],
+        "clicks": 0,
+        "impressions": 6,
+        "ctr": 0,
+        "position": 2.7
+      },
+      {
+        "keys": [
+          "2026-11-20"
+        ],
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 5.7
+      }
+    ],
+    "hasMore": false
+  },
+  "page_response": {
+    "ok": true,
+    "siteUrl": "https://ai.ipunk.cn/",
+    "startDate": "2026-10-24",
+    "endDate": "2026-11-20",
+    "dimensions": [
+      "page"
+    ],
+    "rowCount": 8,
+    "rows": [
+      {
+        "keys": [
+          "https://ai.ipunk.cn/"
+        ],
+        "clicks": 0,
+        "impressions": 13,
+        "ctr": 0,
+        "position": 3.1
+      },
+      {
+        "keys": [
+          "https://ai.ipunk.cn/choose/"
+        ],
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": 0,
+        "position": 26
+      },
+      {
+        "keys": [
+          "https://ai.ipunk.cn/en/"
+        ],
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": 0,
+        "position": 5
+      },
+      {
+        "keys": [
+          "https://ai.ipunk.cn/en/projects/opencode/"
+        ],
+        "clicks": 0,
+        "impressions": 13,
+        "ctr": 0,
+        "position": 8.9
+      },
+      {
+        "keys": [
+          "https://ai.ipunk.cn/en/projects/rea/"
+        ],
+        "clicks": 0,
+        "impressions": 11,
+        "ctr": 0,
+        "position": 23.6
+      },
+      {
+        "keys": [
+          "https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/"
+        ],
+        "clicks": 0,
+        "impressions": 7,
+        "ctr": 0,
+        "position": 26.9
+      },
+      {
+        "keys": [
+          "https://ai.ipunk.cn/projects/opencode/"
+        ],
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 17.7
+      },
+      {
+        "keys": [
+          "https://ai.ipunk.cn/projects/rea/"
+        ],
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 17
+      }
+    ],
+    "hasMore": false
+  },
+  "screen_response": {
+    "ok": true,
+    "siteUrl": "https://ai.ipunk.cn/",
+    "startDate": "2026-10-24",
+    "endDate": "2026-11-20",
+    "dimensions": [
+      "query"
+    ],
+    "rowCount": 0,
+    "rows": [],
+    "hasMore": false
+  },
+  "unsupported_totals_request": {
+    "dimensions": [],
+    "error": "Connector schema requires at least one dimension; no unfiltered property total returned."
+  },
+  "paid_keyword_lookups": 0,
+  "performance_filters": [],
+  "striking_distance_filters": { "minPosition": 5, "maxPosition": 20, "minImpressions": 50 },
+  "market_scope_note": "GSC dates/pages are unfiltered by country and device; US/en applies only to the reused keyword research.",
+  "reused_research_date": "2026-11-23",
+  "report": {
+    "id": "89265cce-80ff-40e1-94d2-ac9272ac1b03",
+    "url": "https://app.openseo.so/p/d805176c-6e1f-4ca4-834b-9aa48dfd74a0/reports/89265cce-80ff-40e1-94d2-ac9272ac1b03",
+    "updated_at": "2026-11-24T02:07:24.923Z",
+    "sharing": "private"
+  }
+}
