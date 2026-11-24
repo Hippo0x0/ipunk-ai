@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-24",
+  "content_commit": "06556df",
+  "status": "blocked_workers_authorization_missing",
+  "merged_to_main": true,
+  "deployed": false,
+  "tests": "36 passed; 30 HTML files static check passed",
+  "local_browser_qa": "390 and 1440px; no page overflow, all anchors resolve, presets and exact/insufficient budgets verified, keyboard selection and step links verified.",
+  "worker": "ipunk-ai",
+  "deployment_error": "No access to the specified service.",
+  "diagnosis": "Current Wrangler identity is correct account, but tokenPermissions only user:read offline_access account:read pages:write; prior Workers scopes are absent. Cause of credential replacement is not established.",
+  "next_step": "OAuth authorization requested for existing Workers publishing scopes while retaining Pages. Complete authorization then deploy this exact main version and verify canonical HTML and assets on production.",
+  "growth": "No post-release search performance; no ranking or traffic claim."
+}
