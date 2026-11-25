@@ -1,0 +1,1 @@
+Your last response is not valid JSON because it includes explanatory prose and typographic quotation marks. Reformat the same answer as one valid JSON object only, using standard ASCII double quotes for JSON strings. Keep the same factual values and notice text. Do not add Markdown fences, commentary or a word-count explanation. Do not browse.

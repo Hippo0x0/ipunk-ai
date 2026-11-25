@@ -1,0 +1,3 @@
+{
+  "formatError": "Response is not a single valid JSON object. Keep the original; do not silently remove fences or repair it."
+}

@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-25",
+  "task": "One synthetic three-task prompt,first response in each web app,plus one explicit Claude format correction.",
+  "files": {
+    "claude-corrected-output.json": {
+      "bytes": 741,
+      "sha256": "6fa501a0a09c8dcb481cb86099def3fb7847b8c61fce5534f1cb39812e55f614"
+    },
+    "expected.json": {
+      "bytes": 985,
+      "sha256": "19bc39c0e1fdeda8dce7a815c0d13bf153149ab8196395e3c5d0bb3de83611fa"
+    },
+    "chatgpt-output.txt": {
+      "bytes": 783,
+      "sha256": "3027452e62dbe5bd34f07229f7ae4acfba92e294a0fa53c70d064ff81cb3dc61"
+    },
+    "claude-correction-prompt.txt": {
+      "bytes": 346,
+      "sha256": "58abe8194d99668d4e4b50b48a427dd86d3e85bc34c98b17eab5f02147c4d59b"
+    },
+    "claude-output.txt": {
+      "bytes": 1274,
+      "sha256": "6087d195ebddba1ea361aca3561ac6bf24bbe5cc57bf836b6f113ba640c37ada"
+    },
+    "claude-rendered.txt": {
+      "bytes": 1394,
+      "sha256": "fd13a783f95099f47a1235308af3adf3a34cab8775bcb1238b5bc3010f13a4ed"
+    },
+    "prompt.txt": {
+      "bytes": 2298,
+      "sha256": "ab55184064a5646a6d7a2ef45a5f7b444d1e29e92f755cf100dca6a9178f9958"
+    },
+    "claude-checks.json": {
+      "bytes": 130,
+      "sha256": "9a21268c84deabbe6dda1a489a3ec3b7178d6c6ee64bcc5986ba691a396ccbf8"
+    },
+    "chatgpt-checks.json": {
+      "bytes": 1345,
+      "sha256": "dd258a4cb0e650874da51477624d786bb4cd37fe47c3d357373c4ccf6e4ca706"
+    },
+    "claude-corrected-checks.json": {
+      "bytes": 1312,
+      "sha256": "e14d98801fbff5c9413ae665a3f808a3a96d440bc1b14958b36f6225ae6ae895"
+    }
+  },
+  "capture": {
+    "chatgpt": "Visible reply text extracted from rendered paragraphs; a Copy-button clipboard read returnedstale unrelated clipboard data and was discarded. Do not label the saved text raw API output.",
+    "claude_first": "ProductCopybutton aftercompletion andCopiedfeedback; entire copied reply,preamble included.",
+    "claude_corrected": "ProductCopybutton aftercompletion andCopiedfeedback; single copied JSONobject.",
+    "rendering_note": "Claudevisibleparagraphs transformedstraightquotes into curlyquotes. Copied text hadASCIIquotes. Retainedrenderedtext separately. No model punctuation-error claim."
+  },
+  "environment": {
+    "ui_language": "Chinese",
+    "prompt_language": "English",
+    "claude_plan": "Free",
+    "claude_model_label": "Sonnet5.5",
+    "claude_effort_label": "medium",
+    "chatgpt_plan": null,
+    "chatgpt_model": null,
+    "qualification": "Not a matched-plan or matched-model comparison. English USis research target,not a claim that trial accounts were USlocated."
+  },
+  "results": {
+    "arithmetic": "Both first replies state5paid orders,138net,A104highest. Independent Decimal calculation agrees.",
+    "policy": "Both identify exact cutoff/weekend source text and refuse to infer delivery guarantee. Claude prefixesP2/P3labels. ChatGPTaddsweekdaynames requiring calendar confirmation.",
+    "notice": "ChatGPT40words;Claude42words;each2sentences andall6facts retained. Independent whitespace count,not vendor self-report.",
+    "format": "ChatGPTsavedvisibletextvalidJSON;Claude copiedfirstresponsecontainsproseandfailsJSON-only;Claude copiedcorrectionvalidJSON.",
+    "correction": "One Claude follow-up; originalresponsepreserved. No retries orcorrectiontoChatGPT.",
+    "automation": "ChatGPTsavedtextandClaudecorrectionpass9boundedchecks. SourceP2/P3labelsareallowedprefixes; no quotationaltered. No overall productscore."
+  },
+  "qa": {
+    "regressions": 44,
+    "static_html": 38,
+    "browser": "Actual first/correctedClaudeandChatGPTvisibleoutputs checked inlocal UI;firstClaudeparseerror andcorrectedpass observed. Numeric/quotation/parsernegative controls pass.",
+    "mobile": "390px inner/client/scroll390;table366;allanchorsvalid.",
+    "desktop": "1440px inner/scroll1440,table900.",
+    "flow": "Enter selectswork,highlights1edgewithoutchanginghash;zoomin/out;separateSee stepsreaches#work.",
+    "no_js": "Formhidden;prompttext,6downloadlinksand3flowlinks retained. NativepromptdetailsopenedwithJSenabled; no disabledJS click-successclaim.",
+    "restored": "CDPviewportclearedandJSreenabled; productionbrowsernotopened."
+  },
+  "limits": "One small synthetic batch each;no largeuploads,paidplan,coding,imagequality,latency orstatisticalwinner. No indexing/rank/click/profit result."
+}

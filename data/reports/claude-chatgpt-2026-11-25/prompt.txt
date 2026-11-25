@@ -1,0 +1,33 @@
+Use only the synthetic materials below. Do not browse. Return a single JSON object and no Markdown fences. This is a small reproducible task check, not a request to describe yourself.
+
+TASK 1 — Table calculation
+Deduplicate identical order_id rows, keep only status=paid, and subtract refund_usd from quantity * unit_price_usd. Return included_order_ids sorted ascending, paid_order_count, net_revenue_usd, and highest_net_order_id. A fully refunded paid order still counts as an order.
+order_id,status,quantity,unit_price_usd,refund_usd
+A101,paid,2,19.50,0
+A102,paid,3,12.00,12.00
+A103,cancelled,1,80.00,0
+A104,paid,1,45.00,0
+A104,paid,1,45.00,0
+A105,pending,2,30.00,0
+A106,paid,4,7.50,0
+A107,paid,1,20.00,20.00
+
+TASK 2 — Evidence-bound document reading
+For each question, return answer and one exact supporting sentence from POLICY, or answer="not stated" and evidence=null when POLICY does not establish the answer.
+POLICY:
+[P1] Requests received before 16:00 UTC on a business day are reviewed that business day.
+[P2] Requests received at or after 16:00 UTC are reviewed the next business day.
+[P3] Weekend requests are reviewed on the next business day.
+[P4] Standard processing takes two business days after review.
+[P5] A dispatch confirmation is sent by email after processing is complete.
+Questions:
+cutoff: Is a Tuesday request received at exactly 16:00 UTC reviewed on Tuesday or the next business day?
+weekend: When is a Saturday request reviewed?
+delivery: How many days after dispatch is delivery guaranteed?
+
+TASK 3 — Constrained writing
+Rewrite this notice as exactly two sentences of 35 to 55 English words total. Keep the date, UTC time, affected function and explicit uncertainty. Do not promise that service will recover on schedule. No greeting, heading or bullet list.
+NOTICE: On 18 December 2026, scheduled maintenance begins at 21:00 UTC and is planned to last 30 minutes. File uploads may be unavailable. The actual completion time is not confirmed. Users should save their drafts before maintenance begins.
+
+Output shape:
+{"table":{"included_order_ids":[],"paid_order_count":0,"net_revenue_usd":0,"highest_net_order_id":""},"document":{"cutoff":{"answer":"","evidence":""},"weekend":{"answer":"","evidence":""},"delivery":{"answer":"","evidence":null}},"notice":""}

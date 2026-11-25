@@ -1,0 +1,10 @@
+{
+  "table": {"included_order_ids": ["A101", "A102", "A104", "A106", "A107"], "paid_order_count": 5, "net_revenue_usd": 138, "highest_net_order_id": "A104"},
+  "document": {
+    "cutoff": {"meaning": "next business day", "evidence": "Requests received at or after 16:00 UTC are reviewed the next business day."},
+    "weekend": {"meaning": "next business day", "evidence": "Weekend requests are reviewed on the next business day."},
+    "delivery": {"answer": "not stated", "evidence": null}
+  },
+  "notice": {"sentences": 2, "word_range": [35,55], "must_preserve": ["18 December 2026", "21:00 UTC", "planned 30 minutes", "file uploads may be unavailable", "actual completion time unconfirmed", "save drafts before maintenance"], "qualitative_style_score": null},
+  "scope": "Synthetic inline-text task; no file-upload test, timing benchmark, coding test, image test or global product ranking. Semantic answer checks require human review; objective values independently calculated."
+}

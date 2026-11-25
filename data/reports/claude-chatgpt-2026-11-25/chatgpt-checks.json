@@ -1,0 +1,51 @@
+{
+  "checks": [
+    {
+      "name": "Single JSON object",
+      "passed": true
+    },
+    {
+      "name": "Five expected order IDs, sorted",
+      "passed": true
+    },
+    {
+      "name": "Paid order count is 5",
+      "passed": true
+    },
+    {
+      "name": "Net revenue is 138 USD",
+      "passed": true
+    },
+    {
+      "name": "Highest net order is A104",
+      "passed": true
+    },
+    {
+      "name": "Cutoff evidence matches the source",
+      "passed": true
+    },
+    {
+      "name": "Weekend evidence matches the source",
+      "passed": true
+    },
+    {
+      "name": "Delivery is not stated, with null evidence",
+      "passed": true
+    },
+    {
+      "name": "Notice has 35–55 whitespace-separated words",
+      "passed": true
+    }
+  ],
+  "notice_word_count": 40,
+  "named_calendar_days": [
+    "Wednesday",
+    "Monday"
+  ],
+  "manual_review_required": [
+    "Check that each answer follows the policy, not just that its quotation matches.",
+    "Check any named weekday against a real business calendar; the synthetic policy supplies no holiday calendar.",
+    "Check exactly two sentences and all notice facts: date, UTC time, planned length, affected uploads, uncertain end time and saving drafts."
+  ],
+  "qualification": "These are checks of this synthetic task, not an overall writing score or product ranking."
+}

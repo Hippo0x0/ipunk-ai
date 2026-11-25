@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-25",
+  "keyword": "claude vs chatgpt",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "official_monthly_volume": null,
+  "keyword_difficulty": null,
+  "official_demand": {
+    "source": "Rendered Google Trends table read2026-11-25,reused same-day research",
+    "url": "https://trends.google.com/trends/explore?geo=US&q=claude%20vs%20chatgpt,chatgpt%20alternatives,best%20ai%20image%20generator,ai%20presentation%20maker,notebooklm%20tutorial&hl=en",
+    "scope": "US,WebSearch,past12months",
+    "exact_term_mean": 22,
+    "latest_complete_week": "2026-11-15",
+    "latest_complete_value": 17,
+    "qualification": "Within-chart relative index,not volume or clicks. No absolute size claim."
+  },
+  "competition": {
+    "query": "https://www.google.com/search?q=claude+vs+chatgpt&gl=us&hl=en&pws=0",
+    "scope": "Prior same-day actual US/en-targeted browser sample;physical/national-ranknotcertified. Editorial comparisons,Reddit,YouTube,AIOverviewobserved.",
+    "primary_comparison_read": "https://zapier.com/blog/claude-vs-chatgpt/",
+    "qualification": "Competitor already has tests;no low-difficulty or monopoly claim."
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-25",
+    "task": "Choose between two web AI assistants by running the same bounded task and verifying source fidelity,values and output usability before paying.",
+    "answer_gap": "Owned project comparator and coding chooser do not compare web-chat task outputs. Existing market comparisons provide recommendations and tests; this page adds an inspectable exact fixture, first-reply/correction provenance and a functioning local checker, without claiming that competitors lack every such feature.",
+    "unique_value": "Actual identical-material submissions with retained first response text/correction,independent138netand40/42word checks,visible-vs-copiedquote distinction,manualcalendarreview,andlocallytestedcheckerwithnegativecontrols.",
+    "competitor_urls": [
+      "https://zapier.com/blog/claude-vs-chatgpt/"
+    ],
+    "evidence_path": "data/reports/2026-11-25-claude-chatgpt-evidence.json",
+    "intent_audit_path": "data/reports/2026-11-25-claude-chatgpt-intent.md",
+    "distinct_intent": true
+  },
+  "investment_decision": "One AI-intrinsic selection page requested by user; preserve Apple observation and stop genericmediaexpansion. Await indexing and comparableGSC before additional performance claims."
+}

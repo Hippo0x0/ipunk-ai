@@ -16,6 +16,10 @@ The home page supports search, category filtering and evidence-aware sorting. `/
 - [Set up headless Mac mini access](https://ipunk.cn/en/article/mac-mini-headless-remote-access/) covers Screen Sharing, SSH and restart checks before leaving a local model host unattended.
 - [Set up an external SSD for Mac mini](https://ipunk.cn/en/article/mac-mini-external-ssd/) covers format choices, file moves and connection checks when model files outgrow internal storage.
 
+## AI assistant comparisons
+
+- [Claude vs ChatGPT](https://ai.ipunk.cn/en/guides/claude-vs-chatgpt/) includes an identical synthetic task, original outputs and a local response checker; no global model ranking is inferred.
+
 ## Local media tools
 
 - [Video cropper](https://ai.ipunk.cn/en/guides/crop-video/) exports a repositioned square, portrait or landscape MP4 locally.
