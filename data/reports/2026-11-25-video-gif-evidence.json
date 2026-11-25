@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-25",
+  "input": "dist/evidence/video-compressor/motion-and-tone.mp4",
+  "outputs": [
+    {
+      "path": "dist/evidence/video-gif/trimmed-1s-to-3s.gif",
+      "sha256": "92e42bad7785053d89d6e2eea347fd60f7642be75b768d0a3416220ae7bd1820",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "gif",
+            "codec_type": "video",
+            "width": 480,
+            "height": 270,
+            "nb_frames": "20"
+          }
+        ],
+        "format": {
+          "duration": "2.000000",
+          "size": "265996"
+        }
+      },
+      "infinite_loop_extension": true,
+      "full_decode": "FFmpeg8.1.1 exit0"
+    },
+    {
+      "path": "dist/evidence/video-gif/default-3s.gif",
+      "sha256": "ffd1ca9ab26f4d64a44235dbadaf7b6135d46f417777e10c153cf3cc654de767",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "gif",
+            "codec_type": "video",
+            "width": 320,
+            "height": 180,
+            "nb_frames": "15"
+          }
+        ],
+        "format": {
+          "duration": "3.000000",
+          "size": "116699"
+        }
+      },
+      "infinite_loop_extension": true,
+      "full_decode": "FFmpeg8.1.1 exit0"
+    }
+  ],
+  "default_settings": {
+    "start": 0,
+    "length": 3,
+    "longest": 320,
+    "fps": 5
+  },
+  "trim_settings": {
+    "start": 1,
+    "length": 2,
+    "longest": 480,
+    "fps": 10
+  },
+  "default_decoded_frame_checksums": {
+    "count": 15,
+    "distinct": 15
+  },
+  "browser_cases": {
+    "start_outside": "99s start rejected; no download.",
+    "cancel": "10-second request from30-second source cancelled mid-process; no partial download.",
+    "offline_and_clamp": "With tab network disabled, start3.5s and requested length3s on4s source gave3 frames and0.5s; network restored.",
+    "reduced_motion": "Emulated reduce preference hid animation preview while keeping download; preference restored.",
+    "audio_only_input": "M4A rejected because it has no video track; no download.",
+    "layout": "390/1440px no page overflow; all in-page targets present.",
+    "no_js": "Tool hidden, enable-JS notice and original source link retained; JS and viewport restored."
+  },
+  "libraries": {
+    "Mediabunny": "1.66.4 MPL-2.0, existing unchanged distribution/source/license reused",
+    "gifenc": "1.0.3 MIT, unchanged bundle/source map/license self-hosted"
+  },
+  "qualification": "One desktop Chromium environment with original synthetic media. Not a subjective quality, speed or every-codec benchmark. GIF intentionally has no audio."
+}

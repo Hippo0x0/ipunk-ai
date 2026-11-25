@@ -78,7 +78,7 @@ export function renderEnglishHome(chineseHome) {
     if (englishHome.split(before).length !== 2) throw new Error(`Cannot derive English home: ${before}`);
     englishHome = englishHome.replace(before, after);
   }
-  return englishHome.replace("</main>", '<section class="section"><div class="wrap"><h2>Video tools and guides</h2><p><a href="/en/guides/best-ai-video-generator/">Compare AI video plans and budget retries</a> before choosing a service.</p><ul><li><a href="/en/guides/video-compressor/">Compress a video locally to MP4</a></li><li><a href="/en/guides/extract-audio-from-video/">Extract a soundtrack to M4A or WAV</a></li><li><a href="/en/guides/canva-ai-video-generator/">Create and check a Canva AI video clip</a></li><li><a href="/en/guides/image-to-video-ai-free/">Free image-to-video: a completed no-signup trial</a></li></ul></div></section>\n</main>');
+  return englishHome.replace("</main>", '<section class="section"><div class="wrap"><h2>Video tools and guides</h2><p><a href="/en/guides/best-ai-video-generator/">Compare AI video plans and budget retries</a> before choosing a service.</p><ul><li><a href="/en/guides/video-compressor/">Compress a video locally to MP4</a></li><li><a href="/en/guides/extract-audio-from-video/">Extract a soundtrack to M4A or WAV</a></li><li><a href="/en/guides/video-to-gif/">Turn a short video segment into GIF</a></li><li><a href="/en/guides/canva-ai-video-generator/">Create and check a Canva AI video clip</a></li><li><a href="/en/guides/image-to-video-ai-free/">Free image-to-video: a completed no-signup trial</a></li></ul></div></section>\n</main>');
 }
 
 export async function renderSnapshotFiles(root) {

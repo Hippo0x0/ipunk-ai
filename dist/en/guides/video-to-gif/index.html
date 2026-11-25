@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video to GIF Converter: Trim and Convert Locally | iPunk AI Radar</title>
+<meta name="description" content="Convert a video segment to an animated GIF in your browser without uploading it. Choose start, length, size and frame rate, then preview and download.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/video-to-gif/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "datePublished": "2026-11-25", "dateModified": "2026-11-25", "inLanguage": "en", "mainEntityOfPage": "https://ai.ipunk.cn/en/guides/video-to-gif/", "name": "Video to GIF Converter: Trim and Convert Locally", "applicationCategory": "MultimediaApplication", "operatingSystem": "Web", "isAccessibleForFree": true}</script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/en/guides/video-compressor/">Video tools</a></nav></div></header>
+<main class="wrap guide-main">
+<div class="guide-header"><h1>Video to GIF Converter: Trim and Convert Locally</h1><p class="guide-answer">Choose a video and a short segment, then create and download an animated GIF on your device. Start with 320 pixels and 5 fps for a smaller animation. GIF has no sound and may be larger than the source MP4.</p></div>
+<article class="article guide-article">
+
+<section id="convert"><h2>Convert a short video segment to GIF</h2>
+<form id="gif-tool" hidden><label>Video · up to 250 MB<input type="file" accept="video/*,.mp4,.mov,.webm" required></label>
+<label>Start time in seconds<input name="start" type="number" min="0" step="0.1" value="0" required></label>
+<label>Length in seconds · up to 10<input name="length" type="number" min="0.4" max="10" step="0.1" value="3" required></label>
+<label>Longest side<select name="longest"><option value="320">320 pixels · smaller</option><option value="480">480 pixels · more detail</option></select></label>
+<label>Frame rate<select name="fps"><option value="5">5 fps · smaller</option><option value="10">10 fps · smoother</option></select></label>
+<button type="submit">Create GIF</button> <button type="button" data-cancel disabled>Cancel</button>
+<progress value="0" max="1" aria-label="GIF progress"></progress><output aria-live="polite">Choose a video to start.</output><a hidden>Download GIF</a><img hidden alt="Generated GIF preview"></form>
+<noscript><p>Enable JavaScript to create a GIF locally. Instructions and test samples remain available below.</p></noscript>
+<p>Processing happens in your browser without uploading the video. The original file is unchanged. GIF has no audio and the result loops continuously; keep MP4 if you need sound. The preview respects a reduced-motion preference by staying hidden.</p></section>
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#convert">Convert a short video segment to GIF</a></li><li><a href="#settings">Choose the clip before increasing quality</a></li><li><a href="#check">Check the saved animation</a></li><li><a href="#test">Try an original sample first</a></li><li><a href="#trouble">If a video cannot be converted</a></li><li><a href="#scope">Processing and source information</a></li></ol></nav>
+<section id="settings"><h2>Choose the clip before increasing quality</h2>
+<p>Start with a short section, 320 pixels and 5 fps. Make sure it includes the action you want, then increase the size or frame rate if the result needs more detail. The tool preserves the frame shape without cropping or enlarging a small source.</p>
+<p>GIF uses indexed colors and can look rougher than the source video, especially in gradients or detailed footage. More pixels, frames and seconds usually mean a larger GIF. The tool reports the actual output size; converting MP4 to GIF does not guarantee a smaller file.</p>
+<p>If the requested length reaches beyond the end of the source, only the remaining video is used. A start outside the source is rejected. This tool samples frames; a low frame rate can omit brief movements.</p></section>
+<section id="check"><h2>Check the saved animation</h2>
+<ol><li>Wait for the download link. A full progress bar by itself is not a saved file.</li><li>Save the GIF and check its first and last moments, colors and loop transition.</li><li>Try it in the destination app. GIF playback, previews and size limits can differ between apps.</li></ol>
+<p>If you need to keep the soundtrack or reduce the size of a longer clip, use the <a href="/en/guides/video-compressor/">local MP4 compressor</a>. To save only the sound, use the <a href="/en/guides/extract-audio-from-video/">audio extractor</a>.</p></section>
+<section id="test"><h2>Try an original sample first</h2>
+<p><a href="/evidence/video-compressor/motion-and-tone.mp4" download>Download the four-second motion-and-tone video</a>, then convert it above. It is an original synthetic test pattern. The tone will not be present in the GIF.</p>
+<p id="gif-measurement">In our November 25, 2026 desktop Chromium test, the <a href="/evidence/video-gif/default-3s.gif" download>default three-second GIF</a> was 116,699 bytes, 320 × 180 pixels and 15 frames. All 15 decoded frames were distinct, and the file fully decoded. A <a href="/evidence/video-gif/trimmed-1s-to-3s.gif" download>second output from 1s to 3s</a> was 480 × 270 with 20 frames and a two-second duration. Both had an infinite-loop setting. These measurements apply to the shared synthetic source, not every video.</p></section>
+<section id="trouble"><h2>If a video cannot be converted</h2>
+<p>The tool needs a readable video track and a browser decoder for that format. For an unsupported file, try a current desktop browser or a desktop editor. Choose a source with one video track; audio is intentionally omitted from GIF.</p>
+<p>Shorten the selection or use the smaller setting if the device is slow or runs low on memory. Cancel stops the current conversion without creating a partial download. Encoded GIF timing is rounded to centiseconds, so a fractional selection can differ slightly in playback duration.</p></section>
+<section id="scope"><h2>Processing and source information</h2>
+<p>Video decoding uses self-hosted <a href="https://mediabunny.dev/">Mediabunny</a>, and GIF encoding uses <a href="https://github.com/mattdesl/gifenc">gifenc</a>. <a href="/vendor/mediabunny/LICENSE">MPL-2.0 license</a> · <a href="/vendor/mediabunny/mediabunny-1.66.4.tgz" download>Mediabunny source</a> · <a href="/vendor/gifenc/LICENSE">gifenc MIT license</a>.</p>
+<p>Browser codec support varies. Use the public sample to check this device before choosing other footage. The tool adds no watermark, does not preserve video metadata or HDR appearance, and makes no promise of better visual quality.</p></section><script type="module" src="/video-gif.mjs"></script>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><span>Published <time datetime="2026-11-25">Nov 25, 2026</time></span></div></footer>
+</body></html>

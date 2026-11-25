@@ -16,6 +16,14 @@ The home page supports search, category filtering and evidence-aware sorting. `/
 - [Set up headless Mac mini access](https://ipunk.cn/en/article/mac-mini-headless-remote-access/) covers Screen Sharing, SSH and restart checks before leaving a local model host unattended.
 - [Set up an external SSD for Mac mini](https://ipunk.cn/en/article/mac-mini-external-ssd/) covers format choices, file moves and connection checks when model files outgrow internal storage.
 
+## Local media tools
+
+- [Video compressor](https://ai.ipunk.cn/en/guides/video-compressor/) re-encodes on the device and compares actual output size.
+- [Audio extractor](https://ai.ipunk.cn/en/guides/extract-audio-from-video/) copies AAC to M4A or decodes WAV.
+- [Video to GIF](https://ai.ipunk.cn/en/guides/video-to-gif/) samples a short segment with explicit size and frame-rate controls.
+
+Original before/after fixtures and dated validation reports are retained in dist/evidence/ and data/reports/. These tools are not proof of search growth.
+
 ## Update project data
 
 ```bash

@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-25",
+  "keyword": "video to gif",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "third_party": {
+    "monthly_estimate": 110000,
+    "difficulty": 32,
+    "source": "Original OpenSEO ai-video-generator discovery rows observed2026-11-24 in this chat; complete response not retained.",
+    "qualification": "Historical third-party estimate, not official volume or clicks; related variants not summed."
+  },
+  "official_monthly_volume": null,
+  "official_demand": {
+    "source": "Google Trends rendered chart and table",
+    "observed_at": "2026-11-25",
+    "url": "https://trends.google.com/trends/explore?geo=US&q=video%20to%20gif,video%20to%20gif%20converter&hl=en",
+    "scope": "US,Web Search,past12months",
+    "series": [
+      "video to gif",
+      "video to gif converter"
+    ],
+    "means": [
+      51,
+      4
+    ],
+    "weekly": {
+      "2026-11-01": [
+        33,
+        4
+      ],
+      "2026-11-08": [
+        38,
+        3
+      ],
+      "2026-11-15": [
+        37,
+        3
+      ],
+      "2026-11-22 (partial)": [
+        35,
+        3
+      ]
+    },
+    "qualification": "Within-chart relative indices, not monthly counts."
+  },
+  "competition": {
+    "browser_url": "https://www.google.com/search?q=video+to+gif&gl=us&hl=en&pws=0",
+    "qualification": "US/en-targeted browser parameters, not nationally certified positions. No CTR estimate."
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-25",
+    "task": "Select a video segment and download a real multi-frame GIF locally.",
+    "answer_gap": "Search intent is a functioning converter; existing owned pages cannot complete it. Established competitors already provide this task, including local processing. Our bounded contribution is a simple integrated route with reproducible source/output media and decoded animation checks.",
+    "unique_value": "Working clip/frame-size/frame-rate tool with two actual downloaded GIFs,15/20-frame independent metadata and full-decode checks, distinct-frame verification and guarded cancel/offline/bounds/reduced-motion behavior.",
+    "competitor_urls": [
+      "https://ezgif.com/video-to-gif",
+      "https://www.adobe.com/express/feature/video/convert/video-to-gif",
+      "https://www.freeconvert.com/convert/video-to-gif"
+    ],
+    "evidence_path": "data/reports/2026-11-25-video-gif-evidence.json",
+    "intent_audit_path": "data/reports/2026-11-25-video-gif-intent.md",
+    "distinct_intent": true
+  },
+  "acceptance": "Check ordinary indexing and complete comparable URL-level Web windows; deployment is not proof of ranking, clicks or revenue."
+}
