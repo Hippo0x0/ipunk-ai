@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-25",
+  "keyword": "perplexity vs chatgpt",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "official_monthly_volume": null,
+  "keyword_difficulty": null,
+  "official_demand_path": "data/reports/2026-11-25-perplexity-trends.json",
+  "competition": {
+    "query": "https://www.google.com/search?q=perplexity+vs+chatgpt&gl=us&hl=en&pws=0",
+    "qualification": "ActualUS/en-targetedbrowserquery;physical/nationalranknotcertified. Zapierobservedinresults;ToolSweepreviewedthroughadditionalwebcontext. Existingcompetitorstestsourcesalready.",
+    "reviewed": [
+      "https://zapier.com/blog/perplexity-vs-chatgpt/",
+      "https://thetoolsweep.com/compare/perplexity-vs-chatgpt/"
+    ]
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-25",
+    "task": "Compare two AI web-research routes by completing the same sourced questions,checking actual primary passages,and preserving per-claim review notes.",
+    "answer_gap": "The existing owned supplied-text comparison does not check external research URLs or keep citation-audit records. Market competitors already compare sources;this page adds a bounded inspectable fixture,access/mode provenance and a local manual-audit worksheet,without a claim of global exclusivity.",
+    "unique_value": "Actual signed-in answers and anonymousaccessfailure,7claimprimarysourceverification,3inlineURLspercompletedrun,extraqualificationreview,downloaded7/8rowauditroundtrips and guarded localimport/export; no automatictruthscore.",
+    "competitor_urls": [
+      "https://zapier.com/blog/perplexity-vs-chatgpt/",
+      "https://thetoolsweep.com/compare/perplexity-vs-chatgpt/"
+    ],
+    "evidence_path": "data/reports/2026-11-25-perplexity-chatgpt-evidence.json",
+    "intent_audit_path": "data/reports/2026-11-25-perplexity-chatgpt-intent.md",
+    "distinct_intent": true
+  },
+  "investment_decision": "One AI-intrinsic research comparison; preserve daily snapshot and Apple observation. Indexing/click/impression/profit results await comparableGSCwindows."
+}

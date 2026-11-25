@@ -1,0 +1,7 @@
+Search the web and answer the three questions below in English. Use primary sources only: RFC Editor/IETF, NASA, and the Python 3.14 documentation. Give a clickable source link immediately after each numbered answer. Use your own words; do not quote source sentences. Keep the whole answer under 180 words. If the required source cannot be opened or does not establish a claim, say so instead of inventing a citation.
+
+1. Under RFC 8259, can a JSON text consist only of the number 42? Does the standard say object member names MUST be unique or SHOULD be unique? Preserve that distinction.
+2. According to NASA, what are the Apollo 11 launch, lunar-landing and splashdown dates? Label the three events separately; do not substitute the date of a first step for the landing.
+3. In Python 3.14 documentation, since which Python version is dictionary insertion order guaranteed, and does updating an existing key change its position?
+
+Please actually search for the sources rather than answering only from memory.

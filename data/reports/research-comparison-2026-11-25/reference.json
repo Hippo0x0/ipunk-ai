@@ -1,0 +1,13 @@
+{
+  "checked_on": "2026-11-25",
+  "claims": [
+    {"id":"json-scalar","expected":"42 alone can be a JSON text; the text can contain a single serialized value.","url":"https://www.rfc-editor.org/rfc/rfc8259.txt","location":"Section 2: JSON-text = ws value ws"},
+    {"id":"json-unique","expected":"Object member names SHOULD be unique; do not substitute MUST.","url":"https://www.rfc-editor.org/rfc/rfc8259.txt","location":"Section 4"},
+    {"id":"apollo-launch","expected":"Apollo 11 launch: July 16, 1969.","url":"https://www.nasa.gov/mission/apollo-11/","location":"Launch field"},
+    {"id":"apollo-landing","expected":"Apollo 11 lunar landing: July 20, 1969.","url":"https://www.nasa.gov/history/apollo-11-mission-overview/","location":"July 20 descent and landing account"},
+    {"id":"apollo-splashdown","expected":"Apollo 11 splashdown: July 24, 1969.","url":"https://www.nasa.gov/mission/apollo-11/","location":"Splashdown field"},
+    {"id":"dict-guarantee","expected":"Dictionary insertion order is guaranteed since Python 3.7; CPython 3.6 implementation detail is a different claim.","url":"https://docs.python.org/3.14/builtins/stdtypes.html","location":"Mapping Types — dict, changed in version 3.7"},
+    {"id":"dict-update","expected":"Updating an existing key does not change its position; deletion and re-insertion is a separate operation.","url":"https://docs.python.org/3.14/builtins/stdtypes.html","location":"Mapping Types — dict, insertion-order paragraph"}
+  ],
+  "qualification":"Human source-check reference, not an automated semantic grader. The seven atomic facts belong to one small three-question trial. No general accuracy percentage or winner is established."
+}

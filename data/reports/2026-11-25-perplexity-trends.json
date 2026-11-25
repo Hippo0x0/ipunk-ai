@@ -1,0 +1,35 @@
+{
+  "status": "available",
+  "checked_at": "2026-11-25",
+  "official_url": "https://trends.google.com/trends/explore?geo=US&q=best%20ai%20image%20generator,best%20ai%20coding%20tools,claude%20code%20vs%20cursor,perplexity%20vs%20chatgpt,best%20ai%20voice%20generator&hl=en",
+  "scope": {
+    "geo": "US",
+    "language": "en",
+    "window": "past-12-months",
+    "property": "web"
+  },
+  "metric_note": "Reviewed rendered table captured in same-day AI shortlist;within-chartrelativeindex only,notmonthlyvolume. LatestcompleteweekNovember15. No cross-chart arithmetic orvolumeextrapolation.",
+  "editorial_review": {
+    "status": "approved",
+    "reviewed_at": "2026-11-25",
+    "basis": "Original rendered officialgroupBtable readearlier inthisconversation and retainedinwebsites/data/reports/2026-11-25-ai-topic-shortlist.json. Exacttermmean19,completeNov15value5."
+  },
+  "observations": [
+    {
+      "candidate_id": "perplexity-vs-chatgpt",
+      "query": "perplexity vs chatgpt",
+      "status": "available",
+      "metric_type": "google_trends_relative_interest_complete_week",
+      "value": 5,
+      "period": "2026-11-15",
+      "annual_chart_mean": 19,
+      "observed_at": "2026-11-25",
+      "scope": {
+        "geo": "US",
+        "language": "en",
+        "window": "past-12-months",
+        "property": "web"
+      }
+    }
+  ]
+}

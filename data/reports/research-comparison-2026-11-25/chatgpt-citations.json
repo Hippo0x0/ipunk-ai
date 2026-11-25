@@ -1,0 +1,23 @@
+{
+  "capture": "Visible assistant answer text and DOM hrefs. No clipboard text, private history, hidden state or API payload used.",
+  "default": {
+    "links": [
+      "https://www.rfc-editor.org/rfc/rfc8259.html?utm_source=chatgpt.com",
+      "https://www.nasa.gov/specials/apollo50th/missions.html?utm_source=chatgpt.com",
+      "https://docs.python.org/3.14/library/stdtypes.html?utm_source=chatgpt.com#dict"
+    ],
+    "mode": "Fresh normal conversation, same prompt requesting web search; actual retrieval traces not verified.",
+    "required_claims": "Seven requested atomic facts match independently checked primary references."
+  },
+  "explicit_search": {
+    "links": [
+      "https://www.rfc-editor.org/rfc/rfc8259.html?utm_source=chatgpt.com",
+      "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo11info.html?utm_source=chatgpt.com",
+      "https://docs.python.org/3.14/library/stdtypes.html?utm_source=chatgpt.com#dict"
+    ],
+    "mode": "Fresh conversation; Add > Web search selected and search chip confirmed before submitting same question text.",
+    "required_claims": "Seven requested atomic facts match independently checked primary references.",
+    "extra_review": "The sentence saying July20 is not the first-step date needs timezone/source clarification; the cited NASA page gives launch/landing/return timestamps but no first-step date. Do not call the entire answer false."
+  },
+  "scope": "Two ChatGPT runs. Anonymous and signed-in Perplexity attempts are retained separately. Paid plans, model IDs, internal retrieval traces and latency were not benchmarked."
+}

@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "mode": "manual_review",
+  "automated_fact_check": false,
+  "claims": [
+    {
+      "text": "42 alone can be a JSON text; the text can contain a single serialized value.",
+      "source_url": "https://www.rfc-editor.org/rfc/rfc8259.html?utm_source=chatgpt.com",
+      "status": "supported",
+      "notes": "Section 2: JSON-text = ws value ws; primary page read manually on2026-11-25. Required claim only; not an automatic verdict."
+    },
+    {
+      "text": "Object member names SHOULD be unique; do not substitute MUST.",
+      "source_url": "https://www.rfc-editor.org/rfc/rfc8259.html?utm_source=chatgpt.com",
+      "status": "supported",
+      "notes": "Section 4; primary page read manually on2026-11-25. Required claim only; not an automatic verdict."
+    },
+    {
+      "text": "Apollo 11 launch: July 16, 1969.",
+      "source_url": "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo11info.html?utm_source=chatgpt.com",
+      "status": "supported",
+      "notes": "Launch field; primary page read manually on2026-11-25. Required claim only; not an automatic verdict."
+    },
+    {
+      "text": "Apollo 11 lunar landing: July 20, 1969.",
+      "source_url": "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo11info.html?utm_source=chatgpt.com",
+      "status": "supported",
+      "notes": "July 20 descent and landing account; primary page read manually on2026-11-25. Required claim only; not an automatic verdict."
+    },
+    {
+      "text": "Apollo 11 splashdown: July 24, 1969.",
+      "source_url": "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo11info.html?utm_source=chatgpt.com",
+      "status": "supported",
+      "notes": "Splashdown field; primary page read manually on2026-11-25. Required claim only; not an automatic verdict."
+    },
+    {
+      "text": "Dictionary insertion order is guaranteed since Python 3.7; CPython 3.6 implementation detail is a different claim.",
+      "source_url": "https://docs.python.org/3.14/library/stdtypes.html?utm_source=chatgpt.com#dict",
+      "status": "supported",
+      "notes": "Mapping Types — dict, changed in version 3.7; primary page read manually on2026-11-25. Required claim only; not an automatic verdict."
+    },
+    {
+      "text": "Updating an existing key does not change its position; deletion and re-insertion is a separate operation.",
+      "source_url": "https://docs.python.org/3.14/library/stdtypes.html?utm_source=chatgpt.com#dict",
+      "status": "supported",
+      "notes": "Mapping Types — dict, insertion-order paragraph; primary page read manually on2026-11-25. Required claim only; not an automatic verdict."
+    },
+    {
+      "text": "July20 is not the first-step date.",
+      "source_url": "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo11info.html?utm_source=chatgpt.com",
+      "status": "not-supported",
+      "notes": "Cited NASA page lists launch,landing andEarth return,not first-step timing. Timezone and an additional source are needed for this extra qualification; do not infer that every required date is wrong."
+    }
+  ]
+}

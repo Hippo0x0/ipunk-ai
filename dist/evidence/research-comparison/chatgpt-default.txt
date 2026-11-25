@@ -1,0 +1,13 @@
+1. RFC 8259: Yes. 42 alone is a valid JSON text because a JSON value may be a number; an object or array is not required. Object member names SHOULD be unique, not MUST be unique. This distinction means uniqueness is recommended, not an absolute requirement. RFC 8259, Sections 2–4.
+
+2. Apollo 11 dates (NASA):
+
+Launch: July 16, 1969.
+
+Lunar landing: July 20, 1969.
+
+Splashdown: July 24, 1969.
+
+These are three distinct mission events; July 20 is the lunar touchdown date, not merely the date of the first moonwalk. NASA — Apollo Missions.
+
+3. Python 3.14: Dictionary insertion order has been guaranteed since Python 3.7. Python 3.6 preserved insertion order in CPython, but it was not yet a language guarantee. Updating an existing key does not change its position. Python 3.14 — Built-in Types, Dictionary documentation.

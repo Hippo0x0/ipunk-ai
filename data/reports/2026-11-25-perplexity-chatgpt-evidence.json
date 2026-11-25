@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-25",
+  "scope": "One anonymous Perplexity access attempt,one signed-in Perplexity Search run,andtwo ChatGPT runs(ordinary andexplicitWebsearch). Same three questions,seven required atomicfacts.",
+  "files": {
+    "perplexity-audit.json": {
+      "bytes": 2686,
+      "sha256": "b6b3044a211313a01b7321f0cd372a28f75e4e6cf6e977757bc9d1b09077ed42"
+    },
+    "downloaded-audit.json": {
+      "bytes": 3060,
+      "sha256": "41327aa515d81d9c92a076d4853985d8e656da5905769ed94904f6cce833c035"
+    },
+    "prompt.txt": {
+      "bytes": 1011,
+      "sha256": "a0be98d019b3a0d1c5b26dec6e1414664b5216fa113b61f56f33e6dc05afcdd4"
+    },
+    "reference.json": {
+      "bytes": 1697,
+      "sha256": "c5dda63cbce176e02ab7bedaab0f1d7e899cedfe7018250ae78693ef7190c724"
+    },
+    "perplexity-answer.txt": {
+      "bytes": 981,
+      "sha256": "327fd407ba1c5a016170059d96b8dd6512476cd7bf784a50cb740cf9a99e6d29"
+    },
+    "chatgpt-search.txt": {
+      "bytes": 807,
+      "sha256": "3f622cf861f9a3cf56b7f508c67f144e50ec03b143d7002d6a206e993261f8b4"
+    },
+    "chatgpt-default.txt": {
+      "bytes": 829,
+      "sha256": "b547e30c63ad0249d0d05a83e2683aaf60907eade2bd74d3239e99e45221ee14"
+    },
+    "chatgpt-audit.json": {
+      "bytes": 3066,
+      "sha256": "1a0b4ec4b97854901b015cd480b1efe4eb74f4b070cb3c8aae3645df42489a87"
+    },
+    "perplexity-citations.json": {
+      "bytes": 838,
+      "sha256": "7250367d4f057289e3b6dccbcbabb2740268e24264d978739e20a1ab8ce84c22"
+    },
+    "downloaded-perplexity-audit.json": {
+      "bytes": 2686,
+      "sha256": "b6b3044a211313a01b7321f0cd372a28f75e4e6cf6e977757bc9d1b09077ed42"
+    },
+    "chatgpt-citations.json": {
+      "bytes": 1595,
+      "sha256": "f772f933cd291c293f10644a263998d523c493871d39cd8475a6afcae5441e65"
+    }
+  },
+  "accounts": {
+    "perplexity": "Existing account loggedin through authorized basicGoogleprofile;Freeplan shown;Computerpreview skipped;no subscriptionbought. Personal identifiers andOAuthdetails excluded.",
+    "chatgpt": "Signed-inFree UI;underlyingmodel notestablished.",
+    "model_matching": "No modelIDs established or matched; runsnot simultaneous. US/enisresearchtarget,not demonstrated accountlocation."
+  },
+  "observations": {
+    "perplexity_anonymous": "OnlySign upandrepeat returned;no researchanswertoscore.",
+    "perplexity_signed_in": "Completedanswerwith3inlineprimaryhrefs;UI count6sources. Three actualdestinations separatelyread,notall6countedasindependentverifiedsources.",
+    "chatgpt_default": "Completedvisibleanswer,3primaryhrefs,7requiredclaimssupported.",
+    "chatgpt_explicit_search": "Websearchchipselectionconfirmedbeforefreshsubmission;3primaryhrefs,7requiredclaimssupported. Additional first-stepdatequalifiernotestablishedbycitedNASAtimestamppage;needs timezone/sourceclarification.",
+    "retrieval_limit": "InspectingvisiblelinksandUI mode doesnot establish aninternalretrievaltrace. None retained orclaimed.",
+    "latency_limit": "UI durationsarenotindependenttiming;no speedwinneror latencybenchmark."
+  },
+  "primary_reference_checks": [
+    "RFC8259 sections2/4 allow serializedscalar42and useSHOULDunique;section13alsohas42example.",
+    "NASAmissionandmissionoverview supportJuly16launch,July20lunarlanding,July24splashdown.",
+    "Python3.14stdtypesanddatamodel support3.7guarantee,3.6CPython-onlydetail,existingkeyupdateorderpreserved."
+  ],
+  "audit_method": "Humanread sourcetextandrecordedperclaimentries. No automaticfactvalidation oroverallaccuracypercentage. Downloadable firstanswersandactualhrefs retained.",
+  "qa": {
+    "regressions": 49,
+    "static_html": 39,
+    "roundtrip": "Actual8-rowChatGPTauditand7-rowPerplexityaudit imported,downloadedandindependentlyJSON-compared. Manualmode/automated_fact_check=false preserved.",
+    "failure_controls": "Badjavascript-sourceimportrejectedwithoutoverwriting8rows. Reviewedentrywithoutsource/notesblocked. Add/remove8throwrestored7unchangedrows. Unitchecksbound20rows/100kB,invalidstates,nonobjectJSON,HTML-lookingdataandcredentialURLs.",
+    "mobile": "390inner/client/scroll390;table366,7fieldsets,allanchorspresent.",
+    "desktop": "1440inner/scroll1440,table900.",
+    "flow": "Enterhighlightswithoutchanginghash;zoom-in/out;separateauditlinkreached#audit,settledtargettop95px.",
+    "no_js": "Worksheethidden;prompt,9evidencelinksand3flowlinksretained.",
+    "restored": "TemporaryviewportclearedandJavaScriptreenabled. No productionbrowseranalyticsrun."
+  },
+  "qualification": "One small stable-factexercise;not a representativequalitytest,paidplanreview orproof ofrank/click/profitgrowth."
+}

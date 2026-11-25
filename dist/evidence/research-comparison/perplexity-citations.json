@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-25",
+  "account_plan_label": "Free",
+  "entry": "Fresh signed-in session,Search selected;Computer preview skipped. No paid plan bought or specific model selected.",
+  "model": null,
+  "capture": "Visible completed answer text and DOM hrefs,not hidden API data.",
+  "inline_links": [
+    {
+      "text": "rfc-editor",
+      "url": "https://www.rfc-editor.org/rfc/rfc8259.txt"
+    },
+    {
+      "text": "nasa",
+      "url": "https://www.nasa.gov/history/apollo-11-mission-overview/"
+    },
+    {
+      "text": "docs.python",
+      "url": "https://docs.python.org/3.14/reference/datamodel.html"
+    }
+  ],
+  "source_count_shown_by_ui": 6,
+  "qualification": "UI showed6sources,but3inline destinations were extracted and checked. Counts are not an accuracy percentage or unique-publisher count. No latency benchmark."
+}

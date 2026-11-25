@@ -1,0 +1,13 @@
+1. Yes. RFC 8259 permits a JSON text to contain a single value, and that value can be a number such as 42. Object member names SHOULD be unique, not MUST be unique. This distinction is important: uniqueness is recommended, not an absolute requirement. RFC 8259, Sections 2 and 4.
+
+2. Apollo 11 dates (1969):
+
+Launch: July 16
+
+Lunar landing: July 20
+
+Splashdown: July 24
+
+These are three distinct mission events; July 20 is the lunar touchdown date, not the first-step date. NASA, Apollo 11 mission information.
+
+3. Python 3.7. Dictionary insertion order became a guaranteed language feature in Python 3.7; in CPython 3.6, it was only an implementation detail. Updating an existing key does not change its position. Deleting and reinserting it moves it to the end. Python 3.14 documentation, Built-in Types.

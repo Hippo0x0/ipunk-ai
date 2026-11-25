@@ -1,0 +1,14 @@
+Yes. Under RFC 8259, 42 alone is a valid JSON text: the top-level value need not be an object or array, and Section 13 explicitly includes this example. Object member names SHOULD be unique—not MUST. Uniqueness is recommended for interoperability, rather than an absolute requirement; duplicate names can produce inconsistent receiver behavior.
+rfc-editor
+
+Apollo 11’s events occurred on these separately identified dates:
+
+Launch: July 16, 1969.
+
+Lunar landing: July 20, 1969, when Eagle touched down in the Sea of Tranquility—not when Armstrong later stepped onto the surface.
+
+Splashdown: July 24, 1969, in the Pacific Ocean.
+nasa
+
+The Python 3.14 documentation identifies Python 3.7 as the version since which dictionary insertion order is a language guarantee; CPython 3.6 preserved it only as an implementation detail. Updating the value associated with an existing key does not move that key. Deleting and reinserting a key, however, places it at the end.
+docs.python

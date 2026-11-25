@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "mode": "manual_review",
+  "automated_fact_check": false,
+  "claims": [
+    {
+      "text": "42 alone can be a JSON text; the text can contain a single serialized value.",
+      "source_url": "https://www.rfc-editor.org/rfc/rfc8259.txt",
+      "status": "supported",
+      "notes": "Section 2: JSON-text = ws value ws; cited primary page manually opened and read on2026-11-25. This verdict is a reviewer entry,not an automatic check."
+    },
+    {
+      "text": "Object member names SHOULD be unique; do not substitute MUST.",
+      "source_url": "https://www.rfc-editor.org/rfc/rfc8259.txt",
+      "status": "supported",
+      "notes": "Section 4; cited primary page manually opened and read on2026-11-25. This verdict is a reviewer entry,not an automatic check."
+    },
+    {
+      "text": "Apollo 11 launch: July 16, 1969.",
+      "source_url": "https://www.nasa.gov/history/apollo-11-mission-overview/",
+      "status": "supported",
+      "notes": "Launch field; cited primary page manually opened and read on2026-11-25. This verdict is a reviewer entry,not an automatic check."
+    },
+    {
+      "text": "Apollo 11 lunar landing: July 20, 1969.",
+      "source_url": "https://www.nasa.gov/history/apollo-11-mission-overview/",
+      "status": "supported",
+      "notes": "July 20 descent and landing account; cited primary page manually opened and read on2026-11-25. This verdict is a reviewer entry,not an automatic check."
+    },
+    {
+      "text": "Apollo 11 splashdown: July 24, 1969.",
+      "source_url": "https://www.nasa.gov/history/apollo-11-mission-overview/",
+      "status": "supported",
+      "notes": "Splashdown field; cited primary page manually opened and read on2026-11-25. This verdict is a reviewer entry,not an automatic check."
+    },
+    {
+      "text": "Dictionary insertion order is guaranteed since Python 3.7; CPython 3.6 implementation detail is a different claim.",
+      "source_url": "https://docs.python.org/3.14/reference/datamodel.html",
+      "status": "supported",
+      "notes": "Data model: Dictionaries,insertion-order paragraph andversion3.7note; cited primary page manually opened and read on2026-11-25. This verdict is a reviewer entry,not an automatic check."
+    },
+    {
+      "text": "Updating an existing key does not change its position; deletion and re-insertion is a separate operation.",
+      "source_url": "https://docs.python.org/3.14/reference/datamodel.html",
+      "status": "supported",
+      "notes": "Data model: Dictionaries,insertion-order paragraph andversion3.7note; cited primary page manually opened and read on2026-11-25. This verdict is a reviewer entry,not an automatic check."
+    }
+  ]
+}
