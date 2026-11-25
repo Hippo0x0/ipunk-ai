@@ -1,0 +1,140 @@
+{
+  "test_date": "2026-11-25",
+  "source_checked_at": "2026-11-25",
+  "content_edit_date": "2026-11-25",
+  "deployment": "Recorded separately after live verification.",
+  "bundle": "data/reports/gemini-images-2026-11-25/",
+  "public_bundle": "dist/evidence/gemini-chatgpt-images/",
+  "observations": {
+    "date": "2026-11-25",
+    "entry_points": {
+      "gemini": "Signed-in Gemini web,Automatic mode,Create images selected,two fresh temporary conversations. Subscription entitlement not confirmed.",
+      "chatgpt": "Signed-in ChatGPT web UI showed Free. Two fresh ordinary conversations with Create image selected. Image engine identifiers not established.",
+      "temporary_entry": "Create image was not selectable in ChatGPT Temporary Chat in this session; it was selectable in an ordinary newchat. No generation was submitted through the disabled entry.",
+      "scope": "Same prompt text per case; settings/plans/models not matched. Existing personalization was not controlled. No API or new subscription purchased."
+    },
+    "capture": {
+      "method": "Displayed generated image assets exported through browser media capture. Original captured bytes retained with embedded metadata.",
+      "full_size_limit": "Gemini full-size download was requested but its download event was not captured within20seconds. Displayed image retained instead. No product failure ormaximum-resolution inference.",
+      "provenance": "Metadata retained; embedded credentials not cryptographically verified.",
+      "review_method": "Codex visual inspection and independent full-file decoding; no blinded human panel,automated OCRaccuracy or aesthetic score."
+    },
+    "cases": {
+      "mugs": {
+        "prompt_file": "mugs-prompt.txt",
+        "checks": [
+          "Three visually matching teal mugs in one row",
+          "Each visible handle points right",
+          "Exact uppercase MUG TEST 2048 on one line",
+          "No additional visible writing or decorative objects in retained samples"
+        ],
+        "gemini_file": "gemini-mugs.webp",
+        "chatgpt_file": "chatgpt-mugs.png",
+        "observation": "Both retained first outputs meet these visible count,direction andtext conditions. Mug pixel-identity and calibrated color accuracy were not measured."
+      },
+      "poster": {
+        "prompt_file": "poster-prompt.txt",
+        "expected_lines": [
+          "NIGHT SKY CLUB",
+          "FRIDAY 18 DECEMBER 2026",
+          "DOORS 19:30 UTC",
+          "BRING A NOTEBOOK"
+        ],
+        "gemini_file": "gemini-poster.webp",
+        "chatgpt_file": "chatgpt-poster.png",
+        "observation": "Both retained first outputs show all four lines,in the requested order,with the date/year and19:30UTC intact. Letter weight,spacing andborder width differ; no overall design score assigned.",
+        "fictional": "Synthetic poster,not an actual event announcement."
+      }
+    },
+    "media_files": {
+      "chatgpt-mugs.png": {
+        "sha256": "e0c0b49c93a457c2fac05e074f40f438bc4e2cc52f08aaf4348012d0f2f42116",
+        "bytes": 1110319,
+        "format": "png",
+        "width": 1254,
+        "height": 1254,
+        "chunks": [
+          "IHDR",
+          "caBX",
+          "IDAT",
+          "IEND"
+        ],
+        "known_account_identifier_scan": "none found",
+        "decode_check": "Full decode exited0; original captured file retained unchanged."
+      },
+      "chatgpt-poster.png": {
+        "sha256": "f4b550ee620c465627c3b28fb25b88aed138728e0ccb757c55fe77abda17c5cb",
+        "bytes": 1248250,
+        "format": "png",
+        "width": 1254,
+        "height": 1254,
+        "chunks": [
+          "IHDR",
+          "caBX",
+          "IDAT",
+          "IEND"
+        ],
+        "known_account_identifier_scan": "none found",
+        "decode_check": "Full decode exited0; original captured file retained unchanged."
+      },
+      "gemini-mugs.webp": {
+        "sha256": "273cbd6c285a4e8c42d41e2fd02158abb46db9d9dc57063bab83072d246e3524",
+        "bytes": 48616,
+        "format": "webp",
+        "width": 1024,
+        "height": 1024,
+        "chunks": [
+          "VP8X",
+          "VP8 ",
+          "EXIF",
+          "C2PA"
+        ],
+        "known_account_identifier_scan": "none found",
+        "decode_check": "Full decode exited0; original captured file retained unchanged."
+      },
+      "gemini-poster.webp": {
+        "sha256": "d82596f51ff1c06e8504ed5b5ccbadc0dc74cf3a303aaa357e522556e8fa319c",
+        "bytes": 56564,
+        "format": "webp",
+        "width": 1024,
+        "height": 1024,
+        "chunks": [
+          "VP8X",
+          "VP8 ",
+          "EXIF",
+          "C2PA"
+        ],
+        "known_account_identifier_scan": "none found",
+        "decode_check": "Full decode exited0; original captured file retained unchanged."
+      }
+    },
+    "qualification": "Two one-shot creation briefs per app,four first images. No retries,edits,OCR test,latency benchmark,quota measurement or general provider winner. File dimensions describe retained captures,not maximum exports.",
+    "ui_language": "Chinese controls; English briefs and output text."
+  },
+  "official_sources": [
+    "https://support.google.com/gemini/answer/14286560?co=GENIE.PlatformDesktop&hl=en",
+    "https://learn.chatgpt.com/docs/image-generation?site_variant=chatgpt"
+  ],
+  "local_qa": {
+    "desktop_width": 1440,
+    "desktop_scroll_width": 1440,
+    "desktop_columns": "439px 439px",
+    "mobile_width": 390,
+    "mobile_scroll_width": 390,
+    "mobile_columns": "366px",
+    "all_four_images_decoded_in_browser": true,
+    "native_svg_keyboard_enter_highlight": true,
+    "node_does_not_navigate": true,
+    "zoom_in_out": true,
+    "separate_step_link_target_top_px": 95,
+    "missing_fragment_targets": 0,
+    "no_javascript": {
+      "images": 4,
+      "prompt_blocks": 2,
+      "first_answer_retained": true
+    },
+    "temporary_emulation_and_script_disabling_restored": true
+  },
+  "screenshots": "Provider UI screenshots are not published. Generated outputs are direct assets, unchanged, with metadata retained. No redrawn interface.",
+  "limitations": "Two prompts once per app; account plans/modes differ, hidden engine IDs unknown; no blind evaluation, OCR/editing/latency benchmark or generalized winner. Displayed media export not verified maximum-size download. No actual search-performance result yet."
+}

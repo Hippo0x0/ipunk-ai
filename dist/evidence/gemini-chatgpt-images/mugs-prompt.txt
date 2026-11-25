@@ -1,0 +1,1 @@
+Create one square, clean flat illustration on a plain white background. Show exactly three identical teal ceramic mugs in a single left-to-right row. Every mug handle must point to the right. Below the mugs, render exactly this uppercase text on one centered line: "MUG TEST 2048". No other words, labels, logos or decorative objects.

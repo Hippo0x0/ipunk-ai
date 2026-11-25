@@ -18,6 +18,8 @@ The home page supports search, category filtering and evidence-aware sorting. `/
 
 ## AI assistant comparisons
 
+- [Gemini vs ChatGPT image generation](https://ai.ipunk.cn/en/guides/gemini-vs-chatgpt/) keeps four first-output captures and two exact briefs; no overall image-quality winner is inferred.
+
 - [Perplexity vs ChatGPT for research](https://ai.ipunk.cn/en/guides/perplexity-vs-chatgpt/) retains actual source links and human claim checks, plus a local audit worksheet.
 
 - [Claude vs ChatGPT](https://ai.ipunk.cn/en/guides/claude-vs-chatgpt/) includes an identical synthetic task, original outputs and a local response checker; no global model ranking is inferred.

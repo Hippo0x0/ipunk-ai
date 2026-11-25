@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-25",
+  "keyword": "gemini vs chatgpt",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "official_monthly_volume": null,
+  "keyword_difficulty": null,
+  "official_demand_path": "2026-11-25-gemini-trends.json",
+  "competition": {
+    "query": "https://www.google.com/search?q=gemini+vs+chatgpt+image+generation&gl=us&hl=en&pws=0",
+    "qualification": "Actual US/en-targeted rendered SERP; no certified national rank or fixed physical location. MindStudio reviewed methodology:30prompts,5categories,API access where available,defaults unless noted. Other observed results included Zapier,DEV,Reddit,GPTHuman and3dGround; no claims of having tested their results.",
+    "reviewed": [
+      "https://www.mindstudio.ai/blog/gpt-image-2-vs-gemini-image-generation"
+    ]
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-25",
+    "task": "Choose and test an AI web image creator using identical object-count and exact-lettering briefs, then inspect retained first results.",
+    "answer_gap": "Market competitors already test image models. The reviewed MindStudio comparison uses API access where available and thirty prompts; it does not establish the captured outputs, entry state or account modes of these specific web-app sessions. Existing owned text/research comparisons do not answer image-creation needs.",
+    "unique_value": "Four unchanged first app outputs from two exact downloadable fictional briefs, visual count/lettering observations, file hashes and decode records, observed temporary-chat entry limitation, and explicit capture/plan/model limits. No overall quality winner or novelty claim over all reviews.",
+    "competitor_urls": [
+      "https://www.mindstudio.ai/blog/gpt-image-2-vs-gemini-image-generation"
+    ],
+    "evidence_path": "data/reports/2026-11-25-gemini-chatgpt-evidence.json",
+    "intent_audit_path": "data/reports/2026-11-25-gemini-chatgpt-intent.md",
+    "distinct_intent": true
+  },
+  "investment_decision": "One intrinsically AI creation comparison; generic media tools paused. Apple focused observation and existing page experiments preserved. Parent demand is positive but absolute scale and image-specific share unknown. Deployment is not a growth outcome."
+}

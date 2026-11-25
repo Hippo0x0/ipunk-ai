@@ -1,0 +1,62 @@
+{
+  "chatgpt-mugs.png": {
+    "sha256": "e0c0b49c93a457c2fac05e074f40f438bc4e2cc52f08aaf4348012d0f2f42116",
+    "bytes": 1110319,
+    "format": "png",
+    "width": 1254,
+    "height": 1254,
+    "chunks": [
+      "IHDR",
+      "caBX",
+      "IDAT",
+      "IEND"
+    ],
+    "known_account_identifier_scan": "none found",
+    "decode_check": "Full decode exited0; original captured file retained unchanged."
+  },
+  "chatgpt-poster.png": {
+    "sha256": "f4b550ee620c465627c3b28fb25b88aed138728e0ccb757c55fe77abda17c5cb",
+    "bytes": 1248250,
+    "format": "png",
+    "width": 1254,
+    "height": 1254,
+    "chunks": [
+      "IHDR",
+      "caBX",
+      "IDAT",
+      "IEND"
+    ],
+    "known_account_identifier_scan": "none found",
+    "decode_check": "Full decode exited0; original captured file retained unchanged."
+  },
+  "gemini-mugs.webp": {
+    "sha256": "273cbd6c285a4e8c42d41e2fd02158abb46db9d9dc57063bab83072d246e3524",
+    "bytes": 48616,
+    "format": "webp",
+    "width": 1024,
+    "height": 1024,
+    "chunks": [
+      "VP8X",
+      "VP8 ",
+      "EXIF",
+      "C2PA"
+    ],
+    "known_account_identifier_scan": "none found",
+    "decode_check": "Full decode exited0; original captured file retained unchanged."
+  },
+  "gemini-poster.webp": {
+    "sha256": "d82596f51ff1c06e8504ed5b5ccbadc0dc74cf3a303aaa357e522556e8fa319c",
+    "bytes": 56564,
+    "format": "webp",
+    "width": 1024,
+    "height": 1024,
+    "chunks": [
+      "VP8X",
+      "VP8 ",
+      "EXIF",
+      "C2PA"
+    ],
+    "known_account_identifier_scan": "none found",
+    "decode_check": "Full decode exited0; original captured file retained unchanged."
+  }
+}

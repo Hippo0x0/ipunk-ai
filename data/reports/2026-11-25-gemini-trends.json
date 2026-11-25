@@ -1,0 +1,35 @@
+{
+  "status": "available",
+  "checked_at": "2026-11-25",
+  "official_url": "https://trends.google.com/trends/explore?geo=US&q=gemini%20vs%20chatgpt,claude%20vs%20chatgpt,best%20ai%20image%20generator&hl=en",
+  "scope": {
+    "geo": "US",
+    "language": "en",
+    "window": "past-12-months",
+    "property": "web"
+  },
+  "metric_note": "Official rendered table, relative within-chart search interest only. Parent comparison demand does not quantify the image-generation subset. Monthly volume, KD and CPC unknown; no cross-chart arithmetic or variant summation.",
+  "editorial_review": {
+    "status": "approved",
+    "reviewed_at": "2026-11-25",
+    "basis": "Read rendered official table and selected US/Web/past12months filters in browser. Series means18,29,19; complete Nov15 values9,23,10; partialNov22 values9,22,11 excluded from latest complete observation."
+  },
+  "observations": [
+    {
+      "candidate_id": "gemini-vs-chatgpt",
+      "query": "gemini vs chatgpt",
+      "status": "available",
+      "metric_type": "google_trends_relative_interest_complete_week",
+      "value": 9,
+      "period": "2026-11-15",
+      "annual_chart_mean": 18,
+      "observed_at": "2026-11-25",
+      "scope": {
+        "geo": "US",
+        "language": "en",
+        "window": "past-12-months",
+        "property": "web"
+      }
+    }
+  ]
+}

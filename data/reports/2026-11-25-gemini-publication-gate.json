@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-25",
+  "evaluation": "Prepublication candidate; lifecycle not yet marked published.",
+  "library": "websites/lib/keyword-opportunity.mjs",
+  "library_sha256": "6331add670b0dedf1181a3f47f526a2ad094d89fbd459c70c5e2c98bf10417ef",
+  "candidate_id": "gemini-vs-chatgpt",
+  "market": {
+    "geo": "US",
+    "language": "en",
+    "country": "United States",
+    "bing_language": "English"
+  },
+  "decision_gate": {
+    "status": "eligible_for_new_build",
+    "can_publish_new_page": true,
+    "can_design_new_page": true,
+    "can_repair_existing_page": false,
+    "can_update_existing_page": false,
+    "can_review_existing_page": false,
+    "target_url": null,
+    "missing_evidence": []
+  },
+  "publication_review_result": {
+    "approved": true,
+    "missing": [],
+    "qualification": "Structured editorial record, not proof of market volume, ranking or revenue. Evidence must be read before approval."
+  },
+  "authoritative_trend_signals": {
+    "available": true,
+    "stale_signal_count": 0,
+    "future_dated_signal_count": 0,
+    "positive_demand": true,
+    "adjustment": 0,
+    "signals": [
+      {
+        "source": "google_trends",
+        "query": "gemini vs chatgpt",
+        "status": "available",
+        "metric_type": "google_trends_relative_interest_complete_week",
+        "value": 9,
+        "momentum": null,
+        "observed_at": "2026-11-25",
+        "age_days": 0,
+        "max_age_days": 14,
+        "freshness_status": "fresh",
+        "scope": {
+          "geo": "US",
+          "language": "en",
+          "window": "past-12-months",
+          "property": "web"
+        }
+      }
+    ]
+  },
+  "monthly_search_volume_signal": {
+    "available": false,
+    "authoritative": false,
+    "positive_demand": false,
+    "value": null,
+    "source": "not_obtained"
+  },
+  "qualification": "Reviewed US snapshot passed explicitly; root daily Explore loader remains CN-only. Parent relative interest is not absolute volume or image-subset scale. Neutral editorial scores do not imply rank."
+}
