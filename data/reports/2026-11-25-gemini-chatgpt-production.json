@@ -1,0 +1,120 @@
+{
+  "deployment_date": "2026-11-25",
+  "source_commit": "4818a2bf65927e53bbf6272feb7e2b316750e27b",
+  "worker": "ipunk-ai",
+  "worker_version": "45d00061-58c8-430b-a9af-fe914d742440",
+  "url": "https://ai.ipunk.cn/en/guides/gemini-vs-chatgpt/",
+  "release": "Direct main push, existing Worker deployment; no PR or new service.",
+  "validation": {
+    "regression_tests_passed": 49,
+    "static_html_pages_checked": 40,
+    "project_snapshots_preserved": 12,
+    "image_hashes_match_originals": 4,
+    "desktop_width": 1440,
+    "mobile_width": 390,
+    "no_horizontal_overflow": true,
+    "native_svg_keyboard_zoom_and_links": true,
+    "no_js_first_answer_images_prompts_retained": true
+  },
+  "production_verification": {
+    "results": [
+      {
+        "route": "/en/guides/gemini-vs-chatgpt/",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "5e59c4318775f27fd8c17d8b109fd2dfaeceed8001a07af305157dafc1bd01d5"
+      },
+      {
+        "route": "/en/guides/claude-vs-chatgpt/",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "4e7777df0a43a790e8b1c22ad95a5901845b6ffde3fb9b3096f85686652a9878"
+      },
+      {
+        "route": "/en/",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "065e8185a8ce5717dccadeb87aa311373f56f1b2f0527f6aaf56bb7dbc1ee12b"
+      },
+      {
+        "route": "/sitemap.xml",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "a7aaa9c05a5a270f3fc9351b4b042e67229360ce3ce7ee27b23b98057c8896a7"
+      },
+      {
+        "route": "/guides.css",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "55ac5193f2a669ac9a584dc862a02601d9a83f71bb4c20dcc1f2a4bca9a4b0e8"
+      },
+      {
+        "route": "/guide-flow.js",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "5288014ad31e31aa4248cebbf84a1e0e759d7dfb070526f80d3bdd62bc3d003b"
+      },
+      {
+        "route": "/evidence/gemini-chatgpt-images/chatgpt-mugs.png",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "e0c0b49c93a457c2fac05e074f40f438bc4e2cc52f08aaf4348012d0f2f42116"
+      },
+      {
+        "route": "/evidence/gemini-chatgpt-images/chatgpt-poster.png",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "f4b550ee620c465627c3b28fb25b88aed138728e0ccb757c55fe77abda17c5cb"
+      },
+      {
+        "route": "/evidence/gemini-chatgpt-images/gemini-mugs.webp",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "273cbd6c285a4e8c42d41e2fd02158abb46db9d9dc57063bab83072d246e3524"
+      },
+      {
+        "route": "/evidence/gemini-chatgpt-images/gemini-poster.webp",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "d82596f51ff1c06e8504ed5b5ccbadc0dc74cf3a303aaa357e522556e8fa319c"
+      },
+      {
+        "route": "/evidence/gemini-chatgpt-images/mugs-prompt.txt",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "1be04d3cc7d670f48259b1c6640fd276e7de18292ee7b63abe6045d924896c48"
+      },
+      {
+        "route": "/evidence/gemini-chatgpt-images/observations.json",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "ad33a44b096545b128e089eee5cda50fc790ce607e32d1dd24a72635b75b8ad2"
+      },
+      {
+        "route": "/evidence/gemini-chatgpt-images/poster-prompt.txt",
+        "status": 200,
+        "matches_local": true,
+        "beacon_scripts_removed": 0,
+        "sha256": "80f15565315227b39dbcb84f7eff9881fc75fb4ab4a36b4e41399655cc33d405"
+      }
+    ],
+    "html_pages_verified": 3,
+    "assets_verified": 10,
+    "scope": "Changed pages and required assets; HTTP only, no analytics JavaScript."
+  },
+  "analytics": "Formal-domain verification was HTTP-only; no browser analytics JavaScript executed. Browser layout QA used localhost.",
+  "cache_observation": "First immediate production read reported English-home byte mismatch; follow-up captured response matched local, then the complete path verification was rerun. No content mismatch was accepted.",
+  "search_performance": "Not yet evaluated. Parent Trends relative interest is positive; absolute monthly volume, image subset size, ranking, impressions, clicks and profit are unknown."
+}
