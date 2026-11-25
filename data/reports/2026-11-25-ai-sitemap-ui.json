@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-25",
+  "property": "https://ai.ipunk.cn/",
+  "source_url": "https://search.google.com/search-console/sitemaps?resource_id=https%3A%2F%2Fai.ipunk.cn%2F",
+  "phase": "Before deploying this converter",
+  "observed": {
+    "sitemap": "/sitemap.xml",
+    "submitted_date_display": "2026\u5e7411\u67085\u65e5",
+    "last_read_display": "2026\u5e7411\u670825\u65e5",
+    "status_display": "\u6210\u529f",
+    "discovered_pages": 33,
+    "discovered_videos": 0
+  },
+  "qualification": "Official UI summary for the selected AI URL property. Discovered pages are not indexed pages; no assertion which new URL was read. No unnecessary resubmission performed."
+}

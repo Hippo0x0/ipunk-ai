@@ -1,0 +1,9 @@
+# Video converter intent and investment review
+
+Read the full existing MP4 compressor plus sitemap/homepage and scan the parent app route set. No existing format-selection converter is present. Compression always re-encodes MP4 with size-oriented controls; it cannot produce WebM or target a container while copying already-compatible streams. The new page owns destination-format compatibility: MP4 H264/AAC or WebM VP9/Opus, with original dimensions, copied streams where possible and no size guarantee. Compression and conversion link to each other with those separate purposes.
+
+MOV-to-MP4 and WebM-to-MP4 are variants of this converter task, kept in one URL rather than duplicate pair-specific pages. The broad keyword's estimated volume is not assigned to each pair. The Google US-targeted query gl=us,hl=en,pws=0 returned FreeConvert,Freemake,mobile apps,CloudConvert and VEED. Read FreeConvert,CloudConvert and VEED pages directly; they already offer broader format support. Ours is not universal or an exclusive privacy feature. Its bounded value is a directly usable two-target local flow, with shared source/output files and independently verified compatible-copy and codec-change cases. No competitor speed or quality benchmark was performed.
+
+English only follows the researched US/en market. Native SVG was evaluated: the format selector and actual rejection/cancel/completion states already perform the relevant decisions, so another tree would duplicate the tool. Steps and samples remain readable without JS, while conversion requires it. A target-scoped390/1440px check was used so another active tab's viewport could not be mistaken for this page.
+
+The official AI-property Sitemap UI showed successful reading on November25 and33 discovered pages before this deployment. This confirms a discovery entry, not new-URL indexing or growth. No resubmission or indexing request was made solely to create an activity record.

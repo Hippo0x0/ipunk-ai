@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-25",
+  "keyword": "video converter",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "third_party": {
+    "monthly_estimate": 165000,
+    "difficulty": 47,
+    "source": "Original OpenSEO ai-video-generator discovery output observed2026-11-24 in this chat; full payload not saved.",
+    "qualification": "Historical estimate, not official monthly volume, click count or pair-specific search volume."
+  },
+  "official_monthly_volume": null,
+  "official_demand": {
+    "url": "https://trends.google.com/trends/explore?geo=US&q=video%20converter,mov%20to%20mp4,webm%20to%20mp4&hl=en",
+    "source": "Rendered Google Trends chart/table",
+    "observed_at": "2026-11-25",
+    "scope": "US,Web Search,past12months",
+    "series": [
+      "video converter",
+      "mov to mp4",
+      "webm to mp4"
+    ],
+    "means": [
+      61,
+      17,
+      6
+    ],
+    "weekly": {
+      "2026-11-01": [
+        44,
+        17,
+        5
+      ],
+      "2026-11-08": [
+        48,
+        15,
+        4
+      ],
+      "2026-11-15": [
+        47,
+        16,
+        5
+      ],
+      "2026-11-22 (partial)": [
+        46,
+        14,
+        6
+      ]
+    },
+    "qualification": "Within-chart relative interest; not absolute volume."
+  },
+  "competition": {
+    "browser_url": "https://www.google.com/search?q=video+converter&gl=us&hl=en&pws=0",
+    "qualification": "US/en-targeted browser query parameters, not nationally certified ranks."
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-25",
+    "task": "Convert a video to the MP4 or WebM format required by a destination app while retaining supported tracks.",
+    "answer_gap": "Existing owned compressor does not offer WebM or preserve compatible streams as a format-oriented task. Market results already offer many converters; this page provides a bounded local two-format route with actual inspectable outputs, not feature or rank superiority.",
+    "unique_value": "Three real browser conversion routes with downloadable synthetic source/output media; compatible MOV sample video/audio decoded identities matched; codec-change outputs fully decoded; guarded track counts/cancel/offline cases validated.",
+    "competitor_urls": [
+      "https://www.freeconvert.com/video-converter",
+      "https://cloudconvert.com/video-converter",
+      "https://www.veed.io/convert/video-converter"
+    ],
+    "evidence_path": "data/reports/2026-11-25-video-converter-evidence.json",
+    "intent_audit_path": "data/reports/2026-11-25-video-converter-intent.md",
+    "distinct_intent": true
+  },
+  "discovery_check": "data/reports/2026-11-25-ai-sitemap-ui.json",
+  "acceptance": "Ordinary new-URL indexing plus complete comparable Search Console Web windows. No ranking, click or profit claim."
+}

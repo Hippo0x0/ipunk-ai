@@ -1,0 +1,162 @@
+{
+  "date": "2026-11-25",
+  "media": [
+    {
+      "path": "dist/evidence/video-converter/motion-and-tone.webm",
+      "sha256": "a41c6a4cda4d1b04c640db987c2cd12a7209fd93f4d9a54232361893d3b4d82c",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 320,
+            "height": 180
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio"
+          }
+        ],
+        "format": {
+          "duration": "4.018000",
+          "size": "163658",
+          "tags": {
+            "MAJOR_BRAND": "isom"
+          }
+        }
+      }
+    },
+    {
+      "path": "dist/evidence/video-converter/from-mp4.webm",
+      "sha256": "f27dedd65512ef28b2d07526cd03a0744e9209ac80f65cbf78a67d7a345cf254",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 320,
+            "height": 180
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio"
+          }
+        ],
+        "format": {
+          "duration": "4.060000",
+          "size": "115217",
+          "tags": {}
+        }
+      }
+    },
+    {
+      "path": "dist/evidence/video-converter/from-mov.mp4",
+      "sha256": "90fd0a333a4ad71a99370011a512fbd524d24e58f0fbcb8416e17ce17623536f",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio"
+          }
+        ],
+        "format": {
+          "duration": "4.000000",
+          "size": "2861779",
+          "tags": {
+            "major_brand": "isom"
+          }
+        }
+      }
+    },
+    {
+      "path": "dist/evidence/video-converter/from-webm.mp4",
+      "sha256": "6de705d78a3921a8b3106f4484b7e601cb2d56d38c3f110de978e32e999e8819",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 180
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio"
+          }
+        ],
+        "format": {
+          "duration": "4.052021",
+          "size": "216206",
+          "tags": {
+            "major_brand": "isom"
+          }
+        }
+      }
+    },
+    {
+      "path": "dist/evidence/video-converter/motion-and-tone.mov",
+      "sha256": "92d1d62dbc0fd364d27e6ef0c0c9ea12b134f45c4db7c683ddd6095a9fca40b3",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio"
+          }
+        ],
+        "format": {
+          "duration": "4.000000",
+          "size": "2862701",
+          "tags": {
+            "major_brand": "qt  "
+          }
+        }
+      }
+    }
+  ],
+  "actual_browser_routes": [
+    "MOV H264/AAC\u2192MP4 H264/AAC",
+    "WebM VP9/Opus\u2192MP4 H264/AAC",
+    "MP4 H264/AAC\u2192WebM VP9/Opus"
+  ],
+  "decode": "All downloaded outputs fully decoded using FFmpeg8.1.1, exit0.",
+  "mov_to_mp4_identity": {
+    "decoded_video_md5_source_and_output": "58f7e76d2d518254ca2499cd0004907c",
+    "decoded_audio_md5_source_and_output": "3554d01633c4d4aa4093fa2021033647",
+    "qualification": "Only this compatible-stream sample; not every MOV conversion."
+  },
+  "browser_cases": {
+    "multiple_audio": "Two-audio source rejected without download.",
+    "cancel": "30-second source in WebM mode cancelled; no partial download.",
+    "offline": "Silent8-second H264 MP4 converted with page network disabled; output had video only,1920x1080,8s. Network restored.",
+    "layout": "Target-scoped CDP dimensions390 and1440px: clientWidth and scrollWidth equal; sample table fits366/900px; no broken fragment targets. Metrics cleared afterwards.",
+    "no_js": "Form hidden, enable-JS notice and5 original/output sample links present; JS restored."
+  },
+  "qualifications": [
+    "Only one desktop Chromium environment was executed.",
+    "No compatibility guarantee for all apps,codecs or devices.",
+    "Re-encoded samples have small duration differences from codec padding.",
+    "No subjective quality test or guaranteed size reduction."
+  ]
+}

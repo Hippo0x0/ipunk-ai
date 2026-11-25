@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video Converter: Convert to MP4 or WebM Locally | iPunk AI Radar</title>
+<meta name="description" content="Convert a readable video to MP4 or WebM on your device without uploading it. Preserve the soundtrack, preview and download the converted file.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/video-converter/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "datePublished": "2026-11-25", "dateModified": "2026-11-25", "inLanguage": "en", "mainEntityOfPage": "https://ai.ipunk.cn/en/guides/video-converter/", "name": "Video Converter: Convert to MP4 or WebM Locally", "applicationCategory": "MultimediaApplication", "operatingSystem": "Web", "isAccessibleForFree": true}</script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/en/guides/video-compressor/">Video tools</a></nav></div></header>
+<main class="wrap guide-main">
+<div class="guide-header"><h1>Video Converter: Convert to MP4 or WebM Locally</h1><p class="guide-answer">Choose a video and the MP4 or WebM format your destination accepts, then convert locally and download the result. Check picture and sound in the destination app. This tool changes format; it does not promise a smaller file.</p></div>
+<article class="article guide-article">
+
+<section id="convert"><h2>Convert a local video file</h2>
+<form id="converter" hidden><label>Video · up to 250 MB<input type="file" accept="video/*,.mp4,.mov,.webm,.mkv" required></label>
+<label>Output format<select><option value="mp4">MP4 · H.264 video + AAC audio</option><option value="webm">WebM · VP9 video + Opus audio</option></select></label>
+<p>Use one video track and at most one audio track. Unsupported tracks stop conversion rather than disappearing silently.</p>
+<button type="submit">Convert video</button> <button type="button" data-cancel disabled>Cancel</button>
+<progress value="0" max="1" aria-label="Conversion progress"></progress><output aria-live="polite">Choose a video to start.</output><a hidden>Download video</a><video controls playsinline hidden aria-label="Converted video preview"></video></form>
+<noscript><p>Enable JavaScript to convert locally. Format guidance and test samples remain available below.</p></noscript>
+<p>Processing stays on your device. Wait for a download link, save the new file and test it in the app that rejected the original. Your source is unchanged. An unsupported browser codec can prevent a particular conversion.</p></section>
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#convert">Convert a local video file</a></li><li><a href="#choose">Choose the format your destination accepts</a></li><li><a href="#verify">Check the saved result</a></li><li><a href="#sample">Try an original sample before choosing private footage</a></li><li><a href="#help">If a conversion cannot finish</a></li><li><a href="#related">Continue your media task</a></li><li><a href="#scope">Processing and test scope</a></li></ol></nav>
+<section id="choose"><h2>Choose the format your destination accepts</h2>
+<p><strong>MP4 with H.264 and AAC</strong> is a useful starting point when a sharing or editing app asks for MP4. The container and the codecs inside it both matter: renaming a MOV or WebM extension does not perform conversion.</p>
+<p><strong>WebM with VP9 and Opus</strong> is an option when a website or app accepts that combination. Check the destination's requirements first. A playable result in this browser does not prove every target app can read it.</p>
+<p>The converter copies compatible encoded streams where possible and re-encodes other codecs when the browser supports the target. Re-encoding can change visual or audio quality, and output size can increase. Use the <a href="/en/guides/video-compressor/">video compressor</a> when your main goal is a smaller file with explicit bitrate and resolution controls.</p></section>
+<section id="verify"><h2>Check the saved result</h2>
+<ol><li>Download after conversion finishes. A full progress bar alone is not a saved file.</li><li>Play through important sections and the end. Check sound, framing, orientation and any visible text.</li><li>Open or upload it in the intended destination. Its own duration, size or codec rules can still reject a valid file.</li></ol>
+<p>Keep the original for archival or professional editing. Captions, extra audio tracks, HDR appearance and metadata are not guaranteed to survive conversion. The tool rejects multiple video or audio tracks; use a desktop editor for those projects.</p></section>
+<section id="sample"><h2>Try an original sample before choosing private footage</h2>
+<p><a href="/evidence/video-converter/motion-and-tone.mov" download>Download the four-second H.264/AAC MOV</a> to test MP4 output. <a href="/evidence/video-converter/motion-and-tone.webm" download>Download the four-second VP9/Opus WebM</a> to test a change of codecs. Both are synthetic test patterns with a steady tone.</p>
+<p>Tested in desktop Chromium on November 25, 2026:</p><div class="conversion-results"><table><thead><tr><th>Sample</th><th>Output</th><th>Size / time</th></tr></thead><tbody><tr><th><a href="/evidence/video-converter/from-mov.mp4" download>From MOV</a></th><td>H.264/AAC<br>1280 × 720</td><td>2,861,779 bytes<br>4.00 s</td></tr><tr><th><a href="/evidence/video-converter/from-webm.mp4" download>From WebM</a></th><td>H.264/AAC<br>320 × 180</td><td>216,206 bytes<br>4.05 s</td></tr><tr><th><a href="/evidence/video-converter/from-mp4.webm" download>From MP4</a></th><td>VP9/Opus<br>320 × 180</td><td>115,217 bytes<br>4.06 s</td></tr></tbody></table></div><p>All three downloaded outputs fully decoded. In the MOV-to-MP4 sample, decoded picture and audio checksums matched the source. This identity result is specific to that compatible-stream sample. Transcoding and codec padding can change reported duration; check timing in the destination.</p></section>
+<section id="help"><h2>If a conversion cannot finish</h2>
+<p>Try the other output format when a browser cannot encode the selected codecs. For a damaged, encrypted, unusually large or multi-track source, use a desktop converter that supports that file. A new extension cannot repair missing frames or an absent soundtrack.</p>
+<p>The input limit is 250 MB, and device memory can impose a smaller practical limit. Cancel stops an active conversion without creating a partial result. If a file is already compatible, another conversion may be unnecessary.</p></section>
+<section id="related"><h2>Continue your media task</h2>
+<p>Need only the soundtrack? <a href="/en/guides/extract-audio-from-video/">Extract M4A or WAV</a>. Need a short looping image without audio? <a href="/en/guides/video-to-gif/">Convert a segment to GIF</a>. These are different output tasks, so check the destination before choosing one.</p></section>
+<section id="scope"><h2>Processing and test scope</h2>
+<p>Conversion uses self-hosted <a href="https://mediabunny.dev/">Mediabunny</a>. <a href="/vendor/mediabunny/LICENSE">MPL-2.0 license</a> · <a href="/vendor/mediabunny/mediabunny-1.66.4.tgz" download>Original source package</a>. No video content is sent to a conversion server.</p>
+<p>Browser decoding and encoding support varies. The shared samples show a bounded test, not every possible MOV, WebM or MP4 variant. The tool adds no watermark and does not promise quality improvement or smaller output.</p></section><script type="module" src="/video-converter.mjs"></script>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><span>Published <time datetime="2026-11-25">Nov 25, 2026</time></span></div></footer>
+</body></html>
