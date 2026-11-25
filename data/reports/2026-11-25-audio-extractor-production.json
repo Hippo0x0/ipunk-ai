@@ -1,0 +1,86 @@
+{
+  "results": [
+    {
+      "route": "/en/guides/extract-audio-from-video/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "a93ea9344725cf783f1b313afb1dd670a2c83a11b7f2ce4355a3d1c7e35ea92e"
+    },
+    {
+      "route": "/en/guides/video-compressor/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "d7f95be2c1456e8aaa5da69149cdf2be1534f955104de0dcd618a9a83dfd4699"
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "628d5c5073105fc7f69b662ea881c5ed295b43c1a3a1d88c8259b52560619d15"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "e94be0b9658a1161ad589b1b20b574f9480b8046d426c256bd046baa0ee18ead"
+    },
+    {
+      "route": "/guides.css",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "d0ca4beb23f2bc2702ccc8b04693cf9e4f30018ad823b10874cde0475a63cbf2"
+    },
+    {
+      "route": "/audio-extractor.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "4ef78ab04aa33187c47cb38d21270f14a503c37b3b24a8075f340e9861d44ea6"
+    },
+    {
+      "route": "/vendor/mediabunny/mediabunny-1.66.4.min.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "b4dedc395b2719d9aa9016046da10b1c4e740047dca848c1e48965f56b14ea98"
+    },
+    {
+      "route": "/evidence/video-compressor/motion-and-tone.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "96f759f0e28e44df55924ac0435b29311a7d15506b2c58e0ccd1d551ac51341f"
+    },
+    {
+      "route": "/evidence/audio-extractor/motion-and-tone-audio.m4a",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "d39c6e847dba28670ab82514394b6325f7e3a7f07763fee2694d7c4019987b03"
+    },
+    {
+      "route": "/evidence/audio-extractor/motion-and-tone-audio.wav",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "76121e213161c8eadad6abafa8aa88622a99ba2de63fc710fd30898f3303169d"
+    }
+  ],
+  "html_pages_verified": 3,
+  "assets_verified": 7,
+  "scope": "Changed pages and required assets; HTTP only, no analytics JavaScript.",
+  "status": "passed",
+  "checked_at": "2026-11-25T07:12:18.560825+00:00",
+  "worker": "ipunk-ai",
+  "worker_version": "9a6bc830-8ec1-4b75-85c2-fe553b4f1c34",
+  "content_commit": "8f2e069",
+  "tests": "39 existing regression tests and34 HTML static checks passed.",
+  "browser_qa": "Actual downloaded M4A/WAV files parsed and fully decoded; M4A decoded audio MD5 matches source. No-audio,multi-audio,non-AAC,offline WAV and estimated-large-WAV cases verified;390/1440px and JS-disabled fallback checked.",
+  "analytics": "Formal verification was HTTP-only; no analytics JavaScript executed.",
+  "qualification": "No indexing, rank, clicks or profit claimed."
+}
