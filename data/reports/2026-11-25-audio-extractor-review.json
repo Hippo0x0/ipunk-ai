@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-25",
+  "keyword": "extract audio from video",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "third_party": {
+    "monthly_estimate": 14800,
+    "difficulty": 22,
+    "source": "Original OpenSEO ai-video-generator discovery rows observed2026-11-24 in this chat; complete provider response not retained.",
+    "qualification": "Historical third-party estimate, not official absolute volume or clicks."
+  },
+  "official_monthly_volume": null,
+  "official_demand": {
+    "source": "Google Trends rendered chart and weekly table",
+    "checked_at": "2026-11-25",
+    "url": "https://trends.google.com/trends/explore?geo=US&q=extract%20audio%20from%20video,video%20to%20audio%20converter&hl=en",
+    "scope": "US,Web Search,past12months",
+    "series": [
+      "extract audio from video",
+      "video to audio converter"
+    ],
+    "means": [
+      51,
+      49
+    ],
+    "weekly": {
+      "2026-11-01": [
+        55,
+        36
+      ],
+      "2026-11-08": [
+        41,
+        44
+      ],
+      "2026-11-15": [
+        46,
+        39
+      ],
+      "2026-11-22 (partial)": [
+        44,
+        40
+      ]
+    },
+    "qualification": "Relative indices; variants not summed."
+  },
+  "competition": {
+    "url": "https://www.google.com/search?q=extract+audio+from+video&gl=us&hl=en&pws=0",
+    "qualification": "US/en-targeted browser query, not nationally verified positions; no CTR estimate.",
+    "reviewed": [
+      "https://biteable.com/tools/extract-audio-from-video/",
+      "https://restream.io/tools/audio-extractor",
+      "https://audio-extractor.net/"
+    ]
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-25",
+    "task": "Save an audio-only M4A or WAV from a source video and verify the resulting track and duration.",
+    "answer_gap": "Search users need an operating extractor; existing site pages do not complete it. Other extractors exist, so differentiation is not exclusivity but reproducible local copy/decode results, identity checks and explicit rejection paths.",
+    "unique_value": "Actual browser-created M4A/WAV outputs from a shared original MP4; audio-only structure and full decode verified, M4A decoded-audio MD5 matched, silent/multi-audio/non-AAC and large-WAV cases checked.",
+    "competitor_urls": [
+      "https://biteable.com/tools/extract-audio-from-video/",
+      "https://restream.io/tools/audio-extractor",
+      "https://audio-extractor.net/"
+    ],
+    "evidence_path": "data/reports/2026-11-25-audio-extractor-evidence.json",
+    "intent_audit_path": "data/reports/2026-11-25-audio-extractor-intent.md",
+    "distinct_intent": true
+  },
+  "acceptance": "Ordinary indexing followed by complete comparable Google Web windows at this URL; no rank/click/profit claim."
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Extract Audio from Video Locally: Download M4A or WAV | iPunk AI Radar</title>
+<meta name="description" content="Extract a video&#x27;s soundtrack in your browser without uploading it. Copy AAC audio to M4A or decode to WAV, preview and download the result.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/extract-audio-from-video/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "datePublished": "2026-11-25", "dateModified": "2026-11-25", "inLanguage": "en", "mainEntityOfPage": "https://ai.ipunk.cn/en/guides/extract-audio-from-video/", "name": "Extract Audio from Video Locally: Download M4A or WAV", "url": "https://ai.ipunk.cn/en/guides/extract-audio-from-video/", "applicationCategory": "MultimediaApplication", "operatingSystem": "Web", "isAccessibleForFree": true}</script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/en/guides/video-compressor/">Video tools</a></nav></div></header>
+<main class="wrap guide-main">
+<div class="guide-header"><h1>Extract Audio from Video Locally: Download M4A or WAV</h1><p class="guide-answer">Choose a video with an audio track, select M4A or WAV, then extract and download the soundtrack locally. M4A mode copies an existing AAC track; WAV mode decodes the sound. A silent video with no audio track cannot supply a soundtrack.</p></div>
+<article class="article guide-article">
+
+<section id="extract"><h2>Extract the soundtrack on your device</h2>
+<form id="audio-extractor" hidden>
+<label>Video file · up to 250 MB<input type="file" accept="video/*,.mp4,.mov,.webm,.mkv" required></label>
+<label>Audio output<select><option value="m4a">M4A · copy an existing AAC track</option><option value="wav">WAV · decode to 16-bit PCM</option></select></label>
+<p>Use a file with one audio track. Files with no sound track or multiple audio tracks are rejected so you can check the source before exporting.</p>
+<button type="submit">Extract audio</button> <button type="button" data-cancel disabled>Cancel</button>
+<progress value="0" max="1" aria-label="Extraction progress"></progress><output aria-live="polite">Choose a video to start.</output><a hidden>Download audio</a><audio controls hidden aria-label="Extracted audio preview"></audio></form>
+<noscript><p>Enable JavaScript to extract audio locally. Format choices and test details below remain readable.</p></noscript>
+<p>The video stays in your browser and is not uploaded to a processing server. Wait for a download link, save the audio, then listen to the saved file. The original video is unchanged.</p></section>
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#extract">Extract the soundtrack on your device</a></li><li><a href="#format">Choose M4A or WAV</a></li><li><a href="#missing">No audio, several tracks or an unreadable file?</a></li><li><a href="#check">Check that the saved audio is complete</a></li><li><a href="#sample">Try an original sample first</a></li><li><a href="#related">Finish the rest of your video task</a></li><li><a href="#scope">Processing and test scope</a></li></ol></nav>
+<section id="format"><h2>Choose M4A or WAV</h2>
+<p><strong>M4A</strong> copies an existing AAC soundtrack without another audio encoding step. It is a compact choice when the original track is already AAC, common in MP4 files. If the source uses another codec, the tool asks you to choose WAV rather than quietly converting it to a different lossy format.</p>
+<p><strong>WAV</strong> decodes the soundtrack to 16-bit PCM audio. Use it when your next editor needs uncompressed audio or when M4A copy mode cannot accept the source. WAV can be much larger. WAV jobs estimated above 250 MB are stopped before decoding. Converting a lossy source to WAV cannot restore detail that was already removed.</p>
+<p>This tool does not export MP3. If your destination specifically requires MP3, convert in an editor with MP3 export rather than changing the extension of an M4A or WAV file.</p></section>
+<section id="missing"><h2>No audio, several tracks or an unreadable file?</h2>
+<p>If the file has no audio track, extraction cannot add sound. Check whether the clip was generated or exported without audio. A visible soundtrack in an editor is not proof that the downloaded video contains it.</p>
+<p>If there is one audio track but it plays silently, listen to the original in another player. An audio stream can contain silence; extracting it does not create speech or music. For several language or commentary tracks, use a desktop editor to select the intended one first.</p>
+<p>If decoding fails, try a current desktop browser or a desktop editor. Browser codec support varies. Keep the original, especially for a larger, encrypted or multi-track file.</p></section>
+<section id="check"><h2>Check that the saved audio is complete</h2>
+<ol><li>Confirm that the output format is accepted by the app where you want to use it.</li><li>Listen to the beginning and end, and check speech or music around important edits.</li><li>Compare duration with the original soundtrack. If you need the audio to stay in sync with another edit, check alignment in that editor too.</li></ol>
+<p>The tool checks that the output has one audio track and no video track before it offers a download. This is a file-structure check, not a judgment of sound quality or speech accuracy.</p></section>
+<section id="sample"><h2>Try an original sample first</h2>
+<p><a href="/evidence/video-compressor/motion-and-tone.mp4" download>Download the four-second motion-and-tone MP4</a>, then choose it above. It contains a synthetic moving test pattern and a steady tone. You can check both output modes without using private footage.</p>
+<p id="audio-measurement">In our November 25, 2026 desktop Chromium test, the <a href="/evidence/audio-extractor/motion-and-tone-audio.m4a" download>M4A output</a> was 36,628 bytes and four seconds. Its decoded audio checksum matched the original. The <a href="/evidence/audio-extractor/motion-and-tone-audio.wav" download>WAV output</a> was 385,068 bytes and 4.01 seconds, at 48 kHz with one channel. Both fully decoded and contained no video track. WAV decoding can include a small duration difference; check alignment if you will use it in another edit. These are measurements of this synthetic sample, not quality or compatibility promises for other media.</p></section>
+<section id="related"><h2>Finish the rest of your video task</h2>
+<p>If you need to keep the picture as well, use the <a href="/en/guides/video-compressor/">local MP4 video compressor</a>. If a generated clip is unexpectedly silent, check the chosen route in the <a href="/en/guides/canva-ai-video-generator/">Canva clip guide</a> or the file's actual tracks before trying to extract it.</p></section>
+<section id="scope"><h2>Processing and test scope</h2>
+<p>Processing runs locally with the self-hosted <a href="https://mediabunny.dev/">Mediabunny</a> media library. <a href="/vendor/mediabunny/LICENSE">MPL-2.0 license</a> · <a href="/vendor/mediabunny/mediabunny-1.66.4.tgz" download>Original source package</a>.</p>
+<p>Available codecs depend on the browser. Use the sample to check this device first. Files above 250 MB are not accepted; device memory can limit other files too. This tool extracts a soundtrack; it does not transcribe speech, separate voices from music or improve the source recording.</p></section>
+<script type="module" src="/audio-extractor.mjs"></script>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><span>Published <time datetime="2026-11-25">Nov 25, 2026</time></span></div></footer>
+</body></html>
