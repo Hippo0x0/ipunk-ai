@@ -1,0 +1,100 @@
+{
+  "results": [
+    {
+      "route": "/en/guides/video-converter/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "d7f0160a98ede37e24dc9a9d14f560916da6a10f649b462d70245f700f2d4cf0"
+    },
+    {
+      "route": "/en/guides/video-compressor/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "1b762f8e05c715a4a1adfd69884054c403f6eb38018387375816e6686d0dfc50"
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "f076e58c50cbb5267143ac01e1dfe419ad636ec9dafcbf290a40d139befb964b"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "2d96c10ba8ca49c87b4ef3ad752b86606711b6cf0173129928008d87ca891c17"
+    },
+    {
+      "route": "/guides.css",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "f9b7950eabd9aa32b6f0b8dab9470e3a68511cd626798cdb941c0e7f7021488c"
+    },
+    {
+      "route": "/video-converter.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "82e44a923734ef15505e012fe374e9f17f768b91cd96e60330b50d5b632d3ebf"
+    },
+    {
+      "route": "/vendor/mediabunny/mediabunny-1.66.4.min.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "b4dedc395b2719d9aa9016046da10b1c4e740047dca848c1e48965f56b14ea98"
+    },
+    {
+      "route": "/evidence/video-converter/motion-and-tone.mov",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "92d1d62dbc0fd364d27e6ef0c0c9ea12b134f45c4db7c683ddd6095a9fca40b3"
+    },
+    {
+      "route": "/evidence/video-converter/motion-and-tone.webm",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "a41c6a4cda4d1b04c640db987c2cd12a7209fd93f4d9a54232361893d3b4d82c"
+    },
+    {
+      "route": "/evidence/video-converter/from-mov.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "90fd0a333a4ad71a99370011a512fbd524d24e58f0fbcb8416e17ce17623536f"
+    },
+    {
+      "route": "/evidence/video-converter/from-webm.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "6de705d78a3921a8b3106f4484b7e601cb2d56d38c3f110de978e32e999e8819"
+    },
+    {
+      "route": "/evidence/video-converter/from-mp4.webm",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "f27dedd65512ef28b2d07526cd03a0744e9209ac80f65cbf78a67d7a345cf254"
+    }
+  ],
+  "html_pages_verified": 3,
+  "assets_verified": 9,
+  "scope": "Changed pages and required assets; HTTP only, no analytics JavaScript.",
+  "status": "passed",
+  "checked_at": "2026-11-25T08:15:37.940600+00:00",
+  "worker": "ipunk-ai",
+  "worker_version": "21356089-3d10-4c24-b7e6-1fbbde00ff2d",
+  "content_commit": "ecaafe5",
+  "tests": "39 existing regression tests and 36 HTML static checks passed.",
+  "browser_qa": "Three actual downloaded conversions fully decoded; compatible MOV decoded video/audio identities matched. Multi-audio rejection, cancellation, offline silent conversion, no-JS fallback and actual 390/1440px widths checked.",
+  "analytics": "HTTP-only production verification; no analytics JavaScript executed.",
+  "qualification": "Deployment and asset equality do not establish indexing, rank, clicks or profit."
+}
