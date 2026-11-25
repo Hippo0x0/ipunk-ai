@@ -1,0 +1,107 @@
+{
+  "results": [
+    {
+      "route": "/en/guides/claude-vs-chatgpt/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "9ebc704ea2331b9277a3fb7f37a018a6896d9ef375cf85840f11dd84b6ce756f"
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "3b45c4230fe553ed65c3bdc54abf34f27da9a64b65a1f40e0a80894c2736339c"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "188721b1ea99313f071ff90f19d0e805944b7a46d81272c0107d523412300a22"
+    },
+    {
+      "route": "/guides.css",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "27e356360a830a9f56212f0937f718916e0c845b7deec1709f87bda0f314a882"
+    },
+    {
+      "route": "/assistant-comparison.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "57f3eb3eb214332c24e8738db46df45530e5cf9c098b075a783b6062110aaaaa"
+    },
+    {
+      "route": "/assistant-task-check.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "c1a6092b67924909e7652bde97e23cfad3921ab1a089c3b9072c0ec85cad7750"
+    },
+    {
+      "route": "/guide-flow.js",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "5288014ad31e31aa4248cebbf84a1e0e759d7dfb070526f80d3bdd62bc3d003b"
+    },
+    {
+      "route": "/evidence/assistant-task/prompt.txt",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "ab55184064a5646a6d7a2ef45a5f7b444d1e29e92f755cf100dca6a9178f9958"
+    },
+    {
+      "route": "/evidence/assistant-task/expected.json",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "19bc39c0e1fdeda8dce7a815c0d13bf153149ab8196395e3c5d0bb3de83611fa"
+    },
+    {
+      "route": "/evidence/assistant-task/chatgpt-output.txt",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "3027452e62dbe5bd34f07229f7ae4acfba92e294a0fa53c70d064ff81cb3dc61"
+    },
+    {
+      "route": "/evidence/assistant-task/claude-output.txt",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "6087d195ebddba1ea361aca3561ac6bf24bbe5cc57bf836b6f113ba640c37ada"
+    },
+    {
+      "route": "/evidence/assistant-task/claude-correction-prompt.txt",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "58abe8194d99668d4e4b50b48a427dd86d3e85bc34c98b17eab5f02147c4d59b"
+    },
+    {
+      "route": "/evidence/assistant-task/claude-corrected-output.json",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "6fa501a0a09c8dcb481cb86099def3fb7847b8c61fce5534f1cb39812e55f614"
+    }
+  ],
+  "html_pages_verified": 2,
+  "assets_verified": 11,
+  "scope": "Changed pages and required assets; HTTP only, no analytics JavaScript.",
+  "status": "passed",
+  "checked_at": "2026-11-25T09:29:50.533781+00:00",
+  "worker": "ipunk-ai",
+  "worker_version": "3e83d3eb-fa76-4fae-8693-5a1c775d6e90",
+  "content_commit": "585aefa",
+  "tests": "44 regression tests and38HTML static checks passed.",
+  "browser_qa": "Actual retained first replies and Claude correction checked locally;390/1440px,all anchors,keyboardhighlightwithoutnavigation,zoom,separate step links,noJS retained prompt/downloads,parse negativecontrol and first-vs-corrected cases verified.",
+  "analytics": "Production verification was HTTP-only; no analytics JavaScript executed.",
+  "qualification": "One bounded synthetic task batch per product plus one Claude format correction. ChatGPT model/plan unknown and capture methods differed. Deployment does not establish indexing,ranking,clicks,impressions orprofit."
+}
