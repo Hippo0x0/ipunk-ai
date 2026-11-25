@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-25",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "keyword": "crop video",
+  "monthly_search_volume": null,
+  "keyword_difficulty": null,
+  "metrics_attempt": {
+    "provider": "OpenSEO",
+    "keywords": [
+      "video trimmer",
+      "crop video",
+      "remove audio from video"
+    ],
+    "result": "insufficient credits; not retried; no values returned"
+  },
+  "official_demand": {
+    "url": "https://trends.google.com/trends/explore?geo=US&q=video%20trimmer,video%20converter,crop%20video&hl=en",
+    "source": "Rendered Google Trends table in browser",
+    "scope": "United States,Web Search,past12months",
+    "observed_at": "2026-11-25",
+    "series": [
+      "video trimmer",
+      "video converter",
+      "crop video"
+    ],
+    "means": [
+      12,
+      61,
+      28
+    ],
+    "weekly": {
+      "2026-11-01": [
+        6,
+        44,
+        20
+      ],
+      "2026-11-08": [
+        6,
+        48,
+        18
+      ],
+      "2026-11-15": [
+        5,
+        47,
+        19
+      ],
+      "2026-11-22 (partial)": [
+        5,
+        44,
+        18
+      ]
+    },
+    "qualification": "Relative interest only. Do not extrapolate crop monthly volume from the converter estimate or compare separately normalized charts."
+  },
+  "search_console": {
+    "property": "https://ai.ipunk.cn/",
+    "type": "web",
+    "data_state": "final",
+    "start": "2026-10-26",
+    "end": "2026-11-22",
+    "filters": {
+      "minPosition": 5,
+      "maxPosition": 20,
+      "minImpressions": 50
+    },
+    "returned_rows": 0,
+    "qualification": "Exploratory screen; not a measure of total site demand or keyword absence."
+  },
+  "competition": {
+    "query_url": "https://www.google.com/search?q=crop+video&gl=us&hl=en&pws=0",
+    "observed": "2026-11-25",
+    "qualification": "US/en-targeted query parameters; physical search location and nationally fixed rankings not certified. Result-page intent is direct tool use.",
+    "reviewed": [
+      {
+        "url": "https://online-video-cutter.com/crop-video",
+        "finding": "Working crop editor offered; multiple aspect ratios and saving. Site says processing servers; exact account workflow not tested."
+      },
+      {
+        "url": "https://www.adobe.com/express/feature/video/crop",
+        "finding": "Preset and freeform crop, repositioning and download documented; input up to1GB and duration up to1hour. No upload or Adobe account workflow executed."
+      },
+      {
+        "url": "https://ezgif.com/crop-video",
+        "finding": "Visual/pixel crop, presets, output format and optional local processing documented. Existing local option means locality is not unique."
+      }
+    ]
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-25",
+    "task": "Select and position a spatial video crop, then download and verify an MP4 with supported audio.",
+    "answer_gap": "Owned Canva checker cannot save a crop; existing converter/compressor/GIF tools do not position or export a spatial crop. Market competitors already meet the generic task, so no exclusive feature claim.",
+    "unique_value": "Three actual browser outputs shared with sources; exact dimensions, decoded audio identity for two AAC samples and independent96-frame SSIM checks against specified source rectangles; cancellation/multi-audio/offline cases tested.",
+    "competitor_urls": [
+      "https://online-video-cutter.com/crop-video",
+      "https://www.adobe.com/express/feature/video/crop",
+      "https://ezgif.com/crop-video"
+    ],
+    "evidence_path": "data/reports/2026-11-25-video-crop-evidence.json",
+    "intent_audit_path": "data/reports/2026-11-25-video-crop-intent.md",
+    "distinct_intent": true
+  },
+  "acceptance": "Deployment is not ranking/impression/click/profit growth. Absolute demand and actual future traffic remain unknown."
+}

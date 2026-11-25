@@ -1,0 +1,142 @@
+{
+  "date": "2026-11-25",
+  "browser": "desktop Chromium in Codex IAB",
+  "files": {
+    "source": {
+      "path": "dist/evidence/video-crop/source.mp4",
+      "sha256": "4ce49e80dfe3858a6620b6f6eebb88aea60149699a4c82cf114a8a6ec6f97cf5",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 640,
+            "height": 360,
+            "duration": "4.000000"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "4.000000"
+          }
+        ],
+        "format": {
+          "duration": "4.000000",
+          "size": "47993"
+        }
+      },
+      "full_decode_exit": 0
+    },
+    "square-center": {
+      "path": "dist/evidence/video-crop/square-center.mp4",
+      "sha256": "f952475f02a9e7de78fc273d7191b1d2ea91cc80a6363d1c04e86df2d036d147",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 360,
+            "height": 360,
+            "duration": "4.000000"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "4.000000"
+          }
+        ],
+        "format": {
+          "duration": "4.000000",
+          "size": "46245"
+        }
+      },
+      "full_decode_exit": 0
+    },
+    "portrait-right": {
+      "path": "dist/evidence/video-crop/portrait-right.mp4",
+      "sha256": "44bee818d86140e320aa2a0c2ee09120a33832acd8031f2199033b2d839056f5",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 198,
+            "height": 352,
+            "duration": "4.000000"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "4.000000"
+          }
+        ],
+        "format": {
+          "duration": "4.000000",
+          "size": "42961"
+        }
+      },
+      "full_decode_exit": 0
+    },
+    "landscape-top-silent": {
+      "path": "dist/evidence/video-crop/landscape-top-silent.mp4",
+      "sha256": "0c03f07327b3c58ea3c2b62f89d60c1738521e0ba458964028e576d9b8344585",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1056,
+            "height": 594,
+            "duration": "6.000000"
+          }
+        ],
+        "format": {
+          "duration": "6.000000",
+          "size": "1546"
+        }
+      },
+      "full_decode_exit": 0
+    }
+  },
+  "spatial_checks": [
+    {
+      "output": "square-center",
+      "independent_ffmpeg_crop": "360:360:140:0",
+      "SSIM_all_frames": 0.997331,
+      "scope": "96 frames of this synthetic source; expected source rectangle compared to decoded output; not an image-quality benchmark."
+    },
+    {
+      "output": "portrait-right",
+      "independent_ffmpeg_crop": "198:352:442:4",
+      "SSIM_all_frames": 0.996811,
+      "scope": "96 frames of this synthetic source; expected source rectangle compared to decoded output; not an image-quality benchmark."
+    }
+  ],
+  "decoded_audio_MD5": {
+    "source": "MD5=3554d01633c4d4aa4093fa2021033647",
+    "square-center": "MD5=3554d01633c4d4aa4093fa2021033647",
+    "portrait-right": "MD5=3554d01633c4d4aa4093fa2021033647"
+  },
+  "audio_qualification": "Identical decoded AAC for these compatible-track samples only. Other codecs can require re-encoding.",
+  "browser_checks": {
+    "square": "360x360,center left140 top0; downloaded46245bytes",
+    "portrait": "198x352,right left442 top4; downloaded42961bytes",
+    "silent_offline": "1056x594,top left12 top0; original1080x1920 six-second silent source; downloaded1546bytes while network disabled; zero audio tracks",
+    "multi_audio": "Two-audio-track source rejected; download hidden",
+    "cancel": "30-second source cancelled during active conversion around3percent; cancelled status, download hidden",
+    "mobile": "390px inner/client/scroll all390; preview332px; no overflow",
+    "desktop": "1440px inner/client/scroll all1440; table900px; all seven TOC anchors exist",
+    "no_js": "Form hidden; enable-JS notice and five source/output links retained",
+    "restored": "Network, JavaScript and target viewport overrides cleared"
+  },
+  "regression": "39 existing tests passed;37 HTML static checks passed",
+  "limits": "No real smartphone, arbitrary HDR, rotation metadata or every codec verified."
+}

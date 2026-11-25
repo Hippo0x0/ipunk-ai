@@ -18,6 +18,8 @@ The home page supports search, category filtering and evidence-aware sorting. `/
 
 ## Local media tools
 
+- [Video cropper](https://ai.ipunk.cn/en/guides/crop-video/) exports a repositioned square, portrait or landscape MP4 locally.
+
 - [Video converter](https://ai.ipunk.cn/en/guides/video-converter/) writes MP4 or WebM and checks track preservation.
 
 - [Video compressor](https://ai.ipunk.cn/en/guides/video-compressor/) re-encodes on the device and compares actual output size.

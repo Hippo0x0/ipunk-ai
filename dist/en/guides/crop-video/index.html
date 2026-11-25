@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crop Video: Square, Portrait or Landscape | iPunk AI Radar</title>
+<meta name="description" content="Crop a video to 1:1, 9:16 or 16:9 locally. Preview and reposition the kept area, then download a cropped MP4 with audio. No account or upload.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/crop-video/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "datePublished": "2026-11-25", "dateModified": "2026-11-25", "inLanguage": "en", "mainEntityOfPage": "https://ai.ipunk.cn/en/guides/crop-video/", "name": "Crop Video: Square, Portrait or Landscape", "applicationCategory": "MultimediaApplication", "operatingSystem": "Web", "isAccessibleForFree": true}</script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/en/guides/video-compressor/">Video tools</a></nav></div></header>
+<main class="wrap guide-main">
+<div class="guide-header"><h1>Crop Video: Square, Portrait or Landscape</h1><p class="guide-answer">Choose a local video, select a frame shape and move the crop around your subject. Preview the whole shot, then download a cropped MP4 with its audio. Cropping removes the edges outside the box; keep your original if you need them later.</p></div>
+<article class="article guide-article">
+<section id="crop"><h2>Crop and download your video</h2>
+<form id="crop-tool" hidden>
+<label>Video · up to 250 MB<input type="file" accept="video/*,.mp4,.mov,.webm" required></label>
+<label>Frame shape<select><option value="1:1">Square · 1:1</option><option value="9:16">Portrait · 9:16</option><option value="16:9">Landscape · 16:9</option></select></label>
+<label>Horizontal position · left to right<input name="x" type="range" min="0" max="100" value="50" disabled></label>
+<label>Vertical position · top to bottom<input name="y" type="range" min="0" max="100" value="50" disabled></label>
+<div data-frame hidden><video data-source controls playsinline preload="metadata" aria-label="Original video with crop box"></video><div data-box></div></div>
+<p data-geometry></p><button type="submit" disabled>Save cropped MP4</button> <button type="button" data-cancel disabled>Cancel</button>
+<progress max="1" value="0" aria-label="Cropping progress"></progress><output aria-live="polite">Choose a video to start.</output><a hidden>Download cropped MP4</a><video data-result controls playsinline hidden aria-label="Cropped video preview"></video>
+</form><noscript><p>Enable JavaScript to crop locally. The instructions and downloadable samples below remain available.</p></noscript>
+<p>The outlined area is what the MP4 keeps. One fixed crop applies to the entire clip; there is no automatic subject tracking. The tool re-encodes video to H.264, retains supported audio as AAC, and limits the output's longest edge to 1280 pixels without upscaling. Processing stays on your device.</p></section>
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#crop">Crop and download</a></li><li><a href="#framing">Keep your subject in the frame</a></li><li><a href="#verify">Check the saved MP4</a></li><li><a href="#samples">Try a known sample</a></li><li><a href="#help">If a video cannot be cropped</a></li><li><a href="#related">Continue editing</a></li><li><a href="#scope">Processing and test scope</a></li></ol></nav>
+<section id="framing"><h2>Keep your subject in the frame</h2>
+<p>Square, portrait and landscape change the visible picture, not the clip's length. Move the crop toward the subject and play through the start, middle and end. A person who moves beyond the box will be cut off in the saved video.</p>
+<p>For a 640 × 360 landscape source, a square crop can retain 360 × 360 pixels. A 9:16 crop in this tool retains 198 × 352 pixels, with dimensions rounded down to keep an exact ratio and even pixels. The preview reports the actual rectangle and output size before processing.</p>
+<p>If you must retain everything in the original frame, use an editor that fits the whole picture inside a new canvas with padding. This cropper removes edges. The source file itself remains unchanged, but the saved crop cannot restore removed detail.</p></section>
+<section id="verify"><h2>Check the saved MP4</h2>
+<ol><li>Wait for the download link and save the new MP4. Completion of processing does not save a file automatically.</li><li>Play the saved file, including the end, and check the subject, captions, orientation and sound.</li><li>Open it in your destination app and check its current resolution, duration and size requirements.</li></ol>
+<p>Re-encoding can change image quality and file size. Extra subtitles, HDR appearance and metadata are not guaranteed to survive. Multiple video or audio tracks are rejected; use a desktop editor for those projects.</p></section>
+<section id="samples"><h2>Try a known sample</h2>
+<p><a href="/evidence/video-crop/source.mp4" download>Download the four-second test clip</a> with four colored regions, a moving marker and a steady tone. Use it to check the selected frame before choosing private footage.</p>
+<div class="conversion-results"><table><thead><tr><th>Crop</th><th>Kept area</th><th>Output</th></tr></thead><tbody><tr><th><a href="/evidence/video-crop/square-center.mp4" download>Square, centered</a></th><td>360 × 360<br>left 140, top 0</td><td>4 s · AAC audio<br>46,245 bytes</td></tr><tr><th><a href="/evidence/video-crop/portrait-right.mp4" download>Portrait, right</a></th><td>198 × 352<br>left 442, top 4</td><td>4 s · AAC audio<br>42,961 bytes</td></tr><tr><th><a href="/evidence/video-crop/landscape-top-silent.mp4" download>Landscape, top</a></th><td>1056 × 594<br>left 12, top 0</td><td>6 s · no audio<br>1,546 bytes</td></tr></tbody></table></div>
+<p id="sample-checks">The first two outputs came from the four-color source above. The third used our <a href="/evidence/canva-video/synthetic-portrait-6s.mp4" download>six-second silent portrait source</a>, with the network disconnected during processing. All three downloaded outputs fully decoded and had the expected dimensions. The two colored crops were independently compared with the matching source rectangles; this verifies these sample regions, not every source or browser.</p></section>
+<section id="help"><h2>If a video cannot be cropped</h2>
+<p>If the preview cannot load, try a complete H.264 MP4 export or open the original in a desktop editor. Browser codec support varies. A file extension alone does not show which video and audio codecs it contains.</p>
+<p>Use one video track and at most one audio track, up to 250 MB. Available memory can impose a smaller practical limit. Cancel stops an active job and leaves the original unchanged. An unsupported encoder or failed output check produces an error instead of a partial download.</p></section>
+<section id="related"><h2>Continue editing</h2>
+<p>Need a smaller file? Use the <a href="/en/guides/video-compressor/">video compressor</a>. Need another file format? <a href="/en/guides/video-converter/">Convert to MP4 or WebM</a>. For a short silent loop, use <a href="/en/guides/video-to-gif/">video to GIF</a>. For Canva generation and export, follow the <a href="/en/guides/canva-ai-video-generator/">Canva AI video guide</a>.</p></section>
+<section id="scope"><h2>Processing and test scope</h2>
+<p>The tool uses self-hosted <a href="https://mediabunny.dev/guide/converting-media-files">Mediabunny</a> and the browser's media codecs. <a href="/vendor/mediabunny/LICENSE">MPL-2.0 license</a> · <a href="/vendor/mediabunny/mediabunny-1.66.4.tgz" download>Original source package</a>. Video content is not sent to a cropping server. No account is required and the tool adds no watermark.</p>
+<p>Shared samples cover a bounded desktop Chromium test on November 25, 2026. They do not establish support for every device, rotated source or video codec. This tool does not add missing detail, change video length or follow a moving subject.</p></section>
+<script type="module" src="/video-crop.mjs"></script>
+</article></main><footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><span>Published <time datetime="2026-11-25">Nov 25, 2026</time></span></div></footer></body></html>
