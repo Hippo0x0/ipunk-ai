@@ -45,7 +45,8 @@
       }
     },
     "watermark": "Magic Hour visible in first-frame inspection",
-    "audio_quality": "not assessed; AAC stream presence only"
+    "audio_quality": "not assessed; AAC stream presence only",
+    "full_decode_check": "FFmpeg8.1.1 decoded the entire saved MP4 with exit0 and no errors; listening quality still not assessed."
   },
   "not_measured": [
     "queue latency",

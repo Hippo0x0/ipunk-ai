@@ -1,0 +1,65 @@
+{
+  "results": [
+    {
+      "route": "/en/guides/image-to-video-ai-free/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "46fbee38c78bbbeaf0d14f1fe6504a38d9294a38ce9f7793b020020a4390cfde"
+    },
+    {
+      "route": "/en/guides/best-ai-video-generator/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "2297159ebd5add7b05bba9b1391162213049703ac206e672951c12737989e57c"
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "7369b0686cf161b9612857b53494a83663668f4bc12bb3676feb9e022e80efdf"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "89af1478e8c11f594c3174399033c9e6242b54dd95ee1d925d5e2edacab9e52c"
+    },
+    {
+      "route": "/guides.css",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "feaf214a87ec9d516d1dcd8c3c225c4c3925572c35d65a06563c16ea660c4b88"
+    },
+    {
+      "route": "/guide-flow.js",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "5288014ad31e31aa4248cebbf84a1e0e759d7dfb070526f80d3bdd62bc3d003b"
+    },
+    {
+      "route": "/evidence/free-image-video/synthetic-mug.png",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "9f64686bab622d92688e80d68a4f2a6693434b78d3a55248e27042881c109b4e"
+    }
+  ],
+  "html_pages_verified": 3,
+  "assets_verified": 4,
+  "scope": "Changed pages and required assets; HTTP only, no analytics JavaScript.",
+  "checked_at": "2026-11-25T02:46:55.047743+00:00",
+  "status": "passed",
+  "content_commit": "4d95c2e",
+  "worker": "ipunk-ai",
+  "worker_version": "a5490704-d31f-4029-89be-bfc396c092d5",
+  "tests": "39 passed;32 HTML static checks passed",
+  "browser_qa": "localhost390px and1440px: no overflow, native SVG keyboard selection, zoom, separate download-section link, original input image, all anchors and JS-disabled answers passed.",
+  "analytics": "Production HTTP only; no website analytics JavaScript executed.",
+  "qualification": "Passing deployment and content verification is not evidence of indexing, rank, clicks or profit."
+}
