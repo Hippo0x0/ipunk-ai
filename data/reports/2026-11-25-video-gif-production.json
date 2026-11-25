@@ -1,0 +1,100 @@
+{
+  "results": [
+    {
+      "route": "/en/guides/video-to-gif/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "b2811165bfd7e733f641c1b88869c7d32fbda6cdc7f232172f4a5d650fb4fd5a"
+    },
+    {
+      "route": "/en/guides/video-compressor/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "4118d8bace036943477b37afe8cccfb6507cbb8521f47efb134997edb35afb78"
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "257aa17609a5cb68324d45b3e9ac004ff10c57bd89fb17546720f4e46279b2ff"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "4bcc4ffbaefed08eb90256fc48e1456705f4dc7c2421c9a6003bd8b0b3a1278d"
+    },
+    {
+      "route": "/guides.css",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "ba1073e9714e20406542c28aed49230bf075936267e5c01c8f94e0666d377734"
+    },
+    {
+      "route": "/video-gif.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "358e2d1d388374e8425d43a461b69280d0fda333c08e4662359b52ce957d8034"
+    },
+    {
+      "route": "/vendor/mediabunny/mediabunny-1.66.4.min.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "b4dedc395b2719d9aa9016046da10b1c4e740047dca848c1e48965f56b14ea98"
+    },
+    {
+      "route": "/vendor/gifenc/gifenc-1.0.3.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "217761244379253ba5815510d3048a4fb1f4c4dbe9fb51a5cfbfe26f34eec093"
+    },
+    {
+      "route": "/vendor/gifenc/LICENSE",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "1610b01533a777ff952669a7d4fcb1e03b0d088c3409fd606d130f2d97cb017f"
+    },
+    {
+      "route": "/vendor/gifenc/gifenc.esm.js.map",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "e38adbb2f7c90725fe9a61bb7ebcaa6917ef1107e6d6bf3df0566ce27743882a"
+    },
+    {
+      "route": "/evidence/video-gif/default-3s.gif",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "ffd1ca9ab26f4d64a44235dbadaf7b6135d46f417777e10c153cf3cc654de767"
+    },
+    {
+      "route": "/evidence/video-gif/trimmed-1s-to-3s.gif",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "92e42bad7785053d89d6e2eea347fd60f7642be75b768d0a3416220ae7bd1820"
+    }
+  ],
+  "html_pages_verified": 3,
+  "assets_verified": 9,
+  "scope": "Changed pages and required assets; HTTP only, no analytics JavaScript.",
+  "status": "passed",
+  "checked_at": "2026-11-25T07:41:36.416766+00:00",
+  "worker": "ipunk-ai",
+  "worker_version": "63868019-ed6f-43cb-9442-8c5bbe747cee",
+  "content_commit": "ea8a331",
+  "tests": "39 existing regression tests and35 HTML static checks passed.",
+  "browser_qa": "Two actual downloaded GIFs parsed and fully decoded;15-frame default had15 distinct decoded frames. Trim,bounds,cancel,offline/end clamp,reduced-motion,no-video input,390/1440px and no-JS fallback checked.",
+  "analytics": "HTTP-only production verification; no analytics JavaScript executed.",
+  "qualification": "Deployment and asset equality do not establish indexing, rank, clicks or profit."
+}
