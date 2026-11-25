@@ -1,0 +1,71 @@
+{
+  "test_date": "2026-11-25",
+  "provider": "https://magichour.ai/products/image-to-video",
+  "scope": "One browser guest request from one original synthetic PNG; no account, payment, API key or paid model. Not a video quality benchmark.",
+  "input": {
+    "path": "dist/evidence/free-image-video/synthetic-mug.png",
+    "sha256": "9f64686bab622d92688e80d68a4f2a6693434b78d3a55248e27042881c109b4e",
+    "dimensions": [
+      640,
+      360
+    ],
+    "generator": "scripts/generate-image-video-reference.py"
+  },
+  "prompt": "A slow camera push toward the teal mug. Keep the mug and its handle still and unchanged. No text.",
+  "steps_observed": [
+    "Form showed3 videos left today before request.",
+    "Original PNG was uploaded; prompt entered.",
+    "Generate Video led to Adding to Queue.",
+    "Completion showed Your video is ready with a signup dialog.",
+    "Download free saved an MP4 without signup."
+  ],
+  "output": {
+    "redistributed": false,
+    "reason": "Provider describes guest outputs as personal/non-commercial; downloaded output stays local.",
+    "sha256": "43b5ce2e48f43f868782dfe27202e6b7cfe508244cf1fab12669e8a42aa0cb20",
+    "ffprobe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "format": {
+        "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+        "duration": "3.041667",
+        "size": "142620"
+      }
+    },
+    "watermark": "Magic Hour visible in first-frame inspection",
+    "audio_quality": "not assessed; AAC stream presence only"
+  },
+  "not_measured": [
+    "queue latency",
+    "multi-image generalization",
+    "other model quality",
+    "remaining counter after completion",
+    "reset time",
+    "behavior on other networks"
+  ],
+  "browser_qa": {
+    "local_widths": [
+      390,
+      1440
+    ],
+    "page_overflow": false,
+    "image_loaded": 640,
+    "broken_anchor_count": 0,
+    "Enter_highlights_without_navigation": true,
+    "zoom": "passed",
+    "independent_steps_link": "#download",
+    "no_js": "3 step links, full measured table and640px original image loaded; JS and viewport restored"
+  }
+}

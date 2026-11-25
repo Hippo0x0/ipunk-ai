@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-11-25",
+  "keyword": "image to video ai free",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "third_party_monthly_estimate": 12100,
+  "third_party_difficulty": 40,
+  "official_monthly_volume": null,
+  "official_demand": {
+    "observed_at": "2026-11-24",
+    "source_file": "data/reports/2026-11-24-canva-publication-review.json",
+    "url": "https://trends.google.com/trends/explore?geo=US&q=canva%20ai%20video%20generator,runway%20ai%20video%20generator,image%20to%20video%20ai%20free&hl=en",
+    "scope": "US, Web Search, past12months, three search terms compared",
+    "exact_series": "image to video ai free",
+    "mean_index": 60,
+    "latest_complete_week": "2026-11-15",
+    "latest_complete_index": 38,
+    "qualification": "Normalized within that chart; not absolute volume. Reused rather than refreshing the source date."
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-25",
+    "task": "Complete one no-signup image-to-video attempt and save a real file while understanding the free-route limits.",
+    "answer_gap": "Reviewed source product pages make guest/unlimited claims and Google shows a genuine-free discussion. The original trial independently establishes a complete guest download path, with a signup-dialog free-download choice and measured file properties. Official help qualifies shared per-network allowance where product summaries can be read per tool.",
+    "unique_value": "Completed real guest generation and download using an original reproducible reference, locally inspected MP4 metadata and first-frame watermark, with scope and failures separated from quality and speed claims.",
+    "competitor_urls": [
+      "https://flyne.ai/free-image-to-video/",
+      "https://www.canva.com/ai-image-to-video/",
+      "https://www.reddit.com/r/generativeAI/comments/1s7qugw/can_anyone_suggest_me_a_genuine_free_image_to/"
+    ],
+    "evidence_path": "data/reports/2026-11-25-free-image-video-evidence.json",
+    "intent_audit_path": "data/reports/2026-11-25-free-image-video-intent.md",
+    "distinct_intent": true
+  },
+  "competition_evidence": "data/reports/2026-11-25-free-image-video-competition.json",
+  "next_validation": "Confirm canonical/form links and indexed discovery; evaluate new URL with complete comparable Search Console Web windows. No ranking or clicks guaranteed."
+}

@@ -1,0 +1,28 @@
+{
+  "query": "image to video ai free",
+  "browser_url": "https://www.google.com/search?q=image+to+video+ai+free&gl=us&hl=en&pws=0",
+  "checked_at": "2026-11-25",
+  "market_settings": {
+    "gl": "us",
+    "hl": "en",
+    "pws": 0
+  },
+  "qualification": "US-targeted query parameters; Google footer said results are not personalized and location unknown. No nationally verified ranks or CTR inferred. Paid OpenSEO query could not run due to insufficient credits.",
+  "sampled_urls": [
+    "https://www.canva.com/ai-image-to-video/",
+    "https://www.adobe.com/products/firefly/features/image-to-video.html",
+    "https://viggle.ai/tools/image-to-video-ai",
+    "https://flyne.ai/free-image-to-video/",
+    "https://www.heygen.com/tool/image-to-video",
+    "https://www.reddit.com/r/generativeAI/comments/1s7qugw/can_anyone_suggest_me_a_genuine_free_image_to/",
+    "https://raphael.app/image-to-video",
+    "https://pixlr.com/video-generator/",
+    "https://gemini.google/overview/video-generation/"
+  ],
+  "observed_intent": "Mostly direct generation tools, plus genuine-free discussion; AI overview and product-related blocks present.",
+  "direct_source_review": [
+    "https://flyne.ai/free-image-to-video/",
+    "https://magichour.ai/products/image-to-video",
+    "https://help.magichour.ai/en/articles/16063259-no-signup-product-and-tool-routes-current-daily-allowances"
+  ]
+}
