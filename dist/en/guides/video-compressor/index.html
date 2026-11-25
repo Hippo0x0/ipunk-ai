@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video Compressor: Reduce File Size Without Uploading | iPunk AI Radar</title>
+<meta name="description" content="Compress a video in your browser without uploading it. Adjust resolution and bitrate, retain audio, compare actual size and download MP4.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/video-compressor/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Video Compressor: Reduce File Size Without Uploading", "datePublished": "2026-11-25", "dateModified": "2026-11-25", "inLanguage": "en", "mainEntityOfPage": "https://ai.ipunk.cn/en/guides/video-compressor/"}</script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/en/guides/best-ai-video-generator/">Video guides</a></nav></div></header>
+<main class="wrap guide-main">
+<div class="guide-header"><h1>Video Compressor: Reduce File Size Without Uploading</h1><p class="guide-answer">Choose a video, select a resolution and bitrate, and compress it on your device. Download the MP4 after conversion finishes, then check its picture and sound. If the output is larger, keep the original or lower the bitrate.</p></div>
+<article class="article guide-article">
+
+<section id="compress"><h2>Compress a video to MP4</h2>
+<form id="compressor" hidden><label>Video file · up to 250 MB<input type="file" accept="video/*,.mp4,.mov,.webm" required></label>
+<label>Longest side <select name="longest"><option value="1280">1280 pixels · smaller HD</option><option value="1920">1920 pixels · full HD</option><option value="640">640 pixels · smallest</option></select></label>
+<label>Video bitrate <select name="bitrate"><option value="1.5">1.5 Mbps · balanced</option><option value="0.7">0.7 Mbps · smaller file</option><option value="3">3 Mbps · more detail</option></select></label>
+<button type="submit">Compress video</button> <button type="button" data-cancel disabled>Cancel</button>
+<progress value="0" max="1" aria-label="Compression progress"></progress><output aria-live="polite">Choose a video to start.</output><a data-download hidden>Download MP4</a><video controls playsinline hidden aria-label="Compressed video preview"></video></form>
+<noscript><p>Enable JavaScript to compress in this browser. The instructions and test details below remain available.</p></noscript>
+<p>Your video is processed on your device. It is not uploaded to a compression server. Keep this tab open until a download appears, then play the result to check picture and sound. Your original file is unchanged.</p></section>
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#compress">Compress a video to MP4</a></li><li><a href="#settings">Choose a smaller file without losing the frame</a></li><li><a href="#check">Check the downloaded file</a></li><li><a href="#test">Try a known video before choosing your own</a></li><li><a href="#related">Prepare generated clips for sharing</a></li><li><a href="#scope">Processing and test scope</a></li></ol></nav>
+<section id="settings"><h2>Choose a smaller file without losing the frame</h2>
+<p>Start with 1280 pixels and 1.5 Mbps. The tool fits the longest side and preserves the whole frame without cropping or enlarging a small source. Lower the bitrate for a smaller result; keep more detail for moving subjects, small text or screen recordings.</p>
+<p>The bitrate is an encoder target, not a guaranteed file size. Existing compressed clips can get larger when encoded again. The result compares actual bytes so you can keep the original when compression does not help.</p>
+<p>For a rough video-only size estimate, multiply bitrate in megabits per second by duration in seconds, then divide by eight. Audio and container data add to it. A 30-second clip at 1.5 Mbps is about 5.6 MB of video data before those additions.</p></section>
+<section id="check"><h2>Check the downloaded file</h2>
+<ol><li>Compare the measured size before downloading. If the output is larger, keep the original or choose a lower bitrate.</li><li>Play the saved MP4 through its end. Check movement, small text, framing and sound.</li><li>Try the intended upload or sharing destination. Its own duration, format or file-size limit can still reject an otherwise valid MP4.</li></ol>
+<p>The tool keeps one video track and, when present, one audio track. Files with multiple video or audio tracks are rejected. A conversion that discards a track is stopped instead of silently delivering a missing soundtrack. Captions, metadata, HDR appearance and exact original encoding are not guaranteed to survive re-encoding; keep the original for archival or professional editing.</p></section>
+<section id="test"><h2>Try a known video before choosing your own</h2>
+<p><a href="/evidence/video-compressor/motion-and-tone.mp4" download>Download an original four-second motion-and-tone test video</a>. It contains a synthetic test pattern and a steady tone, with no private footage. Compress it above and check the saved result’s dimensions, duration and audio track.</p>
+<p>In one local browser test, this original file went from 2,862,650 to 648,718 bytes (77.34% smaller) at 1280 × 720 with the 1.5 Mbps setting. The four-second duration and AAC audio track were retained. <a href="/evidence/video-compressor/compressed-1280-1.5mbps.mp4" download>Download that measured output</a>. The entire MP4 decoded without errors, and decoded audio matched the original by checksum. This synthetic sample does not predict savings or quality for other footage.</p>
+<p>The browser must support video decoding and H.264 encoding. If this browser cannot preserve your file's tracks, try a current desktop Chrome or Edge browser or use a desktop video editor. Files up to 250 MB are accepted; device memory can still limit conversion. Cancel if you want to stop an ongoing conversion.</p></section>
+<section id="related"><h2>Prepare generated clips for sharing</h2>
+<p>Check the output size after generating a clip, not just the service's advertised resolution. Use the <a href="/en/guides/canva-ai-video-generator/#export">local file dimensions check</a> if you need to compare shapes before editing. For a no-account generation route, see the <a href="/en/guides/image-to-video-ai-free/">completed free image-to-video trial</a>.</p></section>
+<section id="scope"><h2>Processing and test scope</h2>
+<p>This tool uses browser media codecs through <a href="https://mediabunny.dev/">Mediabunny</a>. The library is hosted on this site; compression makes no server request containing your video. It adds no watermark. A smaller file can contain less detail, so preview it before replacing a delivery copy.</p>
+<p><a href="/vendor/mediabunny/LICENSE">Mediabunny MPL-2.0 license</a> · <a href="/vendor/mediabunny/mediabunny-1.66.4.tgz" download>Original 1.66.4 source package</a>.</p>
+<p>Tested on November 25, 2026 in desktop Chromium, including one successful conversion while the tab was offline. Cancel and invalid-file handling were also checked. Only these browser tests apply; there is no promise every device, format or file will convert. Keep the original, especially for multi-track, HDR or captioned files.</p></section><script type="module" src="/video-compressor.mjs"></script>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><span>Published <time datetime="2026-11-25">Nov 25, 2026</time></span></div></footer>
+</body></html>

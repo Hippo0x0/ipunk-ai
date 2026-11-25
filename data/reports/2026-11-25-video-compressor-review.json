@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-25",
+  "keyword": "video compressor",
+  "market": {
+    "geo": "US",
+    "language": "en"
+  },
+  "monthly_search_volume": {
+    "value": 90500,
+    "source": "OpenSEO third-party discovery result observed2026-11-24 in this chat",
+    "qualification": "Retained from the previously returned ai-video-generator seed rows; full discovery payload was not saved. Not fresh official volume, clicks or guaranteed traffic.",
+    "difficulty": 59
+  },
+  "official_monthly_volume": null,
+  "official_demand": {
+    "source": "Google Trends rendered chart/table",
+    "observed_at": "2026-11-25",
+    "url": "https://trends.google.com/trends/explore?geo=US&q=video%20compressor,compress%20video%20file&hl=en",
+    "scope": "US, past12months, Web Search",
+    "series": [
+      "video compressor",
+      "compress video file"
+    ],
+    "means": [
+      62,
+      9
+    ],
+    "weekly": {
+      "2026-11-01": [
+        55,
+        11
+      ],
+      "2026-11-08": [
+        52,
+        9
+      ],
+      "2026-11-15": [
+        51,
+        9
+      ],
+      "2026-11-22 (partial)": [
+        51,
+        8
+      ]
+    },
+    "qualification": "Relative indices in this comparison only."
+  },
+  "competition": {
+    "browser_url": "https://www.google.com/search?q=video+compressor&gl=us&hl=en&pws=0",
+    "qualification": "US/en-targeted browser parameters, not a nationally certified ranking sample. No rank or organic CTR projected.",
+    "reviewed_urls": [
+      "https://www.freeconvert.com/video-compressor",
+      "https://openreplay.com/tools/video-compressor/",
+      "https://vidshift.io/compress/"
+    ]
+  },
+  "publication_review": {
+    "status": "approved",
+    "geo": "US",
+    "language": "en",
+    "checked_at": "2026-11-25",
+    "task": "Re-encode a video locally, retain its audio, compare actual output size and download a usable MP4.",
+    "answer_gap": "Search intent is an operating tool. Existing guides do not complete it. Local competing tools exist, so differentiation is limited to our reproducible samples, measured/decodable output and explicit guarded failure behavior, not a unique offline claim.",
+    "unique_value": "Working local encoder with public before/after media and an original measured77.34% reduction case, matched decoded audio and cancellation/invalid/multi-track/larger-output checks.",
+    "competitor_urls": [
+      "https://www.freeconvert.com/video-compressor",
+      "https://openreplay.com/tools/video-compressor/",
+      "https://vidshift.io/compress/"
+    ],
+    "evidence_path": "data/reports/2026-11-25-video-compressor-evidence.json",
+    "intent_audit_path": "data/reports/2026-11-25-video-compressor-intent.md",
+    "distinct_intent": true
+  },
+  "acceptance": "Ordinary indexing followed by complete comparable new-URL Google Web windows; no rank, clicks or profit claimed."
+}

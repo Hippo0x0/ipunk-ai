@@ -78,7 +78,7 @@ export function renderEnglishHome(chineseHome) {
     if (englishHome.split(before).length !== 2) throw new Error(`Cannot derive English home: ${before}`);
     englishHome = englishHome.replace(before, after);
   }
-  return englishHome.replace("</main>", '<section class="section"><div class="wrap"><h2>AI video generation</h2><p><a href="/en/guides/best-ai-video-generator/">Compare AI video generators for your budget</a>: check three plan allowances, budget retries and verify a trial before choosing a paid plan. <a href="/en/guides/canva-ai-video-generator/">Create and check a Canva AI video clip</a>. <a href="/en/guides/image-to-video-ai-free/">Free image-to-video: a completed no-signup trial</a>.</p></div></section>\n</main>');
+  return englishHome.replace("</main>", '<section class="section"><div class="wrap"><h2>AI video generation</h2><p><a href="/en/guides/best-ai-video-generator/">Compare AI video generators for your budget</a>: check three plan allowances, budget retries and verify a trial before choosing a paid plan. <a href="/en/guides/canva-ai-video-generator/">Create and check a Canva AI video clip</a>. <a href="/en/guides/image-to-video-ai-free/">Free image-to-video: a completed no-signup trial</a>. <a href="/en/guides/video-compressor/">Compress a video locally to MP4</a>.</p></div></section>\n</main>');
 }
 
 export async function renderSnapshotFiles(root) {

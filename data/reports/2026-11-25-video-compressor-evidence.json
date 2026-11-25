@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-25",
+  "case": "Original synthetic4-second motion/tone MP4 processed by the actual browser tool, downloaded with its Download MP4 link.",
+  "input": {
+    "path": "dist/evidence/video-compressor/motion-and-tone.mp4",
+    "sha256": "96f759f0e28e44df55924ac0435b29311a7d15506b2c58e0ccd1d551ac51341f",
+    "ffprobe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "format": {
+        "duration": "4.000000",
+        "size": "2862650"
+      }
+    }
+  },
+  "output": {
+    "path": "dist/evidence/video-compressor/compressed-1280-1.5mbps.mp4",
+    "sha256": "16649f096f52ef520bf5accba70d2ba7d049e4c31d3c81f6f0c69b6dc536fd2a",
+    "ffprobe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio"
+        }
+      ],
+      "format": {
+        "duration": "4.000000",
+        "size": "648718"
+      }
+    },
+    "complete_decode": "FFmpeg8.1.1 exit0, no errors"
+  },
+  "settings": {
+    "longest_side": 1280,
+    "video_bitrate_target": 1500000
+  },
+  "reduction_percent": 77.33854994498105,
+  "audio_decoded_md5": {
+    "input": "3554d01633c4d4aa4093fa2021033647",
+    "output": "3554d01633c4d4aa4093fa2021033647"
+  },
+  "library": {
+    "name": "mediabunny",
+    "version": "1.66.4",
+    "registry": "https://registry.npmjs.org",
+    "license": "MPL-2.0",
+    "vendored_license": "dist/vendor/mediabunny/LICENSE",
+    "source_archive": "dist/vendor/mediabunny/mediabunny-1.66.4.tgz",
+    "modifications": "None; original minified bundle, license and original npm source archive distributed together."
+  },
+  "browser_cases": {
+    "offline": "Tab network disabled through CDP after app load; a separate8-second silent input converted and exposed download; network restored.",
+    "cancel": "30-second synthetic source cancelled; no download created; controls restored.",
+    "invalid": "JSON input rejected with unsupported-format status; no download.",
+    "multiple_audio": "Two-audio-track MP4 rejected with readable message; no download.",
+    "larger_result": "Re-encoded648718-byte output at3Mbps; UI showed1.11MB and warned output is not smaller.",
+    "layout": "390/1440px: no page overflow; all section targets present.",
+    "no_js": "Tool hidden, enable-JS message and reproducible sample links present; JS and viewport restored."
+  },
+  "qualification": "One desktop Chromium environment. Byte reduction is measured for the shared synthetic sample, not promised for other videos. No upload, other-browser or subjective quality benchmark is claimed."
+}
