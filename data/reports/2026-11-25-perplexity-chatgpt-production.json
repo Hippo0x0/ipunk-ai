@@ -1,0 +1,248 @@
+{
+  "results": [
+    {
+      "route": "/en/guides/perplexity-vs-chatgpt/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "7bd969b351c1422c8eccc0a99fd497aac0cb860c9ce8e3282694162b66beaa3e"
+    },
+    {
+      "route": "/en/guides/claude-vs-chatgpt/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "d0c85a2973a7deeeac4f6c4b9489c0c9b2743b77516996e384fb8308e811bcae"
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "394e07e3e77d51098ac1a5dcc17c61379ec3a3f7944a5bfdab7cfd2a83a24f5d"
+    },
+    {
+      "route": "/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "3f43aba8c6957731dd39dcd3f71ca9203ab1b5d2e8bb8271fd44b875769ce4f8"
+    },
+    {
+      "route": "/projects/rea/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "5fa571fde5eb9876fee4d49fb0d01ee3bc87a860cee87039f3064e0f255eaa89"
+    },
+    {
+      "route": "/projects/openclaw/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "87e5733e6712dd36bf381d74aac102fda0d658bfcd1df47fbfe1ed36372a7f3b"
+    },
+    {
+      "route": "/projects/jev/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "a3d59d6690be8de5261df002a35b23d83dcd33cf7029a443054c61009bef6144"
+    },
+    {
+      "route": "/projects/gemini-cli/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "ad1bc83b06611d58bda68ea866fad24a8965de594c38d5f61137551215ab2e7e"
+    },
+    {
+      "route": "/projects/browser-use/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "a52988ec7a627246a47cab87b939041f73b16878cb1ecae40302cee0da7dfe16"
+    },
+    {
+      "route": "/projects/markitdown/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "d63d058b91cedeee3aceed4a9ca5ed607da64c2ed5f3ace0b652aa263e731c78"
+    },
+    {
+      "route": "/projects/claude-code/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "690d4f998b80329c096bf507cf6ac8591967574aade60252e7e340fb10fc2fd9"
+    },
+    {
+      "route": "/projects/codex-cli/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "f51c7947b97ba0033ee73f002f108e2dcf503d02676a818a220033e97c630456"
+    },
+    {
+      "route": "/projects/qwen-code/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "eca06fc7fffbb1c2985b535cd31043a6ba99116d0713656d307342a1c8b64c72"
+    },
+    {
+      "route": "/projects/opencode/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "191f7b5a42c00b5f14f350a36c6c88259826a83844cbb362a2f0eb48647c2884"
+    },
+    {
+      "route": "/projects/cline/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "f9c84942c0744bd51346f7823363279e9b975a3ebe50946d66989dc753d9ecdf"
+    },
+    {
+      "route": "/projects/deepseek-harness/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "5c18714b5df0c92fb0289f78683c72114db96d0012de62da5e56ccb42d7d667a"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "e5330bf6002db0009b64af71bfead1d9e92aae15da02f6762b9da2c8a7c2ca81"
+    },
+    {
+      "route": "/guides.css",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "88a7255e2d44a39017df14c8259cd8e19b0ca0cea3fc9e03ecd50051caa2a6b5"
+    },
+    {
+      "route": "/source-audit.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "49ee8da84afe79acca7ab68c52c28107443dd110ab39d9963c37abcfbe3c58c3"
+    },
+    {
+      "route": "/source-audit-core.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "f5dd7756125fbef5e420502cee90d075c0cc479f3500901f2dc12522d9b06d08"
+    },
+    {
+      "route": "/guide-flow.js",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "5288014ad31e31aa4248cebbf84a1e0e759d7dfb070526f80d3bdd62bc3d003b"
+    },
+    {
+      "route": "/evidence/research-comparison/prompt.txt",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "a0be98d019b3a0d1c5b26dec6e1414664b5216fa113b61f56f33e6dc05afcdd4"
+    },
+    {
+      "route": "/evidence/research-comparison/reference.json",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "c5dda63cbce176e02ab7bedaab0f1d7e899cedfe7018250ae78693ef7190c724"
+    },
+    {
+      "route": "/evidence/research-comparison/chatgpt-default.txt",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "b547e30c63ad0249d0d05a83e2683aaf60907eade2bd74d3239e99e45221ee14"
+    },
+    {
+      "route": "/evidence/research-comparison/chatgpt-search.txt",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "3f622cf861f9a3cf56b7f508c67f144e50ec03b143d7002d6a206e993261f8b4"
+    },
+    {
+      "route": "/evidence/research-comparison/chatgpt-citations.json",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "f772f933cd291c293f10644a263998d523c493871d39cd8475a6afcae5441e65"
+    },
+    {
+      "route": "/evidence/research-comparison/chatgpt-audit.json",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "1a0b4ec4b97854901b015cd480b1efe4eb74f4b070cb3c8aae3645df42489a87"
+    },
+    {
+      "route": "/evidence/research-comparison/perplexity-answer.txt",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "327fd407ba1c5a016170059d96b8dd6512476cd7bf784a50cb740cf9a99e6d29"
+    },
+    {
+      "route": "/evidence/research-comparison/perplexity-citations.json",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "7250367d4f057289e3b6dccbcbabb2740268e24264d978739e20a1ab8ce84c22"
+    },
+    {
+      "route": "/evidence/research-comparison/perplexity-audit.json",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "b6b3044a211313a01b7321f0cd372a28f75e4e6cf6e977757bc9d1b09077ed42"
+    },
+    {
+      "route": "/data/projects.json",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "6acf9a6cffe1d0199abb684c36e0477bc55883b6288ddbd4f7af8d5463a76313"
+    },
+    {
+      "route": "/data/timeline.json",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "5a45295159659a51119b6692bc011b49a876b4524e5caa11060f17c839d66f1c"
+    },
+    {
+      "route": "/data/history/2026-11-25.json",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "6acf9a6cffe1d0199abb684c36e0477bc55883b6288ddbd4f7af8d5463a76313"
+    }
+  ],
+  "html_pages_verified": 16,
+  "assets_verified": 17,
+  "scope": "Changed pages and required assets; HTTP only, no analytics JavaScript.",
+  "status": "passed",
+  "checked_at": "2026-11-25T11:26:08.805116+00:00",
+  "worker": "ipunk-ai",
+  "worker_version": "1e156dcd-e447-4fa9-a5bf-5b6e3879e209",
+  "content_commit": "dc266ed",
+  "incorporated_upstream_snapshot": "181b4a4",
+  "tests": "49 regression tests and39HTMLstatic checks passed after snapshot merge.",
+  "browser_qa": "Actual7/8entryaudits imported/downloaded/parsed;invalidimports preserveentries;missing-sourceexportguard;add/remove;390/1440px;keyboardflow,zoom,settled95pxanchor;noJS prompt/9downloads retained.",
+  "analytics": "HTTP-only productionverification;no analyticsJavaScript executed.",
+  "qualification": "Two small signed-in research routes plus an anonymous access failure;no matchedmodel,paidplan,latency oroverallqualitywinner. Deployment andbyteequality do not establish indexing,rank,clicks,impressions orprofit."
+}
