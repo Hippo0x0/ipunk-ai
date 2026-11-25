@@ -1,0 +1,101 @@
+{
+  "results": [
+    {
+      "route": "/en/guides/crop-video/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "4a5e2f43596ad6d0fe5cc9b7a2a82198909980fbc35d3577806bbf6a0b4afed3"
+    },
+    {
+      "route": "/en/guides/canva-ai-video-generator/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "9398d7c83149e582a845df4a4d77027441886a7e9a85fbb774adb92610ae6394"
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "84afcaf20d739a40da1ae998c2b1b2ac35bfa34cfcfb42968011e8499a51e494"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "2b13ec78e7106635165b134b4346e58704a92f42c7bad96b2ce9c2a8b1fa964b"
+    },
+    {
+      "route": "/guides.css",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "e1336e89990e15abfc7d59315ad97af9d0cbf8384ee6c9267c8289dc3ae3910e"
+    },
+    {
+      "route": "/video-crop.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "357db4c19f4b85b2508d46929f4739d3257a5106d2713db4698a7073d81ba38c"
+    },
+    {
+      "route": "/vendor/mediabunny/mediabunny-1.66.4.min.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "b4dedc395b2719d9aa9016046da10b1c4e740047dca848c1e48965f56b14ea98"
+    },
+    {
+      "route": "/evidence/video-crop/source.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "4ce49e80dfe3858a6620b6f6eebb88aea60149699a4c82cf114a8a6ec6f97cf5"
+    },
+    {
+      "route": "/evidence/video-crop/square-center.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "f952475f02a9e7de78fc273d7191b1d2ea91cc80a6363d1c04e86df2d036d147"
+    },
+    {
+      "route": "/evidence/video-crop/portrait-right.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "44bee818d86140e320aa2a0c2ee09120a33832acd8031f2199033b2d839056f5"
+    },
+    {
+      "route": "/evidence/video-crop/landscape-top-silent.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "0c03f07327b3c58ea3c2b62f89d60c1738521e0ba458964028e576d9b8344585"
+    },
+    {
+      "route": "/evidence/canva-video/synthetic-portrait-6s.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "225cd09b8cce7ababd7cb88763936ad93dc419629190d18d64568a877581738c"
+    }
+  ],
+  "html_pages_verified": 3,
+  "assets_verified": 9,
+  "scope": "Changed pages and required assets; HTTP only, no analytics JavaScript.",
+  "status": "passed",
+  "checked_at": "2026-11-25T08:29:01.762225+00:00",
+  "worker": "ipunk-ai",
+  "worker_version": "0ea513b1-c389-42ed-9974-c4becffe9af0",
+  "content_commit": "42047ac",
+  "tests": "39 regression tests and37 HTML static checks passed.",
+  "browser_qa": "Three actual crop downloads fully decoded; two96frame spatial comparisons against independently cropped source; AAC sample audio identities matched. Cancel,multi-audio rejection,offline silent crop,390/1440px,no-JS and TOC anchors checked.",
+  "analytics": "HTTP-only production verification; no analytics JavaScript executed.",
+  "research_report": "https://app.openseo.so/p/d805176c-6e1f-4ca4-834b-9aa48dfd74a0/reports/cab5bf2a-d017-4ed2-96f1-7e7ddbb53c83",
+  "qualification": "Successful deployment and file equality do not establish indexing, ranking, impressions, clicks or profit."
+}
