@@ -1,0 +1,100 @@
+{
+  "results": [
+    {
+      "route": "/en/guides/video-compressor/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "c46b0607928771bcc8ecd0913c22c3b3e869b9d66f5c59335eb99687e37c4fc9"
+    },
+    {
+      "route": "/en/guides/best-ai-video-generator/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "1b1a040d06a4ef9c46575501cc5e7cd9c1c12c05b22096351bc25bd01d63f7db"
+    },
+    {
+      "route": "/en/guides/image-to-video-ai-free/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "1864223d3b60654be185b7dc8b5d6baef96700dfa14ed00e52b8639e06e306e3"
+    },
+    {
+      "route": "/en/",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "366ba7ed995f563a67d87aecd85138fe9e7a75a58a8e5654c32495370c7e5e5d"
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "42803382d895d74670f9cad47cf8161137e1f6564d2fe14975983cd26654622e"
+    },
+    {
+      "route": "/guides.css",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "9d3a9e30bf0368d0c7bcddda69d82014ccc3ba493a63cfe742209dafa4db80ee"
+    },
+    {
+      "route": "/video-compressor.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "2940839b8ffc724288ca643a07779b9913021f8f1e64fb4d255fe91ec833fbf4"
+    },
+    {
+      "route": "/vendor/mediabunny/mediabunny-1.66.4.min.mjs",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "b4dedc395b2719d9aa9016046da10b1c4e740047dca848c1e48965f56b14ea98"
+    },
+    {
+      "route": "/vendor/mediabunny/LICENSE",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "route": "/vendor/mediabunny/mediabunny-1.66.4.tgz",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "24dc37aad9fd92fe8f578d965b8f7f713f26fcdd9e237c5a05d536cbe3ee239e"
+    },
+    {
+      "route": "/evidence/video-compressor/motion-and-tone.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "96f759f0e28e44df55924ac0435b29311a7d15506b2c58e0ccd1d551ac51341f"
+    },
+    {
+      "route": "/evidence/video-compressor/compressed-1280-1.5mbps.mp4",
+      "status": 200,
+      "matches_local": true,
+      "beacon_scripts_removed": 0,
+      "sha256": "16649f096f52ef520bf5accba70d2ba7d049e4c31d3c81f6f0c69b6dc536fd2a"
+    }
+  ],
+  "html_pages_verified": 4,
+  "assets_verified": 8,
+  "scope": "Changed pages and required assets; HTTP only, no analytics JavaScript.",
+  "status": "passed",
+  "checked_at": "2026-11-25T05:10:07.368630+00:00",
+  "worker": "ipunk-ai",
+  "worker_version": "aeecc53a-3926-4f52-b0a1-1412b26cfbdb",
+  "content_commit": "8e3ae14",
+  "tests": "39 existing regression tests and33 HTML static checks passed; new tool verified through real local browser conversions.",
+  "browser_qa": "One desktop Chromium environment;390/1440px layout, real downloaded MP4 decode and audio checksum, offline conversion, cancellation, invalid/multi-audio rejection, no-JS fallback and larger-output feedback.",
+  "analytics": "Formal checks used HTTP only and executed no analytics JavaScript.",
+  "qualification": "Content/resource equality after excluding only observed Cloudflare beacon injection. No indexing, rank, CTR or profit claimed."
+}
