@@ -1,3 +1,4 @@
+import {beginRun} from './analytics-events.mjs';
 import {Input,BlobSource,ALL_FORMATS,CanvasSink} from './vendor/mediabunny/mediabunny-1.66.4.min.mjs';
 import {GIFEncoder,quantize,applyPalette} from './vendor/gifenc/gifenc-1.0.3.mjs';
 const form=document.querySelector('#gif-tool'),fileInput=form.querySelector('input[type=file]'),status=form.querySelector('output'),startButton=form.querySelector('[type=submit]'),cancel=form.querySelector('[data-cancel]'),download=form.querySelector('a'),preview=form.querySelector('img'),progress=form.querySelector('progress');
@@ -14,7 +15,7 @@ form.addEventListener('submit',async event=>{
  const start=form.elements.namedItem('start').valueAsNumber,length=form.elements.namedItem('length').valueAsNumber,fps=Number(form.elements.fps.value),longest=Number(form.elements.longest.value);
  if(!Number.isFinite(start)||start<0||!Number.isFinite(length)||length<.4||length>10){status.textContent='Use a non-negative start and a length from 0.4 to 10 seconds.';return;}
  controls(true);aborted=false;progress.value=0;status.textContent='Reading video…';
- let input;
+ let input;const analyticsRun=beginRun('video-gif');
  try{
   input=new Input({source:new BlobSource(file),formats:ALL_FORMATS});
   const tracks=await input.getVideoTracks();
@@ -44,7 +45,8 @@ form.addEventListener('submit',async event=>{
   url=URL.createObjectURL(blob);download.href=url;download.download=file.name.replace(/\.[^.]+$/,'')+'-clip.gif';download.hidden=false;
   preview.src=url;preview.hidden=matchMedia('(prefers-reduced-motion: reduce)').matches;
   status.textContent=n.format(blob.size/1000)+' kB; '+width+' × '+height+' pixels; '+count+' frames; '+n.format(used)+' seconds from '+n.format(start)+'s. GIF has no audio and loops continuously.'+(preview.hidden?' Preview hidden for your reduced-motion preference.':'');
- }catch(error){status.textContent=aborted?'Cancelled. Your original video is unchanged.':error.message||'Unable to create a GIF.';}
+ analyticsRun.success();
+ }catch(error){aborted?analyticsRun.cancel():analyticsRun.error();status.textContent=aborted?'Cancelled. Your original video is unchanged.':error.message||'Unable to create a GIF.';}
  finally{input?.dispose();controls(false);}
 });
 window.addEventListener('pagehide',()=>{aborted=true;clear();});

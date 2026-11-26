@@ -1,3 +1,4 @@
+import {beginRun} from './analytics-events.mjs';
 import {Input,BlobSource,ALL_FORMATS,Output,Mp4OutputFormat,WavOutputFormat,BufferTarget,Conversion} from './vendor/mediabunny/mediabunny-1.66.4.min.mjs';
 const form=document.querySelector('#audio-extractor'),fileInput=form.querySelector('input'),format=form.querySelector('select'),status=form.querySelector('output'),start=form.querySelector('[type=submit]'),cancel=form.querySelector('[data-cancel]'),download=form.querySelector('a'),preview=form.querySelector('audio'),progress=form.querySelector('progress');
 let conversion,url,busy=false,aborted=false;
@@ -12,7 +13,7 @@ form.addEventListener('submit',async event=>{
  const file=fileInput.files[0];if(!file){status.textContent='Choose a video first.';return;}
  if(file.size>250*1024*1024){status.textContent='Choose a file up to 250 MB. Use a desktop editor for larger files.';return;}
  controls(true);aborted=false;progress.value=0;status.textContent='Reading audio tracks…';
- let input;
+ let input;const analyticsRun=beginRun('audio-extractor');
  try{
   input=new Input({source:new BlobSource(file),formats:ALL_FORMATS});
   const tracks=await input.getAudioTracks();
@@ -42,7 +43,8 @@ form.addEventListener('submit',async event=>{
   if(aborted)throw new Error('Cancelled.');
   url=URL.createObjectURL(blob);download.href=url;download.download=file.name.replace(/\.[^.]+$/,'')+'-audio.'+(m4a?'m4a':'wav');download.textContent='Download '+(m4a?'M4A':'WAV');download.hidden=false;preview.src=url;preview.hidden=false;progress.value=1;
   status.textContent=bytes(blob.size)+'; '+n.format(duration)+' seconds; one audio track, no video track. '+(m4a?'AAC copied without re-encoding.':'Decoded to 16-bit PCM WAV. WAV does not restore detail lost in the source.')+' Listen to the saved file before using it.';
- }catch(error){status.textContent=aborted?'Cancelled. Your original video is unchanged.':error.message||'Unable to extract this file.';}
+ analyticsRun.success();
+ }catch(error){aborted?analyticsRun.cancel():analyticsRun.error();status.textContent=aborted?'Cancelled. Your original video is unchanged.':error.message||'Unable to extract this file.';}
  finally{input?.dispose();conversion=undefined;controls(false);}
 });
 window.addEventListener('pagehide',()=>{aborted=true;conversion?.cancel().catch(()=>{});clear();});

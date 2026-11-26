@@ -1,6 +1,7 @@
+import {beginRun} from './analytics-events.mjs';
 import {inspectResponse} from './assistant-task-check.mjs';
 const form=document.querySelector('#comparison-check');
-form.addEventListener('submit',event=>{event.preventDefault();
+form.addEventListener('submit',event=>{event.preventDefault();const analyticsRun=beginRun('assistant-comparison');
  for(const panel of form.querySelectorAll('[data-response]')){
   const out=panel.querySelector('output'),raw=panel.querySelector('textarea').value;
   out.replaceChildren();
@@ -12,4 +13,5 @@ form.addEventListener('submit',event=>{event.preventDefault();
   if(r.named_calendar_days.length)line('Review named weekdays: '+r.named_calendar_days.join(', ')+'. The policy does not supply a holiday calendar.');
   line('Still review the answer meanings, exactly two sentences and all six notice facts. A matching quotation does not prove the answer follows it.');
  }
+analyticsRun.success();
 });form.hidden=false;

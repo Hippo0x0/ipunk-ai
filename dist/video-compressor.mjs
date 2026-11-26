@@ -1,3 +1,4 @@
+import {beginRun} from './analytics-events.mjs';
 import {Input,BlobSource,ALL_FORMATS,Output,Mp4OutputFormat,BufferTarget,Conversion,Quality} from './vendor/mediabunny/mediabunny-1.66.4.min.mjs';
 const form=document.querySelector('#compressor'), status=form.querySelector('output'), fileInput=form.querySelector('input[type=file]'), button=form.querySelector('button[type=submit]'), cancel=form.querySelector('[data-cancel]'), link=form.querySelector('[data-download]'), preview=form.querySelector('video'), progress=form.querySelector('progress');
 let conversion,url,aborted=false,busy=false;
@@ -14,7 +15,7 @@ form.addEventListener('submit',async event=>{
  if(file.size>250*1024*1024){status.textContent='Choose a video up to 250 MB. For larger files, use a desktop editor.';return;}
  if(!('VideoEncoder' in window)||!('VideoDecoder' in window)){status.textContent='This browser cannot run the video encoder. Try a current desktop Chrome or Edge browser.';return;}
  controls(true);aborted=false;progress.value=0;status.textContent='Reading video…';
- let input;
+ let input;const analyticsRun=beginRun('video-compressor');
  try{
   input=new Input({source:new BlobSource(file),formats:ALL_FORMATS});
   const videoTracks=await input.getVideoTracks(),audioTracks=await input.getAudioTracks();
@@ -42,7 +43,8 @@ form.addEventListener('submit',async event=>{
   } finally {verify.dispose();}
   if(aborted)throw new Error('Cancelled. Your original file is unchanged.');
   url=URL.createObjectURL(blob);link.href=url;link.download=file.name.replace(/\.[^.]+$/,'')+'-compressed.mp4';link.hidden=false;preview.src=url;preview.hidden=false;progress.value=1;
- }catch(error){status.textContent=aborted?'Cancelled. Your original file is unchanged.':error.message||'Unable to compress this file.';}
+ analyticsRun.success();
+ }catch(error){aborted?analyticsRun.cancel():analyticsRun.error();status.textContent=aborted?'Cancelled. Your original file is unchanged.':error.message||'Unable to compress this file.';}
  finally{input?.dispose();conversion=undefined;controls(false);}
 });
 window.addEventListener('pagehide',()=>{aborted=true;conversion?.cancel().catch(()=>{});clearResult();});

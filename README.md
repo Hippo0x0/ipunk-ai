@@ -59,3 +59,7 @@ NODE_OPTIONS="--dns-result-order=ipv4first --no-network-family-autoselection" wr
 The network options avoid OAuth refresh timeouts on dual-stack hosts. The Worker serves `dist/` as static assets and uses automatic trailing-slash HTML routing with `404.html` as the not-found page.
 
 The scheduled snapshot workflow publishes changed public metrics to this existing Worker only when this repository already has `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` Actions secrets. If either secret is absent, it keeps the validated Git commit and reports that manual deployment is still needed. It checks `/data/projects.json` on the custom domain after deployment. Captures with only a new timestamp are retained locally without a new commit or deployment.
+
+## Usage analytics
+
+The AI site shares PostHog project 739712 and isolates events with site=ai.ipunk.cn. See [analytics setup, exclusions and deployment](docs/PRODUCT-ANALYTICS.md).

@@ -1,3 +1,4 @@
+import {beginRun} from './analytics-events.mjs';
 import {Input,BlobSource,ALL_FORMATS,Output,Mp4OutputFormat,WebMOutputFormat,BufferTarget,Conversion} from './vendor/mediabunny/mediabunny-1.66.4.min.mjs';
 const form=document.querySelector('#converter'),fileInput=form.querySelector('input'),format=form.querySelector('select'),status=form.querySelector('output'),start=form.querySelector('[type=submit]'),cancel=form.querySelector('[data-cancel]'),download=form.querySelector('a'),preview=form.querySelector('video'),progress=form.querySelector('progress');
 let conversion,url,busy=false,aborted=false;
@@ -11,7 +12,7 @@ form.addEventListener('submit',async event=>{
  event.preventDefault();if(busy)return;clear();const file=fileInput.files[0];
  if(!file){status.textContent='Choose a video first.';return;}
  if(file.size>250*1024*1024){status.textContent='Choose a video up to 250 MB. Use a desktop editor for larger files.';return;}
- controls(true);aborted=false;progress.value=0;status.textContent='Reading video and audio…';let input;
+ controls(true);aborted=false;progress.value=0;status.textContent='Reading video and audio…';let input;const analyticsRun=beginRun('video-converter');
  try{
   input=new Input({source:new BlobSource(file),formats:ALL_FORMATS});
   const v=await input.getVideoTracks(),a=await input.getAudioTracks();
@@ -34,7 +35,8 @@ form.addEventListener('submit',async event=>{
   if(aborted)throw new Error('Cancelled.');
   url=URL.createObjectURL(blob);download.href=url;download.download=file.name.replace(/\.[^.]+$/,'')+'-converted.'+(mp4?'mp4':'webm');download.textContent='Download '+(mp4?'MP4':'WebM');download.hidden=false;preview.src=url;preview.hidden=false;progress.value=1;
   status.textContent=size(file.size)+' → '+size(blob.size)+'. '+detail+' Format conversion does not guarantee a smaller file. Play the saved result in the destination app.';
- }catch(error){status.textContent=aborted?'Cancelled. Your original file is unchanged.':error.message||'Unable to convert this video.';}
+ analyticsRun.success();
+ }catch(error){aborted?analyticsRun.cancel():analyticsRun.error();status.textContent=aborted?'Cancelled. Your original file is unchanged.':error.message||'Unable to convert this video.';}
  finally{input?.dispose();conversion=undefined;controls(false);}
 });
 window.addEventListener('pagehide',()=>{aborted=true;conversion?.cancel().catch(()=>{});clear();});

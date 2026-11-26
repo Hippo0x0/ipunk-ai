@@ -1,3 +1,4 @@
+import {beginRun} from './analytics-events.mjs';
 import {Input,BlobSource,ALL_FORMATS,Output,Mp4OutputFormat,BufferTarget,Conversion} from './vendor/mediabunny/mediabunny-1.66.4.min.mjs';
 const form=document.querySelector('#crop-tool'),file=form.querySelector('[type=file]'),ratio=form.querySelector('select'),x=form.querySelector('[name=x]'),y=form.querySelector('[name=y]'),source=form.querySelector('[data-source]'),box=form.querySelector('[data-box]'),frame=form.querySelector('[data-frame]'),result=form.querySelector('[data-result]'),status=form.querySelector('output'),geometry=form.querySelector('[data-geometry]'),start=form.querySelector('[type=submit]'),cancel=form.querySelector('[data-cancel]'),download=form.querySelector('a'),progress=form.querySelector('progress');
 let sourceURL,resultURL,conversion,busy=false,aborted=false,ready=false;
@@ -26,7 +27,7 @@ source.addEventListener('loadedmetadata',()=>{if(!source.videoWidth||!source.vid
 source.addEventListener('error',()=>{ready=false;controls(false);status.textContent='This browser cannot preview the selected video. Try a complete H.264 MP4 or a desktop editor.';});
 for(const el of [ratio,x,y])el.addEventListener('input',()=>{try{update();}catch(e){status.textContent=e.message;}});
 cancel.addEventListener('click',async()=>{aborted=true;status.textContent='Cancelling…';try{await conversion?.cancel();}catch{}});
-form.addEventListener('submit',async event=>{event.preventDefault();if(busy||!ready)return;releaseResult();source.pause();controls(true);aborted=false;progress.value=0;status.textContent='Preparing crop…';let input;
+form.addEventListener('submit',async event=>{event.preventDefault();if(busy||!ready)return;releaseResult();source.pause();controls(true);aborted=false;progress.value=0;status.textContent='Preparing crop…';let input;const analyticsRun=beginRun('video-crop');
  try{
   const r=rect(),selected=file.files[0];input=new Input({source:new BlobSource(selected),formats:ALL_FORMATS});
   const v=await input.getVideoTracks(),a=await input.getAudioTracks();
@@ -41,6 +42,7 @@ form.addEventListener('submit',async event=>{event.preventDefault();if(busy||!re
   let duration;try{const vv=await check.getVideoTracks(),aa=await check.getAudioTracks();duration=await check.computeDuration();if(vv.length!==1||aa.length!==a.length||await vv[0].getDisplayWidth()!==r.outW||await vv[0].getDisplayHeight()!==r.outH||!(duration>0))throw new Error('The output failed its dimension or track check; no download was created.');}finally{check.dispose();}
   if(aborted)throw new Error('Cancelled.');resultURL=URL.createObjectURL(blob);download.href=resultURL;download.download=selected.name.replace(/\.[^.]+$/,'')+'-cropped.mp4';download.hidden=false;result.src=resultURL;result.hidden=false;progress.value=1;
   status.textContent=`Ready: ${r.outW} × ${r.outH} pixels, ${duration.toFixed(2)} seconds, ${blob.size.toLocaleString('en-US')} bytes; ${a.length?'audio retained':'source had no audio'}. Download and check the saved video.`;
- }catch(e){status.textContent=aborted?'Cancelled. Your original is unchanged.':e.message||'Unable to crop this video.';}finally{input?.dispose();conversion=undefined;controls(false);}
+ analyticsRun.success();
+ }catch(e){aborted?analyticsRun.cancel():analyticsRun.error();status.textContent=aborted?'Cancelled. Your original is unchanged.':e.message||'Unable to crop this video.';}finally{input?.dispose();conversion=undefined;controls(false);}
 });
 window.addEventListener('pagehide',()=>{aborted=true;conversion?.cancel().catch(()=>{});source.pause();if(sourceURL)URL.revokeObjectURL(sourceURL);releaseResult();});form.hidden=false;

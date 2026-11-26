@@ -1,3 +1,4 @@
+import {beginRun,record} from './analytics-events.mjs';
 import {sourceLink,readAudit,writeAudit,REVIEW_STATES} from './source-audit-core.mjs';
 const form=document.querySelector('#source-audit'),rows=form.querySelector('[data-rows]'),summary=form.querySelector('output'),add=form.querySelector('[data-add]'),save=form.querySelector('[data-save]'),file=form.querySelector('[type=file]');
 const labels={'unreviewed':'Not reviewed','supported':'Source supports this claim','not-supported':'Source does not support it','unavailable':'Source unavailable'};
@@ -18,10 +19,10 @@ function make(c={text:'',source_url:'',status:'unreviewed',notes:''}){
  rows.append(row);row.addEventListener('input',update);row.addEventListener('change',update);
 }
 add.addEventListener('click',()=>{if(rows.children.length>=20)return;make();update();rows.lastElementChild.querySelector('textarea').focus();});
-save.addEventListener('click',()=>{
- try{const text=writeAudit(fields());if(downloadURL)URL.revokeObjectURL(downloadURL);downloadURL=URL.createObjectURL(new Blob([text],{type:'application/json'}));const a=document.createElement('a');a.href=downloadURL;a.download='ai-source-audit.json';a.click();summary.textContent='Audit download requested. Open the saved JSON to confirm your entries.';}catch(e){summary.textContent=e.message;}
+save.addEventListener('click',()=>{const analyticsRun=beginRun('source-audit','export');
+ try{const text=writeAudit(fields());if(downloadURL)URL.revokeObjectURL(downloadURL);downloadURL=URL.createObjectURL(new Blob([text],{type:'application/json'}));const a=document.createElement('a');a.href=downloadURL;a.download='ai-source-audit.json';a.click();record('download_initiated',{download_kind:'result'});analyticsRun.success();summary.textContent='Audit download requested. Open the saved JSON to confirm your entries.';}catch(e){analyticsRun.error();summary.textContent=e.message;}
 });
-file.addEventListener('change',async()=>{const f=file.files[0];if(!f)return;
- try{if(f.size>100000)throw new Error('Use an audit JSON file up to 100 kB.');const data=readAudit(await f.text());rows.replaceChildren();for(const c of data)make(c);update();summary.textContent='Loaded '+data.length+' manual review entries. Check them against the sources.';}catch(e){summary.textContent=e.message+' Current entries were kept.';}finally{file.value='';}
+file.addEventListener('change',async()=>{const f=file.files[0];if(!f)return;const analyticsRun=beginRun('source-audit','import');
+ try{if(f.size>100000)throw new Error('Use an audit JSON file up to 100 kB.');const data=readAudit(await f.text());rows.replaceChildren();for(const c of data)make(c);update();summary.textContent='Loaded '+data.length+' manual review entries. Check them against the sources.';analyticsRun.success();}catch(e){analyticsRun.error();summary.textContent=e.message+' Current entries were kept.';}finally{file.value='';}
 });
 form.addEventListener('submit',e=>e.preventDefault());window.addEventListener('pagehide',()=>{if(downloadURL)URL.revokeObjectURL(downloadURL);});make();update();form.hidden=false;
