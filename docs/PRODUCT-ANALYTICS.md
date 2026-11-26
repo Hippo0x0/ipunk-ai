@@ -29,3 +29,7 @@ Only for a dedicated ingestion check: set `ipunk.analytics.test.v1=true`, tempor
 `npm test` covers isolation, privacy/storage refusal, race-time blocking, payload redaction and event contracts. Run `node scripts/check-site.mjs` and local desktop/mobile QA. Production HTTP checks do not execute analytics; one separately labeled browser ingestion test must be confirmed in PostHog before declaring telemetry verified.
 
 Sources checked 2026-11-26: https://posthog.com/docs/libraries/js, https://posthog.com/docs/libraries/js/config, https://posthog.com/docs/libraries/js/security. Current documented defaults snapshot is `2026-08-30`.
+
+## Setup status
+
+Dashboard: https://us.posthog.com/project/739712/dashboard/2416016. Native production-only charts have been saved and executed. The labeled localhost SDK harness ingested synthetic events; this verifies SDK transport, not the production page. Formal deployment remains pending the existing Cloudflare login/authorization. See `data/reports/2026-11-26-ai-analytics-setup.json` for the handoff state.

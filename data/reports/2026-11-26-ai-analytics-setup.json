@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-26",
+  "status": "ready_for_deployment_awaiting_cloudflare_authorization",
+  "source_commit": "50642d6546ae380e3f250024fa3892a5a2d502d7",
+  "project_id": 739712,
+  "project_strategy": "User approved sharing existing iPunk project; AI-only event and dashboard filters. No new paid project or plan change.",
+  "dashboard": "https://us.posthog.com/project/739712/dashboard/2416016",
+  "insights": [
+    "PhasnFI1",
+    "I7j8wLZl",
+    "k67CiH4q",
+    "iJYo2EXY"
+  ],
+  "dashboard_filters": {
+    "site": "ai.ipunk.cn",
+    "traffic_type": "production",
+    "filterTestAccounts": true,
+    "timezone": "UTC"
+  },
+  "validation": {
+    "tests_passed": 54,
+    "static_html_pages_checked": 42,
+    "daily_snapshot_preserved": "2026-11-26 upstream cd2eb9b",
+    "local_mobile_width": 390,
+    "local_mobile_scroll_width": 390,
+    "local_preference_saved": "denied",
+    "local_real_checker_start_and_success": true,
+    "local_posthog_requests_in_ordinary_preview": 0,
+    "official_sdk": "posthog-js 1.455.2, unchanged npm slim no-external module",
+    "sdk_defaults": "2026-08-30",
+    "sdk_sha256": "98c23055c6cfc28710b540b5dd8121f8c2622e98b5525cf9a05379d7d5e49771",
+    "official_sdk_private_browser_harness": "Four synthetic event types with site and internal_test labels; no pasted text/filename/raw source URL in outgoing allowlist. Internal gate blocks another event. Not a production-page browser test.",
+    "posthog_readback": "AI site property and start/success schema confirmed; labeled $pageview count2 on November26 UTC. Test events excluded from production dashboard. No real traffic inference."
+  },
+  "deployment_attempts": [
+    "Wrangler direct: expired token; auth server unreachable.",
+    "Existing proxy retry: no usable noninteractive session.",
+    "Same-scope OAuth initiated, timed out waiting for callback; native Chrome reached Cloudflare login route."
+  ],
+  "remaining": [
+    "Finish same-scope Cloudflare login/consent and deploy existing ipunk-ai Worker.",
+    "HTTP verify changed HTML and all analytics/tool/privacy resources against source.",
+    "Formal browser check only after same-origin robots internal exclusion; use labeled ingestion test if appropriate, then restore exclusion.",
+    "Update this report to actual live version, without treating SDK tests or historical missing data as traffic."
+  ],
+  "privacy": "No recording, auto input capture, user profile, raw errors, files, pasted responses or claim/source URL collection. Public project token is generated build config; personal credentials are not in repo.",
+  "whitespace": "Official vendor LICENSE retained unchanged; upstream trailing whitespace is excluded only from git diff whitespace check."
+}
