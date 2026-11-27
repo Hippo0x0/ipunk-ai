@@ -85,7 +85,7 @@ alternative_sections = [
 <tr><td>Source-based research</td><td>Perplexity</td><td><a href="#research">Check the same facts and their original sources</a>.</td></tr>
 <tr><td>Supplied text, tables and a constrained notice</td><td>Claude</td><td><a href="#writing">Inspect the first reply and format correction</a>.</td></tr>
 <tr><td>Image creation</td><td>Gemini</td><td><a href="#images">Inspect first-output images, then try your brief</a>.</td></tr>
-<tr><td>Repository edits</td><td>A coding-agent workflow</td><td><a href="/en/projects/opencode/">Review OpenCode’s model and permission boundaries</a>.</td></tr>
+<tr><td>Repository edits</td><td>A coding-agent workflow</td><td><a href="/en/guides/claude-code-vs-cursor/">Run the same Claude Code and Cursor repair task</a>, or <a href="/en/projects/opencode/">review OpenCode’s permission boundaries</a>.</td></tr>
 <tr><td>Local execution</td><td>A hardware-specific feasibility check</td><td><a href="/guides/mac-mini-m4-qwen-local-benchmark/">Read one Mac mini Qwen field report (Chinese)</a>.</td></tr>
 </tbody></table></div>'''),
 ('research', 'Perplexity for a source-checking trial', '''

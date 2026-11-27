@@ -1,0 +1,10 @@
+I repaired `src/orders.mjs` to implement the contract exactly.
+
+Changes:
+- **Filter + validation**: skip non-`paid` records entirely; for paid records, validate `amount` and `refund` (defaulting a missing refund to `'0'` via `?? '0'`).
+- **Exact cent arithmetic**: parse decimal strings with a strict regex (`/^(0|[1-9]\d*)(?:\.(\d{1,2}))?$/`) and convert to `BigInt` cents — rejecting empty strings, `NaN`, `Infinity`, exponent notation, leading zeros like `01`, spaces, negatives, and more than two fractional digits.
+- **Rejections**: refund > amount, duplicate paid IDs, individual cents > `Number.MAX_SAFE_INTEGER`, and aggregate totals > `Number.MAX_SAFE_INTEGER`.
+- **Output**: `ids` sorted lexically via default JS string sort (a copy, not the input), `count` = paid records only, `net_cents` as a safe integer, and `highest_id` for the largest net (amount − refund) with ties resolved by lexically first ID; empty input returns `{ids: [], count: 0, net_cents: 0, highest_id: null}`.
+- **No input mutation**: original array and records are never modified.
+
+Checks I could not run: I did not execute `node --test test/orders.test.mjs` because the instructions disallowed shell commands. I verified the logic by hand against all twelve test cases, including the unsafe-cents boundary (`90071992547409.92` → 9007199254740992 cents, over the limit) and aggregate overflow (`90071992547409.90` + `1`).

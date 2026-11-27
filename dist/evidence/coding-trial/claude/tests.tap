@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: empty input
+ok 1 - empty input
+  ---
+  duration_ms: 1.094917
+  type: 'test'
+  ...
+# Subtest: counts only paid orders and sorts IDs lexically
+ok 2 - counts only paid orders and sorts IDs lexically
+  ---
+  duration_ms: 0.523208
+  type: 'test'
+  ...
+# Subtest: decimal money sums to exact integer cents
+ok 3 - decimal money sums to exact integer cents
+  ---
+  duration_ms: 0.109583
+  type: 'test'
+  ...
+# Subtest: refund changes the highest net order
+ok 4 - refund changes the highest net order
+  ---
+  duration_ms: 0.136292
+  type: 'test'
+  ...
+# Subtest: equal net totals choose the lexically first ID
+ok 5 - equal net totals choose the lexically first ID
+  ---
+  duration_ms: 0.11975
+  type: 'test'
+  ...
+# Subtest: input records and array are unchanged
+ok 6 - input records and array are unchanged
+  ---
+  duration_ms: 0.309625
+  type: 'test'
+  ...
+# Subtest: duplicate paid IDs fail
+ok 7 - duplicate paid IDs fail
+  ---
+  duration_ms: 0.177
+  type: 'test'
+  ...
+# Subtest: malformed money fails
+ok 8 - malformed money fails
+  ---
+  duration_ms: 0.085709
+  type: 'test'
+  ...
+# Subtest: more than two decimal places fails
+ok 9 - more than two decimal places fails
+  ---
+  duration_ms: 0.244458
+  type: 'test'
+  ...
+# Subtest: refund exceeding amount fails
+ok 10 - refund exceeding amount fails
+  ---
+  duration_ms: 0.266167
+  type: 'test'
+  ...
+# Subtest: negative values fail
+ok 11 - negative values fail
+  ---
+  duration_ms: 0.106333
+  type: 'test'
+  ...
+# Subtest: unsafe cents and aggregate overflow fail
+ok 12 - unsafe cents and aggregate overflow fail
+  ---
+  duration_ms: 0.060875
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 64.094333

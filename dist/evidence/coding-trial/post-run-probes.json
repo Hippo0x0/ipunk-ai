@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-27",
+  "method": "Two post-run boundary probes chosen after reading the first patch; not preregistered or a representative benchmark.",
+  "public_fixture_checks_unchanged": 12,
+  "probes": [
+    {
+      "name": "numeric amount is rejected",
+      "input": [
+        {
+          "id": "A",
+          "status": "paid",
+          "amount": 1,
+          "refund": "0"
+        }
+      ],
+      "expected": "reject",
+      "configured_cli_patch_rejected": false,
+      "author_reference_rejected": true
+    },
+    {
+      "name": "null refund is rejected rather than defaulted",
+      "input": [
+        {
+          "id": "A",
+          "status": "paid",
+          "amount": "1",
+          "refund": null
+        }
+      ],
+      "expected": "reject",
+      "configured_cli_patch_rejected": false,
+      "author_reference_rejected": true
+    }
+  ],
+  "conclusion": "The configured CLI patch passes all twelve public checks but accepts a numeric amount and null refund, which violate the written string-only/missing-refund contract."
+}

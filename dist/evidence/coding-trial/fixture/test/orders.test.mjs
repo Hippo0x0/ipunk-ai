@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {summarizeOrders} from '../src/orders.mjs';
+const paid=(id,amount,refund='0')=>({id,status:'paid',amount,refund});
+test('empty input',()=>assert.deepEqual(summarizeOrders([]),{ids:[],count:0,net_cents:0,highest_id:null}));
+test('counts only paid orders and sorts IDs lexically',()=>assert.deepEqual(summarizeOrders([paid('B','2'),{id:'X',status:'cancelled',amount:'bad'},paid('A','1')]),{ids:['A','B'],count:2,net_cents:300,highest_id:'B'}));
+test('decimal money sums to exact integer cents',()=>assert.equal(summarizeOrders([paid('A','0.10'),paid('B','0.20')]).net_cents,30));
+test('refund changes the highest net order',()=>assert.deepEqual(summarizeOrders([paid('A','100','90'),paid('B','20')]),{ids:['A','B'],count:2,net_cents:3000,highest_id:'B'}));
+test('equal net totals choose the lexically first ID',()=>assert.equal(summarizeOrders([paid('Z','5'),paid('A','5')]).highest_id,'A'));
+test('input records and array are unchanged',()=>{const rows=[paid('B','1'),paid('A','2')],before=JSON.stringify(rows);summarizeOrders(rows);assert.equal(JSON.stringify(rows),before);});
+test('duplicate paid IDs fail',()=>assert.throws(()=>summarizeOrders([paid('A','1'),paid('A','2')])));
+test('malformed money fails',()=>{for(const amount of ['','NaN','1e2','Infinity',' 2','01'])assert.throws(()=>summarizeOrders([paid('A',amount)]));});
+test('more than two decimal places fails',()=>assert.throws(()=>summarizeOrders([paid('A','1.001')])));
+test('refund exceeding amount fails',()=>assert.throws(()=>summarizeOrders([paid('A','1','2')])));
+test('negative values fail',()=>assert.throws(()=>summarizeOrders([paid('A','-1')])));
+test('unsafe cents and aggregate overflow fail',()=>{assert.throws(()=>summarizeOrders([paid('A','90071992547409.92')]));assert.throws(()=>summarizeOrders([paid('A','90071992547409.90'),paid('B','1')]));});

@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-27",
+  "harness": "Claude Code CLI",
+  "harness_version": "2.1.173",
+  "model_metadata_keys": [
+    "deepseek-v4-pro[1m]"
+  ],
+  "provider_identity_independently_verified": false,
+  "account_plan": "unknown",
+  "prompt_file": "prompt.txt",
+  "rounds": 1,
+  "user_corrections": 0,
+  "allowed_tools": [
+    "Read",
+    "Edit",
+    "Write"
+  ],
+  "shell_tools_available": false,
+  "mcp_servers": [],
+  "app_result": "success",
+  "independent_tests": {
+    "passed": 12,
+    "failed": 0,
+    "total": 12,
+    "test_files_unchanged": true
+  },
+  "model_identity_limit": "Metadata names deepseek-v4-pro[1m]. This run must not be described as an Anthropic Claude-model benchmark or a matched-model comparison.",
+  "reported_cost_usd": 0.177156,
+  "cost_qualification": "CLI-reported estimate; actual billing and subscription usage were not independently checked. No speed comparison.",
+  "post_run_review": "Two string-only/missing-value contract probes failed despite twelve public checks passing; see post-run-probes.json. The probes were selected after the run.",
+  "cursor_status": "not_run_user_requested_no_login",
+  "tool_identity_source": "Local executable --version output; vendor binary and underlying provider identity were not independently attested."
+}

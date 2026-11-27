@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-27",
+  "files": {
+    "baseline-tests.tap": "b1f577d1ee6da1cf41d2c1fabfcf2e3669c892d965dfa431b99a053ff2ae5ac7",
+    "claude/first-response.txt": "93aee879c91d7f0f9180222afda575835dc1f69417080092fd775f9c7cecda0e",
+    "claude/orders.mjs": "fa5ab77a3939916784bf6a5e1ec79cb69d0f4123ea5eb1cbf7681882afa6936a",
+    "claude/tests.tap": "e03ab00a806f3c7b3a0278ec8c98dd99fde2f257e7eecd0e7761cb3240b8cc37",
+    "coding-trial.zip": "69ea44566d7a845e6a82c0750bc032cb4bb12cb623a77a626848dd122ad06679",
+    "fixture/README.md": "86c3ef6a760bd164a4b4d725dc98302ba35538586fb77eec499ac7e3e0ab2c1a",
+    "fixture/src/orders.mjs": "318e0ddc7fba2da042f70f39b8b1cb0072ef4e9df88837d50648d155311572d8",
+    "fixture/test/orders.test.mjs": "63678c5ca2b3e5c15dff5746e58f2dfca3e1b39865faa4c60214c2e6c0bf26ca",
+    "post-run-probes.json": "63da8448db9c8fc7aa60d41907f52c7c3f5ce488408202e15a9c749172b52863",
+    "prompt.txt": "3b7beac465c00a2b1f2b9b1778f72bb287a7f9a5f132b8d009a7d174addc3d7f",
+    "reference/orders.mjs": "c2383fa7072936598cd80c1d42e495c0470b978e643e2e5a9f9b11b18900def7",
+    "reference-tests.tap": "c91decba69cda2fd9f564e5a5a6a64c9301ac7c3c91591009cf28466c2a75728",
+    "run-observation.json": "6152d9ea970db1216d7e4eff5ce7c9783f8eed93aa9e8e831d7873f54b392a56"
+  },
+  "reference_origin": "Author-written; not a provider output.",
+  "tests": 12
+}
