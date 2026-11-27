@@ -86,7 +86,7 @@ alternative_sections = [
 <tr><td>Supplied text, tables and a constrained notice</td><td>Claude</td><td><a href="#writing">Inspect the first reply and format correction</a>.</td></tr>
 <tr><td>Image creation</td><td>Gemini</td><td><a href="#images">Inspect first-output images, then try your brief</a>.</td></tr>
 <tr><td>Repository edits</td><td>A coding-agent workflow</td><td><a href="/en/guides/claude-code-vs-cursor/">Run the same Claude Code and Cursor repair task</a>, or <a href="/en/projects/opencode/">review OpenCode’s permission boundaries</a>.</td></tr>
-<tr><td>Local execution</td><td>A hardware-specific feasibility check</td><td><a href="/guides/mac-mini-m4-qwen-local-benchmark/">Read one Mac mini Qwen field report (Chinese)</a>.</td></tr>
+<tr><td>Local execution</td><td>A hardware-specific feasibility check</td><td><a href="/en/guides/ollama-vs-lm-studio/">Check Ollama and LM Studio with the same local API request</a>, then review hardware-specific measurements.</td></tr>
 </tbody></table></div>'''),
 ('research', 'Perplexity for a source-checking trial', '''
 <p>Start here if you want to inspect a linked source next to an answer. In our November 25 exercise, signed-in Perplexity Search and ChatGPT both answered three questions covering seven required facts with supporting primary links. This small exercise did not separate them on overall accuracy.</p>

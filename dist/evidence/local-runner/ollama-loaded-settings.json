@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-11-27T09:23:10.323571+00:00",
+  "method": "Empty native generate preload after the restricted API trial; model/server default context 4096.",
+  "response": {
+    "models": [
+      {
+        "name": "ipunk-small:latest",
+        "model": "ipunk-small:latest",
+        "size": 338973162,
+        "digest": "b72bdaaa051cb14a2773384a2cf67ec67a1d4dff9180c67f78944e2d60d66ef1",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "630.17M",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-11-27T17:24:10.322126+08:00",
+        "size_vram": 338973162,
+        "context_length": 4096,
+        "runner": "llamacpp"
+      }
+    ]
+  }
+}

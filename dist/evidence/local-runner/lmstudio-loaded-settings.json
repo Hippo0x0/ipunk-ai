@@ -1,0 +1,16 @@
+[
+  {
+    "modelKey": "qwen2.5-0.5b-instruct",
+    "format": "gguf",
+    "sizeBytes": 491400032,
+    "architecture": "qwen2",
+    "quantization": {
+      "name": "Q4_K_M",
+      "bits": 4
+    },
+    "engine": "llama.cpp",
+    "identifier": "ipunk-small",
+    "contextLength": 4096,
+    "parallel": 1
+  }
+]

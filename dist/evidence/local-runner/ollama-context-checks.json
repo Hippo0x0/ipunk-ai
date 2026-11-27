@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-27",
+  "server_version": {
+    "version": "0.40.18"
+  },
+  "source_model_sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+  "method": "Unload before each native API request; inspect /api/ps after response. Two configuration checks, not a speed benchmark.",
+  "observations": [
+    {
+      "requested_context": 2048,
+      "request": {
+        "model": "ipunk-small",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply with exactly LOCAL_OK and nothing else."
+          }
+        ],
+        "options": {
+          "num_ctx": 2048,
+          "temperature": 0,
+          "num_predict": 16
+        },
+        "stream": false,
+        "keep_alive": "60s"
+      },
+      "response": {
+        "model": "ipunk-small",
+        "created_at": "2026-11-27T09:12:43.74928Z",
+        "message": {
+          "role": "assistant",
+          "content": "LOCAL_OK"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 849794208,
+        "load_duration": 814245333,
+        "prompt_eval_count": 38,
+        "prompt_eval_cached_count": 0,
+        "prompt_eval_duration": 20279000,
+        "eval_count": 3,
+        "eval_duration": 13336000
+      },
+      "running_models": {
+        "models": [
+          {
+            "name": "ipunk-small:latest",
+            "model": "ipunk-small:latest",
+            "size": 311710186,
+            "digest": "b72bdaaa051cb14a2773384a2cf67ec67a1d4dff9180c67f78944e2d60d66ef1",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "qwen2",
+              "families": [
+                "qwen2"
+              ],
+              "parameter_size": "630.17M",
+              "quantization_level": "Q4_K_M"
+            },
+            "expires_at": "2026-11-27T17:13:43.749904+08:00",
+            "size_vram": 311710186,
+            "context_length": 2048,
+            "runner": "llamacpp"
+          }
+        ]
+      }
+    },
+    {
+      "requested_context": 8192,
+      "request": {
+        "model": "ipunk-small",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply with exactly LOCAL_OK and nothing else."
+          }
+        ],
+        "options": {
+          "num_ctx": 8192,
+          "temperature": 0,
+          "num_predict": 16
+        },
+        "stream": false,
+        "keep_alive": "60s"
+      },
+      "response": {
+        "model": "ipunk-small",
+        "created_at": "2026-11-27T09:12:44.320327Z",
+        "message": {
+          "role": "assistant",
+          "content": "LOCAL_OK"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 567647875,
+        "load_duration": 531043667,
+        "prompt_eval_count": 38,
+        "prompt_eval_cached_count": 0,
+        "prompt_eval_duration": 22841000,
+        "eval_count": 3,
+        "eval_duration": 12573000
+      },
+      "running_models": {
+        "models": [
+          {
+            "name": "ipunk-small:latest",
+            "model": "ipunk-small:latest",
+            "size": 439133142,
+            "digest": "b72bdaaa051cb14a2773384a2cf67ec67a1d4dff9180c67f78944e2d60d66ef1",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "qwen2",
+              "families": [
+                "qwen2"
+              ],
+              "parameter_size": "630.17M",
+              "quantization_level": "Q4_K_M"
+            },
+            "expires_at": "2026-11-27T17:13:44.320413+08:00",
+            "size_vram": 439133142,
+            "context_length": 8192,
+            "runner": "llamacpp"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "checked_at": "2026-11-27T09:21:40.242734+00:00",
+  "runtime_label": "lmstudio",
+  "base_url": "http://127.0.0.1:1235/v1",
+  "model_requested": "ipunk-small",
+  "prompt": "Reply with exactly LOCAL_OK and nothing else.",
+  "status": "completed",
+  "qualification": "Client-observed API behavior for this synthetic request; runtime label is supplied by the operator, not independently authenticated.",
+  "listed_model_ids": [
+    "ipunk-small",
+    "qwen2.5-0.5b-instruct",
+    "text-embedding-nomic-embed-text-v1.5"
+  ],
+  "non_stream": {
+    "content": "LOCAL_OK",
+    "returned_model": "ipunk-small",
+    "finish_reason": "stop",
+    "prompt_followed": true
+  },
+  "stream": {
+    "content": "LOCAL_OK",
+    "finish_reason": "stop",
+    "done_marker": true,
+    "protocol_completed": true,
+    "prompt_followed": true
+  }
+}

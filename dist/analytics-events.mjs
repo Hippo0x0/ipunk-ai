@@ -1,4 +1,4 @@
-const TOOLS=new Set(['video-compressor','audio-extractor','video-converter','video-gif','video-crop','assistant-comparison','source-audit','image-brief-builder','assistant-task-selector','coding-trial-log']);
+const TOOLS=new Set(['video-compressor','audio-extractor','video-converter','video-gif','video-crop','assistant-comparison','source-audit','image-brief-builder','assistant-task-selector','coding-trial-log','local-api-check','ollama-context-check']);
 export function record(event,detail={}) { try { window.dispatchEvent(new CustomEvent('ai:analytics',{detail:{event,...detail}})); } catch {} }
 export function beginRun(tool_id,stage='process') {
  const run_id=globalThis.crypto?.randomUUID?.(),start=performance.now();let ended=false;

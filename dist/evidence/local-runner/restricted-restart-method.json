@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-27",
+  "policy": "(version 1)(allow default)(deny network-outbound)(allow network-outbound (remote ip \"localhost:*\"))",
+  "control_checks": {
+    "loopback_http_status": 200,
+    "loopback_body": "LOOPBACK_OK",
+    "external_numeric_ip_connection": {
+      "connected": false,
+      "errno": 1,
+      "exception": "PermissionError",
+      "target_ip": "93.184.215.14",
+      "target_port": 443
+    }
+  },
+  "launches": {
+    "ollama": "Fresh serve process launched through sandbox-exec with the saved policy, existing local model cache and cloud disabled.",
+    "lmstudio": "Original llmster daemon stopped; lms daemon up launched through sandbox-exec with the saved policy, then cached model loaded through its local control interface."
+  },
+  "receipts": [
+    "ollama-restricted-report.json",
+    "lmstudio-restricted-report.json"
+  ],
+  "scope": "Process-level outbound network restriction with loopback allowed. Machine stayed online; caches were already present. Not an OS reboot, empty-cache install, packet audit, full air-gap or general privacy guarantee."
+}

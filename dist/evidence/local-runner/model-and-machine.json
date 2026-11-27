@@ -1,0 +1,30 @@
+{
+  "name": "Qwen/Qwen2.5-0.5B-Instruct-GGUF",
+  "file": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "bytes": 491400032,
+  "sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+  "source_url": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/blob/main/qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "ollama_model_layer": {
+    "mediaType": "application/vnd.ollama.image.model",
+    "digest": "sha256:74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+    "size": 491400032,
+    "from": "ipunk-qwen2.5-0.5b-q4_k_m.gguf"
+  },
+  "hardware": {
+    "chip": "Apple M3 Pro",
+    "memory_bytes": 19327352832,
+    "os": "macOS 27.2.1"
+  },
+  "ollama_version": "0.40.18",
+  "ollama_distribution": "Homebrew arm64_golden_gate bottle extracted to a temporary directory; GGUF llama.cpp backend. No Homebrew dependency upgrades performed.",
+  "lmstudio_headless_version": "llmster 0.1.2+1",
+  "lmstudio_cli_commit": "138dcff",
+  "lmstudio_backend": "llama.cpp-mac-arm64-apple-metal-advsimd@2.83.0",
+  "lmstudio_import_sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+  "lmstudio_import_method": "Symbolic link to the same source GGUF; file bytes hashed through the imported path.",
+  "load_context": 4096,
+  "load_parallel": 1,
+  "lmstudio_gpu_setting": "max",
+  "ollama_bottle_sha256": "3e364fdfeedd2b02b00615788abf9c36c53f88c4b6e6eac72a17a5d1ec369c26",
+  "ollama_bottle_url": "https://ghcr.io/v2/homebrew/core/ollama/blobs/sha256:3e364fdfeedd2b02b00615788abf9c36c53f88c4b6e6eac72a17a5d1ec369c26"
+}
