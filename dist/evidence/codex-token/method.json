@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-11-27",
+  "fixture_kind": "hand_authored_counter_shapes_not_a_replayable_Codex_session",
+  "private_session_files_read": false,
+  "cli_version_checked": "0.167.0",
+  "source_commit": "086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a",
+  "source_paths": [
+    "codex-rs/protocol/src/protocol.rs",
+    "codex-rs/history/src/rollout_payload.rs",
+    "codex-rs/rollout/src/policy.rs"
+  ],
+  "source_base": "https://github.com/openai/codex/blob/086ccc833bc9cf01024ad2dd6af7dbd421b6bf9a/",
+  "expected": {
+    "unique_responses": 2,
+    "duplicate_responses": 1,
+    "distinct_snapshots": 2,
+    "duplicate_snapshots": 1,
+    "reported_total": 4300,
+    "uncached_input": 1000,
+    "cli_style_blended_total": 1300
+  },
+  "limits": [
+    "Not a billing, credit, quota, context-remaining or account-wide usage estimate.",
+    "Counter-only fields are inspected; input prompts, IDs, paths, model labels, rate-limit metadata and timestamps never enter the summary.",
+    "Synthetic fixtures validate reader arithmetic and failure handling, not provider accounting or exhaustive version compatibility."
+  ]
+}

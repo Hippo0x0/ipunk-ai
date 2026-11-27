@@ -12,7 +12,7 @@
 <url><loc>https://ai.ipunk.cn/projects/browser-use/</loc><lastmod>2026-10-15</lastmod></url>
 <url><loc>https://ai.ipunk.cn/projects/markitdown/</loc><lastmod>2026-10-15</lastmod></url>
 <url><loc>https://ai.ipunk.cn/projects/claude-code/</loc><lastmod>2026-10-15</lastmod></url>
-<url><loc>https://ai.ipunk.cn/projects/codex-cli/</loc><lastmod>2026-10-15</lastmod></url>
+<url><loc>https://ai.ipunk.cn/projects/codex-cli/</loc><lastmod>2026-11-27</lastmod></url>
 <url><loc>https://ai.ipunk.cn/projects/qwen-code/</loc><lastmod>2026-10-15</lastmod></url>
 <url><loc>https://ai.ipunk.cn/projects/opencode/</loc><lastmod>2026-11-23</lastmod></url>
 <url><loc>https://ai.ipunk.cn/projects/cline/</loc><lastmod>2026-10-15</lastmod></url>
@@ -46,4 +46,5 @@
 <url><loc>https://ai.ipunk.cn/en/guides/claude-code-vs-cursor/</loc><lastmod>2026-11-27</lastmod></url>
 <url><loc>https://ai.ipunk.cn/en/guides/ollama-vs-lm-studio/</loc><lastmod>2026-11-27</lastmod></url>
 <url><loc>https://ai.ipunk.cn/en/guides/ollama-context-length/</loc><lastmod>2026-11-27</lastmod></url>
+<url><loc>https://ai.ipunk.cn/en/guides/codex-token-usage/</loc><lastmod>2026-11-27</lastmod></url>
 </urlset>

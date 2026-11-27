@@ -1,0 +1,44 @@
+{
+  "reader_version": 1,
+  "schema_checked": "Codex CLI 0.167.0",
+  "scope": "one_selected_file_not_account_usage",
+  "counts": {
+    "nonempty_lines": 9,
+    "malformed_lines": 0,
+    "ignored_lines": 1,
+    "invalid_counters": 0,
+    "rate_only_updates": 1,
+    "snapshot_updates": 2,
+    "duplicate_snapshots": 1,
+    "response_records": 3,
+    "duplicate_responses": 1,
+    "conflicting_responses": 0,
+    "excluded_other_thread_records": 0
+  },
+  "responses": {
+    "scope": "canonical_header_thread",
+    "unique_records": 2,
+    "total": {
+      "input_tokens": 4000,
+      "cached_input_tokens": 3000,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 300,
+      "reasoning_output_tokens": 100,
+      "total_tokens": 4300,
+      "uncached_input_tokens": 1000,
+      "cli_style_blended_total": 1300
+    }
+  },
+  "latest_snapshot": {
+    "input_tokens": 4000,
+    "cached_input_tokens": 3000,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 300,
+    "reasoning_output_tokens": 100,
+    "total_tokens": 4300,
+    "uncached_input_tokens": 1000,
+    "cli_style_blended_total": 1300
+  },
+  "comparison": "same_observed_counters",
+  "warnings": []
+}

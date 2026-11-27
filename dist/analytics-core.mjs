@@ -1,7 +1,7 @@
 export const SITE='ai.ipunk.cn';
 export const INTERNAL_KEY='ipunk.analytics.internal.v1',CONSENT_KEY='ipunk.analytics.consent.v1',TEST_KEY='ipunk.analytics.test.v1';
 const SAFE_PATH=/^\/[a-zA-Z0-9_./-]*$/;
-const TOOLS=new Set(['video-compressor','audio-extractor','video-converter','video-gif','video-crop','assistant-comparison','source-audit','image-brief-builder','assistant-task-selector','coding-trial-log','local-api-check','ollama-context-check']);
+const TOOLS=new Set(['video-compressor','audio-extractor','video-converter','video-gif','video-crop','assistant-comparison','source-audit','image-brief-builder','assistant-task-selector','coding-trial-log','local-api-check','ollama-context-check','codex-token-reader']);
 export function pageContext(path,canonical){
  try{const u=new URL(canonical);if(u.origin!=='https://'+SITE||u.search||u.hash||u.pathname!==path||!SAFE_PATH.test(path)||path.includes('..'))return null;
  const locale=path.startsWith('/en/')?'en':'zh';const page_type=path.includes('/guides/')?'guide':path.includes('/projects/')?'project':path.includes('/privacy/')?'privacy':'index';

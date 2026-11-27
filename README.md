@@ -63,3 +63,7 @@ The scheduled snapshot workflow publishes changed public metrics to this existin
 ## Usage analytics
 
 The AI site shares PostHog project 739712 and isolates events with site=ai.ipunk.cn. See [analytics setup, exclusions and deployment](docs/PRODUCT-ANALYTICS.md).
+
+## Codex counter reader
+
+`dist/en/guides/codex-token-usage/` is a browser-local, counter-only JSONL reader source-checked against Codex CLI 0.167.0. It keeps response records and cumulative snapshots separate and does not estimate account limits or bills. Recreate the hand-authored public fixture with `node scripts/generate-codex-token-fixtures.mjs`; no private session files are read. Validation and effect-measurement limits are recorded in `data/reports/2026-11-27-codex-token-reader-review.md`.
