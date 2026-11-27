@@ -1,0 +1,17 @@
+{
+  "recorded_on": "2026-11-27",
+  "research_date": "2026-11-25",
+  "market": {"geo": "US", "language": "en", "property": "web"},
+  "official_source": "Google Trends",
+  "source_url": "https://trends.google.com/trends/explore?geo=US&q=claude%20vs%20chatgpt,chatgpt%20alternatives,best%20ai%20image%20generator,ai%20presentation%20maker,notebooklm%20tutorial&hl=en",
+  "window": "past-12-months",
+  "complete_week": "2026-11-15",
+  "signals": [
+    {"query": "best ai image generator", "mean_relative_interest": 14, "latest_complete_relative_interest": 8},
+    {"query": "chatgpt alternatives", "mean_relative_interest": 8, "latest_complete_relative_interest": 2}
+  ],
+  "provenance": "Reused retained November 25 official-chart observation and existing project research log; not a new chart collection.",
+  "monthly_volume": null,
+  "keyword_difficulty": null,
+  "qualification": "Positive scoped relative signal, not absolute search volume, projected clicks or proven publication performance. Recent alternatives interest is weaker than its mean."
+}

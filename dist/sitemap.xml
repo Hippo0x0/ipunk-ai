@@ -2,8 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://ai.ipunk.cn/en/projects/opencode/</loc><lastmod>2026-11-24</lastmod></url>
 <url><loc>https://ai.ipunk.cn/en/projects/rea/</loc><lastmod>2026-11-23</lastmod></url>
-<url><loc>https://ai.ipunk.cn/</loc><lastmod>2026-11-17</lastmod></url>
-<url><loc>https://ai.ipunk.cn/en/</loc><lastmod>2026-11-25</lastmod></url>
+<url><loc>https://ai.ipunk.cn/</loc><lastmod>2026-11-27</lastmod></url>
+<url><loc>https://ai.ipunk.cn/en/</loc><lastmod>2026-11-27</lastmod></url>
 <url><loc>https://ai.ipunk.cn/projects/rea/</loc><lastmod>2026-11-23</lastmod></url>
 <url><loc>https://ai.ipunk.cn/projects/openclaw/</loc><lastmod>2026-11-01</lastmod></url>
 <url><loc>https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/</loc><lastmod>2026-11-07</lastmod></url>
@@ -36,9 +36,11 @@
 <url><loc>https://ai.ipunk.cn/en/guides/video-to-gif/</loc><lastmod>2026-11-25</lastmod></url>
 <url><loc>https://ai.ipunk.cn/en/guides/video-converter/</loc><lastmod>2026-11-25</lastmod></url>
   <url><loc>https://ai.ipunk.cn/en/guides/crop-video/</loc><lastmod>2026-11-25</lastmod></url>
-<url><loc>https://ai.ipunk.cn/en/guides/claude-vs-chatgpt/</loc><lastmod>2026-11-25</lastmod></url>
-<url><loc>https://ai.ipunk.cn/en/guides/perplexity-vs-chatgpt/</loc><lastmod>2026-11-25</lastmod></url>
-<url><loc>https://ai.ipunk.cn/en/guides/gemini-vs-chatgpt/</loc><lastmod>2026-11-25</lastmod></url>
+<url><loc>https://ai.ipunk.cn/en/guides/claude-vs-chatgpt/</loc><lastmod>2026-11-27</lastmod></url>
+<url><loc>https://ai.ipunk.cn/en/guides/perplexity-vs-chatgpt/</loc><lastmod>2026-11-27</lastmod></url>
+<url><loc>https://ai.ipunk.cn/en/guides/gemini-vs-chatgpt/</loc><lastmod>2026-11-27</lastmod></url>
 <url><loc>https://ai.ipunk.cn/privacy/</loc><lastmod>2026-11-26</lastmod></url>
 <url><loc>https://ai.ipunk.cn/en/privacy/</loc><lastmod>2026-11-26</lastmod></url>
+<url><loc>https://ai.ipunk.cn/en/guides/best-ai-image-generator/</loc><lastmod>2026-11-27</lastmod></url>
+<url><loc>https://ai.ipunk.cn/en/guides/chatgpt-alternatives/</loc><lastmod>2026-11-27</lastmod></url>
 </urlset>
