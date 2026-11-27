@@ -1,0 +1,403 @@
+{
+  "date": "2026-11-27",
+  "report_updated_at": "Not exposed by connector",
+  "scope": "https://ai.ipunk.cn/; final Web; America/Los_Angeles; no country/device/query filters",
+  "summary": {
+    "full": {
+      "impressions": 60,
+      "clicks": 0
+    },
+    "previous": {
+      "impressions": 22,
+      "clicks": 0,
+      "zero": 7,
+      "days": 7
+    },
+    "current": {
+      "impressions": 20,
+      "clicks": 0,
+      "zero": 7,
+      "days": 7
+    }
+  },
+  "visible_pages": 8,
+  "qualified": "Date rows summed separately; no dimensionless property-total claim. Visible page count is not an indexed or stable page count. Rolling windows do not replace fixed week audit. No paid keyword lookup or trackers.",
+  "receipts": {
+    "dates": {
+      "request": {
+        "projectId": "d805176c-6e1f-4ca4-834b-9aa48dfd74a0",
+        "startDate": "2026-10-27",
+        "endDate": "2026-11-23",
+        "type": "web",
+        "dataState": "final",
+        "dimensions": [
+          "date"
+        ],
+        "rowLimit": 1000
+      },
+      "response": {
+        "ok": true,
+        "siteUrl": "https://ai.ipunk.cn/",
+        "startDate": "2026-10-27",
+        "endDate": "2026-11-23",
+        "dimensions": [
+          "date"
+        ],
+        "rowCount": 28,
+        "rows": [
+          {
+            "keys": [
+              "2026-10-27"
+            ],
+            "clicks": 0,
+            "impressions": 0,
+            "ctr": 0,
+            "position": 0
+          },
+          {
+            "keys": [
+              "2026-10-28"
+            ],
+            "clicks": 0,
+            "impressions": 0,
+            "ctr": 0,
+            "position": 0
+          },
+          {
+            "keys": [
+              "2026-10-29"
+            ],
+            "clicks": 0,
+            "impressions": 0,
+            "ctr": 0,
+            "position": 0
+          },
+          {
+            "keys": [
+              "2026-10-30"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 17
+          },
+          {
+            "keys": [
+              "2026-10-31"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 4.5
+          },
+          {
+            "keys": [
+              "2026-11-01"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 6
+          },
+          {
+            "keys": [
+              "2026-11-02"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 4
+          },
+          {
+            "keys": [
+              "2026-11-03"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 3
+          },
+          {
+            "keys": [
+              "2026-11-04"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 8
+          },
+          {
+            "keys": [
+              "2026-11-05"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 25
+          },
+          {
+            "keys": [
+              "2026-11-06"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 3.7
+          },
+          {
+            "keys": [
+              "2026-11-07"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 47
+          },
+          {
+            "keys": [
+              "2026-11-08"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 8
+          },
+          {
+            "keys": [
+              "2026-11-09"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 28.5
+          },
+          {
+            "keys": [
+              "2026-11-10"
+            ],
+            "clicks": 0,
+            "impressions": 5,
+            "ctr": 0,
+            "position": 29.8
+          },
+          {
+            "keys": [
+              "2026-11-11"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 25.7
+          },
+          {
+            "keys": [
+              "2026-11-12"
+            ],
+            "clicks": 0,
+            "impressions": 5,
+            "ctr": 0,
+            "position": 12.4
+          },
+          {
+            "keys": [
+              "2026-11-13"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 35.3
+          },
+          {
+            "keys": [
+              "2026-11-14"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 4.5
+          },
+          {
+            "keys": [
+              "2026-11-15"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 7.5
+          },
+          {
+            "keys": [
+              "2026-11-16"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 6.5
+          },
+          {
+            "keys": [
+              "2026-11-17"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 4.5
+          },
+          {
+            "keys": [
+              "2026-11-18"
+            ],
+            "clicks": 0,
+            "impressions": 2,
+            "ctr": 0,
+            "position": 6
+          },
+          {
+            "keys": [
+              "2026-11-19"
+            ],
+            "clicks": 0,
+            "impressions": 6,
+            "ctr": 0,
+            "position": 2.7
+          },
+          {
+            "keys": [
+              "2026-11-20"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 5.7
+          },
+          {
+            "keys": [
+              "2026-11-21"
+            ],
+            "clicks": 0,
+            "impressions": 0,
+            "ctr": 0,
+            "position": 0
+          },
+          {
+            "keys": [
+              "2026-11-22"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 65
+          },
+          {
+            "keys": [
+              "2026-11-23"
+            ],
+            "clicks": 0,
+            "impressions": 6,
+            "ctr": 0,
+            "position": 19.2
+          }
+        ],
+        "hasMore": false
+      }
+    },
+    "pages": {
+      "request": {
+        "projectId": "d805176c-6e1f-4ca4-834b-9aa48dfd74a0",
+        "startDate": "2026-10-27",
+        "endDate": "2026-11-23",
+        "type": "web",
+        "dataState": "final",
+        "dimensions": [
+          "page"
+        ],
+        "rowLimit": 1000
+      },
+      "response": {
+        "ok": true,
+        "siteUrl": "https://ai.ipunk.cn/",
+        "startDate": "2026-10-27",
+        "endDate": "2026-11-23",
+        "dimensions": [
+          "page"
+        ],
+        "rowCount": 8,
+        "rows": [
+          {
+            "keys": [
+              "https://ai.ipunk.cn/"
+            ],
+            "clicks": 0,
+            "impressions": 13,
+            "ctr": 0,
+            "position": 3.1
+          },
+          {
+            "keys": [
+              "https://ai.ipunk.cn/choose/"
+            ],
+            "clicks": 0,
+            "impressions": 4,
+            "ctr": 0,
+            "position": 26
+          },
+          {
+            "keys": [
+              "https://ai.ipunk.cn/en/"
+            ],
+            "clicks": 0,
+            "impressions": 4,
+            "ctr": 0,
+            "position": 5
+          },
+          {
+            "keys": [
+              "https://ai.ipunk.cn/en/projects/opencode/"
+            ],
+            "clicks": 0,
+            "impressions": 18,
+            "ctr": 0,
+            "position": 11.3
+          },
+          {
+            "keys": [
+              "https://ai.ipunk.cn/en/projects/rea/"
+            ],
+            "clicks": 0,
+            "impressions": 13,
+            "ctr": 0,
+            "position": 27.2
+          },
+          {
+            "keys": [
+              "https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/"
+            ],
+            "clicks": 0,
+            "impressions": 7,
+            "ctr": 0,
+            "position": 26.9
+          },
+          {
+            "keys": [
+              "https://ai.ipunk.cn/projects/opencode/"
+            ],
+            "clicks": 0,
+            "impressions": 3,
+            "ctr": 0,
+            "position": 17.7
+          },
+          {
+            "keys": [
+              "https://ai.ipunk.cn/projects/rea/"
+            ],
+            "clicks": 0,
+            "impressions": 1,
+            "ctr": 0,
+            "position": 17
+          }
+        ],
+        "hasMore": false
+      }
+    }
+  }
+}

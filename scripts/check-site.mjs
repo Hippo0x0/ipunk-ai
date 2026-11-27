@@ -2,6 +2,7 @@ import { readdir, readFile, stat } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { checkIndexableHtml, checkModifiedDate } from "./seo-guard.mjs";
+import { checkStaticResources } from "./static-resources.mjs";
 
 const root = fileURLToPath(new URL("../dist/", import.meta.url));
 const sitemap = await readFile(join(root, "sitemap.xml"), "utf8");
@@ -29,9 +30,12 @@ async function walk(directory) {
 }
 await walk(root);
 const htmlFiles = files.filter((path) => path.endsWith(".html"));
+let checkedResources = 0;
 if (htmlFiles.length < 20) throw new Error(`Expected at least 20 HTML pages, found ${htmlFiles.length}`);
 for (const path of htmlFiles) {
   const html = await readFile(path, "utf8");
+  const resourcePageUrl = new URL(relative(root, path).replaceAll("\\", "/").replace(/index\.html$/, ""), "https://ai.ipunk.cn/").href;
+  checkedResources += await checkStaticResources(html, resourcePageUrl, root);
   if (!/<title>[^<]+<\/title>/.test(html)) throw new Error(`${path}: missing title`);
   if (!path.endsWith("404.html")) {
     const route = relative(root, path).replaceAll("\\", "/").replace(/index\.html$/, "");
@@ -74,4 +78,4 @@ const chooser = await readFile(join(root, "choose.js"), "utf8");
 for (const hook of ["workflow", "license", "priority", "data-compare-choice"]) {
   if (!chooser.includes(hook)) throw new Error(`Missing chooser hook: ${hook}`);
 }
-console.log(`Site check passed: ${htmlFiles.length} HTML pages, ${data.projects.length} project snapshots`);
+console.log(`Site check passed: ${htmlFiles.length} HTML pages, ${data.projects.length} project snapshots, ${checkedResources} static resource references`);
