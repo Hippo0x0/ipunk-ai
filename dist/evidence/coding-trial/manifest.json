@@ -1,7 +1,7 @@
 {
   "date": "2026-11-27",
   "files": {
-    "baseline-tests.tap": "b1f577d1ee6da1cf41d2c1fabfcf2e3669c892d965dfa431b99a053ff2ae5ac7",
+    "baseline-tests.tap": "c35ca4ddecfbbb4f5c14be657e41a8e4727fd90cfd0e2d5182fdd74dc93cd7b8",
     "claude/first-response.txt": "93aee879c91d7f0f9180222afda575835dc1f69417080092fd775f9c7cecda0e",
     "claude/orders.mjs": "fa5ab77a3939916784bf6a5e1ec79cb69d0f4123ea5eb1cbf7681882afa6936a",
     "claude/tests.tap": "e03ab00a806f3c7b3a0278ec8c98dd99fde2f257e7eecd0e7761cb3240b8cc37",
@@ -12,9 +12,10 @@
     "post-run-probes.json": "63da8448db9c8fc7aa60d41907f52c7c3f5ce488408202e15a9c749172b52863",
     "prompt.txt": "3b7beac465c00a2b1f2b9b1778f72bb287a7f9a5f132b8d009a7d174addc3d7f",
     "reference/orders.mjs": "c2383fa7072936598cd80c1d42e495c0470b978e643e2e5a9f9b11b18900def7",
-    "reference-tests.tap": "c91decba69cda2fd9f564e5a5a6a64c9301ac7c3c91591009cf28466c2a75728",
+    "reference-tests.tap": "a5a11fce3a0311707ebc9cf56cefec0ac841a151ba3dedad589d278ab1058199",
     "run-observation.json": "6152d9ea970db1216d7e4eff5ce7c9783f8eed93aa9e8e831d7873f54b392a56"
   },
   "reference_origin": "Author-written; not a provider output.",
-  "tests": 12
+  "tests": 12,
+  "path_normalization": "Absolute local paths in baseline failure stacks are replaced with <fixture>; assertions and results are unchanged."
 }
