@@ -1,0 +1,101 @@
+{
+  "testedOn": "2026-11-28",
+  "version": "OpenCode 2.4.1",
+  "platform": "macOS arm64",
+  "method": "Built-in Build agent via opencode run --standalone --format json in separate synthetic repositories and profiles, with an Ollama-compatible model fixture on localhost and outbound network restricted to loopback. The fixture returned one write tool call for notes.txt. An execute deny rule exposed individual tools in each case. Only synthetic state and selected event fields are retained.",
+  "cases": [
+    {
+      "case": "specific deny last",
+      "rules": [
+        {
+          "action": "edit",
+          "resource": "*",
+          "effect": "ask"
+        },
+        {
+          "action": "edit",
+          "resource": "notes.txt",
+          "effect": "deny"
+        }
+      ],
+      "extraFlags": [],
+      "processExit": 0,
+      "tool": "write",
+      "target": "notes.txt",
+      "toolStatus": "error",
+      "fileBefore": "fixture original\n",
+      "fileAfter": "fixture original\n",
+      "toolError": "Permission denied: edit"
+    },
+    {
+      "case": "broad ask last",
+      "rules": [
+        {
+          "action": "edit",
+          "resource": "notes.txt",
+          "effect": "deny"
+        },
+        {
+          "action": "edit",
+          "resource": "*",
+          "effect": "ask"
+        }
+      ],
+      "extraFlags": [],
+      "processExit": 0,
+      "tool": "write",
+      "target": "notes.txt",
+      "toolStatus": "error",
+      "fileBefore": "fixture original\n",
+      "fileAfter": "fixture original\n",
+      "toolError": "This non-interactive run cannot ask the user for permission, so the request was rejected. Continue without this action."
+    },
+    {
+      "case": "specific allow last",
+      "rules": [
+        {
+          "action": "edit",
+          "resource": "*",
+          "effect": "ask"
+        },
+        {
+          "action": "edit",
+          "resource": "notes.txt",
+          "effect": "allow"
+        }
+      ],
+      "extraFlags": [],
+      "processExit": 0,
+      "tool": "write",
+      "target": "notes.txt",
+      "toolStatus": "completed",
+      "fileBefore": "fixture original\n",
+      "fileAfter": "fixture changed\n"
+    },
+    {
+      "case": "specific deny with auto",
+      "rules": [
+        {
+          "action": "edit",
+          "resource": "*",
+          "effect": "ask"
+        },
+        {
+          "action": "edit",
+          "resource": "notes.txt",
+          "effect": "deny"
+        }
+      ],
+      "extraFlags": [
+        "--auto"
+      ],
+      "processExit": 0,
+      "tool": "write",
+      "target": "notes.txt",
+      "toolStatus": "error",
+      "fileBefore": "fixture original\n",
+      "fileAfter": "fixture original\n",
+      "toolError": "Permission denied: edit"
+    }
+  ]
+}
