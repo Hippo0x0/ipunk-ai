@@ -24,3 +24,9 @@
 开始时 Search Console 已确认 Ollama Embeddings、OpenCode MCP 收录。Ollama GPU 和 MarkItDown 仍未识别。以上不代表新中英文页面的曝光或点击。
 
 localhost 在中英文首页分别打开正确语言的新页，390px 与 1440px 在关闭 JavaScript 时验证 canonical、互指 hreflang、目录跳转、两个语言切换、七条相关指南入口和无全页横向溢出。实际下载脚本内容与发布源字节一致。正式交付另记。
+
+## 正式交付
+
+GitHub `main` 的 `87feb9c` 在干净归档通过 90 项自动测试。站点检查覆盖 62 个 HTML、61 个从首页可达的 sitemap 页面和 336 个静态资源引用。预览中英文页、Python 脚本和 JSON 与归档逐字节一致。北京时间 12:16，Worker 版本 `59ced800-1969-47ae-98b6-d7c5bc695513` 承接全部流量，部署 `71f30c76-c8bb-443c-9ea3-6c0aff5d1acd`。正式站 12 个相关路径均为 HTTP 200、与归档逐字节相符。验收使用直接 HTTP。
+
+发布后两页在精确 Search Console 资源中均显示尚未识别。[英文页](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=taVp44zmFSKQNQJHCDmTcQ)收到已加入优先抓取队列的回执。[中文页](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=tVI1eCz50VWbvDMFLswIMA)因当天手工提交配额被拒绝，保持站点地图和站内入口，未重复提交。两页普通收录和上线后效果待验证。
