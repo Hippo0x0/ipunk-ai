@@ -24,3 +24,9 @@ macOS arm64、Ollama 0.40.18、Qwen2.5-0.5B-Instruct Q4_K_M。为实验新建回
 本轮开始时，Search Console 精确资源确认 OpenCode Ollama 指南已收录，Google 规范与声明一致。Ollama OpenAI API、MarkItDown、Runway、Sora 当时仍显示未识别。已有索引请求没有重复提交。没有可用于判断本轮新页点击的上线后时段。
 
 沿用原生 SVG 和站点交互，分流为运行内存、盘空间和不确定。只发布英文任务页。localhost 在 390px 和 1440px 验证首答、图形可读性、键盘高亮且不改 hash、独立滚动和缩放复位、三个步骤链接、证据下载字节和无整页横向溢出。关闭 JavaScript 后，步骤链接与示例命令依然可用。正式发布另记。
+
+## 正式交付
+
+GitHub `main` 的 `aeb8586` 在干净归档通过 90 项自动测试和站点检查，覆盖 57 个 HTML、56 个可从首页到达的站点地图页面及 309 处静态资源。Worker 预览中的新页与证据逐字节符合归档。北京时间 11:43，Worker 版本 `df2969a1-f3f4-4ce6-98be-31e8475b4810` 接收 100% 流量，部署 `12df9658-7b5b-4207-9d96-2f3263328b32`。正式域九个相关路径均 HTTP 200、逐字节吻合，证据以 JSON 返回。正式站核对采用直接 HTTP。
+
+[Search Console 网址检查](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=p3pSkOTVoxI4as9tlVrDfQ)确认提交前 Google 尚未识别该 URL。提交后回执显示已加入优先抓取队列。索引和上线后的搜索效果有待后续确认。
