@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Codex Resume: Continue a CLI Session by ID, --last or --all | iPunk AI Radar</title>
+<meta name="description" content="Resume the right Codex CLI session. Choose the picker or an exact ID, understand folder filters, and verify a resumed codex exec run from its JSON output.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/codex-resume/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="How to Resume the Right Codex CLI Session">
+<meta property="og:description" content="Recover a saved CLI session and check the thread ID before continuing work.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/codex-resume/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Codex Resume: Continue a CLI Session by ID, --last or --all","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/codex-resume/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#by-id">Resume a saved session</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>How to Resume the Right Codex CLI Session</h1>
+<p class="guide-answer">Use <code>codex resume</code> to pick a saved interactive session, or <code>codex resume SESSION_ID</code> when you already have its ID. <code>--last</code> looks in the current working directory. Add <code>--all</code> to search across directories. For scripts, use <code>codex exec resume</code> and verify the returned thread ID before continuing.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#choose">Choose how to find the session</a></li>
+<li><a href="#by-id">Resume by ID</a></li>
+<li><a href="#last">Resume the latest in a folder</a></li>
+<li><a href="#missing">Find a missing session</a></li>
+<li><a href="#evidence">See the actual session selections</a></li>
+</ol></nav>
+<section id="choose" class="guide-decision"><h2>Which Codex session do you need?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Codex session recovery decision tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Choose how to find the session">
+<defs><marker id="codex-resume-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="by-id" d="M330 104 C330 147 110 143 110 218" marker-end="url(#codex-resume-arrow)"/>
+<path data-edge="last" d="M330 104 L330 218" marker-end="url(#codex-resume-arrow)"/>
+<path data-edge="missing" d="M330 104 C330 147 550 143 550 218" marker-end="url(#codex-resume-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Which Codex session do you need?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">Which session?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">I know its ID</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Latest in folder</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Missing / unsure</text>
+</g>
+<g data-node="by-id" role="button" tabindex="0" aria-pressed="false" aria-label="Resume by session ID"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Use the ID</text></g>
+<g data-node="last" role="button" tabindex="0" aria-pressed="false" aria-label="Resume the last session in this folder"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Use --last</text></g>
+<g data-node="missing" role="button" tabindex="0" aria-pressed="false" aria-label="Check the folder and session type"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check history</text></g>
+</svg></div>
+<div class="decision-links"><a href="#by-id" aria-label="See steps: recover by ID">See steps</a><a href="#last" aria-label="See steps: continue the latest">See steps</a><a href="#missing" aria-label="See steps: check history filters">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="by-id"><h2>Resume a known session ID</h2>
+<p>In a terminal, switch to the project directory and replace <code>SESSION_ID</code> with the saved ID:</p>
+<pre><code>codex resume SESSION_ID</code></pre>
+<p>The interactive CLI can ask which directory to use if it differs from the saved session. Pick the intended checkout. For a non-interactive continuation, pass the ID and a new prompt:</p>
+<pre><code>codex exec --json resume SESSION_ID "Summarize where we left off without editing files." &gt; resumed.jsonl</code></pre>
+<p>In <code>resumed.jsonl</code>, find the <code>thread.started</code> event and compare its <code>thread_id</code> with the ID you intended. For a scripted check with jq:</p>
+<pre><code>jq -r 'select(.type == "thread.started") | .thread_id' resumed.jsonl</code></pre>
+<p>Check the command’s exit status and the working directory as well. The session ID identifies the conversation. It does not verify the current Git branch, file contents or permissions.</p>
+</section>
+<section id="last"><h2>Continue the latest session in the current directory</h2>
+<pre><code>codex resume --last</code></pre>
+<p>Run this from the checkout where you used the CLI. If you want to choose among other folders, start with <code>codex resume --all</code> and inspect the directory in the picker. Adding <code>--last</code> as well lets Codex choose across folders, so use an exact ID when you need a particular session.</p>
+<p>A non-interactive follow-up uses <code>codex exec resume --last "your prompt"</code>. In our Codex 0.172.0 test, running that command from a directory without a saved session started a new thread and exited successfully. If you depend on saved context, verify the returned ID.</p>
+</section>
+<section id="missing"><h2>Find a session missing from the CLI picker</h2>
+<ol>
+<li><strong>Check the working directory.</strong> A project clone and another worktree have different paths. In interactive Codex, use <code>codex resume --all</code> to inspect sessions across paths.</li>
+<li><strong>Check how you ran it.</strong> Use <code>codex resume --include-non-interactive</code> to include non-interactive runs in the picker on releases that support this flag. Check <code>codex resume --help</code> on your machine.</li>
+<li><strong>Check which history was saved.</strong> <code>codex exec --ephemeral</code> runs without saving a resumable local session. If you use a separate CLI profile or machine, open the environment where you saved the session.</li>
+</ol>
+<p>If a resumed run begins with a fresh ID, stop and verify the intended history before sending additional work. If you only have an exported JSONL file, keep it private. It may contain prompts, paths or tool output. The <a href="/en/guides/codex-token-usage/">local Codex log reader</a> covers token counters separately.</p>
+</section>
+<section id="evidence"><h2>What the CLI selected in two test directories</h2>
+<p>We created synthetic sessions in two disposable Git directories and ran the non-interactive CLI against a loopback endpoint that returned a fixed string. The selection check used real CLI events and locally saved fixture records. It covers the CLI’s behavior and does not measure model recall.</p>
+<div class="video-table"><table>
+<caption>Codex CLI 0.172.0 · commands issued from test project A unless noted</caption>
+<thead><tr><th scope="col">Check</th><th scope="col">Thread selected</th><th scope="col">Recorded working directory</th></tr></thead>
+<tbody><tr><td><code>exec resume --last</code></td><td>A’s saved thread</td><td>A</td></tr><tr><td><code>exec resume --last --all</code></td><td>Newest thread in B</td><td>B</td></tr><tr><td><code>exec resume</code> with the older B ID</td><td>Older thread in B</td><td>B</td></tr><tr><td><code>exec resume --last</code> in a folder with no saved thread</td><td>New thread</td><td>That folder</td></tr></tbody>
+</table></div>
+<p>The temporary <code>--ephemeral</code> run produced a thread ID but no saved session file. Resuming that exact ID failed before any model request. <a href="/evidence/codex-resume/observations.json" download>Download the tested IDs, exit codes and recorded working directories</a>. The interactive picker and directory prompt are documented behavior.</p>
+<p>Follow the current <a href="https://learn.chatgpt.com/docs/cli/reference#codex-resume">interactive resume reference</a> or the <a href="https://learn.chatgpt.com/docs/non-interactive-mode">non-interactive guide</a>. Check whether your installed release supports the options you plan to use.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

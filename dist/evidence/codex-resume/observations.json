@@ -1,0 +1,178 @@
+{
+  "date": "2026-11-28",
+  "client": "codex-cli 0.172.0",
+  "provider": "Loopback SSE stub returns a fixed string",
+  "cases": {
+    "create_a": {
+      "directory": "project-a",
+      "args": [
+        "Synthetic start in project A."
+      ],
+      "exit": 0,
+      "thread_id": "01a22064-1b70-77f3-b5b2-88e5c34a3abf",
+      "recorded_turn_cwd": "[fixture]/project-a",
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "model_requests": 1,
+      "last_stderr_lines": []
+    },
+    "create_b": {
+      "directory": "project-b",
+      "args": [
+        "Synthetic start in project B."
+      ],
+      "exit": 0,
+      "thread_id": "01a22064-1c07-7483-bf9f-27387fd0a317",
+      "recorded_turn_cwd": "[fixture]/project-b",
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "model_requests": 1,
+      "last_stderr_lines": []
+    },
+    "last_in_project_a": {
+      "directory": "project-a",
+      "args": [
+        "resume",
+        "--last",
+        "Synthetic project A follow-up."
+      ],
+      "exit": 0,
+      "thread_id": "01a22064-1b70-77f3-b5b2-88e5c34a3abf",
+      "recorded_turn_cwd": "[fixture]/project-a",
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "model_requests": 1,
+      "last_stderr_lines": []
+    },
+    "create_later_b": {
+      "directory": "project-b",
+      "args": [
+        "Synthetic later start in project B."
+      ],
+      "exit": 0,
+      "thread_id": "01a22064-1cb6-7110-b290-69e392263300",
+      "recorded_turn_cwd": "[fixture]/project-b",
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "model_requests": 1,
+      "last_stderr_lines": []
+    },
+    "last_across_folders": {
+      "directory": "project-a",
+      "args": [
+        "resume",
+        "--last",
+        "--all",
+        "Synthetic global last."
+      ],
+      "exit": 0,
+      "thread_id": "01a22064-1cb6-7110-b290-69e392263300",
+      "recorded_turn_cwd": "[fixture]/project-b",
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "model_requests": 1,
+      "last_stderr_lines": []
+    },
+    "explicit_b_id": {
+      "directory": "project-a",
+      "args": [
+        "resume",
+        "01a22064-1c07-7483-bf9f-27387fd0a317",
+        "Synthetic explicit B follow-up."
+      ],
+      "exit": 0,
+      "thread_id": "01a22064-1c07-7483-bf9f-27387fd0a317",
+      "recorded_turn_cwd": "[fixture]/project-b",
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "model_requests": 1,
+      "last_stderr_lines": []
+    },
+    "ephemeral": {
+      "directory": "project-empty",
+      "args": [
+        "--ephemeral",
+        "Synthetic throwaway session."
+      ],
+      "exit": 0,
+      "thread_id": "01a22064-1d95-7960-a050-c71632df9033",
+      "recorded_turn_cwd": null,
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "model_requests": 1,
+      "last_stderr_lines": [],
+      "saved_session_file": false
+    },
+    "explicit_ephemeral_id": {
+      "directory": "project-empty",
+      "args": [
+        "resume",
+        "01a22064-1d95-7960-a050-c71632df9033",
+        "Synthetic resume of ephemeral ID."
+      ],
+      "exit": 1,
+      "thread_id": null,
+      "recorded_turn_cwd": null,
+      "event_types": [],
+      "model_requests": 0,
+      "last_stderr_lines": [
+        "Error: thread/resume: thread/resume failed: no rollout found for thread id 01a22064-1d95-7960-a050-c71632df9033 (code -32600)"
+      ]
+    },
+    "last_in_empty_project": {
+      "directory": "project-empty",
+      "args": [
+        "resume",
+        "--last",
+        "Synthetic no saved history check."
+      ],
+      "exit": 0,
+      "thread_id": "01a22064-1e12-7f33-80e4-ed6b46c97e0d",
+      "recorded_turn_cwd": "[fixture]/project-empty",
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "model_requests": 1,
+      "last_stderr_lines": []
+    }
+  }
+}
