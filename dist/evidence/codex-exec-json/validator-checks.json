@@ -1,0 +1,54 @@
+[
+  {
+    "case": "plain",
+    "supplied_codex_exit": 0,
+    "validator_exit": 0,
+    "outcome": {
+      "thread_id": "01a2206d-7385-7691-aa84-fc9f8fdc3a0d",
+      "reply": "JSONL_FIXTURE_OK"
+    }
+  },
+  {
+    "case": "schema",
+    "supplied_codex_exit": 0,
+    "validator_exit": 0,
+    "outcome": {
+      "thread_id": "01a2206d-740c-7203-80fc-2319216cdf85",
+      "reply": {
+        "result": "schema fixture"
+      }
+    }
+  },
+  {
+    "case": "wrong_schema_type",
+    "supplied_codex_exit": 0,
+    "validator_exit": 1,
+    "outcome": {
+      "error": "expected a reply with exactly one string field named result"
+    }
+  },
+  {
+    "case": "upstream_failure",
+    "supplied_codex_exit": 1,
+    "validator_exit": 1,
+    "outcome": {
+      "error": "Codex exited with status 1"
+    }
+  },
+  {
+    "case": "failed_stream_with_zero_status",
+    "supplied_codex_exit": 0,
+    "validator_exit": 1,
+    "outcome": {
+      "error": "Codex reported turn.failed"
+    }
+  },
+  {
+    "case": "truncated_stream",
+    "supplied_codex_exit": 0,
+    "validator_exit": 1,
+    "outcome": {
+      "error": "expected one started and completed turn with a thread ID"
+    }
+  }
+]

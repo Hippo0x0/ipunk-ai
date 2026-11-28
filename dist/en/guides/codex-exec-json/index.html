@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Codex exec: Run CLI Scripts and Check JSON Output | iPunk AI Radar</title>
+<meta name="description" content="Capture Codex exec JSONL events and the final reply separately. Check the process exit, terminal event and output schema using tested fixtures.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/codex-exec-json/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Codex exec: Run CLI Scripts and Check JSON Output">
+<meta property="og:description" content="Read JSONL events, save the final reply and catch failed or incomplete scripted runs.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/codex-exec-json/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Codex exec: Run CLI Scripts and Check JSON Output","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/codex-exec-json/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#events">Capture a run</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Codex exec and JSON Output</h1>
+<p class="guide-answer">Run <code>codex exec --json</code> to capture one JSON event per line. Add <code>-o</code> to save the final assistant reply in a separate file. Before using the reply in another step, check the process exit code and the terminal event. Use <code>--output-schema</code> when the next step needs specific fields, then validate those fields.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#events">Capture events and the final reply</a></li>
+<li><a href="#choose">Choose what to check</a></li>
+<li><a href="#schema">Request and validate structured output</a></li>
+<li><a href="#failure">Detect failed or incomplete runs</a></li>
+<li><a href="#evidence">Inspect tested examples</a></li>
+</ol></nav>
+<section id="events"><h2>Capture events and the final reply</h2>
+<p>In your project directory, run a short read-only task. The example uses a fresh output directory and saves stderr separately. Keep real transcripts private because events can contain source text, file paths and tool output.</p>
+<pre><code>run_dir=$(mktemp -d)
+status=0
+codex exec --json --sandbox read-only -o "$run_dir/final.txt" \
+  "Summarize the repo structure in one sentence." \
+  &gt; "$run_dir/events.jsonl" 2&gt; "$run_dir/stderr.log" || status=$?
+printf 'Codex exit: %s\n' "$status"</code></pre>
+<p><code>events.jsonl</code> contains the event stream. Its completed <code>agent_message</code> item carries the reply. <code>final.txt</code> contains just the final message. A <code>thread.started</code> event carries the conversation ID for later use. See <a href="/en/guides/codex-resume/">how to resume and verify that exact session</a>.</p>
+</section>
+<section id="choose" class="guide-decision"><h2>What do you need from the run?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Codex exec output decision tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Choose output or failure checks">
+<defs><marker id="codex-exec-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="events" d="M330 104 C330 147 110 143 110 218" marker-end="url(#codex-exec-arrow)"/>
+<path data-edge="schema" d="M330 104 L330 218" marker-end="url(#codex-exec-arrow)"/>
+<path data-edge="failure" d="M330 104 C330 147 550 143 550 218" marker-end="url(#codex-exec-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What do you need from the run?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">Which output?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Events or text</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Schema reply</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Failure / unsure</text>
+</g>
+<g data-node="events" role="button" tabindex="0" aria-pressed="false" aria-label="Capture the event stream"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Capture events</text></g>
+<g data-node="schema" role="button" tabindex="0" aria-pressed="false" aria-label="Validate schema fields"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Check the schema</text></g>
+<g data-node="failure" role="button" tabindex="0" aria-pressed="false" aria-label="Check exit and terminal events"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Verify completion</text></g>
+</svg></div>
+<div class="decision-links"><a href="#events" aria-label="See steps: capture events">See steps</a><a href="#schema" aria-label="See steps: check the schema">See steps</a><a href="#failure" aria-label="See steps: verify completion">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="schema"><h2>Request a reply that follows a JSON Schema</h2>
+<p>Save the <a href="/evidence/codex-exec-json/result.schema.json" download>example schema</a> in your current directory. It requires an object with one string field, <code>result</code>. Run a separate request with the schema file:</p>
+<pre><code>run_dir=$(mktemp -d)
+status=0
+codex exec --json --sandbox read-only --output-schema result.schema.json \
+  -o "$run_dir/final.json" \
+  "Give a one-sentence repo summary in the result field." \
+  &gt; "$run_dir/events.jsonl" 2&gt; "$run_dir/stderr.log" || status=$?</code></pre>
+<p>Validate the reply before using it. In our loopback test, the CLI sent the schema. A test server deliberately ignored it and replied with <code>{"result":17}</code>. The CLI completed and wrote that reply. The downstream type check rejected it. This test covers the local CLI and a synthetic provider, and does not assess OpenAI model adherence.</p>
+</section>
+<section id="failure"><h2>Detect a failed or incomplete run</h2>
+<ol>
+<li>Check the exit status from Codex. An item can finish before the run fails. In a shell pipeline, make sure you capture Codex’s status rather than only the last command’s status.</li>
+<li>Read the final turn state in the captured event file. A successful one-turn run should have <code>turn.completed</code> and a completed assistant message. Treat <code>turn.failed</code> or a cut-off stream as a failed check.</li>
+<li>When the next step needs structured data, check the field names and types after decoding the assistant message. A successful turn can still produce unusable data.</li>
+</ol>
+<p>Download <a href="/evidence/codex-exec-json/check-run.py" download>the Python check</a> and run it on a single <code>codex exec --json</code> transcript. Pass the exit status from that run. The optional schema flag checks the one-field example above.</p>
+<pre><code>python3 check-run.py "$run_dir/events.jsonl" --exit-code "$status"
+python3 check-run.py "$run_dir/events.jsonl" --exit-code "$status" --check-example-schema</code></pre>
+<p>Use the second command for the schema example. The check emits the thread ID and reply only after its checks pass. Adapt validation to your own schema for other outputs.</p>
+</section>
+<section id="evidence"><h2>Tested event streams and exit codes</h2>
+<div class="video-table"><table>
+<caption>Codex CLI 0.172.0 against a loopback test server</caption>
+<thead><tr><th scope="col">Scenario</th><th scope="col">CLI outcome</th><th scope="col">What to verify</th></tr></thead>
+<tbody><tr><td><a href="/evidence/codex-exec-json/plain.jsonl" download>Ordinary reply</a></td><td>Exit 0, turn completed</td><td>Completed message</td></tr><tr><td><a href="/evidence/codex-exec-json/schema.jsonl" download>Matching schema</a></td><td>Exit 0, turn completed</td><td>String field present</td></tr><tr><td><a href="/evidence/codex-exec-json/wrong-type.jsonl" download>Wrong field type</a></td><td>Exit 0, turn completed</td><td>Type check failed</td></tr><tr><td><a href="/evidence/codex-exec-json/failed.jsonl" download>Upstream HTTP 400</a></td><td>Exit 1, turn failed</td><td>Run stopped</td></tr></tbody>
+</table></div>
+<p><a href="/evidence/codex-exec-json/observations.json" download>Download the CLI observations</a> and <a href="/evidence/codex-exec-json/validator-checks.json" download>the six checker results</a>. We tested isolated synthetic runs on macOS. Read the official <a href="https://learn.chatgpt.com/docs/non-interactive-mode">Codex non-interactive guide</a> for other options.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

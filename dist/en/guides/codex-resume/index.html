@@ -58,6 +58,7 @@
 <p>In <code>resumed.jsonl</code>, find the <code>thread.started</code> event and compare its <code>thread_id</code> with the ID you intended. For a scripted check with jq:</p>
 <pre><code>jq -r 'select(.type == "thread.started") | .thread_id' resumed.jsonl</code></pre>
 <p>To start a second conversation or use a separate checkout, see <a href="/en/guides/codex-worktree/">Codex forks and worktrees</a>.</p>
+<p>Use the <a href="/en/guides/codex-exec-json/">Codex exec JSONL guide</a> for full turn and reply checks.</p>
 <p>Check the command’s exit status and the working directory as well. The session ID identifies the conversation. It does not verify the current Git branch, file contents or permissions.</p>
 </section>
 <section id="last"><h2>Continue the latest session in the current directory</h2>

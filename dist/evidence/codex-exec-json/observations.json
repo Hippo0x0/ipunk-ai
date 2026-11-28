@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-28",
+  "client": "codex-cli 0.172.0",
+  "provider": "Loopback SSE fixture; deliberate HTTP 400 for fourth case",
+  "plain": {
+    "exit": 0,
+    "events": [
+      "thread.started",
+      "item.completed",
+      "turn.started",
+      "item.completed",
+      "turn.completed"
+    ],
+    "last_message_file": "JSONL_FIXTURE_OK",
+    "model_requests": [
+      {
+        "path": "/v1/responses",
+        "response_format": null
+      }
+    ]
+  },
+  "schema": {
+    "exit": 0,
+    "events": [
+      "thread.started",
+      "item.completed",
+      "turn.started",
+      "item.completed",
+      "turn.completed"
+    ],
+    "last_message_file": "{\"result\":\"schema fixture\"}",
+    "model_requests": [
+      {
+        "path": "/v1/responses",
+        "response_format": {
+          "type": "json_schema",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "additionalProperties": false
+          },
+          "name": "codex_output_schema"
+        }
+      }
+    ]
+  },
+  "wrong_type": {
+    "exit": 0,
+    "events": [
+      "thread.started",
+      "item.completed",
+      "turn.started",
+      "item.completed",
+      "turn.completed"
+    ],
+    "last_message_file": "{\"result\":17}",
+    "model_requests": [
+      {
+        "path": "/v1/responses",
+        "response_format": {
+          "type": "json_schema",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "additionalProperties": false
+          },
+          "name": "codex_output_schema"
+        }
+      }
+    ]
+  },
+  "failed": {
+    "exit": 1,
+    "events": [
+      "thread.started",
+      "item.completed",
+      "turn.started",
+      "error",
+      "turn.failed"
+    ],
+    "last_message_file": "",
+    "model_requests": [
+      {
+        "path": "/v1/responses",
+        "response_format": null
+      }
+    ]
+  }
+}
