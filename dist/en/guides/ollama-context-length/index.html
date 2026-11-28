@@ -2,7 +2,7 @@
 <p>For a controlled request, set <code>options.num_ctx</code> on Ollama’s native chat or generate endpoint. A Modelfile can save a model-specific default with <code>PARAMETER num_ctx</code>; <code>OLLAMA_CONTEXT_LENGTH</code> configures the server process’s default. Check the current version and actual loaded model rather than assuming every installation has the same default.</p>
 <div class="video-table"><table><caption>Configuration and observation are different steps</caption><thead><tr><th>Scope</th><th>Example</th><th>How to verify</th></tr></thead><tbody>
 <tr><td>One native API request</td><td><code>options.num_ctx: 8192</code></td><td>Inspect <code>/api/ps</code> immediately after that request.</td></tr>
-<tr><td>A model default</td><td><code>PARAMETER num_ctx 4096</code> in its Modelfile</td><td>Create the intended alias and load that exact model.</td></tr>
+<tr><td>A model default</td><td><code>PARAMETER num_ctx 4096</code> in its Modelfile</td><td><a href="/en/guides/ollama-modelfile/#verify">Rebuild the model and check its saved settings</a>, then load that exact tag.</td></tr>
 <tr><td>A server default</td><td><code>OLLAMA_CONTEXT_LENGTH=4096 ollama serve</code></td><td>Confirm which server process and port your client reaches.</td></tr>
 </tbody></table></div>
 <p>In our fixture, the saved model and server default were 4,096. Native requests asking for 2,048 and 8,192 both changed the running value reported by <code>/api/ps</code>. This verifies the observed request override for that model and version; it does not establish every configuration precedence rule.</p></section><section id="measured"><h2>Two values verified on the running model</h2>

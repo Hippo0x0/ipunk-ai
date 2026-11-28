@@ -1,0 +1,67 @@
+{
+  "date": "2026-11-28",
+  "version": "0.40.18",
+  "model": "Qwen2.5-0.5B-Instruct Q4_K_M",
+  "source_sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+  "method": "Fresh model store and home, loopback only. CLI invoked from a working directory separate from the Modelfile.",
+  "tag_listing": [
+    "scratch-base:latest",
+    "scratch-notes:latest"
+  ],
+  "alternate_tags": [
+    {
+      "base": "scratch-alternate:v1",
+      "listed_locally": true,
+      "exit": 0,
+      "error": null
+    },
+    {
+      "base": "scratch-alternate:local",
+      "listed_locally": true,
+      "exit": 1,
+      "error": "Error: pull model manifest: Get \"https://registry.ollama.ai/v2/library/scratch-alternate/manifests/latest\": dial tcp: lookup registry.ollama.ai: no such host"
+    }
+  ],
+  "gguf_import": {
+    "recipe": "FROM ./qwen.gguf\n",
+    "exit": 0
+  },
+  "missing_path": {
+    "recipe": "FROM ./missing.gguf\n",
+    "exit": 1,
+    "error": "gathering model components \nError: 400 Bad Request: invalid model name\n"
+  },
+  "derived_model": {
+    "create_exit": 0,
+    "base_weight_layers": [
+      "sha256:74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db"
+    ],
+    "derived_weight_layers": [
+      "sha256:74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db"
+    ],
+    "saved_parameters": "num_ctx                        2048\ntemperature                    0",
+    "saved_system": "Answer in one short sentence.",
+    "generated_from": "FROM [fixture]/models/blobs/sha256-74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db"
+  },
+  "saved_settings": {
+    "recipe_edit_alone_preserved_generated_modelfile": true,
+    "saved_after_rebuild": "num_ctx                        4096\ntemperature                    0",
+    "running": [
+      {
+        "requested_override": null,
+        "reported_context": 2048,
+        "reply_done": true
+      },
+      {
+        "requested_override": null,
+        "reported_context": 4096,
+        "reply_done": true
+      },
+      {
+        "requested_override": 8192,
+        "reported_context": 8192,
+        "reply_done": true
+      }
+    ]
+  }
+}

@@ -89,7 +89,7 @@ ollama ps</code></pre>
 <pre><code>FROM ./qwen2.5-0.5b-instruct-q4_k_m.gguf</code></pre>
 <pre><code>ollama create qwen-local-first -f Modelfile
 ollama list</code></pre>
-<p>Once <code>qwen-local-first:latest</code> appears, replace <code>qwen2.5:0.5b</code> with <code>qwen-local-first</code> in the <a href="#verify">test request</a> and the stop command. The registry tag and the separately published GGUF can differ. Keep extra free disk space for Ollama’s imported copy.</p></section>
+<p><a href="/en/guides/ollama-modelfile/#gguf">See how Ollama resolves paths in a Modelfile</a>. Once <code>qwen-local-first:latest</code> appears, replace <code>qwen2.5:0.5b</code> with <code>qwen-local-first</code> in the <a href="#verify">test request</a> and the stop command. The registry tag and the separately published GGUF can differ. Keep extra free disk space for Ollama’s imported copy.</p></section>
 <section id="check-reply"><h3>A reply appeared, or the result is unclear</h3>
 <p>Look for an error message in the JSON and check the running list immediately. If the model unloaded before you checked, repeat the request and run <code>ollama ps</code> within the keep-alive period. If Ollama reports insufficient memory, close unused workloads or test a smaller model with a short context. <a href="/en/guides/ollama-context-length/">Verify the running context value</a> before assuming a setting took effect.</p></section>
 </section>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama Modelfile Example: Create, Import and Check Settings | iPunk AI Radar</title>
+<meta name="description" content="Create an Ollama model from an installed tag or GGUF file. Check the saved Modelfile, verify context and fix settings that do not take effect.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-modelfile/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Ollama Modelfile Example: Create, Import and Check Settings">
+<meta property="og:description" content="Use a tested Ollama Modelfile, then verify the saved settings and the running model.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/ollama-modelfile/"><meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Ollama Modelfile Example: Create, Import and Check Settings","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/ollama-modelfile/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#existing">Create a model</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama Modelfile Example</h1>
+<p class="guide-answer">Save a recipe with <code>FROM</code>, then run <code>ollama create your-model -f ./Modelfile</code>. Use an installed model tag or a path to your GGUF file. After editing a recipe, rerun <code>ollama create</code> and check <code>ollama show --modelfile your-model</code> to confirm Ollama saved the changes.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#existing">Create from an installed model</a></li>
+<li><a href="#gguf">Import a local GGUF</a></li>
+<li><a href="#verify">Check saved and running settings</a></li>
+<li><a href="#trouble">Fix a failed create or a stale setting</a></li>
+<li><a href="#evidence">Test results and sources</a></li>
+</ol></nav>
+<section id="diagnose" class="guide-decision"><h2>Where are you starting?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Choose an Ollama Modelfile starting point">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Ollama Modelfile decision tree">
+<defs><marker id="modelfile-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="existing" d="M330 104 C330 147 110 143 110 218" marker-end="url(#modelfile-arrow)"/>
+<path data-edge="gguf" d="M330 104 L330 218" marker-end="url(#modelfile-arrow)"/>
+<path data-edge="verify" d="M330 104 C330 147 550 143 550 218" marker-end="url(#modelfile-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Where are you starting?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">Start from what?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Installed tag</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Local GGUF</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Not sure</text>
+</g>
+<g data-node="existing" role="button" tabindex="0" aria-pressed="false" aria-label="Derive from an installed model"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Derive a model</text></g>
+<g data-node="gguf" role="button" tabindex="0" aria-pressed="false" aria-label="Import from a local GGUF"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Import a GGUF</text></g>
+<g data-node="verify" role="button" tabindex="0" aria-pressed="false" aria-label="Check the saved model settings"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check settings</text></g>
+</svg></div>
+<div class="decision-links"><a href="#existing" aria-label="See steps: derive from an installed model">See steps</a><a href="#gguf" aria-label="See steps: import a local GGUF">See steps</a><a href="#verify" aria-label="See steps: check saved settings">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="existing"><h2>Create a model from an installed tag</h2>
+<p>Start with a tag that appears in <code>ollama list</code>. Replace <code>scratch-base:latest</code> below with that exact tag. If you have a GGUF file, <a href="#gguf">import it as the base model</a> first. Choose a new output name so your existing tag remains available. For first-time setup, follow the <a href="/en/guides/ollama-setup/">Ollama setup guide</a>.</p>
+<pre><code>FROM scratch-base:latest
+PARAMETER num_ctx 2048
+PARAMETER temperature 0
+SYSTEM Answer in one short sentence.</code></pre>
+<p>Save the text as <code>Modelfile</code> in your current directory and run:</p>
+<pre><code>ollama create my-notes:latest -f ./Modelfile
+ollama show --modelfile my-notes:latest
+ollama run my-notes:latest</code></pre>
+<p>The output of <code>show</code> should include the context and system text you set. Changes to <code>SYSTEM</code> and <code>PARAMETER</code> configure the model at runtime. In the local test, the derived and base tags referenced the same weight blob.</p>
+</section>
+<section id="gguf"><h2>Import a GGUF file with a Modelfile</h2>
+<p>Keep your trusted GGUF file and recipe together. Replace the filename in the example with the actual file name. A relative GGUF path is resolved from the Modelfile’s directory. In our test, the command succeeded even when the shell was in a different directory.</p>
+<pre><code>FROM ./qwen.gguf</code></pre>
+<pre><code>ollama create scratch-base:latest -f ./recipes/Base.Modelfile
+ollama list</code></pre>
+<p>In that example, the two files are <code>recipes/Base.Modelfile</code> and <code>recipes/qwen.gguf</code>. For a split GGUF, the <a href="https://docs.ollama.com/modelfile#build-from-a-gguf-model">official import reference</a> documents listing each shard or using a pattern that matches all original shards. The test here used a single file.</p>
+</section>
+<section id="verify"><h2>Check what Ollama saved and what it loaded</h2>
+<ol><li>Use <code>ollama show --modelfile my-notes:latest</code> to review the recipe Ollama saved. For reuse on another machine, keep your original recipe. The generated <code>FROM</code> can point at a blob path local to the current store.</li>
+<li>When changing a saved default, edit the original recipe and run <code>ollama create</code> again with the same custom tag. In an isolated check, stop only that test tag before loading the new configuration.</li>
+<li>After a request, run <code>ollama ps</code> or read <code>context_length</code> for the tag in <code>/api/ps</code>. A client can send <code>options.num_ctx</code> and load a different context for its request. <a href="/en/guides/ollama-context-length/">See how to set and verify the request context</a>.</li></ol>
+</section>
+<section id="trouble"><h2>If create fails or settings stay the same</h2>
+<dl class="guide-task-list"><dt>The base is missing</dt><dd>Check the exact tag in <code>ollama list</code> using the same local server where you run <code>create</code>. If you intended to import a file, check the GGUF relative to the recipe path or use an absolute path. A missing relative file produced <code>invalid model name</code> on the tested version.</dd>
+<dt>A listed <code>:local</code> tag triggers a registry pull</dt><dd>In Ollama 0.40.18, a base imported as <code>scratch-alternate:local</code> appeared in the listing, but using it in <code>FROM</code> made Ollama look for <code>scratch-alternate:latest</code> in the registry. The same fixture worked with <code>:v1</code>. If you see this behavior, try a regular tag such as <code>:v1</code> and check that it appears locally before rebuilding.</dd>
+<dt>The saved recipe still has the old value</dt><dd>Check the filename passed to <code>-f</code> and the custom output tag. Editing the text file alone left the original setting unchanged in our test. Rebuild that tag and check it again with <code>show</code>.</dd>
+<dt>The running context differs from the saved value</dt><dd>Check the loaded tag and any context override in your client. For a controlled test, send a fresh native request with only the options you intend to use. <a href="/en/guides/ollama-memory-calculator/">Estimate the memory impact of a larger context</a> before trying it.</dd></dl>
+</section>
+<section id="evidence"><h2>Tested results and sources</h2>
+<p>On November 28, 2026, we used Ollama 0.40.18 on an Apple Silicon Mac, a separate local server and a Qwen2.5-0.5B Q4_K_M GGUF. We verified the saved system text and the shared weight digest. The running context was 2,048 before rebuilding, 4,096 after rebuilding, and 8,192 with a request-level override. Those runs verify configuration and loading.</p>
+<p><a href="/evidence/ollama-modelfile/observations.json" download>Download the local observations</a>. See the <a href="https://docs.ollama.com/modelfile">Ollama Modelfile reference</a> for template and parameter definitions.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
