@@ -1,0 +1,98 @@
+{
+  "date": "2026-11-28",
+  "client": "codex-cli 0.172.0",
+  "provider": "Loopback fixture returned fixed text and counted synthetic parent marker",
+  "cases": {
+    "parent": {
+      "directory": "project-a",
+      "args": [
+        "Synthetic parent marker FORK_PARENT_52. Do not read or change files."
+      ],
+      "exit": 0,
+      "thread_id": "01a22068-ec35-77f1-b4e2-0c0a0fc0f222",
+      "recorded_turn_cwd": "[fixture]/project-a",
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "model_requests": 1,
+      "requests": [
+        {
+          "path": "/v1/responses",
+          "has_parent_marker": true
+        }
+      ],
+      "last_stderr_lines": []
+    },
+    "plain_fork": {
+      "directory": "project-a",
+      "args": [
+        "fork",
+        "01a22068-ec35-77f1-b4e2-0c0a0fc0f222",
+        "Synthetic same-checkout fork. Do not change files."
+      ],
+      "exit": 0,
+      "thread_id": "01a22068-ecbe-7201-98c7-bc1ee1d71243",
+      "recorded_turn_cwd": "[fixture]/project-a",
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "model_requests": 1,
+      "requests": [
+        {
+          "path": "/v1/responses",
+          "has_parent_marker": true
+        }
+      ],
+      "last_stderr_lines": []
+    },
+    "worktree_fork": {
+      "directory": "project-a",
+      "args": [
+        "fork",
+        "--worktree",
+        "01a22068-ec35-77f1-b4e2-0c0a0fc0f222",
+        "Synthetic new-worktree fork. Do not change files."
+      ],
+      "exit": 0,
+      "thread_id": "01a22068-ed75-7912-96f6-88940de236d7",
+      "recorded_turn_cwd": "[fixture]/codex/worktrees/17a6/project-a",
+      "event_types": [
+        "thread.started",
+        "item.completed",
+        "turn.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "model_requests": 1,
+      "requests": [
+        {
+          "path": "/v1/responses",
+          "has_parent_marker": true
+        }
+      ],
+      "last_stderr_lines": []
+    }
+  },
+  "parent_rollout_unchanged": true,
+  "isolation": {
+    "worktree_count": 2,
+    "managed_checkout": "[fixture]/codex/worktrees/17a6/project-a",
+    "original_tracked_before": "parent working change\n",
+    "fork_tracked_before": "baseline\n",
+    "original_branch": "main",
+    "managed_branch": "",
+    "same_starting_commit": true,
+    "original_untracked_present": true,
+    "fork_untracked_present": false,
+    "original_tracked_after_checkout_edit": "parent working change\n",
+    "fork_tracked_after_checkout_edit": "checkout-only marker\n"
+  }
+}

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Codex Worktrees: Fork a Session Into a Separate Checkout | iPunk AI Radar</title>
+<meta name="description" content="Learn when to use codex fork or codex fork --worktree. Verify the new conversation ID, Git worktree path and what happens to uncommitted changes.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/codex-worktree/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Codex Worktrees: Fork a Session Into a Separate Checkout">
+<meta property="og:description" content="Compare an ordinary fork with a worktree fork using real Codex CLI and Git results.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/codex-worktree/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Codex Worktrees: Fork a Session Into a Separate Checkout","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/codex-worktree/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#worktree">Create a worktree</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Codex Worktrees and Session Forks</h1>
+<p class="guide-answer">Use <code>codex fork SESSION_ID</code> to start a new conversation from a saved session. Add <code>--worktree</code> when you also want a separate Git checkout. Confirm the new conversation ID and the checkout path before editing. Check for uncommitted files first. In our CLI test, the managed worktree started at the same commit and left those changes in the original directory.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#choose">Choose a fork, worktree or resume</a></li>
+<li><a href="#fork">Fork the conversation</a></li>
+<li><a href="#worktree">Create a separate checkout</a></li>
+<li><a href="#continue">Continue the current conversation</a></li>
+<li><a href="#evidence">Compare the observed results</a></li>
+</ol></nav>
+<section id="choose" class="guide-decision"><h2>What needs its own copy?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Codex fork and worktree decision tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Choose what needs a separate copy">
+<defs><marker id="codex-worktree-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="fork" d="M330 104 C330 147 110 143 110 218" marker-end="url(#codex-worktree-arrow)"/>
+<path data-edge="worktree" d="M330 104 L330 218" marker-end="url(#codex-worktree-arrow)"/>
+<path data-edge="continue" d="M330 104 C330 147 550 143 550 218" marker-end="url(#codex-worktree-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What needs its own copy?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">What to keep separate?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Conversation</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Conversation + files</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Continue / unsure</text>
+</g>
+<g data-node="fork" role="button" tabindex="0" aria-pressed="false" aria-label="Fork the conversation"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Fork the chat</text></g>
+<g data-node="worktree" role="button" tabindex="0" aria-pressed="false" aria-label="Fork into a new working tree"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Create worktree</text></g>
+<g data-node="continue" role="button" tabindex="0" aria-pressed="false" aria-label="Check when to resume"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Continue a chat</text></g>
+</svg></div>
+<div class="decision-links"><a href="#fork" aria-label="See steps: fork the conversation">See steps</a><a href="#worktree" aria-label="See steps: create a worktree">See steps</a><a href="#continue" aria-label="See steps: continue a chat">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="fork"><h2>Fork a conversation in the current checkout</h2>
+<p>From the project where you already work, pass the saved session ID. If Codex offers a folder choice, check the checkout before accepting it.</p>
+<pre><code>codex fork SESSION_ID</code></pre>
+<p>Use this when you want to explore a second approach while preserving the first conversation. A regular fork can still share the same directory with the original session. If both sessions will edit files, choose a separate worktree.</p>
+<p>For a non-interactive fork, save JSON events if you need to verify the new ID. With a prompt, this command also starts a turn.</p>
+<pre><code>codex exec --json fork SESSION_ID "Outline an alternative without editing files." &gt; fork.jsonl
+jq -r 'select(.type == "thread.started") | .thread_id' fork.jsonl</code></pre>
+</section>
+<section id="worktree"><h2>Fork into a separate Git worktree</h2>
+<ol>
+<li>Run <code>git status --short</code> in the source checkout. If the fork depends on uncommitted work, save it in the intended starting commit or make a deliberate plan to carry over the specific files.</li>
+<li>Use a local Codex CLI and the explicit saved session ID. Check <code>codex fork --help</code> for availability on your installed version.</li>
+<li>Confirm the new directory with <code>git worktree list</code>. Run <code>git status --short</code> and <code>git rev-parse HEAD</code> in the new checkout before asking Codex to edit. Make sure required local setup is present.</li>
+</ol>
+<pre><code>codex fork SESSION_ID --worktree</code></pre>
+<p>For a non-interactive test from the same saved session:</p>
+<pre><code>codex exec --json fork --worktree SESSION_ID "Outline an alternative without editing files." &gt; worktree-fork.jsonl</code></pre>
+<p>To start without saved conversation history, launch a new <code>codex --worktree</code> session. For the desktop app’s separate setup and handoff controls, see the <a href="https://learn.chatgpt.com/docs/environments/git-worktrees">official worktrees guide</a>.</p>
+</section>
+<section id="continue"><h2>Continue the same conversation</h2>
+<p>If you're continuing the same approach, resume the saved session and confirm the ID. Use the <a href="/en/guides/codex-resume/">Codex resume guide</a> for the picker, <code>--last</code> and working-directory checks. If you are unsure where the session will edit, verify the path before sending a task that changes files.</p>
+</section>
+<section id="evidence"><h2>What changed in our Codex CLI test</h2>
+<p>We ran Codex CLI 0.172.0 on macOS in a disposable Git repo. Both non-interactive forks gave a fresh thread ID and included the synthetic parent prompt in their loopback request. The saved parent session file stayed byte-for-byte the same.</p>
+<div class="video-table"><table>
+<caption>One saved conversation, two forks</caption>
+<thead><tr><th scope="col">Command</th><th scope="col">Conversation</th><th scope="col">Working directory</th></tr></thead>
+<tbody><tr><td><code>exec fork</code></td><td>New ID, inherited prompt</td><td>Original checkout</td></tr><tr><td><code>exec fork --worktree</code></td><td>New ID, inherited prompt</td><td>Separate checkout, same starting commit</td></tr></tbody>
+</table></div>
+<p>The new checkout opened in detached HEAD and did not contain the parent’s uncommitted tracked edit or its untracked file. After we edited the tracked file directly in the new checkout, the original file still held the original edit. A Git worktree gives each session a working directory. File access still depends on Codex’s sandbox and permissions.</p>
+<p><a href="/evidence/codex-worktree/observations.json" download>Download the fork IDs, Git checks and before-and-after file contents</a>. The local fixture returned fixed text. We tested the non-interactive CLI, and the interactive commands above are documented. See the <a href="https://learn.chatgpt.com/docs/cli/reference#codex-fork">official CLI reference</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
