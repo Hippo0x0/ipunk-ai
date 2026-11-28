@@ -11,3 +11,9 @@
 OpenCode 2.4.1、macOS arm64。另建 Git 目录、用户资料和认证的本机 API 服务。网络仅允许回环，禁止代理工具，模板不含 Shell。用合成模型记录发布的请求文字。嵌套同名 Markdown 取项目文件，位置参数保留引号中的词组并将剩余文本加入最高占位符。JSON 的全量参数保留原引号，无占位符则在空行后追加。三个命令 API 请求均返回 204，另核对实际模型请求。直接在 opencode run 传斜杠消息，服务器收到原文，旧 --command 标志退出失败。未把终端 UI 文档步骤写成实测。
 
 Chromium 在 390 和 1440 px 核对三条分流、独立步骤链接、键盘高亮和缩放复位、表格宽度、下载及无 JavaScript 正文。
+
+## 正式交付
+
+内容提交 `f860007` 的干净归档通过 95 项测试。站点检查覆盖 86 个 HTML、85 个可达站点地图地址及 481 处静态资源引用。预览域连接超时，本轮改用正式站核验通过静态测试的版本。北京时间 15:20:44，Worker `f72eaf31-506b-46f4-95fd-852e9ca34638` 开始承接全部流量。正式站新页、证据、地图和入口等 9 个 URL 均 HTTP 200，正文与归档逐字节一致。
+
+[Search Console](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=eizrLjKvm8DElO0UTeBLFA) 显示 Google 尚未识别新网址。已加入正式站点地图，待普通抓取和搜索数据。
