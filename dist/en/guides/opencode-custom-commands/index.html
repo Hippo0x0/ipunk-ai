@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode Commands: Create and Fix Custom Slash Commands | iPunk AI Radar</title>
+<meta name="description" content="Create a custom OpenCode slash command, pass arguments, check global and project files, and see how OpenCode 2 handles slash text in opencode run.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-custom-commands/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="OpenCode Commands: Create and Fix Custom Slash Commands">
+<meta property="og:description" content="Find the right command file, verify arguments and choose a supported way to invoke it.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/opencode-custom-commands/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"OpenCode Commands: Create and Fix Custom Slash Commands","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/opencode-custom-commands/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#create">Create a command</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>How to Create Custom Commands in OpenCode</h1>
+<p class="guide-answer">Save a Markdown prompt as <code>.opencode/commands/check-file.md</code>, then type <code>/check-file</code> followed by your arguments in OpenCode’s terminal UI. For a command you use in every project, put its file in the global commands folder. In OpenCode 2.4.1, <code>opencode run</code> sends slash text directly as a prompt.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#create">Create a Markdown command</a></li>
+<li><a href="#args">Pass arguments to the template</a></li>
+<li><a href="#missing">Check which command loads</a></li>
+<li><a href="#script">Use a command from a script</a></li>
+<li><a href="#test">See the tested expansions</a></li>
+</ol></nav>
+
+<section class="guide-decision"><h2>Where are you using the command?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="OpenCode command decision tree"><svg class="flow-svg" viewBox="0 0 660 280" role="group" aria-label="Choose a custom command action">
+<defs><marker id="opencode-command-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="create" d="M330 103 C330 151 110 134 110 205" marker-end="url(#opencode-command-arrow)"/>
+<path data-edge="script" d="M330 103 L330 205" marker-end="url(#opencode-command-arrow)"/>
+<path data-edge="missing" d="M330 103 C330 151 550 134 550 205" marker-end="url(#opencode-command-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Where are you using the command?"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">Where to run?</text></g>
+<g text-anchor="middle">
+<rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">Terminal UI</text>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">Shell script</text>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">Missing / unsure</text>
+<g data-node="create" role="button" tabindex="0" aria-pressed="false" aria-label="Create a Markdown command"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">Create command</text></g>
+<g data-node="script" role="button" tabindex="0" aria-pressed="false" aria-label="Check scripting options"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">Check CLI options</text></g>
+<g data-node="missing" role="button" tabindex="0" aria-pressed="false" aria-label="Find the loaded command file"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">Check file scope</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#create">Create command</a><a href="#script">Check CLI options</a><a href="#missing">Check file scope</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+<section id="create"><h2>Create an OpenCode slash command</h2>
+<p>Check <code>opencode --version</code>. In an OpenCode 2 project, save this as <code>.opencode/commands/check-file.md</code>. Use a project without private data for the first run.</p>
+<pre><code>---
+description: Review a file and report test gaps
+agent: plan
+---
+
+Review $1 for $2. List findings before proposing changes.</code></pre>
+<p>Open OpenCode in the project and enter this in its prompt composer.</p>
+<pre><code>/check-file src/demo.ts "error handling"</code></pre>
+<p>The Markdown body supplies the prompt template. Use frontmatter for metadata such as the label and agent. To define the same sort of command in <code>opencode.jsonc</code>, add an entry under <code>commands</code> with a <code>template</code> value. Keep a unique name while testing.</p>
+</section>
+
+<section id="args"><h2>Pass arguments and attach files</h2>
+<ul>
+<li><code>$ARGUMENTS</code> inserts the full argument string, including the quotes as entered.</li>
+<li><code>$1</code>, <code>$2</code> and later positions use parsed arguments. Quotes group words. The highest position in the template also gets the remaining arguments, so <code>$2</code> in the example can include all remaining focus words.</li>
+<li>If the template has no placeholders, OpenCode appends the arguments after a blank line.</li>
+</ul>
+<p>A path argument inserts text. To attach the file itself, use the composer’s attachment action. The <a href="https://opencode.ai/docs/commands">official commands documentation</a> also describes shell blocks, which run locally during expansion outside the agent tool permission flow. Use a text-only template for this check and keep untrusted arguments out of shell blocks.</p>
+</section>
+
+<section id="missing"><h2>When an OpenCode command is missing or uses old text</h2>
+<ol>
+<li>Check the workspace. A global Markdown command normally lives under <code>~/.config/opencode/commands/</code>, while a project command lives in <code>.opencode/commands/</code>. Run <code>opencode debug paths</code> to locate the current profile’s config folder.</li>
+<li>Check the Markdown extension and the name. For example, <code>team/check-file.md</code> inside <code>commands/</code> becomes <code>/team/check-file</code>.</li>
+<li>Look for the same name in the global directory and project configuration. In our test, the project Markdown command won over a global Markdown command with the same name. Try a unique command name if you are unsure which one OpenCode selected.</li>
+</ol>
+<p>For other configuration overrides, <a href="/en/guides/opencode-config/">check which OpenCode config files are loaded</a>.</p>
+</section>
+
+<section id="script"><h2>Why a slash command does not expand in opencode run</h2>
+<p>In OpenCode 2.4.1, <code>opencode run --help</code> lacks the older <code>--command</code> flag. Our CLI test rejected that flag. Passing <code>/team/review src/demo.ts</code> as the message sent those literal characters. To automate the prompt with the CLI, pass the expanded prompt text yourself. For an integration that needs the actual command definition, use the <a href="https://opencode.ai/docs/api">documented OpenCode server command API</a> on the intended session.</p>
+<p>Check the installed version before copying an example from V1. An accepted server request means the command was submitted. Check the session or output to confirm what ran.</p>
+</section>
+
+<section id="test"><h2>What OpenCode 2.4.1 sent for each template</h2>
+<div class="video-table"><table>
+<thead><tr><th scope="col">Template</th><th scope="col">Observed prompt</th></tr></thead><tbody>
+<tr><td>Nested Markdown with <code>$1</code> and <code>$2</code></td><td>Used the project file, grouped quoted words and kept the rest of the focus phrase.</td></tr>
+<tr><td>JSON command with <code>$ARGUMENTS</code></td><td>Kept the original argument string and quotes.</td></tr>
+<tr><td>JSON command without placeholders</td><td>Appended the file path after a blank line.</td></tr>
+</tbody></table></div>
+<p>We called the command API on a local authenticated OpenCode server in a temporary macOS arm64 project. A loopback provider captured the actual expanded text and returned a fixed reply. The test measured expansion, project selection and the CLI behavior. Terminal UI steps are from the documentation. <a href="/evidence/opencode-commands/observations.json" download>Download the command checks</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

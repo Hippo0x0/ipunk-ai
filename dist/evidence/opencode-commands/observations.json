@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-28",
+  "version": "2.4.1",
+  "os": "macOS arm64",
+  "scope": "Loopback-only OpenCode serve with a synthetic provider. Command requests returned HTTP 204; actual provider requests contained the checked strings. Templates contain no shell blocks.",
+  "same_name_global_and_project": "Project Markdown was selected",
+  "cases": [
+    {
+      "command": "team/review",
+      "arguments": "src/demo.ts \"error handling\" edge cases",
+      "expanded_text": "PROJECT target=[src/demo.ts] focus=[error handling edge cases]"
+    },
+    {
+      "command": "literal",
+      "arguments": "src/demo.ts \"error handling\"",
+      "expanded_text": "FULL=[src/demo.ts \"error handling\"]"
+    },
+    {
+      "command": "plain",
+      "arguments": "src/demo.ts",
+      "expanded_text": "READ_ONLY_NOTE\n\nsrc/demo.ts"
+    }
+  ],
+  "run_argument_literal": true,
+  "run_command_flag_exit": 1,
+  "run_command_flag_error": "Unrecognized flag: --command in command opencode run"
+}
