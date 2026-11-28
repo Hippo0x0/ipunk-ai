@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode MCP Server Setup: Fix an Empty List or Failed Connection | iPunk AI Radar</title>
+<meta name="description" content="Add a local MCP server in OpenCode V2. Check mcp.servers, distinguish an empty list on startup from a failed connection, and verify that OpenCode discovered a tool.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-mcp-server/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="OpenCode MCP Server Setup and Troubleshooting">
+<meta property="og:description" content="Set up a local MCP server, then separate config visibility, process startup, and tool discovery.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/opencode-mcp-server/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"OpenCode MCP Server Setup: Fix an Empty List or Failed Connection","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/opencode-mcp-server/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#setup">Set up a local server</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>OpenCode MCP Server Setup and Troubleshooting</h1>
+<p class="guide-answer">In OpenCode V2, add a local MCP server under <code>mcp.servers</code> in the project config. From the same project, run <code>opencode mcp list</code> and check the server’s status. If it says <code>No MCP servers configured</code> on startup, confirm the config source and check again against the same running OpenCode service before rewriting it.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#setup">Add a local MCP server</a></li>
+<li><a href="#choose">Choose the next check</a></li>
+<li><a href="#config">The list is empty</a></li>
+<li><a href="#process">The connection failed</a></li>
+<li><a href="#tools">Connected, but the tool is missing</a></li>
+<li><a href="#evidence">See the tested outputs</a></li>
+</ol></nav>
+<section id="setup"><h2>Add a local MCP server in OpenCode V2</h2>
+<p>OpenCode starts the command as a subprocess. Use a command you trust and review what it can access. For a minimal check, create an empty project folder, save <a href="/evidence/opencode-mcp/mcp-smoke.mjs" download>the sample Node.js server</a> there, and run these commands from that folder with Node.js and OpenCode installed:</p>
+<pre><code>opencode --version
+node --version
+opencode mcp add smoke -- node ./mcp-smoke.mjs
+opencode mcp list</code></pre>
+<p>The sample serves one tool, <code>healthcheck</code>, which returns the fixed text <code>MCP_OK</code>. It does not read your project files or call an external service. The add command writes a project config entry. To edit an existing config by hand, merge the following structure into it and keep your other settings:</p>
+<pre><code>{
+  "mcp": {
+    "servers": {
+      "smoke": {
+        "type": "local",
+        "command": ["node", "./mcp-smoke.mjs"]
+      }
+    }
+  }
+}</code></pre>
+<p>Use one argument per array entry. A relative script path is resolved from the server process’s working directory. Set <code>cwd</code> when the command needs a particular directory.</p>
+</section>
+<section id="choose" class="guide-decision"><h2>What does MCP list show?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="OpenCode MCP troubleshooting tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Choose the server status">
+<defs><marker id="opencode-mcp-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="config" d="M330 104 C330 147 110 143 110 218" marker-end="url(#opencode-mcp-arrow)"/>
+<path data-edge="process" d="M330 104 L330 218" marker-end="url(#opencode-mcp-arrow)"/>
+<path data-edge="tools" d="M330 104 C330 147 550 143 550 218" marker-end="url(#opencode-mcp-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What does MCP list show?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">MCP list result?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Missing / unsure</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Failed</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Connected</text>
+</g>
+<g data-node="config" role="button" tabindex="0" aria-pressed="false" aria-label="Check version and config"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Check config</text></g>
+<g data-node="process" role="button" tabindex="0" aria-pressed="false" aria-label="Check the server process"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Check startup</text></g>
+<g data-node="tools" role="button" tabindex="0" aria-pressed="false" aria-label="Check the available tools"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check tools</text></g>
+</svg></div>
+<div class="decision-links"><a href="#config" aria-label="See steps: config and version">See steps</a><a href="#process" aria-label="See steps: inspect startup">See steps</a><a href="#tools" aria-label="See steps: tool discovery">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="config"><h2>The list is empty or your server is missing</h2>
+<ol>
+<li>From the folder where you use OpenCode, run <code>opencode debug config</code>. Check that the output includes the expected configuration file and server entry. Keep the output local if it contains credentials.</li>
+<li>For new V2 settings, use <code>mcp.servers.NAME</code>. Check <code>disabled</code> and project or global overrides. V1 uses a server directly under <code>mcp</code> and the inverse <code>enabled</code> field. V2.4.1 loaded our simple V1 entry through compatibility handling. The legacy shape alone did not explain the empty list.</li>
+<li>Check <code>opencode mcp list</code> again from the same project against the same service, or open <code>/mcps</code> in your active V2 session. A fresh <code>--standalone</code> invocation starts another private server and can repeat the cold-start result. In our test, the second check showed the server both on the normal background service and on a separately started loopback service.</li>
+</ol>
+<p>The OpenCode repository tracks <a href="https://github.com/anomalyco/opencode/issues/63053">the empty-list startup symptom</a>. If the server still never appears, record the OpenCode version and effective configuration source before changing the connection settings.</p>
+</section>
+<section id="process"><h2>The local MCP connection failed</h2>
+<ol>
+<li>Read the detail after <code>failed</code>. Our missing script returned <code>Connection closed</code> and <code>MODULE_NOT_FOUND</code>. Check the executable in the service’s environment and the script path relative to its configured <code>cwd</code>.</li>
+<li>Try the same command and arguments from that working directory. A stdio server can sit quietly while it waits for messages. Immediate exit or a missing-module error points to startup. If it is running, use Ctrl+C to stop the manual check.</li>
+<li>Keep ordinary logs on stderr. The MCP stdio transport uses stdout for newline-delimited protocol messages, so a startup banner on stdout can interfere with the handshake.</li>
+</ol>
+<p>Remote Streamable HTTP servers use a URL and may require OAuth or headers. Follow <a href="https://opencode.ai/docs/mcp-servers/#remote">OpenCode’s remote server setup</a> for those cases.</p>
+</section>
+<section id="tools"><h2>The server is connected but a tool is missing</h2>
+<p>Confirm the server advertises the tool you expect. In our check, OpenCode logged <code>tools=1</code> after connecting to the sample. The MCP protocol response listed <code>healthcheck</code>. That established discovery. A separate direct request confirmed the sample tool returned <code>MCP_OK</code>.</p>
+<p>OpenCode V2 normally groups MCP tools under Code Mode. Check the server namespace and the agent’s permissions before expecting individual tools in a provider’s list. The <code>codemode</code> and permission settings have different roles. Review the <a href="https://opencode.ai/docs/mcp-servers/#permissions">OpenCode MCP permission docs</a> and the <a href="/en/projects/opencode/#permission-order">OpenCode project permission check</a>.</p>
+</section>
+<section id="evidence"><h2>What OpenCode 2.4.1 reported</h2>
+<p>On macOS, we tested a healthy V2 config, the same config with a missing script, and a simple V1 entry under V2. Each fresh standalone list printed <code>No MCP servers configured</code>. Against a persistent loopback OpenCode service in each test, the next listing showed two successful connections and one explicit startup failure across the three cases. The healthy V2 connection discovered one tool.</p>
+<p><a href="/evidence/opencode-mcp/observations.json" download>Download the configurations, CLI outputs and direct MCP results</a>. We did not run a model turn or test remote authentication. Sources include <a href="https://opencode.ai/docs/mcp-servers/">OpenCode MCP docs</a>, its <a href="https://opencode.ai/docs/migrate-v1/#mcp-servers">migration guide</a> and the <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/transports#stdio">MCP stdio specification</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

@@ -1,0 +1,232 @@
+{
+  "tested_on": "2026-11-28",
+  "platform": "macOS arm64",
+  "opencode": "opencode v2.4.1",
+  "node": "v25.2.1",
+  "commands": [
+    "opencode debug config --standalone",
+    "opencode mcp list --standalone",
+    "opencode serve --hostname 127.0.0.1 --port <port> --print-logs --log-level debug",
+    "opencode mcp list --server http://127.0.0.1:<port>"
+  ],
+  "cases": {
+    "correct_v2": {
+      "config": {
+        "mcp": {
+          "servers": {
+            "smoke": {
+              "type": "local",
+              "command": [
+                "node",
+                "./mcp-smoke.mjs"
+              ],
+              "environment": {
+                "MCP_SMOKE_TRACE": "1"
+              }
+            }
+          }
+        }
+      },
+      "debug_config": {
+        "exit": 0,
+        "stdout": "[\n  {\n    \"type\": \"directory\",\n    \"path\": \"[fixture]/home/config/opencode\"\n  },\n  {\n    \"type\": \"document\",\n    \"path\": \"[fixture]/work/opencode.json\",\n    \"info\": {\n      \"mcp\": {\n        \"servers\": {\n          \"smoke\": {\n            \"type\": \"local\",\n            \"command\": [\n              \"node\",\n              \"./mcp-smoke.mjs\"\n            ],\n            \"environment\": {\n              \"MCP_SMOKE_TRACE\": \"1\"\n            }\n          }\n        }\n      }\n    }\n  }\n]\n",
+        "stderr": ""
+      },
+      "standalone_list": {
+        "exit": 0,
+        "stdout": "No MCP servers configured\n"
+      },
+      "same_server_list": [
+        {
+          "exit": 0,
+          "stdout": "No MCP servers configured\n",
+          "stderr": ""
+        },
+        {
+          "exit": 0,
+          "stdout": "\u2713 smoke  connected\n",
+          "stderr": ""
+        }
+      ],
+      "default_service_list": [
+        {
+          "exit": 0,
+          "stdout": "No MCP servers configured\n",
+          "stderr": ""
+        },
+        {
+          "exit": 0,
+          "stdout": "\u2713 smoke  connected\n",
+          "stderr": ""
+        },
+        {
+          "command": "opencode service stop",
+          "exit": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      ],
+      "relevant_stderr": [
+        "timestamp=2026-11-28T03:48:16.750Z level=INFO run=53ca9083 message=\"mcp connected\" server=smoke tools=1 http.span=304 role=server server=smoke directory=[fixture]/work connectionID=bc9b709c-2e08-4869-b7f0-d07592952e32"
+      ]
+    },
+    "missing_script": {
+      "config": {
+        "mcp": {
+          "servers": {
+            "smoke": {
+              "type": "local",
+              "command": [
+                "node",
+                "./missing-mcp-smoke.mjs"
+              ]
+            }
+          }
+        }
+      },
+      "debug_config": {
+        "exit": 0,
+        "stdout": "[\n  {\n    \"type\": \"directory\",\n    \"path\": \"[fixture]/home/config/opencode\"\n  },\n  {\n    \"type\": \"document\",\n    \"path\": \"[fixture]/work/opencode.json\",\n    \"info\": {\n      \"mcp\": {\n        \"servers\": {\n          \"smoke\": {\n            \"type\": \"local\",\n            \"command\": [\n              \"node\",\n              \"./missing-mcp-smoke.mjs\"\n            ]\n          }\n        }\n      }\n    }\n  }\n]\n",
+        "stderr": ""
+      },
+      "standalone_list": {
+        "exit": 0,
+        "stdout": "No MCP servers configured\n"
+      },
+      "same_server_list": [
+        {
+          "exit": 0,
+          "stdout": "No MCP servers configured\n",
+          "stderr": ""
+        },
+        {
+          "exit": 0,
+          "stdout": "\u2717 smoke  failed: Connection closed: MCP server process exited with code 1: node:internal/modules/cjs/loader:1423\n  throw err;\n  ^\n\nError: Cannot find module '[fixture]/work/missing-mcp-smoke.mjs'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)\n    at Module._load (node:internal/modules/cjs/loader:1226:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:328:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v25.2.1\n",
+          "stderr": ""
+        }
+      ],
+      "relevant_stderr": [
+        "timestamp=2026-11-28T03:48:18.001Z level=WARN run=446a6ff2 message=\"mcp transport error\" server=smoke error=\"MCP server process exited with code 1: node:internal/modules/cjs/loader:1423\\n  throw err;\\n  ^\\n\\nError: Cannot find module '[fixture]/work/missing-mcp-smoke.mjs'\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)\\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)\\n    at Module._load (node:internal/modules/cjs/loader:1226:37)\\n    at TracingChannel.traceSync (node:diagnostics_channel:328:14)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)\\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\\n    at node:internal/main/run_main_module:33:47 {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: []\\n}\\n\\nNode.js v25.2.1\" http.span=348 role=server server=smoke directory=[fixture]/work connectionID=a3ed9b15-6d95-42f1-b4ff-c29cfd2df4c3",
+        "timestamp=2026-11-28T03:48:18.001Z level=WARN run=446a6ff2 message=\"mcp connect failed\" server=smoke status.status=failed status.error=\"Connection closed: MCP server process exited with code 1: node:internal/modules/cjs/loader:1423\\n  throw err;\\n  ^\\n\\nError: Cannot find module '[fixture]/work/missing-mcp-smoke.mjs'\\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)\\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)\\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)\\n    at Module._load (node:internal/modules/cjs/loader:1226:37)\\n    at TracingChannel.traceSync (node:diagnostics_channel:328:14)\\n    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)\\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\\n    at node:internal/main/run_main_module:33:47 {\\n  code: 'MODULE_NOT_FOUND',\\n  requireStack: []\\n}\\n\\nNode.js v25.2.1\" http.span=348 role=server server=smoke directory=[fixture]/work connectionID=a3ed9b15-6d95-42f1-b4ff-c29cfd2df4c3"
+      ]
+    },
+    "v1_config_in_v2": {
+      "config": {
+        "mcp": {
+          "smoke": {
+            "type": "local",
+            "command": [
+              "node",
+              "./mcp-smoke.mjs"
+            ],
+            "enabled": true
+          }
+        }
+      },
+      "debug_config": {
+        "exit": 0,
+        "stdout": "[\n  {\n    \"type\": \"directory\",\n    \"path\": \"[fixture]/home/config/opencode\"\n  },\n  {\n    \"type\": \"document\",\n    \"path\": \"[fixture]/work/opencode.json\",\n    \"info\": {\n      \"mcp\": {\n        \"servers\": {\n          \"smoke\": {\n            \"type\": \"local\",\n            \"command\": [\n              \"node\",\n              \"./mcp-smoke.mjs\"\n            ],\n            \"disabled\": false\n          }\n        }\n      }\n    }\n  }\n]\n",
+        "stderr": ""
+      },
+      "standalone_list": {
+        "exit": 0,
+        "stdout": "No MCP servers configured\n"
+      },
+      "same_server_list": [
+        {
+          "exit": 0,
+          "stdout": "No MCP servers configured\n",
+          "stderr": ""
+        },
+        {
+          "exit": 0,
+          "stdout": "\u2713 smoke  connected\n",
+          "stderr": ""
+        }
+      ],
+      "relevant_stderr": [
+        "timestamp=2026-11-28T03:48:19.146Z level=INFO run=a4b298f7 message=\"mcp connected\" server=smoke tools=1 http.span=309 role=server server=smoke directory=[fixture]/work connectionID=b2982c42-d0c3-4bd0-8801-2967d248797d"
+      ]
+    }
+  },
+  "direct_stdio": {
+    "requests": [
+      {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "initialize",
+        "params": {
+          "protocolVersion": "2025-11-25",
+          "clientInfo": {
+            "name": "fixture-check",
+            "version": "1"
+          },
+          "capabilities": {}
+        }
+      },
+      {
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized"
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/list"
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "tools/call",
+        "params": {
+          "name": "healthcheck",
+          "arguments": {}
+        }
+      }
+    ],
+    "replies": [
+      {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "result": {
+          "protocolVersion": "2025-11-25",
+          "capabilities": {
+            "tools": {}
+          },
+          "serverInfo": {
+            "name": "ipunk-mcp-smoke",
+            "version": "1.0.0"
+          }
+        }
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "result": {
+          "tools": [
+            {
+              "name": "healthcheck",
+              "description": "Return the fixed text MCP_OK.",
+              "inputSchema": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              }
+            }
+          ]
+        }
+      },
+      {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "MCP_OK"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
