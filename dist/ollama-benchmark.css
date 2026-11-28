@@ -1,0 +1,6 @@
+.ollama-timing-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem 1.25rem;margin:0}
+.ollama-timing-results dt{font-weight:650}
+.ollama-timing-results dd{margin:0;font-variant-numeric:tabular-nums}
+#timing-input{font-family:ui-monospace,monospace}
+#ollama-timing .task-actions button{flex:0 0 auto}
+@media(max-width:360px){.ollama-timing-results{grid-template-columns:1fr}}

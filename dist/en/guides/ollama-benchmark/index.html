@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama Benchmark and Tokens per Second Calculator | iPunk AI Radar</title>
+<meta name="description" content="Measure Ollama generation and prompt tokens per second from native API JSON. Compare load time, full duration and repeated requests.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-benchmark/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css"><link rel="stylesheet" href="/task-choice.css"><link rel="stylesheet" href="/ollama-benchmark.css">
+<meta property="og:title" content="Ollama Benchmark and Tokens per Second Calculator">
+<meta property="og:description" content="Calculate Ollama tokens per second and tell model loading from prompt processing and generation.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/ollama-benchmark/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Ollama Tokens per Second Calculator","applicationCategory":"DeveloperApplication","operatingSystem":"Browser","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","url":"https://ai.ipunk.cn/en/guides/ollama-benchmark/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script><script type="module" src="/ollama-benchmark.mjs"></script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#calculator">Calculate</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama Benchmark and Tokens per Second Calculator</h1>
+<p class="guide-answer">Use Ollama’s native API and paste the completed JSON response here. The calculator reports generation and prompt processing separately, with model loading and total server time. Nothing you paste is sent to a server.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#calculator">Calculate the rates</a></li><li><a href="#request">Record a native request</a></li>
+<li><a href="#wait">Diagnose a slow first response</a></li><li><a href="#speed">Compare generation rates</a></li>
+<li><a href="#fields">Find missing fields</a></li><li><a href="#evidence">See measured requests</a></li>
+</ol></nav>
+<section id="calculator"><h2>Calculate tokens per second from an Ollama response</h2>
+<form id="ollama-timing" class="task-panel" hidden>
+<label for="timing-input">Ollama response JSON or NDJSON</label>
+<textarea id="timing-input" rows="8" wrap="off" maxlength="1000000" spellcheck="false" autocomplete="off"></textarea>
+<div class="task-actions"><button type="submit">Calculate</button><button type="button" data-sample>Try sample</button><button type="reset">Clear</button></div>
+<output role="status"></output>
+<div class="task-result" data-result hidden>
+<dl class="ollama-timing-results">
+<div><dt>Generation speed</dt><dd data-value="generation-rate"></dd></div>
+<div><dt>Prompt processing speed</dt><dd data-value="prompt-rate"></dd></div>
+<div><dt>Generated tokens</dt><dd data-value="generation-count"></dd></div>
+<div><dt>Prompt tokens reported</dt><dd data-value="prompt-count"></dd></div>
+<div><dt>Generation time</dt><dd data-value="generation-time"></dd></div>
+<div><dt>Prompt processing time</dt><dd data-value="prompt-time"></dd></div>
+<div><dt>Model load time</dt><dd data-value="load"></dd></div>
+<div><dt>Total server time</dt><dd data-value="total"></dd></div>
+</dl>
+</div>
+</form>
+<template id="ollama-timing-sample">{
+  "model": "speed-fixture:latest",
+  "done": true,
+  "done_reason": "length",
+  "total_duration": 1036819417,
+  "load_duration": 556975917,
+  "prompt_eval_count": 43,
+  "prompt_eval_duration": 41363000,
+  "eval_count": 64,
+  "eval_duration": 436247000
+}</template>
+<noscript><p>Enable JavaScript to calculate in your browser, or use the formulas below.</p></noscript>
+<p>Paste one complete response from <code>/api/generate</code> or <code>/api/chat</code>. For a stream, paste the complete NDJSON or only its final <code>"done": true</code> record. The pasted text stays in the page.</p>
+</section>
+
+<section id="request"><h2>Record an Ollama benchmark request with curl</h2>
+<p>Run <code>ollama list</code> to find your local model tag. Change <code>qwen2.5:0.5b</code> and the port in this example to match your server. The request keeps the model loaded for the repeat check. Use a scratch model if other apps depend on your running service.</p>
+<pre><code>curl --noproxy '*' -fsS --max-time 60 \
+  http://127.0.0.1:11434/api/generate \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model":"qwen2.5:0.5b",
+    "prompt":"Explain why the Moon stays in orbit in six short numbered points.",
+    "stream":false,
+    "keep_alive":"5m",
+    "options":{"num_ctx":2048,"num_predict":64,"temperature":0}
+  }'</code></pre>
+<p>Paste the complete JSON into the calculator. Use <code>"stream":true</code> to get NDJSON and add <code>-N</code> to curl to see partial lines. A client that wants to measure first visible text must time that event as it receives the stream.</p>
+</section>
+
+<section class="guide-decision"><h2>What do you want to explain?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Ollama performance decision tree"><svg class="flow-svg" viewBox="0 0 660 280" role="group" aria-label="Choose which timing to investigate">
+<defs><marker id="ollama-timing-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="wait" d="M330 103 C330 151 110 134 110 205" marker-end="url(#ollama-timing-arrow)"/>
+<path data-edge="speed" d="M330 103 L330 205" marker-end="url(#ollama-timing-arrow)"/>
+<path data-edge="fields" d="M330 103 C330 151 550 134 550 205" marker-end="url(#ollama-timing-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What do you want to explain?"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">Which timing?</text></g>
+<g text-anchor="middle">
+<rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">Slow first text</text>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">Slow generation</text>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">Missing / unsure</text>
+<g data-node="wait" role="button" tabindex="0" aria-pressed="false" aria-label="Check loading and prompt time"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">Check the wait</text></g>
+<g data-node="speed" role="button" tabindex="0" aria-pressed="false" aria-label="Compare generation rates"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">Compare rates</text></g>
+<g data-node="fields" role="button" tabindex="0" aria-pressed="false" aria-label="Find native timing fields"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">Find the fields</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#wait">Check the wait</a><a href="#speed">Compare rates</a><a href="#fields">Find the fields</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+
+
+<section id="wait"><h2>Explain a long wait before the first text</h2>
+<p>Start with <code>load_duration</code> and <code>prompt_eval_duration</code>. Model loading and input processing can take time before text appears. Check <code>ollama ps</code> before the request to see whether the model is already loaded. Keep the same model, context and prompt when repeating the request. Record whether the prompt repeats because cache reuse can change the reported timings.</p>
+<p>Ollama returns server durations in nanoseconds. Total server duration covers the reported request, including generation. To measure time to first text, use a monotonic client timer from request start to the first non-empty response text. The final JSON alone cannot recover that time.</p>
+</section>
+
+<section id="speed"><h2>Compare generation with prompt processing speed</h2>
+<ul>
+<li><strong>Generation rate.</strong> Divide <code>eval_count</code> by <code>eval_duration ÷ 1,000,000,000</code>.</li>
+<li><strong>Prompt processing rate.</strong> Divide <code>prompt_eval_count</code> by <code>prompt_eval_duration ÷ 1,000,000,000</code>. With a repeated prompt, treat this as a ratio of the reported counters. It may include reuse and should not be quoted as a fresh-input speed.</li>
+</ul>
+<p>Compare several runs with the same quantization, context, output budget, concurrency and prompt. Keep the first run separate from the resident runs. If the generation phase stays slow, check <a href="/en/guides/ollama-gpu/">CPU and GPU placement in <code>ollama ps</code></a>. If first output is slow while generation is fast, compare model loading and the input phase before changing GPU settings.</p>
+</section>
+
+<section id="fields"><h2>Recover timing fields when they are missing</h2>
+<p>Use one completed native response. The <code>/v1/chat/completions</code> route can report token usage through the OpenAI-compatible schema. Its usage counts alone do not give the native generation and prompt durations. If an NDJSON capture stops before <code>"done": true</code>, retry and keep the final record.</p>
+<p>A missing count or duration leaves that rate unavailable. A zero duration also leaves the rate unavailable. <code>done_reason: "length"</code> is a completed timing record when generation stops at its token limit. A finished load-only or unload request provides no generation measurement.</p>
+<p>See the official <a href="https://docs.ollama.com/api/generate">Generate API</a> and <a href="https://docs.ollama.com/api/chat">Chat API</a>, or the <a href="/en/guides/ollama-streaming/">native NDJSON and compatible SSE examples</a>.</p>
+</section>
+
+<section id="evidence"><h2>What changed when the model stayed loaded</h2>
+<p>On one Apple M4 with 32 GiB, we sent one request with the model absent from <code>/api/ps</code> and three identical requests after it was loaded. Tests used Ollama 0.40.18 and the same Qwen2.5-0.5B-Instruct Q4_K_M GGUF. Each request generated 64 tokens. Operating system caches were not cleared.</p>
+<ul>
+<li><strong>First request.</strong> Server reported 0.5570 s loading and 146.71 tokens/s in generation. First text arrived after 0.6012 s.</li>
+<li><strong>Three resident requests.</strong> Server reported 162.42–165.26 tokens/s in generation. First text arrived after 0.0076–0.0079 s. The repeated prompt may have benefited from cache reuse.</li>
+</ul>
+<p><a href="/evidence/ollama-benchmark/observations.json" download>Download the per-request timings</a>, <a href="/evidence/ollama-benchmark/native-response.json" download>paste the measured JSON response</a> or <a href="/evidence/ollama-benchmark/native-stream.ndjson" download>paste the complete NDJSON capture</a>. These short runs reflect one model and a repeated prompt on one machine. For another engine and larger models, see the <a href="/guides/mac-mini-m4-qwen-local-benchmark/">Mac mini M4 Qwen field notes (Chinese)</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-28",
+  "chip": "Apple M4",
+  "memory_bytes": 34359738368,
+  "os": "26.4.1",
+  "ollama": "0.40.18",
+  "model": "Qwen2.5-0.5B-Instruct Q4_K_M",
+  "scope": "Loopback-only. One client and one worker; model initially absent from /api/ps. OS files and caches were not cleared.",
+  "settings": {
+    "model": "speed-fixture:latest",
+    "prompt": "Explain why the Moon stays in orbit in six short numbered points.",
+    "options": {
+      "num_ctx": 2048,
+      "num_predict": 64,
+      "temperature": 0
+    },
+    "keep_alive": "5m"
+  },
+  "unloaded": {
+    "model": "speed-fixture:latest",
+    "done": true,
+    "done_reason": "length",
+    "total_duration": 1036819417,
+    "load_duration": 556975917,
+    "prompt_eval_count": 43,
+    "prompt_eval_duration": 41363000,
+    "eval_count": 64,
+    "eval_duration": 436247000,
+    "client_elapsed_s": 1.0378,
+    "client_first_text_s": 0.6012
+  },
+  "resident": [
+    {
+      "model": "speed-fixture:latest",
+      "done": true,
+      "done_reason": "length",
+      "total_duration": 394821250,
+      "load_duration": 374417,
+      "prompt_eval_count": 43,
+      "prompt_eval_duration": 5924000,
+      "eval_count": 64,
+      "eval_duration": 387267000,
+      "client_elapsed_s": 0.3956,
+      "client_first_text_s": 0.0079
+    },
+    {
+      "model": "speed-fixture:latest",
+      "done": true,
+      "done_reason": "length",
+      "total_duration": 396760667,
+      "load_duration": 383292,
+      "prompt_eval_count": 43,
+      "prompt_eval_duration": 5783000,
+      "eval_count": 64,
+      "eval_duration": 389508000,
+      "client_elapsed_s": 0.3977,
+      "client_first_text_s": 0.0076
+    },
+    {
+      "model": "speed-fixture:latest",
+      "done": true,
+      "done_reason": "length",
+      "total_duration": 401306208,
+      "load_duration": 319458,
+      "prompt_eval_count": 43,
+      "prompt_eval_duration": 5832000,
+      "eval_count": 64,
+      "eval_duration": 394039000,
+      "client_elapsed_s": 0.4021,
+      "client_first_text_s": 0.0076
+    }
+  ],
+  "nonstream": {
+    "model": "speed-fixture:latest",
+    "done": true,
+    "done_reason": "length",
+    "total_duration": 400337875,
+    "load_duration": 345750,
+    "prompt_eval_count": 43,
+    "prompt_eval_duration": 5642000,
+    "eval_count": 64,
+    "eval_duration": 393334000,
+    "client_elapsed_s": 0.4013,
+    "client_first_text_s": null
+  }
+}

@@ -71,6 +71,7 @@ ollama ps</code></pre>
 <p>The processor percentage describes reported placement. For current activity or performance, sample GPU activity while a request is running and measure tokens generated per second separately. A model can remain GPU-loaded and sit idle between requests.</p>
 <p><code>/api/ps</code> reports <code>size</code> and <code>size_vram</code> in bytes. Compare the corresponding model row. In our partial run, the API reported about 37% of the loaded size on the GPU, while the log reported 5 of 25 layers offloaded. Layers have different sizes, and Apple Silicon uses unified memory.</p>
 </section>
+<p>After checking CPU and GPU placement, <a href="/en/guides/ollama-benchmark/">measure generation speed and model load time separately</a> with a repeatable local request.</p>
 <section id="evidence"><h2>Three readings from the same model and context</h2>
 <p>On November 28, 2026 we used Ollama 0.40.18, the <code>llamacpp</code> runner and one Qwen2.5-0.5B-Instruct Q4_K_M GGUF on an Apple M4. We unloaded between runs, kept the context at 4,096 and used the same short prompt. Each request returned <code>LOCAL_OK</code>.</p>
 <div class="video-table"><table>
