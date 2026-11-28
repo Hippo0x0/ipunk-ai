@@ -26,3 +26,9 @@ macOS arm64，复用已有 Qwen2.5-0.5B-Instruct Q4_K_M GGUF，使用独立 Olla
 页面采用英文原生 SVG 分流，沿用站点脚本，仅独立步骤链接跳转。原因是连接故障、HTTP 404、无法确定三种状态需要去不同章节。
 
 localhost 的 390px 和 1440px 验证通过。核对首答、完整图、键盘高亮且不改 hash、放大后独立滚动、三条跳转以及无整页横向溢出。实测浏览器下载与证据文件逐字节一致，禁用 JavaScript 后仍有三条步骤入口和完整代码。发布与正式域验证另记。
+
+## 正式交付
+
+GitHub `main` 的 `8ec3485` 从干净提交归档通过 90 项自动测试。站点检查覆盖 56 个 HTML、55 个可从首页到达的站点地图页面及 304 处静态资源引用。新页和下载证据在 Worker 预览与归档逐字节一致。版本 `4d476717-c7e1-4caf-8259-fd10d28a7708` 在北京时间 11:36 承接 100% 流量，部署 `5ee39579-e05b-4952-8fca-cc0994d9bcfd`。正式域的十个相关路径均 HTTP 200，逐字节符合归档，证据返回 JSON。复核采用直接 HTTP。
+
+[Search Console 网址检查](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=vgoRwWz5EuKMOwV7Y1U5hA)显示 Google 当时尚未识别新页。提交一次索引请求后，Google 回执显示已加入优先抓取队列。普通抓取、收录、曝光和点击等待后续数据。
