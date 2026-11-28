@@ -1,0 +1,127 @@
+{
+  "test_date": "2026-11-28",
+  "ollama": "0.40.18",
+  "macOS": "26.4.1",
+  "architecture": "arm64",
+  "isolated_native_api_port": 11440,
+  "registry_pull": {
+    "tag": "qwen2.5:0.5b",
+    "completed": false,
+    "observed_reason": "Runtime refused a registry storage redirect whose host resolved to non-public address space in this environment."
+  },
+  "import": {
+    "repository": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF",
+    "sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+    "bytes": 491400032,
+    "modelfile": "FROM ./qwen.gguf",
+    "tag": "qwen-local-first:latest"
+  },
+  "request": {
+    "model": "qwen-local-first",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Reply with exactly LOCAL_OK and nothing else."
+      }
+    ],
+    "options": {
+      "num_ctx": 2048,
+      "temperature": 0,
+      "num_predict": 16
+    },
+    "stream": false,
+    "keep_alive": "60s"
+  },
+  "ordinary_run": {
+    "reply": {
+      "model": "qwen-local-first",
+      "created_at": "2026-11-28T02:29:17.17234Z",
+      "message": {
+        "role": "assistant",
+        "content": "LOCAL_OK"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 957664375,
+      "load_duration": 792259791,
+      "prompt_eval_count": 38,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 127714000,
+      "eval_count": 3,
+      "eval_duration": 16491000
+    },
+    "running_models": {
+      "models": [
+        {
+          "name": "qwen-local-first:latest",
+          "model": "qwen-local-first:latest",
+          "size": 311710186,
+          "digest": "8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen2",
+            "families": [
+              "qwen2"
+            ],
+            "parameter_size": "630.17M",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-11-28T10:30:17.172748+08:00",
+          "size_vram": 311710186,
+          "context_length": 2048,
+          "runner": "llamacpp"
+        }
+      ]
+    }
+  },
+  "after_stop": {
+    "models": []
+  },
+  "cached_restart_with_external_network_denied_for_test_process": {
+    "reply": {
+      "model": "qwen-local-first",
+      "created_at": "2026-11-28T02:29:44.793762Z",
+      "message": {
+        "role": "assistant",
+        "content": "LOCAL_OK"
+      },
+      "done": true,
+      "done_reason": "stop",
+      "total_duration": 1093110125,
+      "load_duration": 1038734666,
+      "prompt_eval_count": 38,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 36349000,
+      "eval_count": 3,
+      "eval_duration": 16279000
+    },
+    "running_models": {
+      "models": [
+        {
+          "name": "qwen-local-first:latest",
+          "model": "qwen-local-first:latest",
+          "size": 311710186,
+          "digest": "8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen2",
+            "families": [
+              "qwen2"
+            ],
+            "parameter_size": "630.17M",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-11-28T10:30:44.794192+08:00",
+          "size_vram": 311710186,
+          "context_length": 2048,
+          "runner": "llamacpp"
+        }
+      ]
+    },
+    "policy": "/evidence/local-runner/loopback-only.sb",
+    "external_socket_negative_control": "PermissionError 1",
+    "whole_mac_disconnected": false
+  }
+}

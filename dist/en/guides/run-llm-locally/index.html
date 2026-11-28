@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Run an LLM Locally on Mac With Ollama | iPunk AI Radar</title>
+<meta name="description" content="Run your first local LLM on an Apple Silicon Mac. Download a small Qwen model with Ollama, send a localhost request and check which model actually loaded.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/run-llm-locally/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Run an LLM Locally on Mac With Ollama">
+<meta property="og:description" content="Download a small model, run a test prompt and verify the loaded model on your Mac.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/run-llm-locally/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Run an LLM Locally on Mac With Ollama","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/run-llm-locally/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#first-run">First run</a><a href="#verify">Verify the model</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>Run an LLM Locally on Mac With Ollama</h1>
+<p class="guide-answer">On an Apple Silicon Mac, open Ollama and download the small <code>qwen2.5:0.5b</code> model. Send a test prompt to <code>127.0.0.1:11434</code>, then run <code>ollama ps</code> to see which model actually loaded. You need internet access for the app and model downloads. The test uses plain text.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#first-run">Install Ollama and download the model</a></li>
+<li><a href="#verify">Send a prompt and verify the loaded model</a></li>
+<li><a href="#diagnose">Find the next step if it fails</a></li>
+<li><a href="#evidence">Test results and source files</a></li>
+</ol></nav>
+<section id="first-run">
+<h2>Install Ollama and download a small model</h2>
+<ol>
+<li>Get <a href="https://ollama.com/download">Ollama for macOS</a> and open it. Its download page lists the supported macOS versions. If the setup offers to install the command-line tool, complete that step before opening Terminal.</li>
+<li>Check the running service and download the exact tag below. The model listing showed a 398 MB download when checked November 28, 2026. Allow extra disk space for Ollama and temporary download files.</li>
+</ol>
+<pre><code>ollama --version
+ollama pull qwen2.5:0.5b
+ollama list</code></pre>
+<p>The last command should show <code>qwen2.5:0.5b</code>. For an interactive chat, run <code>ollama run qwen2.5:0.5b</code>; type <code>/bye</code> to exit. Keep the exact local tag when trying the API. Ollama also lists cloud models, which run on its servers.</p>
+</section>
+<section id="verify">
+<h2>Send a prompt and verify the loaded model</h2>
+<p>Use the synthetic prompt below. With the standard local Ollama service running, the response is a JSON object with an assistant message. Check for <code>done: true</code>, then immediately inspect <code>ollama ps</code>.</p>
+<pre><code>curl --noproxy '*' --fail-with-body -sS \
+  http://127.0.0.1:11434/api/chat \
+  -H 'Content-Type: application/json' \
+  --data-binary '{
+    "model": "qwen2.5:0.5b",
+    "messages": [{"role":"user","content":"Reply with exactly LOCAL_OK and nothing else."}],
+    "options": {"num_ctx":2048,"temperature":0,"num_predict":16},
+    "stream": false,
+    "keep_alive": "60s"
+  }'
+ollama ps</code></pre>
+<p>Look for the requested tag in <code>ollama ps</code>. Its processor column describes where Ollama loaded the model. A different reply can still confirm execution if the request completed and the model appears in the running list. To free memory after the test, run <code>ollama stop qwen2.5:0.5b</code> once no other work needs that model. The model stays downloaded.</p>
+<p>For a stronger local-only check, finish downloading first, then repeat the request with your Mac disconnected from its external networks if doing so will not interrupt other work. Keep the request pointed at loopback, the address that refers to this Mac. This checks whether that request works without an internet connection.</p>
+</section>
+<section id="diagnose" class="guide-decision">
+<h2>What happened on the first request?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="First request decision tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="What happened on the first request?">
+<defs><marker id="local-first-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="connection" d="M330 103 C330 146 110 142 110 218" marker-end="url(#local-first-arrow)"/>
+<path data-edge="missing-model" d="M330 103 L330 218" marker-end="url(#local-first-arrow)"/>
+<path data-edge="check-reply" d="M330 103 C330 146 550 142 550 218" marker-end="url(#local-first-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What happened on the first request?"><path class="node-shape" d="M330 4L482 54L330 104L178 54Z"/><text x="330" y="61" text-anchor="middle">What did you see?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">No connection</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Model missing</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Reply / unsure</text>
+</g>
+<g data-node="connection" role="button" tabindex="0" aria-pressed="false" aria-label="Check the Ollama service"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Check the service</text></g>
+<g data-node="missing-model" role="button" tabindex="0" aria-pressed="false" aria-label="Check the downloaded tag"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Check the tag</text></g>
+<g data-node="check-reply" role="button" tabindex="0" aria-pressed="false" aria-label="Read the reply and running list"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check the reply</text></g>
+</svg></div>
+<div class="decision-links"><a href="#connection" aria-label="See steps: check the service">See steps</a><a href="#missing-model" aria-label="See steps: check the tag">See steps</a><a href="#check-reply" aria-label="See steps: check the reply">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div>
+<section id="connection"><h3>Connection refused or Ollama unavailable</h3>
+<p>Open the Ollama app and try <code>curl --noproxy '*' -fsS http://127.0.0.1:11434/api/version</code>. A response containing a version confirms the service answered. If you started Ollama on a different port, use that same port for the API and the CLI. Leave the service bound to loopback for this test.</p></section>
+<section id="missing-model"><h3>Ollama says the model is missing</h3>
+<p>Run <code>ollama list</code> and check the complete tag. If it is absent, run <code>ollama pull qwen2.5:0.5b</code> while connected and wait for the download to finish. Check free storage if the download fails. Try the same request again once the tag appears.</p>
+<h4>Import an official GGUF if the registry download fails</h4>
+<p>Download the <a href="https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/blob/main/qwen2.5-0.5b-instruct-q4_k_m.gguf">Qwen2.5-0.5B-Instruct Q4_K_M GGUF</a> from Qwen. Work in the folder with the downloaded file. Save the line below as <code>Modelfile</code> alongside it, then import under a new tag. If a model already uses the example name, pick a fresh name.</p>
+<pre><code>FROM ./qwen2.5-0.5b-instruct-q4_k_m.gguf</code></pre>
+<pre><code>ollama create qwen-local-first -f Modelfile
+ollama list</code></pre>
+<p>Once <code>qwen-local-first:latest</code> appears, replace <code>qwen2.5:0.5b</code> with <code>qwen-local-first</code> in the <a href="#verify">test request</a> and the stop command. The registry tag and the separately published GGUF can differ. Keep extra free disk space for Ollama’s imported copy.</p></section>
+<section id="check-reply"><h3>A reply appeared, or the result is unclear</h3>
+<p>Look for an error message in the JSON and check the running list immediately. If the model unloaded before you checked, repeat the request and run <code>ollama ps</code> within the keep-alive period. If Ollama reports insufficient memory, close unused workloads or test a smaller model with a short context. <a href="/en/guides/ollama-context-length/">Verify the running context value</a> before assuming a setting took effect.</p></section>
+</section>
+<section id="evidence">
+<h2>Test results and source files</h2>
+<p>On November 28, 2026, an Apple Silicon Mac running macOS 26.4.1 and Ollama 0.40.18 started with an empty model directory. The registry pull failed when Ollama rejected the storage redirect in this network environment. The Qwen GGUF import succeeded on a separate test port, <code>11440</code>. The assistant replied <code>LOCAL_OK</code>, <code>ollama ps</code> showed the imported tag at 2,048 context tokens with <code>100% GPU</code>, and the running-model list was empty after it was stopped.</p>
+<p>We restarted the test process with the model already on disk and a loopback-only network policy. The same request succeeded. A separate process under the same policy could not open an external connection. The Mac itself stayed connected, and the test used a command-line build of Ollama. <a href="/evidence/local-first/ollama-first-request.json" download>Download the request, replies and running-model snapshots</a>.</p>
+<p>For comparison, an <a href="/evidence/local-runner/ollama-context-checks.json">earlier run with an imported Qwen GGUF</a> reported approximately 297 MiB at a 2,048-token context and 419 MiB at 8,192 using Ollama’s running-model size field. The same model file was used for both requests in that earlier run. These are runtime-reported model sizes for that fixture. Free memory, peak usage and the suitability of larger models were outside that check.</p>
+<p>Sources checked November 28, 2026: <a href="https://docs.ollama.com/quickstart">Ollama quickstart</a>, <a href="https://ollama.com/library/qwen2.5:0.5b">Qwen model tag</a>, <a href="https://docs.ollama.com/api/ps">running-model API</a> and <a href="https://docs.ollama.com/faq">processor column and local settings</a>. For a second runtime, see the <a href="/en/guides/ollama-vs-lm-studio/">Ollama and LM Studio same-file test</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
