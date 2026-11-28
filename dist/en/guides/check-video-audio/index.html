@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video Has No Sound? Check an MP4 Audio Track | iPunk AI Radar</title>
+<meta name="description" content="Check whether an MP4, MOV or WebM has no audio track, contains silent samples or has an audio signal. Works locally in the browser.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/check-video-audio/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css"><link rel="stylesheet" href="/task-choice.css">
+<meta property="og:title" content="Video Has No Sound? Check an MP4 Audio Track">
+<meta property="og:description" content="Find out whether your silent video is missing a track or contains audio samples.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/check-video-audio/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Video Audio Checker","applicationCategory":"MultimediaApplication","operatingSystem":"Browser","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","url":"https://ai.ipunk.cn/en/guides/check-video-audio/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script><script type="module" src="/video-audio-check.mjs"></script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#check">Check audio</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Video Has No Sound? Check the Audio Track</h1>
+<p class="guide-answer">Choose the saved video to check whether it has no audio track, an audio track whose decoded samples are all zero, or an audio signal. The file stays in your browser. Check the same moment in your editor to decide whether to re-export or fix playback.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#check">Check a local video</a></li>
+<li><a href="#no-track">Fix a missing audio track</a></li>
+<li><a href="#zero">Check a silent audio track</a></li>
+<li><a href="#signal">Fix playback when there is a signal</a></li>
+<li><a href="#uncertain">When the check cannot finish</a></li>
+<li><a href="#examples">Test with example files</a></li>
+</ol></nav>
+<section id="check"><h2>Check audio in an MP4, MOV or WebM</h2>
+<form id="video-audio-check" class="task-panel" hidden>
+<label for="video-audio-file">Video file · up to 200 MiB</label>
+<input id="video-audio-file" type="file" accept="video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm" required>
+<label for="video-audio-start">Start time in seconds</label>
+<input id="video-audio-start" type="number" min="0" step="any" value="0" required>
+<div class="task-actions"><button type="submit">Check audio</button><button type="reset">Clear</button></div>
+<output role="status">Choose an MP4, MOV or WebM video.</output>
+</form>
+<noscript><p>Enable JavaScript to inspect the video locally, or use the track list in your desktop video player.</p></noscript>
+<p>The check reads up to 60 seconds from your chosen start time when there is one decodable audio track. Use a later time to check a quiet section. If the file has multiple tracks, select and listen to them separately in a desktop video player or editor.</p>
+</section>
+
+<section class="guide-decision" data-audio-decisions><h2>What did the audio check find?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Video sound decision tree"><svg class="flow-svg" viewBox="0 0 880 280" role="group" aria-label="Choose the result shown in the checker">
+<defs><marker id="audio-result-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="no-track" d="M440 103 C440 150 110 134 110 205" marker-end="url(#audio-result-arrow)"/>
+<path data-edge="zero" d="M440 103 C440 150 330 134 330 205" marker-end="url(#audio-result-arrow)"/>
+<path data-edge="signal" d="M440 103 C440 150 550 134 550 205" marker-end="url(#audio-result-arrow)"/>
+<path data-edge="uncertain" d="M440 103 C440 150 770 134 770 205" marker-end="url(#audio-result-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What did the audio check find?"><path class="node-shape" d="M440 5L592 54L440 103L288 54Z"/><text x="440" y="61" text-anchor="middle">Audio result?</text></g>
+<g text-anchor="middle"><rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">No track</text>
+<g data-node="no-track" role="button" tabindex="0" aria-pressed="false" aria-label="Check the export"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">Check the export</text></g>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">Zero signal</text>
+<g data-node="zero" role="button" tabindex="0" aria-pressed="false" aria-label="Check the timeline"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">Check the timeline</text></g>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">Signal found</text>
+<g data-node="signal" role="button" tabindex="0" aria-pressed="false" aria-label="Check playback"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">Check playback</text></g>
+<rect x="672" y="159" width="196" height="31" fill="white" rx="6"/><text x="770" y="181">Unsure</text>
+<g data-node="uncertain" role="button" tabindex="0" aria-pressed="false" aria-label="Check the file"><rect class="node-shape" x="671" y="210" width="198" height="60" rx="12"/><text x="770" y="247">Check the file</text></g></g></svg></div>
+<div class="decision-links"><a href="#no-track">Check the export</a><a href="#zero">Check the timeline</a><a href="#signal">Check playback</a><a href="#uncertain">Check the file</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+
+
+
+<section id="no-track"><h2>No audio track was found</h2>
+<p>Go back to the source or editor project. Preview the sound on the expected timeline and make sure the track overlaps the exported segment. In Canva, select <strong>Share → Download → MP4 Video</strong> and check which pages you are exporting. Download again and check that the new MP4 has an audio track. Some Canva AI clips are generated without sound. Check the route you chose in the <a href="/en/guides/canva-ai-video-generator/#sound">Canva AI video guide</a>.</p>
+<p>If the source has no track, add the original audio or a replacement in your editor. A format conversion cannot recreate missing sound.</p>
+</section>
+<section id="zero"><h2>An audio track exists, but the decoded samples are zero</h2>
+<p>Check a later start time if the soundtrack starts after the scan window. If the section that should contain sound is still zero, compare it with the editor preview at the same time. Unmute the clip or audio track, raise its track volume if it was set to zero, and make sure it spans the exported part. In Canva, see the <a href="https://www.canva.com/help/trim-audio-and-adjust-volume/">track and clip volume controls</a>.</p>
+<p>Export a fresh MP4 and check the same time range again. A zero result covers the decoded samples in the reported time window. Blank sections between samples and sections outside the window are separate checks.</p>
+</section>
+<section id="signal"><h2>There is an audio signal, but playback sounds silent</h2>
+<p>Listen to the checked section in another player. Unmute the player, confirm the output device and use a track selector if available. The peak indicates the strongest digital sample in the scan. Encoding can leave a tiny nonzero signal in a quiet section. The tool groups peaks below −120 dBFS as very low. Listen to confirm whether dialogue, music or other expected sound is present.</p>
+<p>If another player can hear the file, check the first app’s audio format support. Test a compatible copy with the <a href="/en/guides/video-converter/">local video converter</a> and keep the original. To inspect the audio separately, <a href="/en/guides/extract-audio-from-video/">extract the soundtrack as WAV</a> from a supported single-track file.</p>
+</section>
+<section id="uncertain"><h2>The audio check could not finish</h2>
+<p>Try the known tone file below. If that works, check the original file in a desktop player. Look for multiple tracks, an unsupported codec or an incomplete download. If the first scan ended before the sound should begin, enter that time in seconds and check again.</p>
+<p>If the tone file also fails, try a current desktop browser with audio decoding support. Compare the same complete file in a desktop player before changing the export.</p>
+</section>
+<section id="examples"><h2>Compare three known MP4 files</h2>
+<ul>
+<li><a href="/evidence/canva-video/synthetic-landscape-8s.mp4" download>MP4 with no audio track</a>. The checker should report no audio track.</li>
+<li><a href="/evidence/canva-video/synthetic-silent-audio-2s.mp4" download>MP4 with one silent AAC track</a>. The decoded samples should all be zero.</li>
+<li><a href="/evidence/video-compressor/motion-and-tone.mp4" download>MP4 with one AAC track and a test tone</a>. The checker should detect a signal. Start playback at low volume.</li>
+</ul>
+<p>These files were created as test media. Check Canva’s <a href="https://www.canva.com/help/download-video-as-separate-files/">MP4 export instructions</a> for how audio is included in the exported pages.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
