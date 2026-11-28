@@ -17,3 +17,9 @@
 Search Console 完整数据仍只返回洛杉矶时间 11 月 19–25 日，按日期合计 21 次曝光、0 次点击，早于本轮。上线后再核对规范 URL 的搜索结果。
 
 localhost 在 390px 和 1440px 核对首答、键盘高亮且不改 hash、缩放复位、三个链接、无全页溢出和下载证据字节。禁用 JavaScript 后仍可跳转并读取命令。正式交付另记。
+
+## 正式交付
+
+GitHub `main` 的 `8cbd386` 从干净归档通过 90 项自动测试。站点检查覆盖 65 个 HTML、64 个可从首页到达的 sitemap 页面和 351 处静态资源。预览新页、校验器和失败日志与归档一致。北京时间 12:36，Worker 版本 `ee809e76-59dc-4c33-8acc-90e4ca6d7700` 承接全部流量，部署 `9023e757-471b-44af-ad4d-ad2aec785b33`。正式站 16 个相关路径均 HTTP 200，与归档逐字节一致。核验采用直接 HTTP。
+
+[新页精确网址检查](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=Y-LCs3dhWeGORhaBcM1ueQ)显示 Google 暂未识别。Codex resume 和工作树页仍是同一状态。考虑当天已出现手工提交配额限制，本次使用站点地图和已上线的站内链接，未重复试探配额。收录和点击仍待确认。
