@@ -1,0 +1,36 @@
+{
+  "pages": [
+    {
+      "page": 1,
+      "source": "markitdown",
+      "text": "SUPPORT NOTES / 1\nSetup and review\nTicket BASIC-52 requires supervisor review.\nContact the support desk before extending retention.\nUse the retention table on page 2."
+    },
+    {
+      "page": 2,
+      "source": "markitdown",
+      "text": "SUPPORT NOTES / 2\nRetention by tier\n| Tier     | Retention | Review  |\n| -------- | --------- | ------- |\n| Standard | 14 days   | Monthly |\n| Extended | 45 days   | Weekly  |\nTimes apply only to the tier on the same row."
+    },
+    {
+      "page": 3,
+      "source": "ocr",
+      "text": "SUPPORT NOTES / 3\nScanned exception notice\nException SCAN-43 requires escalation.\nEscalate within 72 hours."
+    }
+  ],
+  "queries": [
+    {
+      "text": "How soon must exception SCAN-43 be escalated?",
+      "expected_page": 3,
+      "expected_phrase": "72 hours"
+    },
+    {
+      "text": "What is the retention period for the Extended tier?",
+      "expected_page": 2,
+      "expected_phrase": "45 days"
+    },
+    {
+      "text": "Who must review ticket BASIC-52?",
+      "expected_page": 1,
+      "expected_phrase": "supervisor review"
+    }
+  ]
+}

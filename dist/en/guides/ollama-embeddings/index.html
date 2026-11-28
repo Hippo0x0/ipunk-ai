@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama Embeddings API: Rank Local Documents With Python | iPunk AI Radar</title>
+<meta name="description" content="Batch text with Ollama’s /api/embed endpoint, rank source pages with cosine similarity, and verify whether OCR recovers a missing answer in a tested local example.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-embeddings/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Ollama Embeddings API: Rank Local Documents With Python">
+<meta property="og:description" content="Make a local embedding request and check whether the top result actually contains the answer.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/ollama-embeddings/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Ollama Embeddings API: Rank Local Documents With Python","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/ollama-embeddings/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#run">Run the Python example</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama Embeddings API for Local Document Search</h1>
+<p class="guide-answer">Send an array of page texts to Ollama’s <code>POST /api/embed</code> and read one vector per input from <code>embeddings</code>. Embed the question with the same model, then rank the page vectors by cosine similarity. Open the highest-ranked source and verify that it contains the answer. When a scanned page is missing from the input, add its OCR text before rebuilding the index.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#embed">Get an embedding batch</a></li>
+<li><a href="#run">Run the Python example</a></li>
+<li><a href="#choose">Find the failing step</a></li>
+<li><a href="#rank">Check ranking and vector dimensions</a></li>
+<li><a href="#ocr">Check for missing source text</a></li>
+<li><a href="#results">See the measured results</a></li>
+</ol></nav>
+<section id="embed"><h2>Get an embedding batch from Ollama</h2>
+<p>Start Ollama on your computer and install an embedding model. The example uses <code>nomic-embed-text:v1.5</code>. Check the installed tag with <code>ollama list</code>.</p>
+<pre><code>ollama pull nomic-embed-text:v1.5
+
+curl --noproxy '*' -fsS http://127.0.0.1:11434/api/embed \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"nomic-embed-text:v1.5","input":["search_document: The Extended tier retains records for 45 days.","search_query: How long is Extended retention?"],"truncate":false}'</code></pre>
+<p>Look for two arrays under <code>embeddings</code>, in input order. The example uses Nomic’s document and query prefixes. For another model, check its own instruction format. The older <code>/api/embeddings</code> example uses <code>prompt</code> and returns <code>embedding</code>. Use the matching fields for the endpoint you call.</p>
+<p>If the request fails, check <code>ollama list</code>, use the exact tag, and confirm the server port. Choose an embedding-capable model. With <code>truncate: false</code>, an input that exceeds the model’s window fails instead of silently losing its end.</p>
+</section>
+<section id="run"><h2>Rank the sample pages from Python</h2>
+<p>Download <a href="/evidence/ollama-embeddings/rank-support-pages.py" download>the ranking script</a> and <a href="/evidence/ollama-embeddings/support-pages.json" download>the three-page sample text</a> into the same folder. With Ollama running, use Python 3.10 or later. The script uses the standard library and calls only the loopback embedding endpoint.</p>
+<pre><code>python3 rank-support-pages.py</code></pre>
+<p>For a different local port, add <code>--port</code> and the port number. Our local trial imported the <a href="https://huggingface.co/nomic-ai/nomic-embed-text-v1.5-GGUF/blob/main/nomic-embed-text-v1.5.f16.gguf">publisher’s F16 GGUF</a> after a registry download failed. To reproduce that exact import, save the GGUF beside a Modelfile with the following line, then create the sample tag from that folder:</p>
+<pre><code>FROM ./nomic-embed-text-v1.5.f16.gguf</code></pre>
+<pre><code>ollama create ipunk-nomic-embed:v1.5 -f Modelfile
+python3 rank-support-pages.py --model ipunk-nomic-embed:v1.5</code></pre>
+<p>The script embeds three pages and three questions together. It prints the vector dimensions and two rankings for each question, with and without the OCR page. Pass <code>--vectors</code> to include all input strings and returned vectors.</p>
+</section>
+<section id="choose" class="guide-decision"><h2>Where does the search fail?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Ollama embeddings troubleshooting tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Choose the symptom">
+<defs><marker id="ollama-embed-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="embed" d="M330 104 C330 147 110 143 110 218" marker-end="url(#ollama-embed-arrow)"/>
+<path data-edge="rank" d="M330 104 L330 218" marker-end="url(#ollama-embed-arrow)"/>
+<path data-edge="ocr" d="M330 104 C330 147 550 143 550 218" marker-end="url(#ollama-embed-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Where does the search fail?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">Where did it fail?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">No vectors</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Poor ranking</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Missing / unsure</text>
+</g>
+<g data-node="embed" role="button" tabindex="0" aria-pressed="false" aria-label="Check the embedding request"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Check request</text></g>
+<g data-node="rank" role="button" tabindex="0" aria-pressed="false" aria-label="Check the ranking inputs"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Check ranking</text></g>
+<g data-node="ocr" role="button" tabindex="0" aria-pressed="false" aria-label="Inspect the indexed source text"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check source text</text></g>
+</svg></div>
+<div class="decision-links"><a href="#embed" aria-label="See steps: check the request">See steps</a><a href="#rank" aria-label="See steps: inspect ranking">See steps</a><a href="#ocr" aria-label="See steps: inspect source text">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="rank"><h2>Check dimensions and ranking inputs</h2>
+<ul>
+<li>Count the returned vectors and compare their dimensions before ranking. This test returned six vectors of 768 coordinates.</li>
+<li>Use the same embedding model and dimensions for the question and every document. Rebuild the document index when you switch embedding models, even if the new vectors have the same length.</li>
+<li>Check the model’s query and document prefixes. Inspect the actual top-ranked text and retain its page number. A high similarity score gives you a candidate to read.</li>
+</ul>
+</section>
+<section id="ocr"><h2>Check that the answer exists in your source text</h2>
+<p>Search your extracted text for the expected phrase or ID before tuning ranking. The first two pages of our sample PDF contained selectable text. Page 3 was an image, so the original Markdown had no escalation rule. The <a href="/en/guides/markitdown-pdf-to-markdown/">MarkItDown conversion and OCR guide</a> shows how the missing text was recovered.</p>
+<p>Include the corrected text as its own page or chunk, keep a source reference and rerun the same question. A scan that contains an important table or identifier warrants checking the OCR against the page.</p>
+</section>
+<section id="results"><h2>What changed when page 3 entered the index</h2>
+<div class="video-table"><table>
+<caption>Top-ranked page for each exact test question</caption>
+<thead><tr><th scope="col">Question</th><th scope="col">Markdown only</th><th scope="col">With OCR page</th></tr></thead>
+<tbody><tr><td>SCAN-43 deadline</td><td>Page 2, no answer</td><td>Page 3, 72 hours</td></tr><tr><td>Extended retention</td><td>Page 2, 45 days</td><td>Page 2, 45 days</td></tr><tr><td>BASIC-52 review</td><td>Page 1, supervisor review</td><td>Page 1, supervisor review</td></tr></tbody>
+</table></div>
+<p>For SCAN-43, page 2 scored 0.604 before and after OCR was added. Page 3 scored 0.845 once it was a candidate, and it contained the deadline. Only the candidate set changed between rankings. The test used one synthetic document, three questions and Ollama 0.40.18 on macOS with external networking blocked during inference. It measures retrieval on this fixture. No language model generated an answer.</p>
+<p>Download the <a href="/evidence/ollama-embeddings/rankings.json" download>exact input strings, raw vectors and ranked results</a>. See Ollama’s <a href="https://docs.ollama.com/api/embed">embedding API reference</a> and <a href="https://docs.ollama.com/capabilities/embeddings">embedding guide</a>, and Nomic’s <a href="https://huggingface.co/nomic-ai/nomic-embed-text-v1.5#task-instruction-prefixes">task prefixes</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
