@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-28",
+  "binary": "1.1.0-dev (build 12774, commit 171527522)",
+  "os": "macOS arm64",
+  "model_file": "qwen2.5-0.5b-instruct-q4_k_m.gguf",
+  "model_sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+  "settings": {
+    "host": "127.0.0.1",
+    "context": 1024,
+    "slots": 1,
+    "gpu_layers": 0,
+    "network": "loopback only"
+  },
+  "readiness": {
+    "health_status": 200,
+    "health_body": {
+      "status": "ok"
+    },
+    "observed_loading_503": true
+  },
+  "models": {
+    "status": 200,
+    "ids": [
+      "local-qwen"
+    ]
+  },
+  "chat": {
+    "status": 200,
+    "model": "local-qwen",
+    "content": "LOCAL_OK",
+    "finish_reason": "stop"
+  },
+  "stream": {
+    "status": 200,
+    "content": "LOCAL_OK",
+    "done_marker": true
+  },
+  "different_requested_alias": {
+    "status": 200,
+    "returned_model": "local-qwen"
+  },
+  "double_v1": {
+    "status": 404
+  },
+  "reusable_probe": {
+    "status": "completed",
+    "returned_model": "local-qwen",
+    "stream_completed": true
+  },
+  "authenticated_server": {
+    "health_without_token_status": 200,
+    "models_without_token_status": 401,
+    "models_with_token_status": 200
+  },
+  "both_ports_closed_after_shutdown": true
+}

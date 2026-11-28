@@ -13,6 +13,7 @@ from pathlib import Path
 
 PROMPT = 'Reply with exactly LOCAL_OK and nothing else.'
 LIMIT = 1_000_000
+RUNTIME_LABELS = ('ollama', 'lmstudio', 'llama-cpp')
 
 def validate_base(value):
     try:
@@ -86,7 +87,7 @@ def probe(base, model, label, timeout=30, key=''):
     base = validate_base(base)
     if not isinstance(model, str) or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_./:@+\-]{0,199}', model):
         raise ValueError('Use a model identifier of 1–200 supported characters.')
-    if label not in ('ollama', 'lmstudio') or not 1 <= timeout <= 60:
+    if label not in RUNTIME_LABELS or not 1 <= timeout <= 60:
         raise ValueError('Use a listed runtime label and a timeout from 1 to 60 seconds.')
     result = {'version': 1, 'checked_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
               'runtime_label': label, 'base_url': base, 'model_requested': model,
@@ -120,7 +121,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--base-url', required=True)
     parser.add_argument('--model', required=True)
-    parser.add_argument('--label', choices=['ollama', 'lmstudio'], required=True)
+    parser.add_argument('--label', choices=RUNTIME_LABELS, required=True)
     parser.add_argument('--timeout', type=int, default=30)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()

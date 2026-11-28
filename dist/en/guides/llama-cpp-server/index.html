@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>llama.cpp Server Setup and OpenAI-Compatible API | iPunk AI Radar</title>
+<meta name="description" content="Start llama-server with a local GGUF, use the correct OpenAI-compatible base URL, verify the returned model, and fix 401 or 404 errors.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/llama-cpp-server/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="llama.cpp Server Setup and OpenAI-Compatible API">
+<meta property="og:description" content="Serve a local GGUF with llama.cpp and verify readiness, chat, streaming and API key handling.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/llama-cpp-server/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"llama.cpp Server Setup and OpenAI-Compatible API","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/llama-cpp-server/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/en/guides/run-llm-locally/">Local LLMs</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>How to Run llama-server with a Local GGUF</h1>
+<p class="guide-answer">Start <code>llama-server</code> with your GGUF file on <code>127.0.0.1:8080</code>. Wait for <code>/health</code> to return 200, get the model ID from <code>/v1/models</code>, and set your OpenAI-compatible client’s base URL to <code>http://127.0.0.1:8080/v1</code>.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#start">Start the server and check health</a></li>
+<li><a href="#chat">Find the model ID and test chat</a></li>
+<li><a href="#debug">Fix connection and routing errors</a></li>
+<li><a href="#auth">Check API key requirements</a></li>
+<li><a href="#evidence">See the local test results</a></li>
+</ol></nav>
+<section id="start"><h2>Start llama-server with a local GGUF</h2>
+<p>On macOS, run <a href="https://formulae.brew.sh/formula/llama.cpp"><code>brew install llama.cpp</code></a> or download the matching binary from the <a href="https://github.com/ggml-org/llama.cpp/releases">official releases</a>. Run the executable by its path if you extracted an archive. Check the build with <code>llama-server --version</code>.</p>
+<p>Use an instruction-tuned chat GGUF you already have. For this first request, replace <code>/path/to/model.gguf</code> with your file, set a short context and keep the server on loopback.</p>
+<pre><code>llama-server --model "/path/to/model.gguf" --alias local-qwen \
+  --host 127.0.0.1 --port 8080 --ctx-size 1024 --parallel 1</code></pre>
+<p>Leave that terminal running. From a second terminal, check the server before configuring a client.</p>
+<pre><code>curl --noproxy '*' -sS -i http://127.0.0.1:8080/health</code></pre>
+<p>An HTTP <code>503</code> can mean the model is still loading. Wait for <code>200</code> with <code>{"status":"ok"}</code>. We set the port explicitly because defaults vary by build. If yours reports that 8080 is in use, choose a free port and use that same port in every request.</p>
+</section>
+<section class="guide-decision"><h2>Where does the first request fail?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="llama-server API decision tree"><svg class="flow-svg" viewBox="0 0 660 280" role="group" aria-label="Choose how to diagnose a failed request">
+<defs><marker id="llama-server-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="debug" d="M330 103 C330 151 110 134 110 205" marker-end="url(#llama-server-arrow)"/>
+<path data-edge="auth" d="M330 103 L330 205" marker-end="url(#llama-server-arrow)"/>
+<path data-edge="chat" d="M330 103 C330 151 550 134 550 205" marker-end="url(#llama-server-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Where does the request fail?"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">Request status?</text></g>
+<g text-anchor="middle">
+<rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">Fails / loading</text>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">401 response</text>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">Ready / unsure</text>
+<g data-node="debug" role="button" tabindex="0" aria-pressed="false" aria-label="Check connection, readiness and routing"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">Check the server</text></g>
+<g data-node="auth" role="button" tabindex="0" aria-pressed="false" aria-label="Check API key requirements"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">Check the token</text></g>
+<g data-node="chat" role="button" tabindex="0" aria-pressed="false" aria-label="Send one chat request"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">Run one chat</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#debug">Check the server</a><a href="#auth">Check the token</a><a href="#chat">Run one chat</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+
+<section id="chat"><h2>Find the model ID and send one chat request</h2>
+<p>For an OpenAI-compatible app, enter <code>http://127.0.0.1:8080/v1</code> as the base URL. A direct HTTP request needs the full path. List the available model IDs first.</p>
+<pre><code>curl --noproxy '*' -fsS http://127.0.0.1:8080/v1/models</code></pre>
+<p>Copy the exact <code>data[].id</code> into the request. The name is <code>local-qwen</code> if you used the alias above. Use a short request with streaming off for the first check.</p>
+<pre><code>curl --noproxy '*' -fsS --max-time 60 \
+  http://127.0.0.1:8080/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model":"local-qwen",
+    "messages":[{"role":"user","content":"Answer with exactly LOCAL_OK and nothing else."}],
+    "temperature":0,
+    "max_tokens":32,
+    "stream":false
+  }'</code></pre>
+<p>Check <code>choices[0].message.content</code> and the response’s <code>model</code>. In the tested single-model build, a made-up request ID still returned HTTP 200 with <code>model: local-qwen</code>. Use the listed model ID and verify the response field, especially when changing a client’s configuration.</p>
+</section>
+
+<section id="debug"><h2>Fix a connection, routing or model load error</h2>
+<ul>
+<li><strong>Connection refused.</strong> Check the process and the port in the startup terminal. Within a container, localhost refers to the container itself. The examples assume the client runs directly on the same host.</li>
+<li><strong>Health returns 503.</strong> Let the model finish loading. If it persists or the process exits, check the log for a missing GGUF, unsupported model architecture or memory error. Try a small supported model and shorter context. To isolate GPU setup from the first check, add <code>--n-gpu-layers 0</code> to test on the CPU.</li>
+<li><strong>HTTP 404.</strong> Check for a duplicate <code>/v1</code>. If the client appends <code>/v1</code> itself, give it the server origin. Compare the exact failing URL against the direct curl examples.</li>
+<li><strong>Model list works, but chat fails.</strong> Compare the exact ID and check whether the model has a chat template supported by the build. If only streaming fails, first verify the non-stream reply and then check that the client accepts server-sent events.</li>
+</ul>
+</section>
+
+<section id="auth"><h2>Check an API key when requests return 401</h2>
+<p>If you start the server with <code>--api-key-file</code>, use a protected local file with one key per line and configure the client with one of those keys. The client sends <code>Authorization: Bearer &lt;key&gt;</code>. Keep the key out of shared command output and logs.</p>
+<p>Check authentication on <code>/v1/models</code> or a chat request. In the tested build, <code>/health</code> still returned <code>200</code> without a key while <code>/v1/models</code> returned <code>401</code>. A valid Bearer token restored model listing. The loopback setup here is for a single machine.</p>
+</section>
+
+<section id="evidence"><h2>What the local llama.cpp test returned</h2>
+<p>We ran the official <code>b12774</code> macOS arm64 binary with Qwen2.5-0.5B-Instruct Q4_K_M, 1024 context and CPU inference. Network access was restricted to loopback. Readiness moved from 503 to 200. The model list contained <code>local-qwen</code>. Both chat modes returned <code>LOCAL_OK</code>, and the streamed reply ended with <code>[DONE]</code>. In streaming mode, ignore non-text chunks whose content is null.</p>
+<p>To repeat the model list, chat and streaming checks, <a href="/evidence/local-runner/probe-local-api.py" download>download the Python probe</a> and run this command from the download folder. Change the port and model to match your server. If you enabled authentication, supply your token via the <code>LOCAL_LLM_API_KEY</code> environment variable.</p>
+<pre><code>python3 probe-local-api.py --label llama-cpp \
+  --base-url http://127.0.0.1:8080/v1 \
+  --model local-qwen --output llama-server-check.json</code></pre>
+<p><a href="/evidence/llama-cpp-server/observations.json" download>Download the HTTP test results</a>. See the <a href="https://github.com/ggml-org/llama.cpp/blob/b12774/tools/server/README.md">server reference for the tested build</a> and the <a href="https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF">official model card</a>. For a desktop alternative, see the <a href="/en/guides/lm-studio-api/">LM Studio local API guide</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

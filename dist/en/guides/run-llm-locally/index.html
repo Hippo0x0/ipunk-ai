@@ -94,6 +94,7 @@ ollama list</code></pre>
 <p>Look for an error message in the JSON and check the running list immediately. If the model unloaded before you checked, repeat the request and run <code>ollama ps</code> within the keep-alive period. If Ollama reports insufficient memory, close unused workloads or test a smaller model with a short context. <a href="/en/guides/ollama-context-length/">Verify the running context value</a> before assuming a setting took effect.</p></section>
 </section>
 <p>If you chose LM Studio instead, <a href="/en/guides/lm-studio-api/">check its local server and model ID</a>.</p>
+<p>To serve a local GGUF directly, follow the <a href="/en/guides/llama-cpp-server/">llama-server setup and API checks</a>.</p>
 <section id="evidence">
 <h2>Test results and source files</h2>
 <p>On November 28, 2026, an Apple Silicon Mac running macOS 26.4.1 and Ollama 0.40.18 started with an empty model directory. The registry pull failed when Ollama rejected the storage redirect in this network environment. The Qwen GGUF import succeeded on a separate test port, <code>11440</code>. The assistant replied <code>LOCAL_OK</code>, <code>ollama ps</code> showed the imported tag at 2,048 context tokens with <code>100% GPU</code>, and the running-model list was empty after it was stopped.</p>
