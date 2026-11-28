@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-28",
+  "platform": "macOS arm64",
+  "opencode": "2.4.1",
+  "ollama": "0.40.18",
+  "model": "Qwen2.5-0.5B-Instruct Q4_K_M",
+  "scope": "Three runs in a temporary Git repo using one local model; outbound loopback only. IDs in the downloadable log are placeholders. The log keeps only the selected usage fields.",
+  "order": [
+    "first run",
+    "follow-up in the first session",
+    "same second prompt in a new session"
+  ],
+  "projectStats": {
+    "sessions": 2,
+    "prompts": 3,
+    "steps": 3,
+    "tokens": {
+      "input": 754,
+      "output": 11,
+      "reasoning": 0,
+      "cache": {
+        "read": 1451,
+        "write": 0
+      }
+    },
+    "cost": 0
+  },
+  "otherProjectStats": {
+    "sessions": 0,
+    "steps": 0,
+    "tokens": {
+      "input": 0,
+      "output": 0,
+      "reasoning": 0,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "cost": 0
+  }
+}
