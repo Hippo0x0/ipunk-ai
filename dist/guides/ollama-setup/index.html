@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama 本地部署教程：运行模型、检查 API 和 GPU | iPunk AI Radar</title>
+<meta name="description" content="用 Ollama 跑通第一个本地模型，核对服务端口、模型标签与 API，再继续排查 GPU、接入 OpenCode 或做文档检索。">
+<link rel="canonical" href="https://ai.ipunk.cn/guides/ollama-setup/">
+<link rel="alternate" hreflang="zh-CN" href="https://ai.ipunk.cn/guides/ollama-setup/">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/ollama-setup/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Ollama 本地部署教程：运行模型、检查 API 和 GPU">
+<meta property="og:description" content="用 Ollama 跑通第一个本地模型，核对服务端口、模型标签与 API，再继续排查 GPU、接入 OpenCode 或做文档检索。">
+<meta property="og:url" content="https://ai.ipunk.cn/guides/ollama-setup/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Ollama 本地部署教程：运行模型、检查 API 和 GPU","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"zh-CN","mainEntityOfPage":"https://ai.ipunk.cn/guides/ollama-setup/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="主导航"><a href="/en/guides/ollama-setup/" hreflang="en">English</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama 本地部署与配置教程</h1>
+<p class="guide-answer">先启动 Ollama，选一个小模型完成一轮本机对话，再用 <code>ollama ps</code> 确认同一服务确实加载了这个模型。跑通以后，再按任务选择接入客户端、检查 GPU 与上下文，或做本地文档检索。</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="本页目录"><ol><li><a href="#start">启动并验证本机对话</a></li><li><a href="#check">检查服务、模型和接口</a></li><li><a href="#next">按任务继续</a></li></ol></nav>
+<section id="start"><h2>先跑通一个小模型</h2>
+<p>从 <a href="https://ollama.com/download">Ollama 官方下载页</a> 安装对应系统的版本。打开应用。如果你只装了命令行版，而且 Ollama 服务尚未运行，先执行 <code>ollama serve</code>。如果服务占用当前终端，就另开一个窗口执行下列命令。</p>
+<pre><code>ollama --version
+ollama list
+ollama run qwen2.5:0.5b "Reply with exactly LOCAL_OK."
+ollama ps</code></pre>
+<p>本机还没有示例模型时，第三条命令会下载它。看到模型回复，说明本次提示词已跑通。随后在 <code>ollama ps</code> 找到同一个完整标签，确认命令行连接的服务正在加载该模型。模型可能超时卸载，建议紧接着检查。Apple Silicon Mac 的安装和回环测试见 <a href="/en/guides/run-llm-locally/">首次运行指南（英文）</a>。</p>
+</section>
+<section id="check"><h2>检查服务、模型列表和接口</h2>
+<p><a href="/evidence/ollama-setup/check-ollama.py" download>下载 Python 检查脚本</a>，用 Python 3.9 或更新版本运行。默认读取 <code>127.0.0.1:11434</code> 的服务版本和两种模型列表。脚本只使用标准库，直接连本机端口，不下载模型。如果 Ollama 监听其他本机端口，用 <code>--port</code> 指定。</p>
+<pre><code>python3 check-ollama.py</code></pre>
+<p>有版本号但列表为空，说明服务已响应。读不到版本时，先确认服务已启动且端口正确。原生列表有数据但 <code>/v1/models</code> 失败时，优先检查使用 OpenAI 兼容接口的客户端配置。</p>
+<p>需要进一步实测时，复制 <code>native_model_tags</code> 中的完整标签。可分别或同时指定聊天模型与向量模型。下例要求两个标签都已安装，会发送一条合成提示词和两条合成文本。</p>
+<pre><code>python3 check-ollama.py --chat-model qwen2.5:0.5b --embedding-model nomic-embed-text:v1.5</code></pre>
+<p>在 Apple M4 上使用 Ollama 0.40.18 实测，两个标签都出现在原生列表和兼容列表中。聊天返回 <code>LOCAL_OK</code>，向量接口返回两个 768 维向量。填入不存在的聊天标签后，聊天检查失败，向量检查仍通过。停止测试服务后，版本检查失败。<a href="/evidence/ollama-setup/observations.json" download>下载四组实测结果</a>。</p>
+</section>
+<section id="next"><h2>按任务继续</h2>
+<dl class="guide-task-list">
+<dt><a href="/en/guides/ollama-openai-compatible-api/">接入 OpenAI SDK（英文）</a></dt><dd>填对本机 <code>/v1/</code> 地址，区分路径写错和模型标签缺失这两种 404。</dd>
+<dt><a href="/en/guides/opencode-ollama/">让 OpenCode 使用本地模型（英文）</a></dt><dd>核对模型是否出现在 OpenCode，再发一条短请求验证。</dd>
+<dt><a href="/en/guides/ollama-gpu/">检查 GPU 加载</a>或<a href="/en/guides/ollama-context-length/">核对上下文长度</a>（英文）</dt><dd>先读取正在运行的模型状态，再决定要不要调设置。</dd>
+<dt><a href="/en/guides/markitdown-pdf-to-markdown/">用 MarkItDown 提取 PDF</a>，再<a href="/en/guides/ollama-embeddings/">用 Ollama 排序</a>（英文）</dt><dd>打开首位结果核对原文，确认扫描页的答案没有漏掉。</dd>
+<dt><a href="/en/guides/delete-ollama-model/">卸载或删除模型（英文）</a></dt><dd>按要释放的是运行内存还是磁盘空间，核对运行列表或模型目录。</dd>
+</dl>
+<p>其他命令和接口可查 Ollama 的 <a href="https://docs.ollama.com/cli">CLI 文档</a>和<a href="https://docs.ollama.com/api/introduction">API 文档</a>。</p>
+</section>
+</article>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/">iPunk AI Radar</a><time datetime="2026-11-28">2026 年 11 月 28 日</time></div><p class="wrap" data-analytics-privacy><a href="/privacy/">隐私与统计</a></p></footer>
+</body>
+</html>

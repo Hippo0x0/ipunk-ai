@@ -84,6 +84,7 @@ with OpenAI(
 <section id="evidence"><h2>What the local requests returned</h2>
 <p>On November 28, 2026 we used one small Qwen GGUF, Ollama 0.40.18 and the OpenAI Python SDK on a temporary loopback port. The SDK chat and a direct HTTP request with no Authorization header both returned <code>LOCAL_OK</code>. The native and compatible model lists showed the same tag. The two deliberate 404s had different paths and bodies. After stopping Ollama, the SDK raised <code>APIConnectionError</code>.</p>
 <p><a href="/evidence/ollama-api/observations.json" download>Download the model lists, request and observed responses</a>. The test covers local Chat Completions with one installed model. Other compatible endpoints and remote authentication depend on the version and deployment.</p>
+<p>To confirm which model tags the native and compatible lists return, use the <a href="/en/guides/ollama-setup/#check">Ollama setup check</a>.</p>
 <p>For local semantic search, <a href="/en/guides/ollama-embeddings/">batch and rank document embeddings with the native API</a>.</p>
 <p>Sources checked November 28, 2026. <a href="https://docs.ollama.com/api/openai-compatibility">Ollama’s OpenAI compatibility reference</a> · <a href="https://docs.ollama.com/api/authentication">Ollama’s authentication reference</a>.</p>
 </section>

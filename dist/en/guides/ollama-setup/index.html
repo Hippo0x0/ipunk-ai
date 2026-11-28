@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama Setup Guide: Run Local Models and Check Your API | iPunk AI Radar</title>
+<meta name="description" content="Set up Ollama, run a first model, check native and OpenAI-compatible endpoints, and choose the right next step for GPU, OpenCode or document search.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-setup/">
+<link rel="alternate" hreflang="zh-CN" href="https://ai.ipunk.cn/guides/ollama-setup/">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/ollama-setup/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Ollama Setup Guide: Run Local Models and Check Your API">
+<meta property="og:description" content="Set up Ollama, run a first model, check native and OpenAI-compatible endpoints, and choose the right next step for GPU, OpenCode or document search.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/ollama-setup/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Ollama Setup Guide: Run Local Models and Check Your API","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/ollama-setup/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/guides/ollama-setup/" hreflang="zh-CN">中文</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama Setup Guide</h1>
+<p class="guide-answer">Start the Ollama service and pick a small local chat model. Run one short prompt, then check that the same server reports the model in <code>ollama ps</code>. Once local chat works, choose the next task: connect an app, verify GPU and context, or search your own documents.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#start">Start and verify local chat</a></li><li><a href="#check">Check your Ollama setup</a></li><li><a href="#next">Continue with your task</a></li></ol></nav>
+<section id="start"><h2>Start with one local model</h2>
+<p>Install Ollama for your operating system from the <a href="https://ollama.com/download">official download page</a>. Open the app, or start <code>ollama serve</code> if you installed the CLI and no Ollama service is already running. Run these commands from a second terminal if the first is running the server:</p>
+<pre><code>ollama --version
+ollama list
+ollama run qwen2.5:0.5b "Reply with exactly LOCAL_OK."
+ollama ps</code></pre>
+<p>The example downloads a small model if it is missing. An assistant reply confirms a prompt completed. The exact tag in <code>ollama ps</code> confirms it is loaded on the server the CLI is using. Check promptly because the model can unload after a timeout. For a first run on Apple Silicon, follow the <a href="/en/guides/run-llm-locally/">full Mac setup and loopback test</a>.</p>
+</section>
+<section id="check"><h2>Check the server, model list and endpoints</h2>
+<p><a href="/evidence/ollama-setup/check-ollama.py" download>Download the Python check</a> and run it with Python 3.9 or newer. By default it reads the version and two model lists on <code>127.0.0.1:11434</code>. It uses the standard library, skips HTTP proxies and makes no model downloads. If you run Ollama on a different local port, pass the actual port with <code>--port</code>.</p>
+<pre><code>python3 check-ollama.py</code></pre>
+<p>An empty model list with a valid version means the server responded. If there is no version, check that the app or service is running on the expected port. A missing <code>/v1/models</code> response affects clients using the OpenAI-compatible route, even when the native list works.</p>
+<p>To exercise inference, copy the exact tags returned under <code>native_model_tags</code>. Pass either model flag by itself or both flags together. The example assumes those tags are already installed. These optional checks send a short synthetic chat prompt and two synthetic texts.</p>
+<pre><code>python3 check-ollama.py --chat-model qwen2.5:0.5b --embedding-model nomic-embed-text:v1.5</code></pre>
+<p>On one Apple M4 with Ollama 0.40.18, both installed test tags appeared in both lists. The chat request finished with <code>LOCAL_OK</code> and the embedding request returned two 768-dimensional vectors. A deliberately missing chat tag failed its check while embeddings still passed. After stopping the test service, the version check failed. <a href="/evidence/ollama-setup/observations.json" download>Download all four test results</a>.</p>
+</section>
+<section id="next"><h2>Continue with your task</h2>
+<dl class="guide-task-list">
+<dt><a href="/en/guides/ollama-openai-compatible-api/">Connect an OpenAI SDK client</a></dt><dd>Use the local <code>/v1/</code> base URL and distinguish the two tested kinds of 404.</dd>
+<dt><a href="/en/guides/opencode-ollama/">Use the model in OpenCode</a></dt><dd>Verify that the same model appears in OpenCode and answers a bounded request.</dd>
+<dt><a href="/en/guides/ollama-gpu/">Check GPU placement</a> or <a href="/en/guides/ollama-context-length/">verify context length</a></dt><dd>Read the loaded model’s processor and context before changing its settings.</dd>
+<dt><a href="/en/guides/markitdown-pdf-to-markdown/">Extract a PDF with MarkItDown</a> and <a href="/en/guides/ollama-embeddings/">rank pages with Ollama embeddings</a></dt><dd>Check whether retrieved text actually contains the answer, including text recovered by OCR.</dd>
+<dt><a href="/en/guides/delete-ollama-model/">Unload or delete a model</a></dt><dd>Check the running list or the disk store, depending on which space you need.</dd>
+</dl>
+<p>See Ollama’s <a href="https://docs.ollama.com/cli">CLI reference</a> and <a href="https://docs.ollama.com/api/introduction">API reference</a> for other commands and endpoints.</p>
+</section>
+</article>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body>
+</html>

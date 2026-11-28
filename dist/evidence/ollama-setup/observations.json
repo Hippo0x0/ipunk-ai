@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-28",
+  "machine": "Apple M4, macOS arm64",
+  "model_fixtures": [
+    "Qwen2.5-0.5B-Instruct Q4_K_M",
+    "Nomic Embed Text v1.5 F16"
+  ],
+  "scope": "One isolated loopback daemon, no external network during tests",
+  "cases": {
+    "empty": {
+      "server_version": {
+        "ok": true,
+        "value": "0.40.18"
+      },
+      "native_model_tags": {
+        "ok": true,
+        "value": []
+      },
+      "openai_compatible_model_ids": {
+        "ok": true,
+        "value": []
+      }
+    },
+    "both": {
+      "server_version": {
+        "ok": true,
+        "value": "0.40.18"
+      },
+      "native_model_tags": {
+        "ok": true,
+        "value": [
+          "setup-embed:latest",
+          "setup-chat:latest"
+        ]
+      },
+      "openai_compatible_model_ids": {
+        "ok": true,
+        "value": [
+          "setup-embed:latest",
+          "setup-chat:latest"
+        ]
+      },
+      "native_chat": {
+        "ok": true,
+        "value": {
+          "reply": "LOCAL_OK",
+          "exact_probe_match": true
+        }
+      },
+      "native_embeddings": {
+        "ok": true,
+        "value": {
+          "vectors": 2,
+          "dimensions": 768
+        }
+      }
+    },
+    "missing": {
+      "server_version": {
+        "ok": true,
+        "value": "0.40.18"
+      },
+      "native_model_tags": {
+        "ok": true,
+        "value": [
+          "setup-embed:latest",
+          "setup-chat:latest"
+        ]
+      },
+      "openai_compatible_model_ids": {
+        "ok": true,
+        "value": [
+          "setup-embed:latest",
+          "setup-chat:latest"
+        ]
+      },
+      "native_chat": {
+        "ok": false,
+        "error": "exact tag not listed by /api/tags: missing:latest"
+      },
+      "native_embeddings": {
+        "ok": true,
+        "value": {
+          "vectors": 2,
+          "dimensions": 768
+        }
+      }
+    },
+    "stopped": {
+      "server_version": {
+        "ok": false,
+        "error": "/api/version: <urlopen error [Errno 61] Connection refused>"
+      }
+    }
+  },
+  "ollama_ps_after_checks": "NAME                  ID              SIZE      PROCESSOR    CONTEXT    RUNNER      UNTIL               \nsetup-embed:latest    20ae86b838c2    335 MB    100% GPU     2048       llamacpp    4 minutes from now     \nsetup-chat:latest     8f286bf62688    791 MB    100% GPU     32768      llamacpp    48 seconds from now    \n",
+  "exit_codes": {
+    "empty": 0,
+    "both": 0,
+    "missing": 1,
+    "stopped": 1
+  }
+}

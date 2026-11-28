@@ -98,6 +98,7 @@
   --model YOUR_MODEL_ID</code></pre>
 <p>服务需要认证时，通过环境变量 <code>LOCAL_LLM_API_KEY</code> 注入，脚本不会打印它。不要把真实令牌写进文章评论、命令截图或公开仓库。每次测试记录引擎版本、量化来源、MTP、缓存开关、输入长度和机器状态；分别保留首次与重复请求，不把最好的那次改名为“平均值”。</p>
 <p>需要继续补测的内容包括：更多提示与长输出、多轮延迟分布、冷磁盘／系统页缓存的影响、同口径进程峰值、长上下文和真实工具任务正确率。11 月 1 日的数据来自对既有本机测试的复核，11 月 7 日的数据来自使用原脚本追加的新请求。</p>
+<p>如果你刚开始跑本地模型，可以按 <a href="/guides/ollama-setup/">Ollama 配置教程</a>先核对本机服务、模型标签和接口。</p>
 <h3>一手参考与证据边界</h3><ul>
 <li><a href="https://huggingface.co/Qwen/Qwen3.6-35B-A3B" rel="noreferrer">Qwen 官方 35B-A3B 模型卡</a>：解释模型结构，不为本站速度背书。</li>
 <li><a href="https://rapidmlx.com/docs/models/alias-catalog" rel="noreferrer">Rapid-MLX 官方模型别名目录</a>：核对仓库名称；目录当前版本可能晚于本次 0.16.10 环境。</li>
