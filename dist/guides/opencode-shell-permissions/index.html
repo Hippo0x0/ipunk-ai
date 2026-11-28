@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode Shell 权限设置：允许、询问与拒绝 | iPunk AI Radar</title>
+<meta name="description" content="配置 OpenCode V2 的 Shell 权限，排查命令为何没有确认提示，并在临时仓库验证允许、询问和拒绝规则。">
+<link rel="canonical" href="https://ai.ipunk.cn/guides/opencode-shell-permissions/">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/opencode-shell-permissions/">
+<link rel="alternate" hreflang="zh-Hans" href="https://ai.ipunk.cn/guides/opencode-shell-permissions/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="OpenCode Shell 权限设置：允许、询问与拒绝">
+<meta property="og:description" content="核对 OpenCode 的命令是否实际执行，排查规则顺序、组合命令和已保存的授权。">
+<meta property="og:url" content="https://ai.ipunk.cn/guides/opencode-shell-permissions/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"OpenCode Shell 权限设置：允许、询问与拒绝","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"zh-CN","mainEntityOfPage":"https://ai.ipunk.cn/guides/opencode-shell-permissions/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="主导航"><a href="/projects/opencode/">OpenCode</a><a href="/en/guides/opencode-shell-permissions/" lang="en">English</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>OpenCode Shell 权限怎么设置</h1>
+<p class="guide-answer">在 OpenCode V2 的 <code>permissions</code> 中，让 <code>shell</code> 默认询问，再把允许和拒绝的具体命令写在后面。如果命令没弹出确认，依次查最后匹配的规则、项目中已保存的授权，以及运行时是否用了 <code>--auto</code>。</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="本页目录"><ol>
+<li><a href="#rules">设置 Shell 权限</a></li>
+<li><a href="#missing">排查为什么没弹出确认</a></li>
+<li><a href="#combined">排查组合命令为什么被拦截</a></li>
+<li><a href="#verify">在临时仓库验证</a></li>
+<li><a href="#evidence">查看实测结果</a></li>
+</ol></nav>
+<section id="rules"><h2>设置 OpenCode V2 的 Shell 权限</h2>
+<p>先在项目中运行 <code>opencode --version</code>。下面的配置使用 V2 的 <code>permissions</code> 和 <code>shell</code>，V1 则使用 <code>permission</code> 和 <code>bash</code>。备份原配置，再把这些条目合并到项目的 <code>opencode.jsonc</code>。</p>
+<pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git status *", "effect": "allow" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" }
+  ]
+}</code></pre>
+<p>先写通用规则，再写例外。V2 在这一步采用最后一条匹配规则。<code>git status *</code> 同时匹配 <code>git status</code> 和 <code>git status --short</code>。如果结果和预期不同，再核对所用 Agent 的规则。</p>
+<p>获准的 Shell 命令仍拥有当前系统用户的文件、进程和网络权限。请在没有密钥的临时仓库验证这些规则。运行不可信代码时，使用操作系统或容器隔离。</p>
+</section>
+<section class="guide-decision"><h2>Shell 命令遇到了什么情况？</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Shell 权限排查图"><svg class="flow-svg" viewBox="0 0 660 280" role="group" aria-label="选择命令遇到的情况">
+<defs><marker id="shell-check-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="missing" d="M330 103 C330 151 110 134 110 205" marker-end="url(#shell-check-arrow)"/>
+<path data-edge="combined" d="M330 103 L330 205" marker-end="url(#shell-check-arrow)"/>
+<path data-edge="verify" d="M330 103 C330 151 550 134 550 205" marker-end="url(#shell-check-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Shell 命令遇到了什么情况？"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">命令执行情况？</text></g>
+<g text-anchor="middle">
+<rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">没有提示</text>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">组合命令被拦截</text>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">不确定</text>
+<g data-node="missing" role="button" tabindex="0" aria-pressed="false" aria-label="检查规则顺序和已保存的授权"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">检查授权</text></g>
+<g data-node="combined" role="button" tabindex="0" aria-pressed="false" aria-label="检查每条子命令"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">拆开检查</text></g>
+<g data-node="verify" role="button" tabindex="0" aria-pressed="false" aria-label="在临时仓库复测"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">临时仓库复测</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#missing">检查授权</a><a href="#combined">拆开检查</a><a href="#verify">临时仓库复测</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="缩小" disabled>−</button><button type="button" data-zoom="in" aria-label="放大">+</button></div>
+</div></section>
+
+
+
+<section id="missing"><h2>为什么命令没有弹出确认</h2>
+<ol>
+<li>记下工具显示的完整命令，查当前 Agent 最后一条匹配规则。后出现的 <code>allow</code> 会覆盖前面的 <code>ask</code>。</li>
+<li>回想是否曾对该命令或前缀选择 <strong>Allow always</strong>。V2 会在项目中保存授权，新建对话也可能沿用。只想批准当前请求时选择 <strong>Allow once</strong>。</li>
+<li>如果是脚本或 CI 调用，查看是否带了 <code>--auto</code>。可以在新建临时仓库的交互会话里，用一条无副作用的命令单独确认。</li>
+</ol>
+</section>
+<section id="combined"><h2>为什么组合命令会被拦截</h2>
+<p><code>git status --short &amp;&amp; git log -1</code> 会分别检查两条命令。即使 <code>git status</code> 已经允许，<code>git log</code> 仍要按它自己的匹配结果处理。把这两条命令拆开执行，就能看出是哪一条需要确认。</p>
+<p>如果命令涉及项目外路径，先查看工作目录。V2 可能先检查 <code>external_directory</code>，再检查 Shell 命令。需要项目外访问提示时，为 <code>external_directory</code> 单独加一条询问规则。</p>
+</section>
+<section id="verify"><h2>在临时仓库确认命令是否执行</h2>
+<ol>
+<li>建一个有初始提交的临时 Git 仓库，添加未追踪的 <code>permission-check.txt</code>。使用上面的规则，只请求运行 <code>git status --short</code>，确认工具输出包含 <code>?? permission-check.txt</code>。</li>
+<li>单独请求 <code>git log -1</code>。在交互客户端查看确认提示，这次测试选择拒绝。如果是无人值守运行，检查工具事件中的状态和错误。</li>
+<li>要验证拒绝规则，可在临时配置末尾增加一条拒绝 <code>printf *</code> 的规则。请求 <code>git status --short &amp;&amp; printf BLOCKED_MARKER</code>。查看 Shell 工具结果，确认命令输出中没有标记。错误事件有时会原样列出请求的命令。</li>
+</ol>
+<p>文件写入和 V1 权限语法见 <a href="/projects/opencode/#permission-start">OpenCode 项目评测</a>。查找生效配置文件可参考 <a href="/en/guides/opencode-config/">OpenCode 配置文件指南（英文）</a>。</p>
+</section>
+<section id="evidence"><h2>OpenCode 2.4.1 的 Shell 实测</h2>
+<p>在 macOS arm64 上做了六次无人值守检查。每次都使用独立临时仓库和用户目录，模型响应由本机测试服务生成。</p>
+<ul>
+<li><code>git status</code> 和 <code>git status --short</code> 均执行成功并列出了临时文件。</li>
+<li><code>git log -1</code> 因无人值守无法询问而被拒绝。把通用 <code>ask</code> 放到 <code>git status</code> 的例外后面，也会被拒绝。</li>
+<li>含有被拒绝的 <code>printf</code> 的组合命令返回 <code>Permission denied: shell</code>，没有产生命令输出。单独测试时加上 <code>--auto</code>，明确拒绝的命令仍被拦截。</li>
+</ul>
+<p>六次进程退出值均为 <code>0</code>。核对 JSON 里的 <code>tool_use</code> 事件，找到 <code>part.tool</code> 为 <code>shell</code> 的记录，再看 <code>part.state.status</code> 是 <code>completed</code> 还是 <code>error</code>。<a href="/evidence/opencode-shell-permissions/observations.json" download>下载规则和测试记录</a>。</p>
+<p>已保存授权和组合命令的判断见 <a href="https://opencode.ai/docs/permissions/">OpenCode 权限文档</a>。管理员强制拒绝见 <a href="https://opencode.ai/docs/policies/">OpenCode 策略文档</a>。</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/">iPunk AI Radar</a><time datetime="2026-11-28">2026 年 11 月 28 日</time></div><p class="wrap" data-analytics-privacy><a href="/privacy/">隐私与统计</a></p></footer>
+</body></html>

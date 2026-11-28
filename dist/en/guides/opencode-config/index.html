@@ -76,7 +76,7 @@ opencode debug config --standalone</code></pre>
 <h2>Which OpenCode config file wins?</h2>
 <p>The <a href="https://opencode.ai/docs/config/">official config guide</a> describes how user defaults, repository files, nested project files and managed system settings merge. A package file can override the same setting from the repository root, and centrally managed settings can take priority over both. Unrelated settings can remain in effect.</p>
 <p>In our OpenCode 2.4.1 test, a root <code>opencode.jsonc</code> overrode the same Build agent model from <code>opencode.json</code>. A root <code>.opencode/opencode.json</code> also overrode the same value when present. <code>OPENCODE_CONFIG</code> contributed its file and could override user defaults. The repository file still won the tested conflict. Check the current version and working directory before applying those results to a different setup.</p>
-<p>When several files set the same value, remove the duplicate from your own config only after keeping a copy. For a managed override, check with the person who manages the installation. File precedence and <a href="/en/projects/opencode/#permission-order">permission rule order</a> are different checks.</p>
+<p>When several files set the same value, remove the duplicate from your own config only after keeping a copy. For a managed override, check with the person who manages the installation. File precedence and <a href="/en/projects/opencode/#permission-order">permission rule order</a> are different checks. See how to <a href="/en/guides/opencode-shell-permissions/">verify which Shell commands ran or were blocked</a>.</p>
 </section>
 
 <section id="effective">

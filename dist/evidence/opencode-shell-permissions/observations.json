@@ -1,0 +1,172 @@
+{
+  "date": "2026-11-28",
+  "version": "2.4.1",
+  "os": "macOS arm64",
+  "scope": "Non-interactive run --standalone --format json with a synthetic local provider, new scratch repo and user profile per case, loopback-only network. No live remote, Desktop or saved-approval test.",
+  "cases": [
+    {
+      "check": "allowed no arguments",
+      "command": "git status",
+      "rules": [
+        {
+          "action": "shell",
+          "resource": "*",
+          "effect": "ask"
+        },
+        {
+          "action": "shell",
+          "resource": "git status *",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "printf *",
+          "effect": "deny"
+        }
+      ],
+      "flags": [],
+      "process_exit": 0,
+      "shell_status": "completed",
+      "output": "On branch main\n\nNo commits yet\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tnotes.txt\n\topencode.json\n\nnothing added to commit but untracked files present (use \"git add\" to track)\n",
+      "error": null,
+      "scratch_file_unchanged": true
+    },
+    {
+      "check": "allowed with arguments",
+      "command": "git status --short",
+      "rules": [
+        {
+          "action": "shell",
+          "resource": "*",
+          "effect": "ask"
+        },
+        {
+          "action": "shell",
+          "resource": "git status *",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "printf *",
+          "effect": "deny"
+        }
+      ],
+      "flags": [],
+      "process_exit": 0,
+      "shell_status": "completed",
+      "output": "?? notes.txt\n?? opencode.json\n",
+      "error": null,
+      "scratch_file_unchanged": true
+    },
+    {
+      "check": "unapproved shell",
+      "command": "git log -1",
+      "rules": [
+        {
+          "action": "shell",
+          "resource": "*",
+          "effect": "ask"
+        },
+        {
+          "action": "shell",
+          "resource": "git status *",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "printf *",
+          "effect": "deny"
+        }
+      ],
+      "flags": [],
+      "process_exit": 0,
+      "shell_status": "error",
+      "output": null,
+      "error": "This non-interactive run cannot ask the user for permission, so the request was rejected. Continue without this action.",
+      "scratch_file_unchanged": true
+    },
+    {
+      "check": "compound with denied command",
+      "command": "git status --short && printf BLOCKED_MARKER",
+      "rules": [
+        {
+          "action": "shell",
+          "resource": "*",
+          "effect": "ask"
+        },
+        {
+          "action": "shell",
+          "resource": "git status *",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "printf *",
+          "effect": "deny"
+        }
+      ],
+      "flags": [],
+      "process_exit": 0,
+      "shell_status": "error",
+      "output": null,
+      "error": "Permission denied: shell",
+      "scratch_file_unchanged": true
+    },
+    {
+      "check": "deny persists with auto",
+      "command": "printf BLOCKED_MARKER",
+      "rules": [
+        {
+          "action": "shell",
+          "resource": "*",
+          "effect": "ask"
+        },
+        {
+          "action": "shell",
+          "resource": "git status *",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "printf *",
+          "effect": "deny"
+        }
+      ],
+      "flags": [
+        "--auto"
+      ],
+      "process_exit": 0,
+      "shell_status": "error",
+      "output": null,
+      "error": "Permission denied: shell",
+      "scratch_file_unchanged": true
+    },
+    {
+      "check": "narrow rule shadowed by broad ask",
+      "command": "git status --short",
+      "rules": [
+        {
+          "action": "shell",
+          "resource": "git status *",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "*",
+          "effect": "ask"
+        },
+        {
+          "action": "shell",
+          "resource": "printf *",
+          "effect": "deny"
+        }
+      ],
+      "flags": [],
+      "process_exit": 0,
+      "shell_status": "error",
+      "output": null,
+      "error": "This non-interactive run cannot ask the user for permission, so the request was rejected. Continue without this action.",
+      "scratch_file_unchanged": true
+    }
+  ]
+}

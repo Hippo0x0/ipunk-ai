@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode Shell Permissions: Allow, Ask and Deny | iPunk AI Radar</title>
+<meta name="description" content="Configure OpenCode V2 Shell permissions, find out why a command skipped approval, and test allow, ask and deny in a scratch repo.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-shell-permissions/">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/opencode-shell-permissions/">
+<link rel="alternate" hreflang="zh-Hans" href="https://ai.ipunk.cn/guides/opencode-shell-permissions/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="OpenCode Shell Permissions: Allow, Ask and Deny">
+<meta property="og:description" content="Set OpenCode Shell rules and verify whether commands ran, waited for approval or were blocked.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/opencode-shell-permissions/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"OpenCode Shell Permissions: Allow, Ask and Deny","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/opencode-shell-permissions/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/en/projects/opencode/">OpenCode</a><a href="/guides/opencode-shell-permissions/" lang="zh-CN">中文</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>OpenCode Shell Permissions</h1>
+<p class="guide-answer">In OpenCode V2, set <code>shell</code> to <code>ask</code> for all commands, then put specific <code>allow</code> or <code>deny</code> exceptions below it. If a command skips the prompt, check the last matching rule, saved approvals and whether the runner used <code>--auto</code>.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#rules">Set Shell permission rules</a></li>
+<li><a href="#missing">Diagnose a missing prompt</a></li>
+<li><a href="#combined">Check a combined command</a></li>
+<li><a href="#verify">Verify in a scratch repository</a></li>
+<li><a href="#evidence">See the test results</a></li>
+</ol></nav>
+
+<section id="rules"><h2>Set OpenCode V2 Shell permission rules</h2>
+<p>Run <code>opencode --version</code> in the project. This example uses V2's <code>permissions</code> array and <code>shell</code> action. V1 uses <code>permission</code> and <code>bash</code>. Back up your current configuration and merge these entries into your existing <code>opencode.jsonc</code>.</p>
+<pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "ask" },
+    { "action": "shell", "resource": "git status *", "effect": "allow" },
+    { "action": "shell", "resource": "git push *", "effect": "deny" }
+  ]
+}</code></pre>
+<p>Put the broad rule before its exceptions. V2 takes the last matching rule at this stage. The trailing <code> *</code> in <code>git status *</code> matches both <code>git status</code> and <code>git status --short</code>. Check agent rules if the effective policy differs. Review commands in an interactive session when you want to decide one request at a time.</p>
+<p>This policy controls the OpenCode Shell tool. Shell commands that receive permission still run with the host user's access to files, processes and the network. Keep secrets out of a trial repository and use OS or container isolation when testing untrusted code.</p>
+</section>
+<section class="guide-decision"><h2>What happened to the Shell command?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Shell permission decision tree"><svg class="flow-svg" viewBox="0 0 660 280" role="group" aria-label="Choose what happened to the Shell command">
+<defs><marker id="shell-check-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="missing" d="M330 103 C330 151 110 134 110 205" marker-end="url(#shell-check-arrow)"/>
+<path data-edge="combined" d="M330 103 L330 205" marker-end="url(#shell-check-arrow)"/>
+<path data-edge="verify" d="M330 103 C330 151 550 134 550 205" marker-end="url(#shell-check-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What happened to the Shell command?"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">Shell command?</text></g>
+<g text-anchor="middle">
+<rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">No prompt</text>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">Compound blocked</text>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">Unsure</text>
+<g data-node="missing" role="button" tabindex="0" aria-pressed="false" aria-label="Check rule order and approvals"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">Check approvals</text></g>
+<g data-node="combined" role="button" tabindex="0" aria-pressed="false" aria-label="Check the individual commands"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">Split commands</text></g>
+<g data-node="verify" role="button" tabindex="0" aria-pressed="false" aria-label="Run a harmless test"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">Test safely</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#missing">Check approvals</a><a href="#combined">Split commands</a><a href="#verify">Test safely</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+
+<section id="missing"><h2>Why a command ran without asking</h2>
+<ol>
+<li>Check the exact command shown in the tool result and compare it with the installed agent's rules. An earlier <code>ask</code> can be followed by a matching <code>allow</code>.</li>
+<li>Check whether you selected <strong>Allow always</strong> for this command or prefix. V2 saves matching approvals for the project, so a new conversation can still use them. Choose <strong>Allow once</strong> when approval should cover one request.</li>
+<li>In an unattended run, check whether the caller passed <code>--auto</code>. Compare a single harmless command in a clean project and an interactive session without auto approval before changing production rules.</li>
+</ol>
+</section>
+<section id="combined"><h2>Why a combined command was blocked</h2>
+<p>A compound command can have more than one permission check. <code>git status --short &amp;&amp; git log -1</code> includes a separate <code>git log</code> request, so the <code>git status</code> exception alone gives no permission for the full command. Run each harmless command separately to see which asks or fails.</p>
+<p>Check the working directory first if the tool uses an outside path. V2 may check <code>external_directory</code> before the Shell rule. Add a separate ask rule for outside-project access when you want that prompt. Rule matching and directory inference are only one part of deciding whether a command can run safely.</p>
+</section>
+<section id="verify"><h2>Verify what ran in a scratch repository</h2>
+<ol>
+<li>Create a disposable Git repository with an initial commit and an untracked <code>permission-check.txt</code> file. Apply the sample rules. Request only <code>git status --short</code> and check that the tool output includes <code>?? permission-check.txt</code>.</li>
+<li>In a separate turn, request only <code>git log -1</code>. In the interactive client, check for a permission prompt and choose Reject for this test. For unattended automation, inspect tool events rather than relying on the exit code.</li>
+<li>To exercise a deny without contacting a remote, add a final test rule for <code>printf *</code> with effect <code>deny</code> in the scratch config. Request <code>git status --short &amp;&amp; printf BLOCKED_MARKER</code>. Check the Shell tool result and verify that no command output contained the marker. A tool error can quote the requested command itself.</li>
+</ol>
+<p>For file writes and V1 setup, see the <a href="/en/projects/opencode/#permission-start">OpenCode project review</a>. To find the active configuration, see <a href="/en/guides/opencode-config/">OpenCode config locations</a>.</p>
+</section>
+<section id="evidence"><h2>What OpenCode 2.4.1 did in the Shell checks</h2>
+<p>We ran six unattended checks on macOS arm64 with a synthetic model server on localhost. Each case used a fresh repository and profile.</p>
+<ul>
+<li><code>git status</code> and <code>git status --short</code> both completed and listed the scratch file under the same rule.</li>
+<li><code>git log -1</code> returned a permission error because the unattended process could not ask. Putting <code>shell * → ask</code> after the status exception produced the same error for <code>git status --short</code>.</li>
+<li>The combined request containing the denied <code>printf</code> returned <code>Permission denied: shell</code> with no command output. The explicit deny also held with <code>--auto</code> in a separate test.</li>
+</ul>
+<p>OpenCode exited with status <code>0</code> in all six cases. In the JSON output, check the <code>tool_use</code> record with <code>part.tool</code> set to <code>shell</code>. <code>part.state.status</code> distinguished <code>completed</code> from <code>error</code>. <a href="/evidence/opencode-shell-permissions/observations.json" download>Download the recorded rules and results</a>.</p>
+<p>See the official <a href="https://opencode.ai/docs/permissions/">permissions reference</a> for the Shell scanner and saved approvals, and the <a href="https://opencode.ai/docs/policies/">policies reference</a> for administrator-enforced denials.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
