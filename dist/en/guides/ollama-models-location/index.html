@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama Models Location and How to Move Models to Another Drive | iPunk AI Radar</title>
+<meta name="description" content="Find Ollama’s models folder on macOS, Windows, Linux or Docker. Copy the complete store, set OLLAMA_MODELS and verify that an existing tag still runs.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-models-location/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Ollama Models Location and How to Move Models to Another Drive">
+<meta property="og:description" content="Find the active Ollama model directory and verify your migrated models before removing the original copy.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/ollama-models-location/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Ollama Models Location and How to Move Models to Another Drive","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/ollama-models-location/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+<style>#location-choice .decision-links{grid-template-columns:repeat(5,minmax(0,1fr));padding-inline:4px}@media(max-width:540px){#location-choice .decision-links{grid-template-columns:repeat(3,minmax(0,1fr))}#location-choice .flow-svg text{font-size:25px}}</style>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#locate">Default folders</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>Where Ollama Stores Models and How to Move Them</h1>
+<p class="guide-answer">Ollama defaults to <code>~/.ollama/models</code> on Mac, <code>%USERPROFILE%\.ollama\models</code> on Windows, and <code>/usr/share/ollama/.ollama/models</code> for the standard Linux service. To use another drive, stop the server, copy the full model folder, set <code>OLLAMA_MODELS</code> for the server, then restart and run a copied model before removing the original.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#locate">Find the active models folder</a></li>
+<li><a href="#before">Prepare a copy</a></li>
+<li><a href="#mac">macOS</a></li>
+<li><a href="#windows">Windows</a></li>
+<li><a href="#linux">Linux systemd</a></li>
+<li><a href="#docker">Docker</a></li>
+<li><a href="#verify">Verify the copy and roll back</a></li>
+<li><a href="#test">See the offline migration test</a></li>
+</ol></nav>
+
+<section id="locate">
+<h2>Find the active Ollama models folder</h2>
+<p>Find the machine and process serving your requests. If <code>OLLAMA_HOST</code> points at another machine, inspect that machine’s configuration. A shell variable you set for the client cannot tell you what an already-running server uses.</p>
+<div class="video-table"><table>
+<thead><tr><th scope="col">Installation</th><th scope="col">Default model folder</th></tr></thead>
+<tbody><tr><td>macOS app or local CLI</td><td><code>~/.ollama/models</code> in the server user’s home</td></tr>
+<tr><td>Windows app</td><td><code>%USERPROFILE%\.ollama\models</code></td></tr>
+<tr><td>Linux terminal server</td><td><code>~/.ollama/models</code> in the server user’s home</td></tr>
+<tr><td>Standard Linux systemd service</td><td><code>/usr/share/ollama/.ollama/models</code></td></tr>
+<tr><td>Official Docker example</td><td><code>/root/.ollama/models</code> inside the container, under its named volume</td></tr></tbody>
+</table></div>
+<p>If you previously changed the path, inspect the server’s <code>OLLAMA_MODELS</code> setting or launch configuration first. For a local model, <code>ollama show --modelfile MODEL:TAG</code> can also show a <code>FROM</code> path inside the active store. Substitute an installed tag and use the path only when the output contains a local file. For Docker check the mount that provides that path.</p>
+</section>
+
+<section id="before">
+<h2>Copy the whole store before switching paths</h2>
+<ol>
+<li>Save the output of <code>ollama list</code>. Note the full tags you need, including custom ones. Keep any original GGUF and Modelfile used to import a custom model.</li>
+<li>Confirm the new disk is mounted and has room for the complete folder. Create a dedicated, empty destination. Use a filesystem that preserves the store’s files and links.</li>
+<li>Wait for active requests to finish and stop the Ollama server. Copy the contents of the model folder together, preserving their directory structure and links. A blobs-only copy does not preserve the tags. Keep the original folder until the new copy passes the checks below.</li>
+</ol>
+</section>
+
+<section id="location-choice" class="guide-decision"><h2>How is your Ollama server running?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Ollama model storage decision tree">
+<svg class="flow-svg" viewBox="0 0 700 265" role="group" aria-label="Choose the Ollama server installation">
+<defs><marker id="ollama-location-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="mac" d="M350 97 C350 154 70 138 70 203" marker-end="url(#ollama-location-arrow)"/>
+<path data-edge="windows" d="M350 97 C350 154 210 138 210 203" marker-end="url(#ollama-location-arrow)"/>
+<path data-edge="linux" d="M350 97 L350 203" marker-end="url(#ollama-location-arrow)"/>
+<path data-edge="docker" d="M350 97 C350 154 490 138 490 203" marker-end="url(#ollama-location-arrow)"/>
+<path data-edge="locate" d="M350 97 C350 154 630 138 630 203" marker-end="url(#ollama-location-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="How is Ollama running?"><path class="node-shape" d="M350 4L502 51L350 97L198 51Z"/><text x="350" y="58" text-anchor="middle">Server type?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="170" width="128" height="27" fill="white" rx="6"/><text x="70" y="192">macOS</text>
+<g data-node="mac" role="button" tabindex="0" aria-pressed="false" aria-label="macOS: set the model path"><rect class="node-shape" x="5" y="206" width="130" height="52" rx="10"/><text x="70" y="239">Set path</text></g>
+<rect x="146" y="170" width="128" height="27" fill="white" rx="6"/><text x="210" y="192">Windows</text>
+<g data-node="windows" role="button" tabindex="0" aria-pressed="false" aria-label="Windows: set the model path"><rect class="node-shape" x="145" y="206" width="130" height="52" rx="10"/><text x="210" y="239">Set path</text></g>
+<rect x="286" y="170" width="128" height="27" fill="white" rx="6"/><text x="350" y="192">Linux</text>
+<g data-node="linux" role="button" tabindex="0" aria-pressed="false" aria-label="Linux: configure systemd"><rect class="node-shape" x="285" y="206" width="130" height="52" rx="10"/><text x="350" y="239">Set service</text></g>
+<rect x="426" y="170" width="128" height="27" fill="white" rx="6"/><text x="490" y="192">Docker</text>
+<g data-node="docker" role="button" tabindex="0" aria-pressed="false" aria-label="Docker: configure the mount"><rect class="node-shape" x="425" y="206" width="130" height="52" rx="10"/><text x="490" y="239">Set mount</text></g>
+<rect x="566" y="170" width="128" height="27" fill="white" rx="6"/><text x="630" y="192">Not sure</text>
+<g data-node="locate" role="button" tabindex="0" aria-pressed="false" aria-label="Not sure: Find server"><rect class="node-shape" x="565" y="206" width="130" height="52" rx="10"/><text x="630" y="239">Find server</text></g>
+</g>
+</svg></div>
+<div class="decision-links"><a href="#mac" aria-label="See macOS steps">macOS</a><a href="#windows" aria-label="See Windows steps">Windows</a><a href="#linux" aria-label="See Linux service steps">Linux</a><a href="#docker" aria-label="See Docker steps">Docker</a><a href="#locate" aria-label="Identify your running server">Not sure</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+<section id="mac">
+<h2>Move Ollama models on macOS</h2>
+<p>Quit the Ollama app from the menu bar, or stop the terminal that is running <code>ollama serve</code>. The example uses the default source and a mounted drive called <code>AI SSD</code>. Replace both locations if yours differ. Make sure the drive is mounted before creating the folder.</p>
+<pre><code>new="/Volumes/AI SSD/ollama-models"
+mkdir -p "$new"
+rsync -a "$HOME/.ollama/models/" "$new/"</code></pre>
+<p>After the copy succeeds, set the path for the app.</p>
+<pre><code>launchctl setenv OLLAMA_MODELS "$new"</code></pre>
+<p>Reopen the app. For a terminal-managed server, use <code>OLLAMA_MODELS="$new" ollama serve</code> in the same shell instead of the <code>launchctl</code> step. The <code>launchctl setenv</code> setting applies to the current login session. Recheck it after a reboot and confirm the path after reconnecting the drive. For a terminal server, keep the setting in the command or script that starts it.</p>
+</section>
+
+<section id="windows">
+<h2>Move Ollama models to another drive on Windows</h2>
+<ol><li>Quit Ollama from the notification area. In Explorer, copy all contents of <code>%USERPROFILE%\.ollama\models</code> to an empty folder on the destination drive, for example <code>D:\Ollama\models</code>. Check for copy errors.</li>
+<li>Open <strong>Edit environment variables for your account</strong>. Under user variables set <code>OLLAMA_MODELS</code> to the full destination folder path.</li>
+<li>Open Ollama from the Start menu. If the drive letter changed, resolve that before restarting the app.</li></ol>
+<p>If you run Ollama inside WSL, apply the appropriate Linux instructions inside that environment.</p>
+</section>
+
+<section id="linux">
+<h2>Move the models of a Linux systemd service</h2>
+<p>These commands assume the standard <code>ollama</code> service account and an already-mounted disk at <code>/mnt/ai</code>. Substitute the actual source if it was customized. The destination below is a dedicated model store.</p>
+<pre><code>sudo systemctl stop ollama.service
+sudo mkdir -p /mnt/ai/ollama-models
+sudo rsync -a /usr/share/ollama/.ollama/models/ /mnt/ai/ollama-models/
+sudo chown -R ollama:ollama /mnt/ai/ollama-models
+sudo systemctl edit ollama.service</code></pre>
+<p>Run the copy and ownership steps successfully before setting this override. The service account needs access to the destination and must be able to traverse its parent folders.</p>
+<pre><code>[Service]
+Environment="OLLAMA_MODELS=/mnt/ai/ollama-models"</code></pre>
+<pre><code>sudo systemctl daemon-reload
+sudo systemctl start ollama.service</code></pre>
+<p>If you start <code>ollama serve</code> yourself, set the variable for that process as shown in the macOS terminal example, using the Linux destination path.</p>
+</section>
+
+<section id="docker">
+<h2>Move the model store used by an Ollama container</h2>
+<p>Use <code>docker inspect ollama --format '{{json .Mounts}}'</code> to see the mount used by the server. In <a href="https://docs.ollama.com/docker">Ollama’s official Docker example</a>, <code>ollama:/root/.ollama</code> mounts the named volume <code>ollama</code>. If you already configured a separate model directory, use its actual container path in the commands below.</p>
+<p>For the default example, stop the original container and copy the contents from it into an existing empty folder on the new drive. <code>docker cp</code> can read a stopped container. Ensure the destination can preserve links and is accessible to Docker.</p>
+<pre><code>docker stop ollama
+docker cp ollama:/root/.ollama/models/. /mnt/ai/ollama-models/</code></pre>
+<p>Add <code>/mnt/ai/ollama-models:/models</code> as a bind mount and set <code>OLLAMA_MODELS=/models</code> in the container configuration. Recreate the service with its existing image, ports, devices and other settings. Keep the old volume attached at its original location if it holds other Ollama data, and keep the source until verification. Run <code>docker exec ollama ollama list</code> against the replacement container.</p>
+</section>
+
+<section id="verify">
+<h2>Check the migrated tags and roll back if they’re missing</h2>
+<ol><li>Run <code>ollama list</code> on the restarted server and compare it with the saved list. To compare exact model contents, save and compare the <code>digest</code> values from <a href="https://docs.ollama.com/api/tags"><code>GET /api/tags</code></a> before and after.</li>
+<li>Use an already-listed local tag in <code>ollama run MODEL:TAG</code> and send a short prompt. For Docker use <code>docker exec -it ollama ollama run MODEL:TAG</code>. Test the custom or most important tags before deleting the original. Do not run a missing tag to validate the copy, since Ollama may download the model again and hide the problem.</li>
+<li>If the new list is empty or the model fails to load, stop the server. Confirm the path is set for that server, the disk is mounted, and the copied folder contains both weights and tag information at the expected level. Restore the previous setting and restart if you need to return to the original store. If you were using the default, clear the variable instead. On macOS use <code>launchctl unsetenv OLLAMA_MODELS</code> for the app. For systemd or a container, revert the specific override or mount you changed.</li></ol>
+<p>Keep the old path until the new store also works after a restart. If you installed or changed models after the switch, keep a copy of the new store before rolling back so those changes remain recoverable. To remove just one obsolete tag, <a href="/en/guides/delete-ollama-model/">delete the model through Ollama</a>.</p>
+</section>
+
+<section id="test">
+<h2>What happened when we switched stores offline</h2>
+<p>On macOS arm64, we restarted Ollama 0.40.18 four times against isolated directories. The source was a local import of Qwen2.5-0.5B-Instruct Q4_K_M. Both Ollama and the test client could reach loopback only, with Ollama cloud disabled.</p>
+<div class="video-table"><table>
+<thead><tr><th scope="col">Store used</th><th scope="col">Installed tags</th><th scope="col">Generation result</th></tr></thead>
+<tbody><tr><td>Original</td><td>1</td><td>HTTP 200, <code>LOCAL_OK</code></td></tr>
+<tr><td>Empty destination</td><td>0</td><td>HTTP 404, model missing</td></tr>
+<tr><td>Copied destination, original path absent</td><td>1</td><td>Same digest and reply</td></tr>
+<tr><td>Switched back to original</td><td>1</td><td>Same digest and reply</td></tr>
+</tbody></table></div>
+<p>We compared file hashes and link targets after the copy, then made the original path unavailable for the destination test. This verifies one model using a macOS CLI server. The app, Windows, Linux systemd and Docker instructions are based on documentation.</p>
+<p><a href="/evidence/ollama-models-location/observations.json" download>Download the model, file and response checks</a>. See <a href="https://docs.ollama.com/faq#where-are-models-stored">Ollama’s model locations</a> and <a href="https://docs.ollama.com/faq#how-do-i-configure-ollama-server">server configuration reference</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

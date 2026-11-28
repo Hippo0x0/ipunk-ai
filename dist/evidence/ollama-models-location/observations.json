@@ -1,0 +1,76 @@
+{
+  "date": "2026-11-28",
+  "os": "macOS arm64",
+  "ollama": "0.40.18",
+  "model": "Qwen2.5-0.5B-Instruct Q4_K_M GGUF",
+  "network": "Server and client restricted to loopback by the macOS sandbox profile; Ollama cloud disabled.",
+  "source": {
+    "tags": [
+      {
+        "name": "qwen-local-first:latest",
+        "digest": "8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7"
+      }
+    ],
+    "list": "NAME                       ID              SIZE      MODIFIED    \nqwen-local-first:latest    8f286bf62688    491 MB    4 hours ago    \n",
+    "status": 200,
+    "reply": "LOCAL_OK",
+    "error": null
+  },
+  "empty_destination": {
+    "tags": [],
+    "list": "NAME    ID    SIZE    MODIFIED \n",
+    "status": 404,
+    "reply": null,
+    "error": "model 'qwen-local-first:latest' not found"
+  },
+  "copied_destination_original_path_unavailable": {
+    "tags": [
+      {
+        "name": "qwen-local-first:latest",
+        "digest": "8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7"
+      }
+    ],
+    "list": "NAME                       ID              SIZE      MODIFIED    \nqwen-local-first:latest    8f286bf62688    491 MB    4 hours ago    \n",
+    "status": 200,
+    "reply": "LOCAL_OK",
+    "error": null
+  },
+  "switched_back": {
+    "tags": [
+      {
+        "name": "qwen-local-first:latest",
+        "digest": "8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7"
+      }
+    ],
+    "list": "NAME                       ID              SIZE      MODIFIED    \nqwen-local-first:latest    8f286bf62688    491 MB    4 hours ago    \n",
+    "status": 200,
+    "reply": "LOCAL_OK",
+    "error": null
+  },
+  "identical_source_and_destination_files_before_restart": [
+    {
+      "path": "blobs/sha256-0cfdbbebf551bc0093c80b6679cdb597b865ddb015dbfcf3817cc8eb85712a65",
+      "bytes": 118,
+      "sha256": "0cfdbbebf551bc0093c80b6679cdb597b865ddb015dbfcf3817cc8eb85712a65"
+    },
+    {
+      "path": "blobs/sha256-74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+      "bytes": 491400032,
+      "sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db"
+    },
+    {
+      "path": "blobs/sha256-8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7",
+      "bytes": 470,
+      "sha256": "8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7"
+    },
+    {
+      "path": "manifests-v2/ollama.com/library/qwen-local-first/latest",
+      "symlink": "../../../../blobs/sha256-8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7"
+    },
+    {
+      "path": "metadata/sha256-74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db.json",
+      "bytes": 3768,
+      "sha256": "4d4b91922695aee022897b24c329dface62707d365cb8e206200be5698f62090"
+    }
+  ]
+}

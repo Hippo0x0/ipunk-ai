@@ -57,6 +57,7 @@ ollama ps</code></pre>
 <p><code>ollama list</code> shows installed tags. <code>ollama ps</code> shows models currently loaded. If you have more than one server, check the CLI’s <code>OLLAMA_HOST</code> before running either command against the wrong instance. With Docker, check the model volume used by the container running the server.</p>
 <p>Ollama documents these default model folders. A server configured with <code>OLLAMA_MODELS</code> uses the directory set for its own process.</p>
 <ul><li><strong>macOS:</strong> <code>~/.ollama/models</code></li><li><strong>Linux service:</strong> <code>/usr/share/ollama/.ollama/models</code></li><li><strong>Windows:</strong> <code>%USERPROFILE%\.ollama\models</code></li></ul>
+<p>To keep your installed tags and switch disks, <a href="/en/guides/ollama-models-location/">copy the complete model store and verify the new path</a>.</p>
 </section>
 <section id="unload"><h2>Unload the model from memory</h2>
 <p>Wait until requests using the model have finished. Replace the example with the tag shown by <code>ollama ps</code>.</p>
