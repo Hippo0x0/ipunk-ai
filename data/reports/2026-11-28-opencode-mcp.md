@@ -26,3 +26,9 @@ OpenCode 服务日志报告工具数为 1。通过直接 stdio 测试独立确�
 localhost 的 390px 和 1440px 验证首答、键盘路径高亮、缩放复位、三条章节跳转、证据下载字节和无全页横向溢出。禁用 JS 后导航和例程依然可读。
 
 11 月 28 日本轮读取 Search Console。此前的 Ollama 删除指南和 OpenAI 兼容 API 指南均已收录。普通抓取分别为北京时间 11:44:28 和 11:38:26，Google 选择规范 URL 为各自正式路径。MarkItDown PDF 指南当时仍未识别。此次收录核对没有点击或收入读数。
+
+## 正式交付
+
+GitHub `main` 的 `db93645` 从干净归档通过 90 项自动测试。站点检查覆盖 58 个 HTML、57 个可从首页到达的站点地图页面及 314 处静态资源。Worker 预览中的新页、脚本和 JSON 与归档逐字节吻合。北京时间 11:51，Worker 版本 `ee67fb05-3d93-4093-ae28-a88ae456af78` 承接 100% 流量，部署 `d59b663a-62b2-41e2-b90f-b37788cd39ae`。正式域 11 个相关路径均 HTTP 200，内容与发布归档一致。复核使用直接 HTTP。
+
+[OpenCode MCP](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=yxr9U48hrnvrvih6ExT6bg)与[此前的 MarkItDown PDF 指南](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=OAFvc8l6-aOe_R7Cv3pzkw)提交开始时均显示未识别。两个独立回执均确认进入 Google 优先抓取队列。普通抓取、收录和上线后点击仍有待确认。
