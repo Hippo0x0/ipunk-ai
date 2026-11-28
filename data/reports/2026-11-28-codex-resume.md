@@ -26,3 +26,9 @@
 开始时 Search Console 中上一轮 Ollama 双语配置页及 GPU 页仍显示未识别。英文配置页此前已进入抓取队列，中文配置页此前遇到当日手工配额。未重复提交。新增 Codex 页面还没有上线后效果数据。
 
 localhost 390px 与 1440px 核对首答、键盘高亮且不改 hash、缩放复原、所有步骤跳转、证据下载字节和无全页横向溢出。禁用 JavaScript 后仍有命令示例和跳转。正式交付状态另记。
+
+## 正式交付
+
+GitHub `main` 的 `a2d519d` 在干净归档通过 90 项自动测试。站点检查覆盖 63 个 HTML、62 个从首页可达的 sitemap 页面和 341 处静态资源。Worker 预览的新页和原始 JSON 与归档逐字节一致。北京时间 12:25，Worker 版本 `a525a211-c7d8-414f-84ca-f778c755a290` 承接全部流量，部署 `27c948ac-67dc-469d-b5a3-737735413285`。正式站九个相关路径均 HTTP 200、逐字节符合归档。正式域复核采用直接 HTTP。
+
+发布后[精确网址检查](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=Sk95DHYROtEVhVA5I9PFsQ)显示 Google 尚未识别该页。本日已有手工配额限制，这次沿用已核验的站点地图与站内链接，未另外提交手工请求。收录和搜索效果有待核对。
