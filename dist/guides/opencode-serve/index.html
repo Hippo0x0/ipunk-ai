@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode Serve 本机启动：密码、端口与 401 排查 | iPunk AI Radar</title>
+<meta name="description" content="在 127.0.0.1 启动 OpenCode 2 服务，用 curl 核对密码和监听地址，排查 401 或连接被拒绝。">
+<link rel="canonical" href="https://ai.ipunk.cn/guides/opencode-serve/">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/opencode-serve/">
+<link rel="alternate" hreflang="zh-CN" href="https://ai.ipunk.cn/guides/opencode-serve/">
+<link rel="alternate" hreflang="x-default" href="https://ai.ipunk.cn/guides/opencode-serve/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="OpenCode Serve 本机启动：密码、端口与 401 排查">
+<meta property="og:description" content="在 127.0.0.1 启动 OpenCode 2 服务，用 curl 核对密码和监听地址，排查 401 或连接被拒绝。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ai.ipunk.cn/guides/opencode-serve/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"OpenCode Serve 本机启动：密码、端口与 401 排查","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"zh-CN","mainEntityOfPage":"https://ai.ipunk.cn/guides/opencode-serve/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="本文目录"><a href="/en/guides/opencode-serve/" hreflang="en">English</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>OpenCode Serve 怎么在本机运行</h1><p class="guide-answer">在 OpenCode 2 中，将 <code>opencode serve</code> 绑定到 <code>127.0.0.1</code>，并设置 <code>OPENCODE_PASSWORD</code>。用 curl 请求 <code>/api/info</code>，无凭据应返回 <strong>401</strong>，使用用户名 <code>opencode</code> 和正确密码应返回 <strong>200</strong>。</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="本文目录"><ol><li><a href="#start">启动本机前台服务</a></li><li><a href="#auth">验证密码和监听地址</a></li><li><a href="#refused">连接失败或端口不对</a></li><li><a href="#denied">输入密码后仍返回 401</a></li><li><a href="#unexpected">无凭据返回 200 或不确定</a></li><li><a href="#evidence">实测环境与来源</a></li></ol></nav>
+<section id="start"><h2>启动本机前台服务</h2>
+<p>在临时项目里打开 Bash 或 Zsh 终端，先运行 <code>opencode --version</code> 核对版本。下面的命令在 4096 端口启动独立的前台进程。如果端口已占用，换一个空闲端口。</p>
+<pre><code>IFS= read -rs OPENCODE_PASSWORD
+OPENCODE_PASSWORD="$OPENCODE_PASSWORD" opencode serve --hostname 127.0.0.1 --port 4096</code></pre>
+<p>执行第一条命令后，输入新密码并按回车。输入时屏幕不会显示字符。启动输出可能显示密码，请勿分享。保持这个终端运行。结束时按 <kbd>Ctrl</kbd>+<kbd>C</kbd>，再在同一终端执行 <code>unset OPENCODE_PASSWORD</code>。</p>
+<p>仅在本机使用时，即使设置了密码也要绑定回环地址。服务进程仍能以当前用户身份访问文件和运行工具。普通 HTTP 的 Basic 认证没有传输加密。</p>
+</section>
+<section id="auth"><h2>验证密码和监听地址</h2>
+<p>另开一个终端运行下面两条命令。第二条会提示输入密码，避免把密码写进命令行。</p>
+<pre><code>curl --noproxy '*' -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:4096/api/info
+curl --noproxy '*' -sS -o /dev/null -w '%{http_code}\n' -u opencode http://127.0.0.1:4096/api/info</code></pre>
+<p>预期依次得到 <strong>401</strong> 和 <strong>200</strong>。macOS 上执行 <code>lsof -nP -iTCP:4096 -sTCP:LISTEN</code>，核对 OpenCode 的监听地址是否为 <code>127.0.0.1:4096</code>。HTTP 请求成功后，仍需单独检查进程的监听范围。</p>
+</section>
+<section class="guide-decision"><h2>curl 返回了什么？</h2>
+<div class="decision" data-flow><div class="flow-viewport" tabindex="0" aria-label="curl 返回了什么？"><svg class="flow-svg" viewBox="0 0 660 265" role="group" aria-label="curl 返回了什么？">
+<defs><marker id="serve-arrow-zh-CN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="refused" d="M330 101 C330 155 110 155 110 202" marker-end="url(#serve-arrow-zh-CN)"/>
+<path data-edge="denied" d="M330 101 C330 155 330 155 330 202" marker-end="url(#serve-arrow-zh-CN)"/>
+<path data-edge="unexpected" d="M330 101 C330 155 550 155 550 202" marker-end="url(#serve-arrow-zh-CN)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="curl 返回了什么？"><path class="node-shape" d="M330 5L492 53L330 101L168 53Z"/><text x="330" y="60" text-anchor="middle">curl 返回了什么？</text></g>
+<g text-anchor="middle">
+<text x="110" y="180" stroke="#fff" stroke-width="7" paint-order="stroke">无法连接</text>
+<g data-node="refused" role="button" tabindex="0" aria-pressed="false" aria-label="确认端口"><rect class="node-shape" x="11" y="206" width="198" height="50" rx="12"/><text x="110" y="237">确认端口</text></g>
+<text x="330" y="180" stroke="#fff" stroke-width="7" paint-order="stroke">仍返回 401</text>
+<g data-node="denied" role="button" tabindex="0" aria-pressed="false" aria-label="核对凭据"><rect class="node-shape" x="231" y="206" width="198" height="50" rx="12"/><text x="330" y="237">核对凭据</text></g>
+<text x="550" y="180" stroke="#fff" stroke-width="7" paint-order="stroke">无凭据 200／不确定</text>
+<g data-node="unexpected" role="button" tabindex="0" aria-pressed="false" aria-label="核对监听地址"><rect class="node-shape" x="451" y="206" width="198" height="50" rx="12"/><text x="550" y="237">核对监听地址</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#refused">确认端口</a><a href="#denied">核对凭据</a><a href="#unexpected">核对监听地址</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="缩小" disabled>−</button><button type="button" data-zoom="in" aria-label="放大">+</button></div>
+</div></section>
+<section id="refused"><h2>连接失败或端口不对</h2>
+<p>回到启动 <code>opencode serve</code> 的终端，确认前台进程仍在运行。若原端口已占用，选一个空闲端口重启，并同步替换两条 curl 命令中的端口。OpenCode 2 的共享后台服务是另一个进程，要检查它时可运行 <code>opencode service status</code>。</p>
+</section>
+<section id="denied"><h2>输入密码后仍返回 401</h2>
+<p>确认请求的是自己刚启动的前台服务，Basic 用户名为 <code>opencode</code>，且进程启动时已传入密码。若在启动之后改了密码，停止这个前台进程，重新启动后再执行两条检查命令。</p><p>V2 优先用 <code>OPENCODE_PASSWORD</code>，2.4.1 实测旧变量 <code>OPENCODE_SERVER_PASSWORD</code> 仍可用。V2 的用户名固定为 <code>opencode</code>。V1 使用对应版本的服务接口和认证设置。<a href="https://opencode.ai/docs/migrate-v1/#server-authentication">OpenCode 官方认证迁移指南</a></p>
+</section>
+<section id="unexpected"><h2>无凭据返回 200 或不确定</h2>
+<p>如果 <code>/api/info</code> 无凭据也返回 200，或监听地址显示通配符，先停止自己启动的前台服务。用 <code>lsof</code> 核对进程和端口，明确绑定 <code>127.0.0.1</code> 并设密码后再启动。确认无凭据和有凭据分别返回 401、200 后，再用于实际项目。</p><p>遇到无法辨认的端口时，换空闲端口启动新的前台服务。如果刚才请求的是 <code>/</code>，改用 <code>/api/info</code> 复查。</p>
+</section>
+<section id="evidence"><h2>实测环境与来源</h2>
+<p>2026 年 11 月 28 日，在 Apple 芯片 Mac 上用两个临时配置目录运行 OpenCode 2.4.1，网络限制为回环访问。两个前台进程均仅监听 <code>127.0.0.1</code>。使用新旧任一密码变量时，无凭据、错误用户名和错误密码均返回 401，用户名 <code>opencode</code> 与正确密码返回 200。<a href="/evidence/opencode-serve/auth-check.json" download>下载状态码与监听结果</a>。</p>
+<p><a href="https://opencode.ai/docs/cli/web/">OpenCode Web 和前台服务文档</a> · <a href="https://opencode.ai/docs/api/">OpenCode API 文档</a> · <a href="/guides/opencode-shell-permissions/">OpenCode Shell 权限设置</a> · <a href="/projects/opencode/">OpenCode 项目评测</a></p>
+</section>
+</article>
+</main>
+</body>
+</html>

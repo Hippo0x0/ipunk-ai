@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode Serve Locally: Password, Port, and 401 Errors | iPunk AI Radar</title>
+<meta name="description" content="Start OpenCode 2 on 127.0.0.1, verify its listening address and password with curl, and troubleshoot 401 or connection refused.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-serve/">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/opencode-serve/">
+<link rel="alternate" hreflang="zh-CN" href="https://ai.ipunk.cn/guides/opencode-serve/">
+<link rel="alternate" hreflang="x-default" href="https://ai.ipunk.cn/guides/opencode-serve/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="OpenCode Serve Locally: Password, Port, and 401 Errors">
+<meta property="og:description" content="Start OpenCode 2 on 127.0.0.1, verify its listening address and password with curl, and troubleshoot 401 or connection refused.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/opencode-serve/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"OpenCode Serve Locally: Password, Port, and 401 Errors","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/opencode-serve/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="On this page"><a href="/guides/opencode-serve/" hreflang="zh-CN">简体中文</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>How to run OpenCode Serve on localhost</h1><p class="guide-answer">For OpenCode 2, bind <code>opencode serve</code> to <code>127.0.0.1</code> and set <code>OPENCODE_PASSWORD</code>. Check <code>/api/info</code> with curl. The local server should return <strong>401</strong> without credentials and <strong>200</strong> with the username <code>opencode</code> and your password.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#start">Start a local foreground server</a></li><li><a href="#auth">Verify the password and listening address</a></li><li><a href="#refused">Connection refused or wrong port</a></li><li><a href="#denied">401 with the correct password</a></li><li><a href="#unexpected">Unexpected 200 or unsure</a></li><li><a href="#evidence">Test setup and sources</a></li></ol></nav>
+<section id="start"><h2>Start a local foreground server</h2>
+<p>Use a scratch project in a Bash or Zsh terminal. Run <code>opencode --version</code> first. These commands start a separate foreground server on port 4096. Choose another unused port if 4096 is occupied.</p>
+<pre><code>IFS= read -rs OPENCODE_PASSWORD
+OPENCODE_PASSWORD="$OPENCODE_PASSWORD" opencode serve --hostname 127.0.0.1 --port 4096</code></pre>
+<p>After entering the first command, type a fresh password and press Enter. The terminal hides your input. Keep that terminal open and keep its startup output private, since it can display the password. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to stop the server, then run <code>unset OPENCODE_PASSWORD</code> in that shell.</p>
+<p>For same-machine access, use the loopback bind even when you set a password. The API controls a process that can access project files and run tools as its host user. Plain HTTP Basic auth provides no transport encryption.</p>
+</section>
+<section id="auth"><h2>Verify the password and listening address</h2>
+<p>Open a second terminal. The second curl command prompts for your password so it stays out of the command line.</p>
+<pre><code>curl --noproxy '*' -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:4096/api/info
+curl --noproxy '*' -sS -o /dev/null -w '%{http_code}\n' -u opencode http://127.0.0.1:4096/api/info</code></pre>
+<p>Expect <strong>401</strong> and <strong>200</strong>, in that order. On macOS, run <code>lsof -nP -iTCP:4096 -sTCP:LISTEN</code>. Check that the OpenCode listener reads <code>127.0.0.1:4096</code>. A successful HTTP check alone says nothing about the other addresses the process listens on.</p>
+</section>
+<section class="guide-decision"><h2>What did curl return?</h2>
+<div class="decision" data-flow><div class="flow-viewport" tabindex="0" aria-label="What did curl return?"><svg class="flow-svg" viewBox="0 0 660 265" role="group" aria-label="What did curl return?">
+<defs><marker id="serve-arrow-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="refused" d="M330 101 C330 155 110 155 110 202" marker-end="url(#serve-arrow-en)"/>
+<path data-edge="denied" d="M330 101 C330 155 330 155 330 202" marker-end="url(#serve-arrow-en)"/>
+<path data-edge="unexpected" d="M330 101 C330 155 550 155 550 202" marker-end="url(#serve-arrow-en)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What did curl return?"><path class="node-shape" d="M330 5L492 53L330 101L168 53Z"/><text x="330" y="60" text-anchor="middle">What did curl return?</text></g>
+<g text-anchor="middle">
+<text x="110" y="180" stroke="#fff" stroke-width="7" paint-order="stroke">No connection</text>
+<g data-node="refused" role="button" tabindex="0" aria-pressed="false" aria-label="Check the port"><rect class="node-shape" x="11" y="206" width="198" height="50" rx="12"/><text x="110" y="237">Check the port</text></g>
+<text x="330" y="180" stroke="#fff" stroke-width="7" paint-order="stroke">Still 401</text>
+<g data-node="denied" role="button" tabindex="0" aria-pressed="false" aria-label="Check credentials"><rect class="node-shape" x="231" y="206" width="198" height="50" rx="12"/><text x="330" y="237">Check credentials</text></g>
+<text x="550" y="180" stroke="#fff" stroke-width="7" paint-order="stroke"><tspan x="550" y="170">Unexpected 200</tspan><tspan x="550" y="192">or unsure</tspan></text>
+<g data-node="unexpected" role="button" tabindex="0" aria-pressed="false" aria-label="Verify the listener"><rect class="node-shape" x="451" y="206" width="198" height="50" rx="12"/><text x="550" y="237">Verify the listener</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#refused">Check the port</a><a href="#denied">Check credentials</a><a href="#unexpected">Verify the listener</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="refused"><h2>Connection refused or wrong port</h2>
+<p>Check the terminal where you started <code>opencode serve</code> and confirm it is still running. If the port is taken, choose another unused port when restarting and change the port in both curl commands. In OpenCode 2, the shared background service is a separate process. Use <code>opencode service status</code> if that was the instance you meant to inspect.</p>
+</section>
+<section id="denied"><h2>401 with the correct password</h2>
+<p>Confirm the URL points to your foreground server, the Basic username is exactly <code>opencode</code>, and the password was available when that process started. If you changed it afterward, stop and restart that foreground process and repeat both checks.</p><p>In V2, prefer <code>OPENCODE_PASSWORD</code>. The older <code>OPENCODE_SERVER_PASSWORD</code> also worked in 2.4.1. V2 uses the fixed username <code>opencode</code>. For V1, use its own server API and authentication settings. <a href="https://opencode.ai/docs/migrate-v1/#server-authentication">OpenCode authentication migration guide</a></p>
+</section>
+<section id="unexpected"><h2>Unexpected 200 or unsure</h2>
+<p>If <code>/api/info</code> returns 200 without credentials or the listener reports a wildcard address, stop the foreground process you started. Confirm the process and port with <code>lsof</code>, then restart explicitly on <code>127.0.0.1</code> with a password. Test that unauthenticated and authenticated requests now give 401 and 200 before using it in a real project.</p><p>For a port you cannot identify, run the tests against a fresh foreground server on an unused port. If you ran curl against <code>/</code>, repeat the check against <code>/api/info</code>.</p>
+</section>
+<section id="evidence"><h2>Test setup and sources</h2>
+<p>Tested OpenCode 2.4.1 on Apple Silicon macOS on November 28, 2026, using two temporary profiles with networking restricted to loopback. Each foreground process listened on <code>127.0.0.1</code>. With either password variable, no credentials, a wrong username and a wrong password each returned 401. The configured password with username <code>opencode</code> returned 200. <a href="/evidence/opencode-serve/auth-check.json" download>Download the status and listener results</a>.</p>
+<p><a href="https://opencode.ai/docs/cli/web/">OpenCode Web and standalone server</a> · <a href="https://opencode.ai/docs/api/">OpenCode API reference</a> · <a href="/en/guides/opencode-shell-permissions/">OpenCode Shell permissions</a> · <a href="/en/projects/opencode/">OpenCode project review</a></p>
+</section>
+</article>
+</main>
+</body>
+</html>

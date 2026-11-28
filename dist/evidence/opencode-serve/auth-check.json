@@ -1,0 +1,28 @@
+{
+  "version": "opencode v2.4.1",
+  "platform": "macOS arm64",
+  "date": "2026-11-28",
+  "route": "/api/info",
+  "results": [
+    {
+      "environmentVariable": "OPENCODE_PASSWORD",
+      "listeners": [
+        "127.0.0.1:<port>"
+      ],
+      "noCredentials": 401,
+      "wrongPassword": 401,
+      "wrongUsername": 401,
+      "suppliedPassword": 200
+    },
+    {
+      "environmentVariable": "OPENCODE_SERVER_PASSWORD",
+      "listeners": [
+        "127.0.0.1:<port>"
+      ],
+      "noCredentials": 401,
+      "wrongPassword": 401,
+      "wrongUsername": 401,
+      "suppliedPassword": 200
+    }
+  ]
+}
