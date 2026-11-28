@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-28",
+  "browser": "158.0.8127.90",
+  "source": {
+    "width": 640,
+    "height": 360,
+    "duration": 4,
+    "audioTracks": 1,
+    "bytes": 47993
+  },
+  "trim": {
+    "start": 1,
+    "end": 3,
+    "width": 640,
+    "height": 360,
+    "duration": 2.008,
+    "audioTracks": 1,
+    "bytes": 24005
+  },
+  "crop": {
+    "aspect": "9:16",
+    "position": "center",
+    "width": 198,
+    "height": 352,
+    "duration": 2.008,
+    "audioTracks": 1,
+    "bytes": 26846
+  },
+  "mute": {
+    "width": 198,
+    "height": 352,
+    "duration": 2,
+    "audioTracks": 0,
+    "bytes": 8125
+  },
+  "audioCheck": "No audio track found.",
+  "scope": "Synthetic source on localhost. This records one input and output chain.",
+  "playback": {
+    "duration": 2,
+    "width": 198,
+    "height": 352,
+    "reachedEnd": true
+  }
+}
