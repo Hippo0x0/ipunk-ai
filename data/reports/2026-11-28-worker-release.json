@@ -1,0 +1,475 @@
+{
+  "source_commit": "c7f727652b8f4ea58a28a2befa978388544919c1",
+  "worker": "ipunk-ai",
+  "version": "04c0e81a-635b-438c-91a7-13acf03ed7a8",
+  "checked_at": "2026-11-28T02:38:49.865Z",
+  "canonical_page_count": 49,
+  "asset_count": 13,
+  "verified_count": 62,
+  "unknown_route_status": 404,
+  "checks": [
+    {
+      "path": "/en/projects/opencode/",
+      "status": 200,
+      "sha256": "ecd26aad1902adbc1d18de7d88aa5b137e754fad8a9f3a4f228fb6ff37d448bb",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/projects/rea/",
+      "status": 200,
+      "sha256": "5d5fd5fd44c0b8b2cd622db2f6d833fcac5e926c1d7377844cda77d5f32ba56c",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "sha256": "d34765bb15ce25484557c1ee189918b721c873922e41953b9d608d37cdb39b28",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/",
+      "status": 200,
+      "sha256": "b8576f903ffed1488ccce94d112c0a4fed6338c750e46b1aa76b4a9f2afae951",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/rea/",
+      "status": 200,
+      "sha256": "0512c80241baba966e23de88133cf1ccbe88158c5415bb6cdb1b7f0498818a50",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/openclaw/",
+      "status": 200,
+      "sha256": "d6ed9926a2e8db3c27cb7f5e1f6420d0b98ed6ef7f1225c11d9ec47a039f4fc9",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/guides/mac-mini-m4-qwen-local-benchmark/",
+      "status": 200,
+      "sha256": "8d0549205bc372ad699241da5bba6523fcf7c0e3845c02fa85020d049e0943f8",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/jev/",
+      "status": 200,
+      "sha256": "a38b19bb334619de665949e0f80aab68f7cc50ba9ddd65c09f7d35aed1aaee4e",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/gemini-cli/",
+      "status": 200,
+      "sha256": "88a500ef5a62c3dd62604d5d26abc80fb223073a9977973793cdffb55bd1b30a",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/browser-use/",
+      "status": 200,
+      "sha256": "395eaec6638835fa9bd1cad9a042cdd61005fd110d8e0c10b3fe0790b4dfd982",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/markitdown/",
+      "status": 200,
+      "sha256": "0423c4560c05debafa20292a673837a7764b8086341c79d71c8c1dfd9de3fcd0",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/claude-code/",
+      "status": 200,
+      "sha256": "d7c4f69f08f4a1756952fbcca289c8606ee37f12fee90c031560ee97b58a883a",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/codex-cli/",
+      "status": 200,
+      "sha256": "2490f4e2b837f887fc2466b32c33130327b76c150df81e260df3863f5efc1bb8",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/qwen-code/",
+      "status": 200,
+      "sha256": "43c528676bc2ac1a047af66c61ccf683e2eddbd37a0455b2929d5283307ceb90",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/opencode/",
+      "status": 200,
+      "sha256": "4ed802e737dfea2513d50e7c7aabca6657e5c1512d2ae56007f1fa79c9e1a4ae",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/cline/",
+      "status": 200,
+      "sha256": "4e57c13f23a58a92c3585b5a91e37dfe37462d77395b4962896fde131af6565b",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/projects/deepseek-harness/",
+      "status": 200,
+      "sha256": "47ed587a49e7cf38ef7e58e2541475af4513b5ee2dd0c98aae548f45f26d5444",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/guides/gemini-cli-vs-claude-code-vs-codex/",
+      "status": 200,
+      "sha256": "fe31084bc63829bd96234303009be0447b6b7c2af42192c64bb5706f9750b2cd",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/guides/roo-code-shutdown-alternatives/",
+      "status": 200,
+      "sha256": "73e9c4e504512e138ab5decb234a6138086272cb6e761801115f04c39efb9e39",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/guides/ai-coding-agent-security/",
+      "status": 200,
+      "sha256": "508ef669b0d879748ba3ef94753cabf4564012ed95636dd98b8c67fad1bd15ab",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/trends/",
+      "status": 200,
+      "sha256": "56ce770b1fa7204a694e3307ae0bdd1a3fafa99901c43b7d3e1ae3f6d4961554",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/compare/",
+      "status": 200,
+      "sha256": "1daa77fee8af5e52cfdd65b53c4c609e5f64511af9951e77bc9cb0282de8769d",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/choose/",
+      "status": 200,
+      "sha256": "625d12203406ab9271f931a91ea2a6012c848ee8f4e51f6751823e352333682d",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/methodology/",
+      "status": 200,
+      "sha256": "3eab9d659b80f8c498ba0a516fa097f80f4115d8ec1207859bffdb7e3f78eeb2",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/guides/nvidia-server-gpu-comparison/",
+      "status": 200,
+      "sha256": "7dfcc172c30de552dd42c3130adb5c484ae2ad2e3e54cef874d9e14dbc4a755d",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/opencode-go-limits/",
+      "status": 200,
+      "sha256": "dab5aca864a6d527f11d661427d4729464182032634f4dca18ead4d5d5432b9d",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/opencode-skills-not-loading/",
+      "status": 200,
+      "sha256": "91048ad5a07517c4beef7b7b3fbe3b7fb442f62e3d42107efbec9eaa3aeb2f24",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/opencode-plugins-not-loading/",
+      "status": 200,
+      "sha256": "e01c2e20f5667c9aefb220602ef35919e2711237698405be2e2a51cd6f4edf46",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/best-ai-video-generator/",
+      "status": 200,
+      "sha256": "70c9dfead73b48b17f41c640ef4b38cbf39b61959ba80d6e65da4725f8915a45",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/canva-ai-video-generator/",
+      "status": 200,
+      "sha256": "18ba1ecfc6709619a0fd3817ff9d7838ce2953524e363f133c110a31f59b4f8f",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/image-to-video-ai-free/",
+      "status": 200,
+      "sha256": "37dc380816e51203d7e894d3e6395ad86883967ec9da74b6b67f7794c9d7d289",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/video-compressor/",
+      "status": 200,
+      "sha256": "82c5d0554f840163109beedfcb44dcec5d84d500e42c6ef066b92fb4d362811d",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/extract-audio-from-video/",
+      "status": 200,
+      "sha256": "94b85897042e39a7e2ba29a67d5aa582292d2691d94538bab6663d3441df3a07",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/video-to-gif/",
+      "status": 200,
+      "sha256": "510e97d57412478d1bf56d386021d97cf59f40e3d7e81993341b58ef558b4394",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/video-converter/",
+      "status": 200,
+      "sha256": "1b9632bb2f5a90f22ac7f2d2e64f81c8000ac880ded479f4c09a00405c8699fb",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/crop-video/",
+      "status": 200,
+      "sha256": "a4a49e5efa7158e8f531bd3e9a2348f07169d5ec9ca6555050980366ced98cb8",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/claude-vs-chatgpt/",
+      "status": 200,
+      "sha256": "4fb593959d23e74f3c8484fd180928fc71baa29f5528241516b35e36bdb6767a",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/perplexity-vs-chatgpt/",
+      "status": 200,
+      "sha256": "2a55c3c5afb70962fce085d15d2db21bd3782c96227d375d87ec71c63fe90444",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/gemini-vs-chatgpt/",
+      "status": 200,
+      "sha256": "086a99859baefc09b797352ec9f85b3976791aecdba560f50b3aed220686bcd2",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/privacy/",
+      "status": 200,
+      "sha256": "a5ea0677e0c1168bdb4e0ec7c7192022bf033d05fd634f58470e445e89f5cbb4",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/privacy/",
+      "status": 200,
+      "sha256": "b67a1bddf96fd9769da206701b40e684e6213be1c854a1e08b34abf0cd282503",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/best-ai-image-generator/",
+      "status": 200,
+      "sha256": "54b4aaed9064c82e21a08b1d1f81dd48abc08cf26362864f87ff882aff6fc536",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/chatgpt-alternatives/",
+      "status": 200,
+      "sha256": "16664b074b9dce71df48c23ce86095f57513721731fc73fcc19834b50bd78aef",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/claude-code-vs-cursor/",
+      "status": 200,
+      "sha256": "3713d46c2912b42ecc5f56fca90042fee8b28566149afa6674632a82635c2855",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/ollama-vs-lm-studio/",
+      "status": 200,
+      "sha256": "430d6cf0066a4c4d15a2683bf75b3fff2f8d3391716f1180976959830f5a6e31",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/ollama-context-length/",
+      "status": 200,
+      "sha256": "e68a77b21148060fc6fa6446a6d78dcbfe3799dea09b48365ed80f6f812a058f",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/codex-token-usage/",
+      "status": 200,
+      "sha256": "863045c07250a8e52fb724cff8e330fce1ae05ce65b7b4b97bca6113e6f11d25",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/run-llm-locally/",
+      "status": 200,
+      "sha256": "22fa705f5653e041aa5fb65e003e59b13ed65e614756a831a5aa9fde8b4f6966",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/en/guides/codex-usage-limits/",
+      "status": 200,
+      "sha256": "0c1819d718cacc61877024f634f4ff0b0c4a33dc08e95ac277e1317e4b24f412",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "sha256": "0dbbcd2e5b00e60a10cbeba41776debab8e42a3ba62e3abde886365a274e69c2",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "sha256": "269232de9a95075995ae431d428217a564c00f2854338ef76fb02026840364eb",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/data/projects.json",
+      "status": 200,
+      "sha256": "97e296985444bd8ce33657cbdf26637b276c545e6df85efcc92f33036bec364e",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/data/timeline.json",
+      "status": 200,
+      "sha256": "e9779de8ee9e12ad86f0bbb59528427c499b70e1bcadbe4bf23b94a004617680",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/analytics.mjs",
+      "status": 200,
+      "sha256": "76cc022bc9b60ae7494279383308399a082860e42f6e5573b7ed5713b7e90aa4",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/analytics-config.json",
+      "status": 200,
+      "sha256": "b4b7e31b7e9bc853b74f4a1d3b0b7896e2b9ae2b6dab513c5c8801348dbf96de",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/analytics-core.mjs",
+      "status": 200,
+      "sha256": "8c6e18caf4d2cf7772395f3335e9a60de39b0609de6ce65b9029c76962628c2c",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/analytics-events.mjs",
+      "status": 200,
+      "sha256": "4bc5595b6614b74a59f1f09be626e5122624c46e37d14d7bcfa8ccd757b2529d",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/posthog-sdk.mjs",
+      "status": 200,
+      "sha256": "98c23055c6cfc28710b540b5dd8121f8c2622e98b5525cf9a05379d7d5e49771",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/guide-flow.js",
+      "status": 200,
+      "sha256": "5288014ad31e31aa4248cebbf84a1e0e759d7dfb070526f80d3bdd62bc3d003b",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/guides.css",
+      "status": 200,
+      "sha256": "c2769e97e3f1541d736cfcf88ba4262aa0bf4d78575338b50c880ad50b90f854",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/evidence/local-first/ollama-first-request.json",
+      "status": 200,
+      "sha256": "2f1b940494af967f4df50d449cfa71ef0f969173482799245484f686cd1f1f2f",
+      "matches": true,
+      "indexBlock": false
+    },
+    {
+      "path": "/evidence/codex-limits/read-only-check.json",
+      "status": 200,
+      "sha256": "34a7f6544d20f421e3e5b2214e55762ebe90655e7b81c113024038115090f33a",
+      "matches": true,
+      "indexBlock": false
+    }
+  ],
+  "deployment": {
+    "id": "206094a6-43f3-42cc-aa7d-0f08dea6e227",
+    "created_on": "2026-11-28T02:38:22.159667Z",
+    "versions": [
+      {
+        "version_id": "04c0e81a-635b-438c-91a7-13acf03ed7a8",
+        "percentage": 100
+      }
+    ]
+  },
+  "verified_preview_pages": 2,
+  "internal_analytics_exclusion": {
+    "configured_on_robots_before_navigation": true,
+    "tested_pages": [
+      "/en/guides/run-llm-locally/",
+      "/en/guides/codex-usage-limits/"
+    ],
+    "posthog_or_sdk_requests": 0,
+    "production_ingestion_tested": false
+  },
+  "search_console_at_release": {
+    "property": "https://ai.ipunk.cn/",
+    "status": "URL is unknown to Google",
+    "paths": [
+      "/en/guides/run-llm-locally/",
+      "/en/guides/codex-usage-limits/"
+    ],
+    "indexing_request_confirmed": false
+  }
+}
