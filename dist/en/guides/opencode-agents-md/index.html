@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode AGENTS.md Rules and Loading Order | iPunk AI Radar</title>
+<meta name="description" content="Find where OpenCode loads AGENTS.md, check nested rules and CLAUDE.md fallback, and see the order recorded in OpenCode 2.4.1.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-agents-md/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="OpenCode AGENTS.md Rules and Loading Order">
+<meta property="og:description" content="Check which global, repository and nested instructions reach the next OpenCode request.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/opencode-agents-md/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"OpenCode AGENTS.md Rules and Loading Order","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/opencode-agents-md/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#location">Find your rules</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>How OpenCode Loads AGENTS.md Rules</h1>
+<p class="guide-answer">Put repository-wide instructions in <code>AGENTS.md</code> at the project root. Use a nested file for guidance specific to that folder and <code>~/.config/opencode/AGENTS.md</code> for user-wide rules. OpenCode 2 combines the files it discovers. Check the version and workspace directory first when a rule is missing.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#location">Place global and project rules</a></li>
+<li><a href="#missing">Diagnose missing rules</a></li>
+<li><a href="#fallback">Check CLAUDE.md fallback</a></li>
+<li><a href="#configured">Add instructions through configuration</a></li>
+<li><a href="#update">Edit rules during a session</a></li>
+<li><a href="#test">See the OpenCode 2.4.1 results</a></li>
+</ol></nav>
+
+<section class="guide-decision"><h2>What do you need to check?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="OpenCode project rules decision tree">
+<svg class="flow-svg" viewBox="0 0 660 280" role="group" aria-label="Choose how to check OpenCode instructions">
+<defs><marker id="opencode-rules-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="missing" d="M330 103 C330 151 110 134 110 205" marker-end="url(#opencode-rules-arrow)"/>
+<path data-edge="fallback" d="M330 103 L330 205" marker-end="url(#opencode-rules-arrow)"/>
+<path data-edge="location" d="M330 103 C330 151 550 134 550 205" marker-end="url(#opencode-rules-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What do you need to check?"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">Rules status?</text></g>
+<g text-anchor="middle">
+<rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">Rule missing</text>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">Using CLAUDE.md</text>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">New / not sure</text>
+<g data-node="missing" role="button" tabindex="0" aria-pressed="false" aria-label="Check the workspace directory"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">Check workspace</text></g>
+<g data-node="fallback" role="button" tabindex="0" aria-pressed="false" aria-label="Check the fallback file"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">Check fallback</text></g>
+<g data-node="location" role="button" tabindex="0" aria-pressed="false" aria-label="Find the right rules file"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">Place the file</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#missing">Check workspace</a><a href="#fallback">Check fallback</a><a href="#location">Place the file</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+<section id="location">
+<h2>Where to put an OpenCode AGENTS.md file</h2>
+<p>Keep the root file focused on shared rules, such as how to build the project and what to verify. Put package-specific commands in that package. Use the global configuration directory only for instructions that should reach projects across your machine. Find its actual path with <code>opencode debug paths</code>.</p>
+<pre><code># Project instructions
+- Use the package scripts for builds and checks.
+- Run the affected package's tests after editing its code.
+- Change source files and regenerate build output where needed.</code></pre>
+<p>OpenCode 2 starts with the global instructions and then reads files along the directory path upward from the workspace. The official guide places the boundary at home for workspaces within home, and at the project root for workspaces outside home. In our outside-home test, the global file appeared before the nested file and then the root file. A file above the repository root was absent.</p>
+</section>
+
+<section id="missing">
+<h2>When OpenCode seems to ignore AGENTS.md</h2>
+<ol><li>Check <code>opencode --version</code> and where OpenCode started. In a monorepo, open the package directly to load its instructions at the start of the request.</li>
+<li>Check the exact file name, the location your OpenCode service uses and the files on the path from the workspace upward. A descendant folder can contribute later when the agent explores that folder. Our root-start test did not load descendant rules on the initial request.</li>
+<li>Check whether the process started with <code>OPENCODE_DISABLE_PROJECT_CONFIG=1</code>. OpenCode documents that it skips project discovery while retaining global instructions. For files configured explicitly, <a href="/en/guides/opencode-config/">check which settings files were actually loaded</a>.</li></ol>
+<p>Keep instructions compatible across scopes. OpenCode combines them and leaves any conflicting wording for the model to interpret. Use <a href="/en/projects/opencode/#permission-start">OpenCode permissions</a> for actions that must require approval or be denied.</p>
+</section>
+
+<section id="fallback">
+<h2>When OpenCode uses CLAUDE.md</h2>
+<p>In OpenCode 2, a folder with both names uses its <code>AGENTS.md</code>. A different folder that has only <code>CLAUDE.md</code> can still contribute its own rules. With no global <code>AGENTS.md</code>, OpenCode can read <code>~/.claude/CLAUDE.md</code>.</p>
+<p>To skip that fallback in OpenCode 2, set <code>OPENCODE_DISABLE_CLAUDE_CODE_PROMPT=1</code> for the server and restart it. Our isolated test excluded both the global and project <code>CLAUDE.md</code> markers while retaining native OpenCode files. V1 used a different lookup rule. Check the <a href="https://opencode.ai/docs/migrate-v1/">migration guide</a> if you still use V1.</p>
+</section>
+
+<section id="configured">
+<h2>Add extra rule files through opencode.jsonc</h2>
+<p>Use <code>instructions</code> to include an existing guide. Add the entry to your current config and keep other settings.</p>
+<pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["docs/team.md"]
+}</code></pre>
+<p>Relative paths are resolved from the workspace upward toward the project root. OpenCode also documents glob patterns and absolute paths. In our test, <code>docs/team.md</code> appeared after the discovered files. Keep credentials and private data outside instruction files because the selected model provider can receive their content.</p>
+</section>
+
+<section id="update">
+<h2>Check instruction updates in an existing session</h2>
+<p>OpenCode detects supported instruction file changes before the next prompt. In our test, editing the package file and continuing the same session in a new CLI invocation added the new marker to the next request. The old marker was still visible in the same request history. If earlier instructions would confuse a fresh test, start a new session from the target directory.</p>
+<p>To make sure you are continuing the intended session, <a href="/en/guides/opencode-resume/">check the OpenCode session ID and its history</a>.</p>
+</section>
+
+<section id="test">
+<h2>Which files reached OpenCode 2.4.1?</h2>
+<div class="video-table"><table>
+<thead><tr><th scope="col">Starting directory</th><th scope="col">Markers in request order</th></tr></thead>
+<tbody>
+<tr><td>Repository root</td><td>Global → root → configured file</td></tr>
+<tr><td><code>packages/web</code></td><td>Global → web → packages fallback → root → configured file</td></tr>
+<tr><td><code>packages/web/deep</code></td><td>Global → deep → web → packages fallback → root → configured file</td></tr>
+</tbody></table></div>
+<p>We ran the macOS arm64 CLI in temporary workspaces with loopback-only networking. A synthetic provider captured only the published markers and returned fixed text. The test measures what OpenCode sent. Later tool-driven file discovery and model compliance were outside the test.</p>
+<p><a href="/evidence/opencode-instructions/observations.json" download>Download the six instruction checks</a>. See <a href="https://opencode.ai/docs/instructions">OpenCode’s instruction file documentation</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

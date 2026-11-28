@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-28",
+  "platform": "macOS arm64",
+  "version": "2.4.1",
+  "scope": "OpenCode CLI sends real requests to a loopback fixture; network restricted to loopback. Model reply fixed. Values are synthetic markers in actual requests.",
+  "case_results": [
+    {
+      "case": "root",
+      "request_marker_sequences": [
+        [],
+        [
+          "GLOBAL",
+          "ROOT",
+          "CONFIGURED"
+        ]
+      ]
+    },
+    {
+      "case": "nested",
+      "request_marker_sequences": [
+        [],
+        [
+          "GLOBAL",
+          "WEB",
+          "PACKAGE_CLAUDE",
+          "ROOT",
+          "CONFIGURED"
+        ]
+      ]
+    },
+    {
+      "case": "deep",
+      "request_marker_sequences": [
+        [],
+        [
+          "GLOBAL",
+          "DEEP",
+          "WEB",
+          "PACKAGE_CLAUDE",
+          "ROOT",
+          "CONFIGURED"
+        ]
+      ]
+    },
+    {
+      "case": "no_global_agents",
+      "request_marker_sequences": [
+        [],
+        [
+          "GLOBAL_CLAUDE",
+          "WEB",
+          "PACKAGE_CLAUDE",
+          "ROOT",
+          "CONFIGURED"
+        ]
+      ]
+    },
+    {
+      "case": "claude_fallback_disabled",
+      "request_marker_sequences": [
+        [],
+        [
+          "WEB",
+          "ROOT",
+          "CONFIGURED"
+        ]
+      ]
+    },
+    {
+      "case": "updated_existing_session",
+      "same_session": true,
+      "request_marker_sequences": [
+        [
+          "GLOBAL",
+          "WEB",
+          "PACKAGE_CLAUDE",
+          "ROOT",
+          "CONFIGURED",
+          "WEB_UPDATED"
+        ]
+      ]
+    }
+  ]
+}

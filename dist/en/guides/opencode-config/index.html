@@ -84,6 +84,7 @@ opencode debug config --standalone</code></pre>
 <p>Run this from the same folder and look up the agent ID you actually use, such as <code>build</code>.</p>
 <pre><code>opencode debug agents --standalone</code></pre>
 <p>In the output, check the agent’s <code>model</code> object if it has an explicit agent-specific model. In this release, it contains the model ID and provider ID. The source report answers which files contributed. The agent report lets you check the final merged agent setting. If your command or session uses a separately selected model, verify that selection and endpoint where you run it.</p>
+<p>For project guidance, <a href="/en/guides/opencode-agents-md/">check which AGENTS.md files reach an OpenCode request</a>.</p>
 <p>If you are trying to reopen history, check the <a href="/en/guides/opencode-resume/">original OpenCode session and project</a>.</p>
 <p>The tests below compare an explicit <code>agents.build.model</code> setting. To diagnose plugin or MCP loading, use the <a href="/en/guides/opencode-plugins-not-loading/">plugin loading</a> or <a href="/en/guides/opencode-mcp-server/">MCP connection guide</a>.</p>
 </section>
