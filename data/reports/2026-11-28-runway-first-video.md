@@ -7,3 +7,11 @@
 核对 [Runway Free](https://help.runwayml.com/hc/en-us/articles/50404627334547-Free-plan-details)、[Gen-4 Turbo](https://help.runwayml.com/hc/en-us/articles/37327109429011-Creating-with-Gen-4-Video)、[Gen-4.5](https://help.runwayml.com/hc/en-us/articles/46974685288467-Creating-with-Gen-4-5) 和[定价页](https://runway.com/pricing)。Free 是一次 125 credits，视频带水印，实时模型按账户面板查。Turbo 帮助列 25/50 credits，但公开定价页 Standard 的 Turbo 时长示例与帮助费率不一致。页面用清楚标明来源的预设，可按面板输入实际价格，不保证免费账户有 Turbo。
 
 保留自制 640×360 试做图片供下载。本轮测试了本地计算器与交互，没有登录 Runway、调用生成、消耗额度或购买。桌面 1440px 和手机 390px 验证混合时长、额度不足、改价、折叠区中的无效输入、键盘分流、跳转和横向溢出。禁用 JavaScript后核对静态示例、分流链接及图片下载。部署、普通抓取和可比搜索效果分别记录。
+
+## 正式交付
+
+GitHub `main` 的 `4423481` 通过 87 项测试，站点检查覆盖 53 个 HTML 和 287 处静态资源引用。预览连接曾出现短暂 TLS 错误，重试后正式切换前已核对新页面逐字节一致。Worker 版本 `a5707f2f-a859-446f-a287-fe5080b6c943` 于北京时间 11:08 承接全部流量，部署号 `5299365d-3e4b-4f7c-90f1-4c426c3f3aa4`。正式域 12 处页面、入口、工具模块和下载样本均 HTTP 200 且与发版文件一致，未见禁止索引的响应头。检查采用直接 HTTP，无浏览器统计。
+
+Search Console 的精确站点资源确认新 URL 入优先抓取队列，普通抓取和曝光点击待验收。[网址检查](https://search.google.com/u/1/search-console/inspect?resource_id=https%3A%2F%2Fai.ipunk.cn%2F&id=mWIXmRE4qPnaXB4lSiauRA&hl=zh-CN)
+
+本轮开始时，之前已提交的 Codex 用量指南已从抓取未收录变为已收录，Google 规范 URL 与声明一致，普通抓取时间仍是北京时间 10:44:14。OpenCode 与 Ollama 指南在该次检查仍未识别。两者尚无完整上线后曝光和点击数据。
