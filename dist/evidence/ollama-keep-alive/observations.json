@@ -1,0 +1,90 @@
+{
+  "date": "2026-11-28",
+  "platform": "macOS 26.4.1 arm64, Apple M4",
+  "server_version": "0.40.18",
+  "settings": {
+    "OLLAMA_KEEP_ALIVE": "6s",
+    "OLLAMA_MAX_LOADED_MODELS": 1,
+    "OLLAMA_NUM_PARALLEL": 1
+  },
+  "method": "Isolated local server and model store. Polled /api/ps about every 100 ms. Durations measured from completed HTTP response.",
+  "observations": {
+    "server_default": {
+      "generation": {
+        "done": true,
+        "done_reason": "load",
+        "load_duration": null,
+        "eval_count": null
+      },
+      "loaded_immediately": [
+        "keep-chat:latest"
+      ],
+      "seconds_to_disappear": 6.02
+    },
+    "request_override": {
+      "keep_alive": "2s",
+      "generation": {
+        "done": true,
+        "done_reason": "load",
+        "load_duration": null,
+        "eval_count": null
+      },
+      "loaded_immediately": [
+        "keep-chat:latest"
+      ],
+      "seconds_to_disappear": 2.04
+    },
+    "cold_and_warm": {
+      "cold": {
+        "done": true,
+        "done_reason": "stop",
+        "load_duration": 270397333,
+        "eval_count": 2
+      },
+      "warm": {
+        "done": true,
+        "done_reason": "stop",
+        "load_duration": 617666,
+        "eval_count": 2
+      },
+      "keep_alive": "30s"
+    },
+    "unload_request": {
+      "keep_alive": 0,
+      "loaded_before": [
+        "keep-chat:latest"
+      ],
+      "generation": {
+        "done": true,
+        "done_reason": "unload",
+        "load_duration": null,
+        "eval_count": null
+      },
+      "seconds_to_disappear": 0.01
+    },
+    "negative_duration_and_eviction": {
+      "keep_alive": -1,
+      "generation": {
+        "done": true,
+        "done_reason": "load",
+        "load_duration": null,
+        "eval_count": null
+      },
+      "loaded_after_7s": [
+        "keep-chat:latest"
+      ],
+      "loaded_after_embedding_request": [
+        "keep-embed:latest"
+      ]
+    },
+    "stop_command": {
+      "tag": "keep-embed:latest",
+      "seconds_to_disappear": 0.0,
+      "loaded_after": [],
+      "tags_still_installed": [
+        "keep-chat:latest",
+        "keep-embed:latest"
+      ]
+    }
+  }
+}

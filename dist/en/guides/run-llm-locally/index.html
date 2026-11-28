@@ -55,7 +55,7 @@ ollama list</code></pre>
     "keep_alive": "60s"
   }'
 ollama ps</code></pre>
-<p>Look for the requested tag in <code>ollama ps</code>. Its processor column describes where Ollama loaded the model. <a href="/en/guides/ollama-gpu/">Compare CPU, GPU and split readings</a> if the placement is unexpected. A different reply can still confirm execution if the request completed and the model appears in the running list. To free memory after the test, run <code>ollama stop qwen2.5:0.5b</code> once no other work needs that model. The model stays downloaded. To remove downloaded files, <a href="/en/guides/delete-ollama-model/">delete the exact Ollama tag and check disk use</a>.</p>
+<p>Look for the requested tag in <code>ollama ps</code>. Its processor column describes where Ollama loaded the model. <a href="/en/guides/ollama-gpu/">Compare CPU, GPU and split readings</a> if the placement is unexpected. <a href="/en/guides/ollama-stop-keep-alive/">Control how long this model stays loaded</a>. A different reply can still confirm execution if the request completed and the model appears in the running list. To free memory after the test, run <code>ollama stop qwen2.5:0.5b</code> once no other work needs that model. The model stays downloaded. To remove downloaded files, <a href="/en/guides/delete-ollama-model/">delete the exact Ollama tag and check disk use</a>.</p>
 <p>For a stronger local-only check, finish downloading first, then repeat the request with your Mac disconnected from its external networks if doing so will not interrupt other work. Keep the request pointed at loopback, the address that refers to this Mac. This checks whether that request works without an internet connection.</p>
 </section>
 <section id="diagnose" class="guide-decision">

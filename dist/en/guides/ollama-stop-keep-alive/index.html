@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama stop and keep_alive: Unload a Model or Keep It Ready | iPunk AI Radar</title>
+<meta name="description" content="Unload one Ollama model with ollama stop, set keep_alive per request, and verify which models are loaded. See a tested limit that can evict a model.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-stop-keep-alive/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Ollama stop and keep_alive: Unload a Model or Keep It Ready">
+<meta property="og:description" content="Release memory, control idle time, and verify the loaded model with ollama ps.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/ollama-stop-keep-alive/"><meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Ollama stop and keep_alive: Unload a Model or Keep It Ready","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/ollama-stop-keep-alive/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#stop">Unload a model</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama stop and keep_alive</h1>
+<p class="guide-answer">Run <code>ollama stop MODEL:TAG</code> to unload one model from memory, then use <code>ollama ps</code> to confirm it disappeared. Its downloaded files remain available. For repeated API calls, set <code>keep_alive</code> in the request to control idle time. Use <code>0</code> for immediate unloading.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#stop">Unload one model now</a></li>
+<li><a href="#keep">Set how long a model stays loaded</a></li>
+<li><a href="#verify">Check what actually stayed in memory</a></li>
+<li><a href="#measured">Compare measured settings and eviction</a></li>
+</ol></nav>
+<section id="diagnose" class="guide-decision"><h2>What should happen to the model?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Choose an Ollama model lifetime">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Ollama memory lifetime decision tree">
+<defs><marker id="keep-alive-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="stop" d="M330 104 C330 147 110 143 110 218" marker-end="url(#keep-alive-arrow)"/>
+<path data-edge="keep" d="M330 104 L330 218" marker-end="url(#keep-alive-arrow)"/>
+<path data-edge="verify" d="M330 104 C330 147 550 143 550 218" marker-end="url(#keep-alive-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What should happen to the model?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">Model lifetime?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Unload now</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Reuse soon</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Not sure</text>
+</g>
+<g data-node="stop" role="button" tabindex="0" aria-pressed="false" aria-label="Stop the loaded tag"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Stop the tag</text></g>
+<g data-node="keep" role="button" tabindex="0" aria-pressed="false" aria-label="Set a request lifetime"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Set keep_alive</text></g>
+<g data-node="verify" role="button" tabindex="0" aria-pressed="false" aria-label="Check which model is loaded"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check loaded list</text></g>
+</svg></div>
+<div class="decision-links"><a href="#stop" aria-label="See steps: stop the loaded tag">See steps</a><a href="#keep" aria-label="See steps: set a request lifetime">See steps</a><a href="#verify" aria-label="See steps: check which model is loaded">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="stop"><h2>Unload one Ollama model</h2>
+<p>Copy the full name from <code>ollama ps</code>. If another user or service is using that tag, wait until their work is done before unloading it.</p>
+<pre><code>ollama ps
+ollama stop qwen2.5:0.5b
+ollama ps
+ollama list</code></pre>
+<p>The model should disappear from the running list and still appear in <code>ollama list</code>. The next request can load it again. For freeing disk space, see <a href="/en/guides/delete-ollama-model/">how to remove an installed tag and check shared files</a>.</p>
+<p>From a script, send the exact model name and <code>keep_alive: 0</code> to the native API. A request without a prompt asks the server to unload the loaded model.</p>
+<pre><code>curl --noproxy '*' -fsS http://127.0.0.1:11434/api/generate \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"qwen2.5:0.5b","keep_alive":0}'</code></pre>
+</section>
+<section id="keep"><h2>Keep a model loaded between API calls</h2>
+<p>Set <code>keep_alive</code> at the top level of a native request. The example preloads the model without a prompt and asks Ollama to keep it loaded for 30 seconds. For normal generation, add a <code>prompt</code> to the same JSON object.</p>
+<pre><code>curl --noproxy '*' -fsS http://127.0.0.1:11434/api/generate \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"qwen2.5:0.5b","keep_alive":"30s"}'</code></pre>
+<p>Use a duration such as <code>"30s"</code> or <code>"5m"</code> for idle expiry. Use <code>-1</code> to disable time-based expiry for that request. Ollama can still unload the model to make room for another one, and restarting the server clears loaded models.</p>
+<p>Ollama documents a five-minute default. To change the default for all requests, set <code>OLLAMA_KEEP_ALIVE</code> for the server process. For a server you start from a shell, use <code>OLLAMA_KEEP_ALIVE=2m ollama serve</code>. If an app or service already owns that port, configure that server through its own launcher. A request-level value overrides the default. See the <a href="https://docs.ollama.com/faq">Ollama FAQ</a> for the other launch methods.</p>
+</section>
+<section id="verify"><h2>Verify loaded and installed models separately</h2>
+<ol>
+<li>Run <code>ollama ps</code>, or query the native running list: <code>curl -fsS http://127.0.0.1:11434/api/ps</code>.</li>
+<li>Check the exact tag and the server address your client used. If the tag reappears after stopping, check for a new request from a client using it.</li>
+<li>Use <code>ollama list</code> to check what is still installed. If the tag is already absent from the running list but memory pressure remains high, check other loaded models and processes. On Mac, <a href="/en/guides/ollama-memory-calculator/">estimate the memory for your model and context</a>.</li>
+</ol>
+</section>
+<section id="measured"><h2>Ollama keep_alive test results</h2>
+<p>We tested Ollama 0.40.18 on an Apple M4, with a separate daemon, a six-second server default and <code>OLLAMA_MAX_LOADED_MODELS=1</code>. We polled the running list after each request.</p>
+<div class="video-table"><table><caption>Running-model list after the response</caption><thead><tr><th scope="col">Setting</th><th scope="col">Observed result</th></tr></thead><tbody>
+<tr><td>Server default <code>6s</code></td><td>Chat model unloaded after about six seconds</td></tr>
+<tr><td>Request <code>"2s"</code></td><td>The same model unloaded after about two seconds</td></tr>
+<tr><td>Request <code>0</code></td><td>Model absent within 0.1 seconds</td></tr>
+<tr><td>Request <code>-1</code></td><td>Still loaded after seven seconds. Loading the separate embedding model then evicted it.</td></tr>
+<tr><td><code>ollama stop</code></td><td>Embedding model disappeared. Both tags stayed installed.</td></tr></tbody></table></div>
+<p>In one pair of consecutive responses, Ollama reported a load duration of about 270 ms from an unloaded state and under 1 ms while the chat model was already loaded. These are two API readings from one small model and one machine. They do not measure end-to-end latency across workloads.</p>
+<p><a href="/evidence/ollama-keep-alive/observations.json" download>Download the test results</a>. See the official <a href="https://docs.ollama.com/api/generate">generate endpoint</a> and <a href="https://docs.ollama.com/api/ps">running-model endpoint</a> for request and response fields.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
