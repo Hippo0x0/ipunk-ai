@@ -15,3 +15,9 @@ Qwen 0.5B、7B、14B 预设使用 Qwen 官方模型配置的注意力参数及�
 复用 11 月 27 日相同 GGUF、相同 M3 Pro 主机的两条原始 Ollama 0.40.18 API 快照，并按二进制单位重新计算。2,048 → 8,192 token 的理论缓存从 24 MiB 到 96 MiB，API 加载量从 297.27 到 418.79 MiB；两者口径不同。保留原始测试日期，不将模型预设值写成试运行结果。工具直接显示预算有余或不足，正文提供同语种核对步骤，未再加重复的分流图。
 
 localhost 在 390px 与 1440px 分别检查双语页面、默认预设、自定义 GGUF 参数、预算超出、无效预留、语言切换、章节跳转和全页无溢出。禁用 JavaScript 后保留公式与实测，加三项自动测试覆盖字节换算、KV 缓存精确量和预算边界。
+
+## 正式交付
+
+内容提交 `0aec652` 首次发布。中文 Apple 资料入口核对为官方的中文链接后，以 `bea3896` 更新。最终归档 93 项自动测试通过。站点检查覆盖 68 个 HTML、67 个首页可达地图页和 376 处静态资源引用。北京时间 13:01，Worker 版本 `13f82af9-e961-4be3-945f-d63784cac0f5` 承接全部流量，部署 `ffd4cc24-c04a-4e58-96a4-8ec4e78ea76b`。生产 12 个路径均 HTTP 200 且与最终归档逐字节一致，使用直接 HTTP 验收。
+
+上线后 Search Console 对[英文计算器](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=zoiT-kbzr47hjF6mHt2nfQ)和[中文计算器](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=4f4IpqXmlbrsrFmY1XihoA)均显示暂未识别。提供链接的中文 Mac mini M4 基准页已收录，最后抓取 11 月 19 日。新增曝光、点击尚未验证。
