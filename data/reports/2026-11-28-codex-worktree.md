@@ -26,3 +26,9 @@
 本轮开始时 Search Console 已确认英文 Ollama 配置页收录，北京时间 12:18:34 抓取，规范与站点声明一致。Codex resume、中文 Ollama 配置和 GPU 指南当时仍未识别。当前没有新工作树页上线后的搜索效果数据。
 
 localhost 在 390px 和 1440px 验证首答、键盘高亮且不改 hash、缩放及复位、三个步骤跳转、无全页溢出和下载文件字节。禁用 JavaScript 后仍有步骤入口与命令。正式交付另记。
+
+## 正式交付
+
+GitHub `main` 的 `2533e66` 从干净归档通过 90 项自动测试。站点检查覆盖 64 个 HTML、63 个从首页可达的 sitemap 页面及 346 个静态资源引用。预览中新页和 JSON 与归档逐字节一致。北京时间 12:30，Cloudflare Worker 版本 `f7b80fcf-987e-45fb-bf0a-8c3dc7a0b538` 接收全部流量，部署 `8ba600c8-8edb-4edb-82fb-bbc1fb7c7366`。正式域九个路径均 HTTP 200、逐字节符合归档，验证使用直接 HTTP。
+
+上线后的[精确网址检查](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=f3rVfPYaknt7phgKMt1Bzg)显示 Google 暂未识别该页。当天手工提交已出现配额限制，本次保留站点地图和站内链接，未再手工提交。后续以实际收录与搜索表现验收。
