@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Best AI Coding Tools to Try by Workflow | iPunk AI Radar</title>
+<meta name="description" content="Choose an AI coding tool for editor suggestions, repository fixes, or model choice. Try the same repair task and check eight edge cases before you commit.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/best-ai-coding-tools/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Best AI Coding Tools to Try by Workflow">
+<meta property="og:description" content="A practical shortlist for editor suggestions, repository fixes and model choice, with a downloadable repair task and independent edge-case checks.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/best-ai-coding-tools/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Best AI Coding Tools to Try by Workflow","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/best-ai-coding-tools/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#trial">Run the repair trial</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>Best AI Coding Tools to Try by Workflow</h1>
+<p class="guide-answer">Start with GitHub Copilot for suggestions in an editor you already use, or Cursor if you want an editor built around agent-assisted changes. For a repository fix from the terminal, try Codex CLI or Claude Code. If choosing your model provider matters most, start with OpenCode. Compare two candidates on one small task and check the patch before picking a plan.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#choose">Choose your first tool</a></li><li><a href="#editor">Editor suggestions and changes</a></li><li><a href="#repo">Repository tasks</a></li><li><a href="#provider">Model provider and uncertain cases</a></li><li><a href="#trial">Run the same repair trial</a></li><li><a href="#results">See what the extra checks caught</a></li></ol></nav>
+<section id="choose" class="guide-decision"><h2>What do you need the tool to do first?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Coding tool decision tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="What is your first task?">
+<defs><marker id="coding-tool-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="editor" d="M330 103 C330 146 110 142 110 218" marker-end="url(#coding-tool-arrow)"/>
+<path data-edge="repo" d="M330 103 L330 218" marker-end="url(#coding-tool-arrow)"/>
+<path data-edge="provider" d="M330 103 C330 146 550 142 550 218" marker-end="url(#coding-tool-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What is your first task?"><path class="node-shape" d="M330 4L482 54L330 104L178 54Z"/><text x="330" y="61" text-anchor="middle">What is your first task?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Editor suggestions</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Repository repair</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Model choice / unsure</text>
+</g>
+<g data-node="editor" role="button" tabindex="0" aria-pressed="false" aria-label="Try an editor tool"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Try an editor tool</text></g>
+<g data-node="repo" role="button" tabindex="0" aria-pressed="false" aria-label="Try a terminal tool"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Try a terminal tool</text></g>
+<g data-node="provider" role="button" tabindex="0" aria-pressed="false" aria-label="Check model options"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check model options</text></g>
+</svg></div>
+<div class="decision-links"><a href="#editor" aria-label="See steps: editor tools">See steps</a><a href="#repo" aria-label="See steps: terminal tools">See steps</a><a href="#provider" aria-label="See steps: model options">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div>
+</section>
+<section id="editor"><h2>Get suggestions in your editor or try an agent-first editor</h2>
+<p>Start with <a href="https://docs.github.com/en/copilot/get-started/what-is-github-copilot">GitHub Copilot</a> if your first task is accepting and editing suggestions in a supported editor you already use. Try <a href="https://cursor.com/docs/agent/overview">Cursor</a> if you also want to hand off edits and review proposed changes inside its editor. Both products offer more than one mode, so verify the exact mode you intend to use.</p>
+<p>Try the same short function and two call sites in each editor. Check how quickly you can see, edit and undo the proposed changes. If you are evaluating inline completion alone, use that same mode for both tools.</p></section>
+<section id="repo"><h2>Delegate a repository fix from the terminal</h2>
+<p>Try <a href="https://learn.chatgpt.com/docs/cli">Codex CLI</a> or <a href="https://code.claude.com/docs/en/overview">Claude Code</a> if your first task is reading a codebase and preparing a patch. Start in a separate checkout with a single scoped task. Check which files it proposes to change and what permission is needed to run tests.</p>
+<p>Use the same starting code and prompt per attempt. Record the client, model or provider shown, any extra instructions and the time spent reviewing. The <a href="/en/guides/claude-code-vs-cursor/">Claude Code and Cursor trial kit</a> also records the execution and sign-in limits of the retained experiment.</p></section>
+<section id="provider"><h2>Choose a model provider, or start from one concrete task</h2>
+<p><a href="https://opencode.ai/docs/">OpenCode</a> is a starting point if you need to select a supported model provider. Verify the active model and provider before pasting any repository content. The <a href="/en/projects/opencode/">OpenCode project guide</a> covers permissions and practical checks.</p>
+<p>If your workflow is still unclear, pick the smallest task you repeat. Try an inline completion for frequent small edits, or the bounded repair exercise below for delegated changes. Review what information each tool sends to its provider before using it on private code.</p></section>
+<section id="trial"><h2>Run the same repair trial and score the patch yourself</h2>
+<ol>
+<li><a href="/evidence/coding-trial/coding-trial.zip" download>Download the starter repository and prompt</a>. Extract it separately for each tool and use Node.js 22 or newer.</li>
+<li>From the fixture directory, run <code>node --test test/orders.test.mjs</code> before changing anything. The retained starter run passed 2 of 12 checks.</li>
+<li>Give each tool the prompt. Read its patch before executing it, and verify the supplied tests and README are unchanged. Run the original checks yourself.</li>
+<li><a href="/evidence/coding-tool-review/check-orders.mjs" download>Download the supplementary checks</a> and save them in the fixture directory. Run the command below after reviewing the implementation. It imports and executes the file you name, so use a reviewed copy in an isolated directory.</li>
+</ol>
+<pre><code>node check-orders.mjs src/orders.mjs</code></pre>
+<p>The output lists pass or fail for each contract check and returns a failure code if any check fails. Keep this result beside the original test report and note what needed manual correction. Save a side-by-side record with the <a href="/en/guides/claude-code-vs-cursor/">trial log</a>.</p>
+</section>
+<section id="results"><h2>What the eight extra checks caught</h2>
+<p>On November 28, we ran eight contract checks against the <a href="/evidence/coding-trial/claude/orders.mjs">retained first patch</a> from the November 27 trial and the <a href="/evidence/coding-trial/reference/orders.mjs">author’s reference</a>. The first patch had passed 12 of 12 original tests. It passed 4 of 8 additional checks, accepting a numeric ID, numeric amount, array amount and null refund. The reference passed all eight.</p>
+<p><a href="/evidence/coding-tool-review/first-patch.json" download>First patch results</a> · <a href="/evidence/coding-tool-review/author-reference.json" download>Reference results</a></p>
+<p>The November 27 patch came from a configured Claude Code CLI with a reported third-party model label. Cursor generation was untested. This exercise shows where the original tests left gaps in one patch. The shortlist above uses documented workflows, and the checks help you test the tools with your own settings.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

@@ -1,0 +1,38 @@
+{
+  "passed": 8,
+  "total": 8,
+  "results": [
+    {
+      "name": "reject numeric ID",
+      "passed": true
+    },
+    {
+      "name": "reject numeric amount",
+      "passed": true
+    },
+    {
+      "name": "reject null refund",
+      "passed": true
+    },
+    {
+      "name": "reject array amount",
+      "passed": true
+    },
+    {
+      "name": "accept missing refund",
+      "passed": true
+    },
+    {
+      "name": "accept maximum safe cents",
+      "passed": true
+    },
+    {
+      "name": "use lexical ordering for ties",
+      "passed": true
+    },
+    {
+      "name": "ignore malformed unpaid records",
+      "passed": true
+    }
+  ]
+}
