@@ -26,3 +26,9 @@ Ollama 0.40.18、Apple M4、macOS arm64，复用官方 Qwen2.5-0.5B-Instruct Q4_
 本轮开始时 Search Console 已确认上一轮 Ollama Embeddings 指南收录，北京时间 12:00:31 成功抓取，Google 采用正式规范路径。OpenCode MCP 仍已收录。MarkItDown、Runway、Sora 当时依旧尚未识别，未重复请求。无本轮上线后效果数据。
 
 localhost 在 390px 和 1440px 核对首答、原生 SVG 可读性、键盘高亮且不改 hash、缩放行为、三个步骤跳转及无横向溢出。下载文件与源字节相同。禁用 JavaScript 后保留步骤链接和示例请求。正式交付另记。
+
+## 正式交付
+
+GitHub `main` 的 `ac88bda` 从干净归档通过 90 项自动测试。站点检查覆盖 60 个 HTML、59 个从首页可达的 sitemap 页面及 324 处静态资源。Worker 预览中的新页和下载证据逐字节符合归档。北京时间 12:07，版本 `77799af8-173a-47bf-9447-2f2b0f00b38e` 接收全部流量，部署 `0c636b67-9428-41e6-8e70-e38fe8073274`。正式站 10 个相关路径返回 HTTP 200，内容与归档逐字节相符。复核采用直接 HTTP。
+
+OpenSEO 网址检查连接本轮未返回该页状态。改用 [Search Console 的精确网址检查](https://search.google.com/search-console/inspect?resource_id=https%3A%2F%2Fai.ipunk.cn%2F&id=2e9Cey6WCpf2zHtvLpshnw)，确认 Google 当时尚未识别。请求触发了实际网址测试，页面随后返回未收录视图，未看到已加入优先抓取队列的回执。保留已上线站点地图与站内入口。收录和上线后的曝光、点击仍待核实。
