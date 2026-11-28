@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-28",
+  "platform": "macOS arm64",
+  "opencode": "2.4.1",
+  "ollama": "0.40.18",
+  "model": "Qwen2.5-0.5B-Instruct Q4_K_M",
+  "local_model_id": "ollama/qwen-local-first:latest",
+  "scope": "Temporary Git workspace with all tool actions denied. Both processes restricted to loopback. Used an already imported GGUF.",
+  "discovery": true,
+  "running_before": 0,
+  "running_after": 1,
+  "one_turn": {
+    "reply": "READY_CHECK",
+    "events": [
+      "step_start",
+      "text",
+      "step_finish"
+    ]
+  },
+  "follow_up": {
+    "same_session": true,
+    "attached_source": "items = [2, 3]\nprint(sum(items))\n",
+    "reply": "5",
+    "local_python_result": "5",
+    "events": [
+      "step_start",
+      "text",
+      "step_finish"
+    ]
+  },
+  "git_porcelain_empty": true,
+  "source_sha256_unchanged": "c6d9f6413af061d0fe7303fafee4f335c944cbdac9d96642a24791c90d671762"
+}

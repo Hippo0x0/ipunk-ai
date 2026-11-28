@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Use OpenCode 2: Setup and First Project | iPunk AI Radar</title>
+<meta name="description" content="Install OpenCode 2, choose a provider or a local Ollama model, and verify a first coding session on two lines of Python before enabling tools.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-tutorial/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="How to Use OpenCode 2: Setup and First Project">
+<meta property="og:description" content="Choose a model, run a small project, then check the answer and Git status.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/opencode-tutorial/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How to Use OpenCode 2: Setup and First Project","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/opencode-tutorial/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#setup">Set up OpenCode</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>How to Use OpenCode 2 on Your First Project</h1>
+<p class="guide-answer">Install OpenCode 2, open a small Git project and choose a model. For a first check without an API key, use a downloaded Ollama model, pass it a two-line file and compare its answer with the actual program output. Check Git status before moving to a project where edits matter.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#setup">Install and check the version</a></li>
+<li><a href="#choose">Choose a model provider</a></li>
+<li><a href="#scratch">Create a small test project</a></li>
+<li><a href="#first">Run and verify the first session</a></li>
+<li><a href="#next">Continue with your own repository</a></li>
+</ol></nav>
+
+<section id="setup"><h2>Install OpenCode 2 and check the version</h2>
+<p>Use the <a href="https://opencode.ai/docs/">official installation options</a> for your platform. On a system with npm, the V2 CLI package is <code>@opencode/cli</code>.</p>
+<pre><code>npm install -g @opencode/cli
+opencode --version</code></pre>
+<p>If you already use OpenCode 1, keep a copy of the previous configuration and follow the <a href="https://opencode.ai/docs/migrate-v1/">migration instructions</a> before installing. Both versions use the same command name by default. Confirm you are running V2 before copying the settings below.</p>
+</section>
+
+<section id="choose" class="guide-decision"><h2>Where will your model run?</h2>
+<div class="decision" data-flow><div class="flow-viewport" tabindex="0" aria-label="OpenCode provider decision tree">
+<svg class="flow-svg" viewBox="0 0 660 280" role="group" aria-label="Choose where to run a model">
+<defs><marker id="opencode-start-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="local" d="M330 103 C330 151 110 134 110 205" marker-end="url(#opencode-start-arrow)"/>
+<path data-edge="hosted" d="M330 103 L330 205" marker-end="url(#opencode-start-arrow)"/>
+<path data-edge="choice" d="M330 103 C330 151 550 134 550 205" marker-end="url(#opencode-start-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Where will your model run?"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">Model host?</text></g>
+<g text-anchor="middle">
+<rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">On this machine</text>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">Hosted provider</text>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">Not sure</text>
+<g data-node="local" role="button" tabindex="0" aria-pressed="false" aria-label="Check Ollama model discovery"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">Check Ollama</text></g>
+<g data-node="hosted" role="button" tabindex="0" aria-pressed="false" aria-label="Connect a hosted provider"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">Connect provider</text></g>
+<g data-node="choice" role="button" tabindex="0" aria-pressed="false" aria-label="Compare starting options"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">Compare options</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#local">Check Ollama</a><a href="#hosted">Connect provider</a><a href="#choice">Compare options</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+<section id="choice"><h2>Choose between local and hosted models</h2>
+<p>Use a local model if you can run it on your machine and want to avoid connecting a hosted account. The model must already be downloaded before an offline run. With a hosted model, use the provider credentials and check the provider’s usage or billing terms before sending prompts. Keep the first project free of private data in either case.</p>
+</section>
+<section id="local"><h2>Check that OpenCode finds a local Ollama model</h2>
+<p>With Ollama running, use <code>ollama list</code> to confirm the exact installed tag. OpenCode discovers supported local models at its default Ollama address. From your project, open <code>/models</code> or run the following to find the exact <code>ollama/</code> ID.</p>
+<pre><code>ollama list
+opencode models --standalone</code></pre>
+<p>If the model is missing or the port differs, follow the <a href="/en/guides/opencode-ollama/">OpenCode and Ollama connection check</a> before running the tutorial.</p>
+</section>
+<section id="hosted"><h2>Connect a hosted provider</h2>
+<p>Run <code>opencode</code> in the project, then open <code>/connect</code>. Pick the provider and follow its authentication prompts. Go to <code>/models</code> and select a model the project can use. Some accounts or plans restrict model access. Use the exact model ID shown by OpenCode if you switch to a terminal command.</p>
+<p>For OpenCode’s hosted subscription, see <a href="/en/guides/opencode-go-limits/">Go usage limits and reset windows</a>. The local test below uses Ollama.</p>
+</section>
+
+<section id="scratch"><h2>Create a scratch project with a result you can verify</h2>
+<p>Create a new directory and run <code>git init</code>. Save this as <code>total.py</code>.</p>
+<pre><code>items = [2, 3]
+print(sum(items))</code></pre>
+<p>Run <code>python3 total.py</code> and confirm it prints <code>5</code>. Keep a Git baseline of the test files. In this scratch project, use the following <code>opencode.json</code> to deny tool actions during the check. This setting controls permissions. For a separate process or network boundary, use an isolated environment.</p>
+<pre><code>{
+  "permissions": [
+    { "action": "*", "resource": "*", "effect": "deny" }
+  ]
+}</code></pre>
+<p>Commit the test files with Git, then run <code>git status --short</code>. A clean baseline prints nothing. Leave unrelated plugins and project instructions out of this scratch project so the result is easier to interpret.</p>
+</section>
+
+<section id="first"><h2>Run the first session and verify the answer</h2>
+<p>Replace <code>PROVIDER/MODEL</code> with the exact ID you selected. Passing the file with <code>--file</code> gives the model that file’s contents. The <code>--</code> separates the file options from the prompt.</p>
+<pre><code>opencode run --standalone --agent plan \
+  --model PROVIDER/MODEL --file total.py -- \
+  "What does the attached Python file print? Reply with the number only."</code></pre>
+<p>Compare the answer with <code>python3 total.py</code> and compare <code>git status --short</code> with your baseline. If the answer is missing, verify the provider and model ID. If the answer differs, keep the actual program output as the reference. With Ollama, <code>ollama ps</code> immediately after the request can confirm the model loaded.</p>
+<p>In our macOS arm64 test, OpenCode 2.4.1 discovered Qwen2.5-0.5B-Instruct Q4_K_M through Ollama 0.40.18. A first prompt returned <code>READY_CHECK</code>. A follow-up in the same session answered <code>5</code> for the attached file, matching Python. Git remained clean. The test used a custom loopback port, a 32-token output cap and temperature zero. Both processes were restricted to loopback and tool actions were denied. This verifies the first local run and file attachment, without measuring coding quality or testing hosted providers. <a href="/evidence/opencode-tutorial/observations.json" download>Download the first-run results</a>.</p>
+</section>
+
+<section id="next"><h2>Continue with your own repository</h2>
+<ul>
+<li>Before permitting edits, check the <a href="/en/projects/opencode/#permission-start">OpenCode permission rules</a> and the Git diff.</li>
+<li>Put shared build checks in <a href="/en/guides/opencode-agents-md/">AGENTS.md</a>. Inspect <a href="/en/guides/opencode-config/">which config is loaded</a> if a model or setting differs across directories.</li>
+<li>To pick up a previous task, <a href="/en/guides/opencode-resume/">resume the exact session and verify its history</a>.</li>
+</ul>
+<p>See the <a href="https://opencode.ai/docs/cli/commands">CLI command reference</a> and the <a href="https://opencode.ai/docs/models/">model selector reference</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
