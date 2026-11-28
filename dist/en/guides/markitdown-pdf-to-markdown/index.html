@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF to Markdown With MarkItDown: Check Text, Tables and Scans | iPunk AI Radar</title>
+<meta name="description" content="Convert a PDF locally with Microsoft MarkItDown. Use a three-page sample to check text, table values and a scanned page before sending Markdown to an AI search tool.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/markitdown-pdf-to-markdown/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="PDF to Markdown With MarkItDown">
+<meta property="og:description" content="Convert locally and check for dropped scan text before indexing Markdown for an AI assistant.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/markitdown-pdf-to-markdown/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"PDF to Markdown With MarkItDown: Check Text, Tables and Scans","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/markitdown-pdf-to-markdown/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#convert">Convert your PDF</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>PDF to Markdown With MarkItDown</h1>
+<p class="guide-answer">Install Microsoft MarkItDown with the PDF extra, then run <code>markitdown input.pdf -o output.md</code>. Before using that Markdown for AI search, check one key phrase per page and make sure table values stayed with the right rows. If a page is only an image, run optical character recognition (OCR) on that page and verify its text before indexing it.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#convert">Convert a local PDF</a></li><li><a href="#choose">Decide what to check next</a></li><li><a href="#table">Check rows and reading order</a></li><li><a href="#scan">Recover text from a scan</a></li><li><a href="#index">Prepare the result for AI search</a></li><li><a href="#evidence">See the actual outputs</a></li></ol></nav>
+<section id="convert">
+<h2>Convert a PDF locally</h2>
+<p>Use Python in an isolated environment. The commands below use a POSIX shell on macOS or Linux. The last command writes the Markdown to a new file. Choose an unused filename if you already have edited Markdown in that folder.</p>
+<pre><code>python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install 'markitdown[pdf]==0.1.9'
+markitdown input.pdf -o output.md</code></pre>
+<p>For the same inputs we tested, download <a href="/evidence/markitdown-pdf/support-notes.pdf" download>the three-page support-notes PDF</a>. Replace <code>input.pdf</code> with <code>support-notes.pdf</code>. The example uses the local converter without optional OCR or cloud extraction plugins.</p>
+</section>
+<section id="choose" class="guide-decision"><h2>What does your PDF contain?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="PDF conversion decision tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="What is on the page?">
+<defs><marker id="markitdown-pdf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="table" d="M330 103 C330 146 110 142 110 218" marker-end="url(#markitdown-pdf-arrow)"/>
+<path data-edge="scan" d="M330 103 L330 218" marker-end="url(#markitdown-pdf-arrow)"/>
+<path data-edge="index" d="M330 103 C330 146 550 142 550 218" marker-end="url(#markitdown-pdf-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What is on the page?"><path class="node-shape" d="M330 4L482 54L330 104L178 54Z"/><text x="330" y="61" text-anchor="middle">What is on the page?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Table or columns</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Image-only page</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Text / unsure</text>
+</g>
+<g data-node="table" role="button" tabindex="0" aria-pressed="false" aria-label="Check the rows"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Check the rows</text></g>
+<g data-node="scan" role="button" tabindex="0" aria-pressed="false" aria-label="Run page OCR"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Run page OCR</text></g>
+<g data-node="index" role="button" tabindex="0" aria-pressed="false" aria-label="Check each page"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check each page</text></g>
+</svg></div>
+<div class="decision-links"><a href="#table" aria-label="See steps: table rows">See steps</a><a href="#scan" aria-label="See steps: page OCR">See steps</a><a href="#index" aria-label="See steps: page coverage">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div>
+</section>
+<section id="table">
+<h2>Check table rows and reading order</h2>
+<p>Pick a cell where a wrong association would change the answer. On page 2 of our fixture, <strong>45 days</strong> belongs to <strong>Extended</strong>, and <strong>14 days</strong> belongs to <strong>Standard</strong>. Compare whole rows in the Markdown with the PDF, including headers and footnotes. If the source has two columns, check that the output reads each column in the expected order.</p>
+<p>For a row that gets split or detached from its heading, fix the row or keep the original page reference before loading it into an AI search system.</p>
+</section>
+<section id="scan">
+<h2>Recover text from an image-only page</h2>
+<p>Try selecting text on the page in a PDF viewer. If the page is an image, apply OCR to a copy of that page. With Poppler and Swift installed on macOS, download the <a href="/evidence/markitdown-pdf/ocr-page.swift" download>local English OCR script</a>, then run:</p>
+<pre><code>pdftoppm -f 3 -l 3 -r 150 -png support-notes.pdf support-page
+swift ocr-page.swift support-page-3.png &gt; page-3-ocr.txt</code></pre>
+<p>Set both page arguments to the actual page number you are checking and use the PNG filename produced by Poppler. Compare the recognized characters with the source, especially IDs, units and deadlines. This script uses Apple Vision with English recognition. A source in another language needs OCR configured for that language.</p>
+</section>
+<section id="index">
+<h2>Keep the source page with the text you index</h2>
+<ol>
+<li>Verify one fact from each page and one important row from each table. If you are unsure a page has a text layer, check a visible phrase against the Markdown.</li>
+<li>Keep the original PDF and a separate verified copy of the extracted text. Label any corrected scan text with its source file and page, then include it in the verified copy.</li>
+<li>After importing it into your AI search or retrieval-augmented generation (RAG) system, ask a question whose correct answer depends on the recovered text. For this fixture, ask how soon to escalate SCAN-43. Check for <strong>72 hours from page 3</strong>.</li>
+</ol>
+</section>
+<section id="evidence">
+<h2>What survived in the actual conversion</h2>
+<p>In our local MarkItDown 0.1.9 test, the Markdown retained the page 1 ticket ID and both table rows from page 2. It omitted the image-only exception on page 3. Apple Vision OCR on a raster copy of page 3 recovered <code>SCAN-43</code> and <strong>72 hours</strong>. We compared those values with the PDF.</p>
+<p><a href="/evidence/markitdown-pdf/support-notes.pdf" download>Original PDF</a> · <a href="/evidence/markitdown-pdf/support-notes.md" download>Unedited MarkItDown output</a> · <a href="/evidence/markitdown-pdf/page-3-ocr.txt" download>Separate OCR output</a></p>
+<p>Both conversions ran with external network access denied after dependency installation. We checked the extracted text and rows. Search or retrieval quality depends on the import and was outside this fixture test.</p>
+<p>Official sources checked November 28, 2026. See Microsoft’s <a href="https://github.com/microsoft/markitdown">MarkItDown documentation</a> and the <a href="/projects/markitdown/">MarkItDown project review (Chinese)</a> for other formats. The test covers one synthetic PDF and one local OCR result.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

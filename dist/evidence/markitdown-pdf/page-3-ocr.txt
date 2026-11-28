@@ -1,0 +1,4 @@
+SUPPORT NOTES / 3
+Scanned exception notice
+Exception SCAN-43 requires escalation.
+Escalate within 72 hours.
