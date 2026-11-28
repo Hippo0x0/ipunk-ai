@@ -1,0 +1,254 @@
+{
+  "date": "2026-11-28",
+  "platform": "macOS 26.4.1 arm64, Apple M4",
+  "server_version": "0.40.18",
+  "model": "Qwen2.5-0.5B-Instruct Q4_K_M",
+  "method": "Isolated loopback-only Ollama and GGUF store. Same synthetic prompt asks for a string; schema requires an integer. Tested one schema, not value correctness.",
+  "cases": {
+    "native_json": {
+      "path": "/api/chat",
+      "request": {
+        "model": "structured-fixture:latest",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Return only a JSON object with key count and the exact string value \"seven\"."
+          }
+        ],
+        "stream": false,
+        "options": {
+          "num_ctx": 2048,
+          "num_predict": 96,
+          "temperature": 0,
+          "seed": 42
+        },
+        "format": "json"
+      },
+      "http": 200,
+      "finish_reason": "stop",
+      "content": "{\n  \"count\": 1,\n  \"string\": \"seven\"\n}",
+      "valid_json": true,
+      "matches_count_schema": false
+    },
+    "native_schema": {
+      "path": "/api/chat",
+      "request": {
+        "model": "structured-fixture:latest",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Return only a JSON object with key count and the exact string value \"seven\"."
+          }
+        ],
+        "stream": false,
+        "options": {
+          "num_ctx": 2048,
+          "num_predict": 96,
+          "temperature": 0,
+          "seed": 42
+        },
+        "format": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "count"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "http": 200,
+      "finish_reason": "stop",
+      "content": "{\n  \"count\": 1\n}",
+      "valid_json": true,
+      "matches_count_schema": true
+    },
+    "compatible_schema": {
+      "path": "/v1/chat/completions",
+      "request": {
+        "model": "structured-fixture:latest",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Return only a JSON object with key count and the exact string value \"seven\"."
+          }
+        ],
+        "stream": false,
+        "max_tokens": 96,
+        "temperature": 0,
+        "seed": 42,
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "count_result",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "count"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "http": 200,
+      "finish_reason": "stop",
+      "content": "{\n  \"count\": 1\n}",
+      "valid_json": true,
+      "matches_count_schema": true
+    },
+    "native_extraction": {
+      "path": "/api/chat",
+      "request": {
+        "model": "structured-fixture:latest",
+        "messages": [
+          {
+            "role": "user",
+            "content": "The package contains seven screws. Return a JSON object with count as an integer."
+          }
+        ],
+        "stream": false,
+        "options": {
+          "num_ctx": 2048,
+          "num_predict": 96,
+          "temperature": 0,
+          "seed": 42
+        },
+        "format": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "count"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "http": 200,
+      "finish_reason": "stop",
+      "content": "{\n  \"count\": 7\n}",
+      "valid_json": true,
+      "matches_count_schema": true
+    },
+    "compatible_extraction": {
+      "path": "/v1/chat/completions",
+      "request": {
+        "model": "structured-fixture:latest",
+        "messages": [
+          {
+            "role": "user",
+            "content": "The package contains seven screws. Return a JSON object with count as an integer."
+          }
+        ],
+        "stream": false,
+        "max_tokens": 96,
+        "temperature": 0,
+        "seed": 42,
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "count_result",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "count"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "http": 200,
+      "finish_reason": "stop",
+      "content": "{\n  \"count\": 7\n}",
+      "valid_json": true,
+      "matches_count_schema": true
+    },
+    "native_truncated": {
+      "path": "/api/chat",
+      "request": {
+        "model": "structured-fixture:latest",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Return only a JSON object with key count and the exact string value \"seven\"."
+          }
+        ],
+        "stream": false,
+        "options": {
+          "num_ctx": 2048,
+          "num_predict": 1,
+          "temperature": 0,
+          "seed": 42
+        },
+        "format": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "count"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "http": 200,
+      "finish_reason": "length",
+      "content": "",
+      "valid_json": false,
+      "matches_count_schema": false
+    }
+  },
+  "checker": {
+    "native_json": {
+      "exit": 1,
+      "accepted": false,
+      "stderr": "Expected exactly one field, count, with an integer value."
+    },
+    "native_schema": {
+      "exit": 0,
+      "accepted": true,
+      "stderr": ""
+    },
+    "compatible_schema": {
+      "exit": 0,
+      "accepted": true,
+      "stderr": ""
+    },
+    "native_extraction": {
+      "exit": 0,
+      "accepted": true,
+      "stderr": ""
+    },
+    "compatible_extraction": {
+      "exit": 0,
+      "accepted": true,
+      "stderr": ""
+    },
+    "native_truncated": {
+      "exit": 1,
+      "accepted": false,
+      "stderr": "Generation did not stop normally: length."
+    }
+  }
+}

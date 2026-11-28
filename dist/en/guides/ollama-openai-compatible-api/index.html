@@ -50,6 +50,7 @@ with OpenAI(
     print(reply.choices[0].message.content)</code></pre>
 <p>A short reply from the chosen model confirms the chat route works. The SDK appends <code>chat/completions</code> to its base URL. A client field labeled <strong>full endpoint</strong> may instead expect <code>http://127.0.0.1:11434/v1/chat/completions</code>. The 45-second diagnostic timeout may be too short for a larger model loading for the first time.</p>
 <p>The placeholder satisfies the SDK’s key setting. Standard Ollama on loopback does not require authentication. A remote proxy or Ollama Cloud can have different authentication requirements. Use an actual provider key only with its intended service.</p></section>
+<p><a href="/en/guides/ollama-structured-output/#compatible">Send a JSON Schema and check the assistant response</a>.</p>
 <section id="diagnose" class="guide-decision"><h2>What does the local request return?</h2>
 <div class="decision" data-flow>
 <div class="flow-viewport" tabindex="0" aria-label="Ollama API troubleshooting decision tree">

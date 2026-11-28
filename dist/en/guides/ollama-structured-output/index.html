@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama Structured Output: JSON Schema and Validation | iPunk AI Radar</title>
+<meta name="description" content="Use Ollama JSON mode or JSON Schema in native and OpenAI-compatible requests. Validate message content and catch truncated HTTP 200 replies.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-structured-output/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Ollama Structured Output: JSON Schema and Validation">
+<meta property="og:description" content="Use a tested JSON Schema on local Ollama and check the field values and completion reason.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/ollama-structured-output/"><meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Ollama Structured Output: JSON Schema and Validation","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/ollama-structured-output/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#schema">Send a schema</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama Structured Output with JSON Schema</h1>
+<p class="guide-answer">Set <code>format</code> to a JSON Schema object in a local Ollama <code>/api/chat</code> request when your code needs specific fields. For a client using <code>/v1/chat/completions</code>, put the schema in <code>response_format</code>. Check how generation ended, parse the assistant’s content, and validate the field values before using them.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#json-mode">Use ordinary JSON mode</a></li>
+<li><a href="#schema">Send a native JSON Schema request</a></li>
+<li><a href="#compatible">Use the OpenAI-compatible endpoint</a></li>
+<li><a href="#validate">Validate before consuming the result</a></li>
+<li><a href="#tested">Compare the tested responses</a></li>
+</ol></nav>
+<section id="diagnose" class="guide-decision"><h2>Which response do you need?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Choose the Ollama response format">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Ollama structured output decision tree">
+<defs><marker id="keep-alive-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="json-mode" d="M330 104 C330 147 110 143 110 218" marker-end="url(#keep-alive-arrow)"/>
+<path data-edge="schema" d="M330 104 L330 218" marker-end="url(#keep-alive-arrow)"/>
+<path data-edge="validate" d="M330 104 C330 147 550 143 550 218" marker-end="url(#keep-alive-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Which response do you need?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">What should it return?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Any JSON</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Exact fields</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Not sure</text>
+</g>
+<g data-node="json-mode" role="button" tabindex="0" aria-pressed="false" aria-label="Enable JSON mode"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Use JSON mode</text></g>
+<g data-node="schema" role="button" tabindex="0" aria-pressed="false" aria-label="Send a JSON schema"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Send a schema</text></g>
+<g data-node="validate" role="button" tabindex="0" aria-pressed="false" aria-label="Validate the model output"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Validate output</text></g>
+</svg></div>
+<div class="decision-links"><a href="#json-mode" aria-label="See steps: enable JSON mode">See steps</a><a href="#schema" aria-label="See steps: send a JSON schema">See steps</a><a href="#validate" aria-label="See steps: validate the model output">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="json-mode"><h2>When to use Ollama JSON mode</h2>
+<p>On the native route, use <code>"format":"json"</code> for a JSON object without a specified shape. Describe the intended content in the prompt. If your application needs a required field, a type or a fixed set of keys, provide a schema and validate the reply. A successful JSON parse only confirms that the content is syntactically valid.</p>
+</section>
+<section id="schema"><h2>Send a schema with native /api/chat</h2>
+<p>Download <a href="/evidence/ollama-structured-output/request-native.json" download>request-native.json</a> to your current directory. Replace <code>qwen2.5:0.5b</code> with the exact local tag from <code>ollama list</code>. The prompt asks for a count from a short sentence. The request has <code>stream</code> set to <code>false</code>.</p>
+<pre><code>"format": {
+  "type": "object",
+  "properties": {"count": {"type": "integer"}},
+  "required": ["count"],
+  "additionalProperties": false
+}</code></pre>
+<pre><code>curl --noproxy '*' -fsS \
+  http://127.0.0.1:11434/api/chat \
+  -H 'Content-Type: application/json' \
+  --data-binary @request-native.json &gt; reply.json</code></pre>
+<p>The outer JSON is the API envelope. The assistant’s JSON is a string in <code>message.content</code>, so decode that string separately.</p>
+</section>
+<section id="compatible"><h2>Use response_format on /v1/chat/completions</h2>
+<p>With the OpenAI-compatible route, use <code>response_format.type</code> equal to <code>json_schema</code> and place the object in <code>response_format.json_schema.schema</code>. Download <a href="/evidence/ollama-structured-output/request-compatible.json" download>request-compatible.json</a>, set the same local tag, and call the compatible endpoint.</p>
+<pre><code>curl --noproxy '*' -fsS \
+  http://127.0.0.1:11434/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  --data-binary @request-compatible.json &gt; reply.json</code></pre>
+<p>In this envelope the assistant JSON is in <code>choices[0].message.content</code>. The completion reason is <code>choices[0].finish_reason</code>. See the <a href="/en/guides/ollama-openai-compatible-api/">local OpenAI SDK and endpoint guide</a> to check your base URL.</p>
+</section>
+<section id="validate"><h2>Check completion, JSON and expected values</h2>
+<ol>
+<li>For this one-reply example, require a normal completion. The native API should report <code>done: true</code> and <code>done_reason: "stop"</code>. The compatible route should report <code>finish_reason: "stop"</code>.</li>
+<li>Parse the assistant content and verify that it has exactly one integer field named <code>count</code>. A response cut short by the token limit can still return HTTP 200. If the reason is <code>length</code>, review the token budget and repeat the request.</li>
+<li>When a value is already known, compare it with the result. For real extraction, check the response against the source or a business rule where possible. A valid integer says nothing about whether the source contained that number.</li>
+</ol>
+<p>Download <a href="/evidence/ollama-structured-output/check-count.py" download>the standard-library checker</a>. It reads either non-streaming envelope and checks the one-field example. Pass <code>--expected 7</code> for the seven-screw test only.</p>
+<pre><code>python3 check-count.py reply.json --expected 7</code></pre>
+</section>
+<section id="tested"><h2>What local Ollama returned in the tests</h2>
+<p>On Ollama 0.40.18 with Qwen2.5-0.5B-Instruct Q4_K_M, the first three requests used the same conflicting prompt and an integer schema where applicable. Both extraction requests used a clean prompt with a known count of seven.</p>
+<div class="video-table"><table><caption>One schema, one local model</caption><thead><tr><th scope="col">Request</th><th scope="col">Observed output</th></tr></thead><tbody>
+<tr><td>Native JSON mode</td><td>Valid JSON with an extra field. Checker rejected it.</td></tr>
+<tr><td>Native schema</td><td><code>{"count":1}</code> matched the required shape.</td></tr>
+<tr><td>Compatible schema</td><td><code>{"count":1}</code> matched the required shape.</td></tr>
+<tr><td>Extraction on both routes</td><td><code>{"count":7}</code> passed the known-value check.</td></tr>
+<tr><td>Native schema, one-token limit</td><td>HTTP 200 and <code>length</code>. Checker rejected it.</td></tr>
+</tbody></table></div>
+<p><a href="/evidence/ollama-structured-output/observations.json" download>Download exact fixture requests and results</a>. The test covers one schema on a local Ollama server. Check the <a href="https://docs.ollama.com/capabilities/structured-outputs">official structured outputs guide</a> for current support and hosted-model limits.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

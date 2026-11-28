@@ -1,0 +1,32 @@
+{
+  "model": "qwen2.5:0.5b",
+  "messages": [
+    {
+      "role": "user",
+      "content": "The package contains seven screws. Return a JSON object with count as an integer."
+    }
+  ],
+  "stream": false,
+  "max_tokens": 96,
+  "temperature": 0,
+  "seed": 42,
+  "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+      "name": "count_result",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "count"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}
