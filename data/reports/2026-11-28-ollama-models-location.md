@@ -15,3 +15,9 @@ Search Console 的 10 月 30 日至 11 月 26 日最终版 Web 页面表有 9 �
 从原库请求返回 HTTP 200 和 LOCAL_OK。切到空目录时已安装列表为空，原生生成 API 返回 HTTP 404。停止服务、通过 rsync -a 复制整个库，确认四个普通文件 SHA-256 与一个相对软链接目标一致。先保留备份并临时移开原路径，再用目标库启动，得到同一标签、摘要和 LOCAL_OK。复原路径和配置后原库也通过验证。只验证 macOS CLI 与同机两个隔离路径。未实测物理拔盘、桌面应用、Windows、Linux 或 Docker。
 
 Chromium 本地验证 390 与 1440 px。五个分支都能用键盘高亮且不改变 URL，步骤链接进入独立的正文目标，图可放大与复位，整页无横向溢出。无 JavaScript 时仍可跳转并读到命令。验证了证据下载与源文件一致。正式发布另记。
+
+## 正式交付
+
+提交 `e75dfb3` 的干净归档通过 93 项测试。站点检查覆盖 79 个 HTML、78 个从首页可达的站点地图页面，及 445 处静态资源引用。Cloudflare 预览的页面和 JSON 与归档一致。北京时间 14:18:26，Worker 版本 `0408509d-8467-4447-bcd3-0e6c1c2eb0ed` 开始接收 100% 流量。直接 HTTP 检查正式域 9 个路径，均返回 200，结果逐字节匹配。新网址已列入站点地图。
+
+发布后的 [Search Console 网址检查](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=gtA2b0cGgXdJMq2izS9hAQ) 显示 Google 尚未识别网址。未重复提交站点地图。收录、搜索点击和盈利效果仍待验证。
