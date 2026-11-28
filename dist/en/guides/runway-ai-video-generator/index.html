@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Runway AI Video Generator: Free Credits and First Video | iPunk AI Radar</title>
+<meta name="description" content="Check what Runway’s 125 free credits can cover. Plan mixed 5- and 10-second attempts, verify model access, and check your first downloaded AI video.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/runway-ai-video-generator/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Runway AI Video Generator: Free Credits and First Video">
+<meta property="og:description" content="Plan a first Runway trial, check model access and budget 5- and 10-second attempts.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/runway-ai-video-generator/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Runway AI Video Generator: Free Credits and First Video","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/runway-ai-video-generator/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+<script type="module" src="/runway-trial.mjs"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#budget">Calculate credits</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>Runway AI Video Generator: Free Credits and First Video</h1>
+<p class="guide-answer">Runway Free includes 125 one-time credits, and free videos have a watermark. If your workspace offers Gen-4 Turbo at the published 25-credit rate, you can plan up to five 5-second attempts with a full balance. Check the model and cost shown before generating. Gen-4.5 text-to-video requires Standard or higher.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#choose">Choose a trial route</a></li><li><a href="#budget">Budget 5- and 10-second attempts</a></li><li><a href="#start">Make and check one short clip</a></li><li><a href="#access">Check an upgrade prompt</a></li><li><a href="#sources">Sources and test scope</a></li></ol></nav>
+<section id="choose" class="guide-decision"><h2>What are you starting with?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Runway video decision tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="What do you have?">
+<defs><marker id="runway-trial-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="start" d="M330 103 C330 146 110 142 110 218" marker-end="url(#runway-trial-arrow)"/>
+<path data-edge="text" d="M330 103 L330 218" marker-end="url(#runway-trial-arrow)"/>
+<path data-edge="access" d="M330 103 C330 146 550 142 550 218" marker-end="url(#runway-trial-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What do you have?"><path class="node-shape" d="M330 4L482 54L330 104L178 54Z"/><text x="330" y="61" text-anchor="middle">What do you have?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">An image</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">A text prompt</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Unsure / locked</text>
+</g>
+<g data-node="start" role="button" tabindex="0" aria-pressed="false" aria-label="Test image motion"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Test image motion</text></g>
+<g data-node="text" role="button" tabindex="0" aria-pressed="false" aria-label="Check Gen-4.5"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Check Gen-4.5</text></g>
+<g data-node="access" role="button" tabindex="0" aria-pressed="false" aria-label="Check model access"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check model access</text></g>
+</svg></div>
+<div class="decision-links"><a href="#start" aria-label="See steps: image-to-video">See steps</a><a href="#text" aria-label="See steps: text-to-video">See steps</a><a href="#access" aria-label="See steps: model access">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div>
+</section>
+<section id="budget">
+<h2>Budget short clips and retries</h2>
+<p>Start with the actual balance in your Runway workspace. Enter planned generations, including retries. Runway’s Gen-4 help page lists 25 credits for five seconds and 50 for ten on Turbo. If the panel lists a different cost, replace the corresponding preset below.</p>
+<form id="runway-trial" hidden novalidate>
+<div class="video-fields">
+<label>Available credits<input name="balance" type="number" min="0" max="10000" step="1" value="125" required></label>
+<label>5-second attempts<input name="shortAttempts" type="number" min="0" max="10000" step="1" value="1" required></label>
+<label>10-second attempts<input name="longAttempts" type="number" min="0" max="10000" step="1" value="1" required></label>
+</div>
+<details><summary>Edit credit costs per attempt</summary><div class="video-fields">
+<label>5-second cost<input name="shortCost" type="number" min="1" max="10000" step="1" value="25" required></label>
+<label>10-second cost<input name="longCost" type="number" min="1" max="10000" step="1" value="50" required></label>
+</div></details>
+<button type="submit">Calculate credit budget</button>
+<p><output aria-live="polite"></output></p>
+</form>
+<p>At the listed rates, one 5-second and one 10-second attempt cost 75 credits. From 125, that leaves 50 for two more short attempts or one more long attempt. Use the result to plan generations. The number of usable clips depends on the outputs.</p>
+</section>
+<section id="start">
+<h2>Animate one image and check the export</h2>
+<ol>
+<li>Open <a href="https://app.runwayml.com/">Runway</a> and check the model selector in the Video tool. If Gen-4 Turbo is available, use an image you have permission to upload. You can <a href="/evidence/free-image-video/synthetic-mug.png" download>download our 16:9 synthetic test image</a> for a simple practice shot.</li>
+<li>Describe one change in motion, such as “Slow camera push toward the mug, with the mug centered and its shape steady.” Inspect the crop before generating. If you need a vertical deliverable, check whether the new crop cuts off the subject.</li>
+<li>Select five seconds first, confirm the displayed credits and generate once. Compare the credit balance and save the output if you need to inspect it outside Runway.</li>
+<li>Play the whole download. Check the framing, whether the subject stays recognizable, the actual duration and the watermark. If the motion fails, change one part of the prompt and recalculate before retrying.</li>
+</ol>
+</section>
+<section id="text">
+<h2>Start from text with Gen-4.5</h2>
+<p>For a text-only Runway shot, choose Gen-4.5 in the Video model list when your workspace includes it. Runway lists Standard or higher, 2–10 seconds and 12 credits per second for regular video. A five-second generation costs 60 credits at that rate. Confirm the delivery settings and the displayed cost before generating.</p>
+<p>If you need to compare paid options or budget a different duration or model, use the <a href="/en/guides/best-ai-video-generator/">AI video plan comparison and per-attempt calculator</a>.</p>
+</section>
+<section id="access">
+<h2>Check access if the model is missing or asks you to upgrade</h2>
+<p>Make sure you are using the intended workspace. Free access includes a changing selection of models, and credits do not refill after the one-time allocation is spent. If the tool asks for an upgrade, check whether the selected model is on your plan and whether the balance covers the displayed cost.</p>
+<p>If you only need to test image motion before choosing a plan, the <a href="/en/guides/image-to-video-ai-free/">free image-to-video guide</a> includes a separately verified guest trial and download. Check the selected service’s current terms and watermark before using an output publicly.</p>
+</section>
+<section id="sources">
+<h2>Sources and test scope</h2>
+<p>Checked November 28, 2026. See <a href="https://help.runwayml.com/hc/en-us/articles/50404627334547-Free-plan-details">Runway’s Free plan details</a>, <a href="https://help.runwayml.com/hc/en-us/articles/37327109429011-Creating-with-Gen-4-Video">Gen-4 video settings</a>, and <a href="https://help.runwayml.com/hc/en-us/articles/46974685288467-Creating-with-Gen-4-5">Gen-4.5 settings</a>. The <a href="https://runway.com/pricing">public pricing page’s</a> Standard-plan Turbo capacity example differs from the Gen-4 help rate. Use the current generation panel as the final check.</p>
+<p>We tested the calculator locally with mixed durations, custom costs and insufficient credit. We did not check a signed-in Runway model list or generate a Runway video for this guide. Calculator inputs stay in this tab.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
