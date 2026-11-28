@@ -1,0 +1,197 @@
+{
+  "date": "2026-11-28",
+  "platform": "macOS arm64",
+  "version": "2.4.1",
+  "commands": [
+    "opencode debug config --standalone",
+    "opencode debug agents --standalone"
+  ],
+  "conditions": "Fresh isolated directories, no user credentials, outbound loopback only. Model identifiers are synthetic. This measures loaded source files, resolved agent configuration, and working directory scope.",
+  "cases": [
+    {
+      "case": "Outside project",
+      "cwd": "outside",
+      "opencode_config_env": false,
+      "sources": [
+        {
+          "path": "home/config/opencode/opencode.json",
+          "build_model": "fixture-global"
+        }
+      ],
+      "resolved_build_model": {
+        "id": "fixture-global",
+        "providerID": "anthropic"
+      },
+      "preserved_title_model": {
+        "id": "fixture-title",
+        "providerID": "anthropic"
+      }
+    },
+    {
+      "case": "Explicit file only",
+      "cwd": "outside",
+      "opencode_config_env": true,
+      "sources": [
+        {
+          "path": "home/config/opencode/opencode.json",
+          "build_model": "fixture-global"
+        },
+        {
+          "path": "explicit.json",
+          "build_model": "fixture-override"
+        }
+      ],
+      "resolved_build_model": {
+        "id": "fixture-override",
+        "providerID": "anthropic"
+      },
+      "preserved_title_model": {
+        "id": "fixture-title",
+        "providerID": "anthropic"
+      }
+    },
+    {
+      "case": "Repository over explicit",
+      "cwd": "repo",
+      "opencode_config_env": true,
+      "sources": [
+        {
+          "path": "home/config/opencode/opencode.json",
+          "build_model": "fixture-global"
+        },
+        {
+          "path": "explicit.json",
+          "build_model": "fixture-override"
+        },
+        {
+          "path": "repo/opencode.json",
+          "build_model": "fixture-root"
+        }
+      ],
+      "resolved_build_model": {
+        "id": "fixture-root",
+        "providerID": "anthropic"
+      },
+      "preserved_title_model": {
+        "id": "fixture-title",
+        "providerID": "anthropic"
+      }
+    },
+    {
+      "case": "JSONC and JSON together",
+      "cwd": "repo",
+      "opencode_config_env": false,
+      "sources": [
+        {
+          "path": "home/config/opencode/opencode.json",
+          "build_model": "fixture-global"
+        },
+        {
+          "path": "repo/opencode.json",
+          "build_model": "fixture-root"
+        },
+        {
+          "path": "repo/opencode.jsonc",
+          "build_model": "fixture-jsonc"
+        }
+      ],
+      "resolved_build_model": {
+        "id": "fixture-jsonc",
+        "providerID": "anthropic"
+      },
+      "preserved_title_model": {
+        "id": "fixture-title",
+        "providerID": "anthropic"
+      }
+    },
+    {
+      "case": "Dot directory and root together",
+      "cwd": "repo",
+      "opencode_config_env": false,
+      "sources": [
+        {
+          "path": "home/config/opencode/opencode.json",
+          "build_model": "fixture-global"
+        },
+        {
+          "path": "repo/opencode.json",
+          "build_model": "fixture-root"
+        },
+        {
+          "path": "repo/opencode.jsonc",
+          "build_model": "fixture-jsonc"
+        },
+        {
+          "path": "repo/.opencode/opencode.json",
+          "build_model": "fixture-dot"
+        }
+      ],
+      "resolved_build_model": {
+        "id": "fixture-dot",
+        "providerID": "anthropic"
+      },
+      "preserved_title_model": {
+        "id": "fixture-title",
+        "providerID": "anthropic"
+      }
+    },
+    {
+      "case": "Package overrides repository",
+      "cwd": "repo/packages/demo/src",
+      "opencode_config_env": false,
+      "sources": [
+        {
+          "path": "home/config/opencode/opencode.json",
+          "build_model": "fixture-global"
+        },
+        {
+          "path": "repo/opencode.json",
+          "build_model": "fixture-root"
+        },
+        {
+          "path": "repo/opencode.jsonc",
+          "build_model": "fixture-jsonc"
+        },
+        {
+          "path": "repo/packages/demo/opencode.json",
+          "build_model": "fixture-nested"
+        }
+      ],
+      "resolved_build_model": {
+        "id": "fixture-nested",
+        "providerID": "anthropic"
+      },
+      "preserved_title_model": {
+        "id": "fixture-title",
+        "providerID": "anthropic"
+      }
+    },
+    {
+      "case": "Repository without package in scope",
+      "cwd": "repo",
+      "opencode_config_env": false,
+      "sources": [
+        {
+          "path": "home/config/opencode/opencode.json",
+          "build_model": "fixture-global"
+        },
+        {
+          "path": "repo/opencode.json",
+          "build_model": "fixture-root"
+        },
+        {
+          "path": "repo/opencode.jsonc",
+          "build_model": "fixture-jsonc"
+        }
+      ],
+      "resolved_build_model": {
+        "id": "fixture-jsonc",
+        "providerID": "anthropic"
+      },
+      "preserved_title_model": {
+        "id": "fixture-title",
+        "providerID": "anthropic"
+      }
+    }
+  ]
+}

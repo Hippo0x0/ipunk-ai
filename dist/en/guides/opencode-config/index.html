@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode Config File Location and Precedence | iPunk AI Radar</title>
+<meta name="description" content="Find opencode.json or opencode.jsonc, list configuration sources with opencode debug config, and see which file wins in tested OpenCode 2 examples.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-config/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="OpenCode Config File Location and Precedence">
+<meta property="og:description" content="Find the configuration OpenCode 2 reads and check which model setting takes effect.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/opencode-config/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"OpenCode Config File Location and Precedence","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/opencode-config/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#find">Find your config</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>OpenCode Config File Location and Precedence</h1>
+<p class="guide-answer">In OpenCode 2, use <code>opencode.json</code> or <code>opencode.jsonc</code> in the project directory. From the folder where you launch OpenCode, run <code>opencode debug config --standalone</code> to see which sources it reads, then <code>opencode debug agents --standalone</code> to inspect the resolved agent settings. In a monorepo, running from a package can load an additional config.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#find">Locate the config files</a></li>
+<li><a href="#missing">Diagnose a missing file</a></li>
+<li><a href="#precedence">Check which file wins</a></li>
+<li><a href="#effective">Check the effective agent setting</a></li>
+<li><a href="#verified">Read the OpenCode 2.4.1 results</a></li>
+</ol></nav>
+<p>Start with <code>opencode --version</code>. The commands and test results here are for OpenCode 2. If you use V1, check the <a href="https://opencode.ai/docs/migrate-v1/">OpenCode migration guide</a> for which settings carry over. Keep diagnostic output local. Configuration can contain expanded environment variables, secret file contents or private paths.</p>
+
+<section class="guide-decision"><h2>What does OpenCode show for your config?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="OpenCode config decision tree">
+<svg class="flow-svg" viewBox="0 0 660 280" role="group" aria-label="Choose how to check OpenCode configuration">
+<defs><marker id="opencode-config-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="missing" d="M330 103 C330 151 110 134 110 205" marker-end="url(#opencode-config-arrow)"/>
+<path data-edge="precedence" d="M330 103 L330 205" marker-end="url(#opencode-config-arrow)"/>
+<path data-edge="find" d="M330 103 C330 151 550 134 550 205" marker-end="url(#opencode-config-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What does OpenCode show?"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">Config status?</text></g>
+<g text-anchor="middle">
+<rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">File missing</text>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">Values conflict</text>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">Not sure</text>
+<g data-node="missing" role="button" tabindex="0" aria-pressed="false" aria-label="Check the file location"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">Check folder</text></g>
+<g data-node="precedence" role="button" tabindex="0" aria-pressed="false" aria-label="Compare competing sources"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">Compare sources</text></g>
+<g data-node="find" role="button" tabindex="0" aria-pressed="false" aria-label="List configuration sources"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">List files</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#missing">Check folder</a><a href="#precedence">Compare sources</a><a href="#find">List files</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+<section id="find">
+<h2>Where to put opencode.json or opencode.jsonc</h2>
+<p>Put per-project settings at the project root or in its <code>.opencode/</code> folder. Put user defaults in <code>~/.config/opencode/</code> on a standard installation. Use <code>opencode debug paths</code> to check the actual config directory in your environment.</p>
+<pre><code>opencode --version
+opencode debug paths
+opencode debug config --standalone</code></pre>
+<p>In OpenCode 2.4.1, the last command returns a list of sources. A <code>document</code> entry identifies a file and shows the settings it contributed. A <code>directory</code> entry identifies a source directory. Look at the file’s own entry to confirm OpenCode read it. Run this from the folder you normally work in.</p>
+<p>JSONC supports comments and trailing commas. Use the <a href="https://opencode.ai/config.json">OpenCode configuration schema</a> for editor validation. If you are trying to style or change the terminal interface, see the <a href="https://opencode.ai/docs/cli/config">separate CLI settings</a> for <code>cli.json</code>.</p>
+</section>
+
+<section id="missing">
+<h2>When a config file does not appear</h2>
+<ol><li>Check the filename and extension. The project file is <code>opencode.json</code> or <code>opencode.jsonc</code>. Check for a hidden <code>.txt</code> extension if you created it in a text editor.</li>
+<li>Run the source command from the same working directory as the client. In a monorepo, try from the package directory and compare the results with the repository root. Check that you opened the intended checkout or worktree.</li>
+<li>Ensure the file parses and the keys match your OpenCode version. Run the command again and check any errors. If you use Desktop or a separately running server, compare that environment as well. <code>--standalone</code> starts a private server for the command.</li></ol>
+<p>If the config contains a local model endpoint, also <a href="/en/guides/opencode-ollama/">check the actual Ollama address and model ID</a>.</p>
+</section>
+
+<section id="precedence">
+<h2>Which OpenCode config file wins?</h2>
+<p>The <a href="https://opencode.ai/docs/config/">official config guide</a> describes how user defaults, repository files, nested project files and managed system settings merge. A package file can override the same setting from the repository root, and centrally managed settings can take priority over both. Unrelated settings can remain in effect.</p>
+<p>In our OpenCode 2.4.1 test, a root <code>opencode.jsonc</code> overrode the same Build agent model from <code>opencode.json</code>. A root <code>.opencode/opencode.json</code> also overrode the same value when present. <code>OPENCODE_CONFIG</code> contributed its file and could override user defaults. The repository file still won the tested conflict. Check the current version and working directory before applying those results to a different setup.</p>
+<p>When several files set the same value, remove the duplicate from your own config only after keeping a copy. For a managed override, check with the person who manages the installation. File precedence and <a href="/en/projects/opencode/#permission-order">permission rule order</a> are different checks.</p>
+</section>
+
+<section id="effective">
+<h2>Verify which agent setting took effect</h2>
+<p>Run this from the same folder and look up the agent ID you actually use, such as <code>build</code>.</p>
+<pre><code>opencode debug agents --standalone</code></pre>
+<p>In the output, check the agent’s <code>model</code> object if it has an explicit agent-specific model. In this release, it contains the model ID and provider ID. The source report answers which files contributed. The agent report lets you check the final merged agent setting. If your command or session uses a separately selected model, verify that selection and endpoint where you run it.</p>
+<p>The tests below compare an explicit <code>agents.build.model</code> setting. To diagnose plugin or MCP loading, use the <a href="/en/guides/opencode-plugins-not-loading/">plugin loading</a> or <a href="/en/guides/opencode-mcp-server/">MCP connection guide</a>.</p>
+</section>
+
+<section id="verified">
+<h2>What OpenCode 2.4.1 loaded in seven isolated tests</h2>
+<div class="video-table"><table>
+<thead><tr><th scope="col">Test</th><th scope="col">Source of the resolved Build model</th></tr></thead>
+<tbody><tr><td>Outside the repository</td><td>User defaults</td></tr>
+<tr><td>Explicit file outside the repository</td><td>File set by <code>OPENCODE_CONFIG</code></td></tr>
+<tr><td>Explicit file and repository file</td><td>Repository <code>opencode.json</code></td></tr>
+<tr><td>Root JSON and JSONC</td><td>Root <code>opencode.jsonc</code></td></tr>
+<tr><td>Root files and a <code>.opencode</code> file</td><td><code>.opencode/<wbr>opencode.json</code></td></tr>
+<tr><td>Run inside the package</td><td>Package <code>opencode.json</code></td></tr>
+<tr><td>Same files, run from the root</td><td>Root <code>opencode.jsonc</code></td></tr></tbody>
+</table></div>
+<p>We used clean macOS arm64 profiles, loopback-only networking and synthetic model IDs. For every case, the title agent retained its unrelated model from the global file. These tests cover reported sources and the resolved Build setting. Managed preferences, provider calls and model execution were outside the comparison.</p>
+<p><a href="/evidence/opencode-config/observations.json" download>Download the reported paths and agent model values</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
