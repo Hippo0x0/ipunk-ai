@@ -22,3 +22,11 @@ Search Console 抽查中，英文首页和 Canva 指南已收录。视频压缩�
 桌面 Chrome 158 在 localhost 用原有 4 秒 640 × 360 合成 MP4（1 条音轨）连续运行 3 个工具。剪取 1–3 秒后得到 2.008 秒、640 × 360、1 条音轨。以居中 9:16 裁剪后为 198 × 352、2.008 秒，保留音轨。删除音轨后得到 198 × 352、2.000 秒、0 条音轨和 8125 字节。音频检测确认无音轨，独立浏览器播放器播放到结束。数字只适用于这份样例。没有用 Canva 生成视频或在 Safari、Firefox 上验证。
 
 在 390 px 和 1440 px 下核对原生 SVG 四分支、键盘高亮、缩放、44 px 链接和正文锚点，下载样例与源文件一致，无 JavaScript 时仍可走到正文。复测复用同样四分支布局的视频音频检测页。
+
+## 发布与地图重读
+
+北京时间 11 月 28 日 16:09，内容提交 `04441ec` 推送到 `main`，Cloudflare Worker `b306ab74-20d8-42f7-a926-7f7b79e913d4` 承接全部流量。98 项测试通过，站点检查覆盖 92 个 HTML、91 个 sitemap 页面和 518 处静态资源引用。预览页和正式域内容均与发布包一致。13 项正式域请求全为 200，响应头未见 noindex。
+
+正式 sitemap 是 HTTP 200、application/xml，解析得到 91 个去重规范网址。Search Console 报表仍对应上次读到的 75 个网址，较本版少 16 个。依据 [Google 的地图改动说明](https://support.google.com/webmasters/answer/7451001?hl=en)，对同一属性的 `/sitemap.xml` 提交当前版一次，回执成功，报告刷新为发现 91 个网页。未提交单页索引请求。
+
+重读后，视频工具入口、视频音频检测、llama.cpp API、LM Studio API 和中英文 OpenCode Shell 权限共 6 个精确 URL 均显示 `Discovered - currently not indexed`，没有最后抓取时间。发现数与收录数分开，后续以页面级抓取和一致口径的曝光、点击复核。
