@@ -1,0 +1,16 @@
+{
+  "test_date": "2026-11-28",
+  "cli_version": "0.164.0",
+  "sign_in_type": "ChatGPT",
+  "app_server_transport": "stdio",
+  "method": "account/rateLimits/read",
+  "snapshot_present": true,
+  "primary": {
+    "duration_minutes": 10080,
+    "used_percent_field_present": true,
+    "reset_timestamp_field_present": true
+  },
+  "secondary": null,
+  "by_limit_id_present": true,
+  "scope": "One read-only account snapshot. The summary omits account identity, balances, usage amounts, timestamps and limit identifiers. No generation turn, credit purchase or reset was performed."
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Codex Usage Limits: Check Your Allowance and Reset Time | iPunk AI Radar</title>
+<meta name="description" content="Find the Codex limit that stopped your task, check its reset time, and distinguish ChatGPT allowances from API rate limits and session token counts.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/codex-usage-limits/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Codex Usage Limits: Check Your Allowance and Reset Time">
+<meta property="og:description" content="Find the exhausted Codex allowance and its reset time, or follow the API rate-limit path.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/codex-usage-limits/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Codex Usage Limits: Check Your Allowance and Reset Time","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/codex-usage-limits/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#chatgpt">Find your reset time</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>Codex Usage Limits: Check Your Allowance and Reset Time</h1>
+<p class="guide-answer">If you sign in to Codex with ChatGPT, open the <a href="https://chatgpt.com/codex/settings/usage">Codex usage dashboard</a> and check the reset time next to the allowance you used up. In Codex CLI, start with <code>/status</code>. If you use your own API key, check the API project’s limits and billing instead.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#choose">Find which limit you reached</a></li>
+<li><a href="#chatgpt">Read 5-hour, weekly or monthly limits</a></li>
+<li><a href="#api">Check API rate limits and billing</a></li>
+<li><a href="#unsure">Check an unclear limit or reset</a></li>
+<li><a href="#evidence">CLI test and sources</a></li>
+</ol></nav>
+<section id="choose" class="guide-decision">
+<h2>Which limit did you reach?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Codex limit decision tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Which limit did you reach?">
+<defs><marker id="codex-limit-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="chatgpt" d="M330 103 C330 146 110 142 110 218" marker-end="url(#codex-limit-arrow)"/>
+<path data-edge="api" d="M330 103 L330 218" marker-end="url(#codex-limit-arrow)"/>
+<path data-edge="unsure" d="M330 103 C330 146 550 142 550 218" marker-end="url(#codex-limit-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Which limit did you reach?"><path class="node-shape" d="M330 4L482 54L330 104L178 54Z"/><text x="330" y="61" text-anchor="middle">How did you sign in?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">ChatGPT sign-in</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">API key</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Not sure</text>
+</g>
+<g data-node="chatgpt" role="button" tabindex="0" aria-pressed="false" aria-label="Read your ChatGPT allowance"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Open Usage</text></g>
+<g data-node="api" role="button" tabindex="0" aria-pressed="false" aria-label="Read your API project limits"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Check API limits</text></g>
+<g data-node="unsure" role="button" tabindex="0" aria-pressed="false" aria-label="Check the sign-in and notice"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check the notice</text></g>
+</svg></div>
+<div class="decision-links"><a href="#chatgpt" aria-label="See steps: ChatGPT allowance">See steps</a><a href="#api" aria-label="See steps: API key limits">See steps</a><a href="#unsure" aria-label="See steps: unclear limit">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div>
+</section>
+<section id="chatgpt">
+<h2>Read your 5-hour, weekly or monthly Codex limit</h2>
+<ol>
+<li>Open the <a href="https://chatgpt.com/codex/settings/usage">Codex usage dashboard</a>. In ChatGPT Desktop, check <strong>Settings → Usage &amp; billing</strong> where available. Make sure the workspace matches the one where the task stopped.</li>
+<li>Read the allowance label, its remaining amount and the reset time alongside it. Plans can show different windows. In plans with both 5-hour and weekly allowances, the same work can count toward both and they can refresh at different times.</li>
+<li>Use the options on that account’s limit notice. If both applicable windows are exhausted, check both after the earlier reset. The other window may still block the same task. A monthly allowance or workspace budget can have a different reset schedule.</li>
+</ol>
+<p>For example, if the 5-hour allowance has refreshed and the applicable weekly allowance still shows 0% remaining, check the weekly reset time or the options offered on the notice. Use the displayed time and time zone when deciding when to retry.</p>
+<p>There is no universal fixed number of tasks per window. The selected model, context and work performed affect consumption. Tasks in other supported products may also draw from a shared allowance depending on your plan. The <a href="https://learn.chatgpt.com/docs/pricing">current pricing documentation</a> lists the plan-specific rules.</p>
+<h3>Scheduled refresh, reset and credits</h3>
+<p>A scheduled refresh follows the allowance’s displayed period. If your account offers a one-time banked reset, check which allowances it covers before redeeming it. Some accounts also show a paid reset or extra credits. Review the exact scope and price before choosing an option, then return to Usage to verify the new balance and time. A subscription billing date can differ from the usage refresh date.</p>
+<p>In a managed workspace, ask your administrator about the effective user limit, shared budget and any applicable reset period. Access to the workspace’s usage and credit details can depend on its billing setup.</p>
+</section>
+<section id="api">
+<h2>Check API rate limits and billing</h2>
+<p>If Codex uses your API key, check the selected API organization and project. Open the <a href="https://platform.openai.com/settings/organization/limits">API limits page</a> and compare the error with the model’s request or token rate limit. A transient rate limit can clear as capacity becomes available. If the error concerns quota or billing, check the project’s API usage and the organization’s billing status.</p>
+<p>The <a href="https://developers.openai.com/api/docs/guides/rate-limits">API rate-limit guide</a> explains response headers and retry behavior. Read the full error before retrying. A ChatGPT subscription refresh does not change an API project’s rate limit.</p>
+</section>
+<section id="unsure">
+<h2>Check an unclear notice or a reset that passed</h2>
+<ul>
+<li>In an active CLI session, run <code>/status</code> for session configuration and usage. Use <code>codex login status</code> in your terminal to check the recorded sign-in method. If you use a custom provider or workspace configuration, confirm the provider shown by your client too.</li>
+<li>For a context-window or token-count issue, check the session itself. The <a href="/en/guides/codex-token-usage/">local Codex token reader</a> explains what JSONL counters represent. Those counters cannot reveal the remaining subscription allowance or an API bill.</li>
+<li>If the reset time passed and access has not returned, reopen Usage, check the correct workspace and look for a second exhausted allowance or a model-specific notice. If it still looks wrong, contact OpenAI Support with the redacted notice, client, model and time zone.</li>
+</ul>
+</section>
+<section id="evidence">
+<h2>What the CLI check showed</h2>
+<p>On November 28, 2026, we ran a read-only account rate-limit request through Codex CLI 0.164.0 using an existing ChatGPT sign-in. It returned a primary window of 10,080 minutes (one week), a reset timestamp and no secondary window in that snapshot. The response did not establish which allowances other accounts see. <a href="/evidence/codex-limits/read-only-check.json" download>Download the redacted result summary</a>.</p>
+<p>OpenAI documents the <a href="https://learn.chatgpt.com/docs/app-server">App Server protocol</a> and the <a href="https://learn.chatgpt.com/docs/cli/slash-commands">CLI usage commands</a>. For account-level decisions, see <a href="https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan">Using Codex with your plan</a> and <a href="https://help.openai.com/en/articles/20001498-how-resets-work-in-codex">How Codex resets work</a>. Sources checked November 28, 2026.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
