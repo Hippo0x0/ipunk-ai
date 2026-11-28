@@ -1,0 +1,206 @@
+{
+  "date": "2026-11-28",
+  "platform": "macOS arm64",
+  "chip": "Apple M4",
+  "ollama": "0.40.18",
+  "model": "Qwen2.5-0.5B-Instruct Q4_K_M",
+  "cases": {
+    "automatic": {
+      "unloaded_before": {
+        "models": []
+      },
+      "request": {
+        "model": "ipunk-gpu-demo:latest",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply with exactly LOCAL_OK and nothing else."
+          }
+        ],
+        "options": {
+          "num_ctx": 4096,
+          "temperature": 0,
+          "num_predict": 24
+        },
+        "stream": false,
+        "keep_alive": "2m"
+      },
+      "response": {
+        "model": "ipunk-gpu-demo:latest",
+        "created_at": "2026-11-28T04:02:26.232359Z",
+        "message": {
+          "role": "assistant",
+          "content": "LOCAL_OK"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 610645333,
+        "load_duration": 549074583,
+        "prompt_eval_count": 38,
+        "prompt_eval_cached_count": 0,
+        "prompt_eval_duration": 41239000,
+        "eval_count": 3,
+        "eval_duration": 17194000
+      },
+      "ollama_ps": "NAME                     ID              SIZE      PROCESSOR    CONTEXT    RUNNER      UNTIL                   \nipunk-gpu-demo:latest    8f286bf62688    338 MB    100% GPU     4096       llamacpp    About a minute from now    \n",
+      "api_ps": {
+        "models": [
+          {
+            "name": "ipunk-gpu-demo:latest",
+            "model": "ipunk-gpu-demo:latest",
+            "size": 338973162,
+            "digest": "8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "qwen2",
+              "families": [
+                "qwen2"
+              ],
+              "parameter_size": "630.17M",
+              "quantization_level": "Q4_K_M"
+            },
+            "expires_at": "2026-11-28T12:04:26.232516+08:00",
+            "size_vram": 338973162,
+            "context_length": 4096,
+            "runner": "llamacpp"
+          }
+        ]
+      }
+    },
+    "forced_cpu": {
+      "unloaded_before": {
+        "models": []
+      },
+      "request": {
+        "model": "ipunk-gpu-demo:latest",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply with exactly LOCAL_OK and nothing else."
+          }
+        ],
+        "options": {
+          "num_ctx": 4096,
+          "temperature": 0,
+          "num_predict": 24,
+          "num_gpu": 0
+        },
+        "stream": false,
+        "keep_alive": "2m"
+      },
+      "response": {
+        "model": "ipunk-gpu-demo:latest",
+        "created_at": "2026-11-28T04:02:26.926922Z",
+        "message": {
+          "role": "assistant",
+          "content": "LOCAL_OK"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 640299917,
+        "load_duration": 525761167,
+        "prompt_eval_count": 38,
+        "prompt_eval_cached_count": 0,
+        "prompt_eval_duration": 97632000,
+        "eval_count": 3,
+        "eval_duration": 15035000
+      },
+      "ollama_ps": "NAME                     ID              SIZE      PROCESSOR    CONTEXT    RUNNER      UNTIL                   \nipunk-gpu-demo:latest    8f286bf62688    579 MB    100% CPU     4096       llamacpp    About a minute from now    \n",
+      "api_ps": {
+        "models": [
+          {
+            "name": "ipunk-gpu-demo:latest",
+            "model": "ipunk-gpu-demo:latest",
+            "size": 579663297,
+            "digest": "8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "qwen2",
+              "families": [
+                "qwen2"
+              ],
+              "parameter_size": "630.17M",
+              "quantization_level": "Q4_K_M"
+            },
+            "expires_at": "2026-11-28T12:04:26.926992+08:00",
+            "size_vram": 0,
+            "context_length": 4096,
+            "runner": "llamacpp"
+          }
+        ]
+      }
+    },
+    "partial": {
+      "unloaded_before": {
+        "models": []
+      },
+      "request": {
+        "model": "ipunk-gpu-demo:latest",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply with exactly LOCAL_OK and nothing else."
+          }
+        ],
+        "options": {
+          "num_ctx": 4096,
+          "temperature": 0,
+          "num_predict": 24,
+          "num_gpu": 5
+        },
+        "stream": false,
+        "keep_alive": "2m"
+      },
+      "response": {
+        "model": "ipunk-gpu-demo:latest",
+        "created_at": "2026-11-28T04:02:27.600365Z",
+        "message": {
+          "role": "assistant",
+          "content": "LOCAL_OK"
+        },
+        "done": true,
+        "done_reason": "stop",
+        "total_duration": 640768041,
+        "load_duration": 521232083,
+        "prompt_eval_count": 38,
+        "prompt_eval_cached_count": 0,
+        "prompt_eval_duration": 98844000,
+        "eval_count": 3,
+        "eval_duration": 18705000
+      },
+      "ollama_ps": "NAME                     ID              SIZE      PROCESSOR          CONTEXT    RUNNER      UNTIL                   \nipunk-gpu-demo:latest    8f286bf62688    617 MB    63%/37% CPU/GPU    4096       llamacpp    About a minute from now    \n",
+      "api_ps": {
+        "models": [
+          {
+            "name": "ipunk-gpu-demo:latest",
+            "model": "ipunk-gpu-demo:latest",
+            "size": 617422517,
+            "digest": "8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "qwen2",
+              "families": [
+                "qwen2"
+              ],
+              "parameter_size": "630.17M",
+              "quantization_level": "Q4_K_M"
+            },
+            "expires_at": "2026-11-28T12:04:27.600428+08:00",
+            "size_vram": 230833519,
+            "context_length": 4096,
+            "runner": "llamacpp"
+          }
+        ]
+      }
+    }
+  },
+  "filtered_server_log": [
+    "time=2026-11-28T12:02:24.423+08:00 level=INFO source=types.go:32 msg=\"inference compute\" id=0 filter_id=0 library=Metal compute=0.0 name=MTL0 description=\"Apple M4\" libdirs=ollama driver=0.0 pci_id=\"\" type=iGPU total=\"25.0 GiB\" available=\"25.0 GiB\"",
+    "load_tensors: offloaded 25/25 layers to GPU",
+    "load_tensors: offloaded 0/25 layers to GPU",
+    "load_tensors: offloaded 5/25 layers to GPU"
+  ]
+}

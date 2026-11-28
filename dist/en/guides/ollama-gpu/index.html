@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Is Ollama Using My GPU? Check ollama ps and CPU Offload | iPunk AI Radar</title>
+<meta name="description" content="Check Ollama’s PROCESSOR column, compare CPU and GPU placement with /api/ps, and troubleshoot an empty list, 100% CPU, or a mixed reading.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-gpu/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Is Ollama Using My GPU? Check ollama ps and CPU Offload">
+<meta property="og:description" content="Compare three actual CPU and GPU readouts from one local model, then check your own Ollama server.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/ollama-gpu/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Is Ollama Using My GPU? Check ollama ps and CPU Offload","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/ollama-gpu/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#load">Check a running model</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Is Ollama Using My GPU?</h1>
+<p class="guide-answer">Send a short request to a local model, then run <code>ollama ps</code> on the same server. The <strong>PROCESSOR</strong> column reports where Ollama loaded that model. <strong>100% GPU</strong> indicates full GPU placement, <strong>100% CPU</strong> indicates CPU placement, and a <strong>CPU/GPU</strong> split indicates both. Use the server log to confirm the backend and the actual offloaded layers.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#load">Get a loaded-model reading</a></li>
+<li><a href="#choose">Choose the next check</a></li>
+<li><a href="#offload">Troubleshoot CPU or mixed placement</a></li>
+<li><a href="#gpu">Interpret a 100% GPU reading</a></li>
+<li><a href="#evidence">Compare the three measured runs</a></li>
+</ol></nav>
+<section id="load"><h2>Get a loaded-model reading</h2>
+<p>Use <code>ollama list</code> to pick an installed local chat model. Replace the example tag with that exact name. Run the request against the server you want to check, then inspect it before the two-minute keep-alive expires.</p>
+<pre><code>curl --noproxy '*' -fsS http://127.0.0.1:11434/api/chat \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"qwen2.5:0.5b","messages":[{"role":"user","content":"Reply with exactly LOCAL_OK and nothing else."}],"options":{"num_ctx":4096,"num_predict":24,"temperature":0},"stream":false,"keep_alive":"2m"}'
+
+ollama ps</code></pre>
+<p>Check that the CLI points to the same host and port as the request. If the list is empty, a model may have unloaded, the request may have failed or the CLI may be looking at another server. Read the response first, then check the same server again. For an API view of the running list, request <code>/api/ps</code>.</p>
+</section>
+<section id="choose" class="guide-decision"><h2>What does ollama ps report?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Ollama GPU troubleshooting tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Choose the processor readout">
+<defs><marker id="ollama-gpu-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="load" d="M330 104 C330 147 110 143 110 218" marker-end="url(#ollama-gpu-arrow)"/>
+<path data-edge="offload" d="M330 104 L330 218" marker-end="url(#ollama-gpu-arrow)"/>
+<path data-edge="gpu" d="M330 104 C330 147 550 143 550 218" marker-end="url(#ollama-gpu-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What does ollama ps report?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">Processor?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Empty / unsure</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">CPU or split</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">100% GPU</text>
+</g>
+<g data-node="load" role="button" tabindex="0" aria-pressed="false" aria-label="Run a short request"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Load the model</text></g>
+<g data-node="offload" role="button" tabindex="0" aria-pressed="false" aria-label="Check offload settings"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Check offload</text></g>
+<g data-node="gpu" role="button" tabindex="0" aria-pressed="false" aria-label="Confirm GPU placement"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Inspect GPU load</text></g>
+</svg></div>
+<div class="decision-links"><a href="#load" aria-label="See steps: run a short request">See steps</a><a href="#offload" aria-label="See steps: check offload">See steps</a><a href="#gpu" aria-label="See steps: confirm GPU placement">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="offload"><h2>Ollama reports 100% CPU or a CPU/GPU split</h2>
+<ol>
+<li><strong>Look for the backend in the server log.</strong> If it does not list the expected GPU, verify hardware and driver support on the system running Ollama. In a container, check that the Ollama process has access to the device. On Apple Silicon, test the native app or binary and look for Metal.</li>
+<li><strong>Check for a forced CPU or layer limit.</strong> In our <code>llamacpp</code> run, <code>options.num_gpu: 0</code> produced <code>100% CPU</code> even though the server detected Metal. Review overrides in the client request, model or server. Start an automatic-placement check with a freshly loaded model.</li>
+<li><strong>Try a smaller load if the GPU is detected.</strong> Keep one local model loaded for the comparison. Try a smaller model or reduce context length, then confirm the actual loaded context and processor. See <a href="/en/guides/ollama-context-length/">how to verify Ollama context length</a>.</li>
+</ol>
+<p>On macOS, app logs are in <code>~/.ollama/logs/server.log</code>. On systemd Linux use <code>journalctl -u ollama</code>. For Windows and container paths, see the <a href="https://docs.ollama.com/troubleshooting">Ollama log guide</a>. Use the log belonging to the service that answered your request.</p>
+</section>
+<section id="gpu"><h2>What 100% GPU means in ollama ps</h2>
+<p>The processor percentage describes reported placement. For current activity or performance, sample GPU activity while a request is running and measure tokens generated per second separately. A model can remain GPU-loaded and sit idle between requests.</p>
+<p><code>/api/ps</code> reports <code>size</code> and <code>size_vram</code> in bytes. Compare the corresponding model row. In our partial run, the API reported about 37% of the loaded size on the GPU, while the log reported 5 of 25 layers offloaded. Layers have different sizes, and Apple Silicon uses unified memory.</p>
+</section>
+<section id="evidence"><h2>Three readings from the same model and context</h2>
+<p>On November 28, 2026 we used Ollama 0.40.18, the <code>llamacpp</code> runner and one Qwen2.5-0.5B-Instruct Q4_K_M GGUF on an Apple M4. We unloaded between runs, kept the context at 4,096 and used the same short prompt. Each request returned <code>LOCAL_OK</code>.</p>
+<div class="video-table"><table>
+<caption>CLI placement and server log from the isolated local runs</caption>
+<thead><tr><th scope="col">Request setting</th><th scope="col">PROCESSOR</th><th scope="col">Layers on GPU</th></tr></thead>
+<tbody><tr><td>Automatic</td><td>100% GPU</td><td>25 of 25</td></tr><tr><td><code>num_gpu: 0</code></td><td>100% CPU</td><td>0 of 25</td></tr><tr><td><code>num_gpu: 5</code></td><td>63%/37% CPU/GPU</td><td>5 of 25</td></tr></tbody>
+</table></div>
+<p>The experiment measured placement on this machine. Inference speed and other hardware were outside its scope. <a href="/evidence/ollama-gpu/observations.json" download>Download the requests, CLI output, running-model JSON and filtered Metal logs</a>.</p>
+<p>See the official <a href="https://docs.ollama.com/faq#how-can-i-tell-if-my-model-was-loaded-onto-the-gpu">processor FAQ</a>, <a href="https://docs.ollama.com/api/ps">running model API</a> and <a href="https://docs.ollama.com/gpu">hardware support guide</a> for your platform.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
