@@ -13,3 +13,9 @@ Search Console 精确资源 `https://ai.ipunk.cn/`，Web final，洛杉矶时间
 说明以官方 [Web 文档](https://opencode.ai/docs/cli/web/)、[V1 迁移说明](https://opencode.ai/docs/migrate-v1/#server-authentication) 与 [API 参考](https://opencode.ai/docs/api/) 为准。实际运行范围为 V2 macOS 本机前台服务。V1、远程服务、后台服务和其他系统未实测。
 
 中英文各有三路原生 SVG。localhost 用 Chromium 检查 390 px 与 1440 px 的宽度、分支文字、独立链接、键盘高亮、缩放、下载与禁用 JavaScript 时的跳转。
+
+## 发布与收录首查
+
+北京时间 11 月 28 日 16:44，内容提交 `fba5ff7` 已推送至 `main`，Cloudflare Worker 版本 `8397d435-ef51-44f3-a6df-587ee57e56a4` 接收 100% 流量。干净发布包通过 103 项测试。站点检查覆盖 97 个 HTML、96 个 sitemap URL 和 559 处静态资源。预览英文页与发布包一致。正式域 10 项均返回 200、内容逐字节一致，响应头未见 noindex。正式域仅发 HTTP 请求，未运行站点统计脚本。
+
+Search Console 上线首查显示 Google 尚未识别两个 URL，等待抓取、收录及曝光与点击数据。
