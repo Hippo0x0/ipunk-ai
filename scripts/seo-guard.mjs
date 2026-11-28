@@ -22,3 +22,30 @@ export function checkModifiedDate(html, expectedUrl, sitemapDate) {
     throw new Error(`${expectedUrl}: sitemap lastmod differs from structured dateModified`);
   }
 }
+
+export function findUnlinkedPages(pages, homepage) {
+  if (!pages.has(homepage)) throw new Error(`Missing homepage: ${homepage}`);
+  const origin = new URL(homepage).origin;
+  const visited = new Set([homepage]);
+  const pending = [homepage];
+  while (pending.length) {
+    const page = pending.pop();
+    const markup = pages.get(page).replace(/<!--[\s\S]*?-->|<(script|style|template)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, "");
+    for (const [tag] of markup.matchAll(/<a\b[^>]*>/gi)) {
+      const href = attributes(tag).href;
+      if (!href?.trim()) continue;
+      let destination;
+      try {
+        destination = new URL(href.replaceAll("&amp;", "&"), page);
+      } catch {
+        continue;
+      }
+      if (destination.origin !== origin || !["http:", "https:"].includes(destination.protocol)) continue;
+      const canonical = origin + destination.pathname.replace(/\/?$/, "/");
+      if (!pages.has(canonical) || visited.has(canonical)) continue;
+      visited.add(canonical);
+      pending.push(canonical);
+    }
+  }
+  return [...pages.keys()].filter(page => !visited.has(page)).sort();
+}

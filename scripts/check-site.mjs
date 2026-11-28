@@ -1,7 +1,7 @@
 import { readdir, readFile, stat } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import { checkIndexableHtml, checkModifiedDate } from "./seo-guard.mjs";
+import { checkIndexableHtml, checkModifiedDate, findUnlinkedPages } from "./seo-guard.mjs";
 import { checkStaticResources } from "./static-resources.mjs";
 
 const root = fileURLToPath(new URL("../dist/", import.meta.url));
@@ -20,7 +20,7 @@ for (const [, entry] of sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
   sitemapDates.set(url, date);
 }
 if (sitemapDates.size !== sitemapUrls.length) throw new Error("Sitemap URL and lastmod entries differ");
-const checkedUrls = new Set();
+const checkedPages = new Map();
 const files = [];
 async function walk(directory) {
   for (const entry of await readdir(directory)) {
@@ -43,7 +43,7 @@ for (const path of htmlFiles) {
     checkIndexableHtml(html, url);
     checkModifiedDate(html, url, sitemapDates.get(url));
     if (!sitemapUrls.includes(url)) throw new Error(`${url}: missing from sitemap`);
-    checkedUrls.add(url);
+    checkedPages.set(url, html);
   }
   for (const [, href] of html.matchAll(/href="([^"#]+)"/g)) {
     if (!href.startsWith("/") || href.startsWith("//")) continue;
@@ -51,7 +51,9 @@ for (const path of htmlFiles) {
     try { await stat(target); } catch { throw new Error(`${path}: broken internal link ${href}`); }
   }
 }
-for (const url of sitemapUrls) if (!checkedUrls.has(url)) throw new Error(`${url}: sitemap URL has no validated local page`);
+for (const url of sitemapUrls) if (!checkedPages.has(url)) throw new Error(`${url}: sitemap URL has no validated local page`);
+const unlinked = findUnlinkedPages(checkedPages, "https://ai.ipunk.cn/");
+if (unlinked.length) throw new Error(`Sitemap pages without an HTML link path from the homepage:\n${unlinked.join("\n")}`);
 const data = JSON.parse(await readFile(join(root, "data/projects.json"), "utf8"));
 if (data.projects.length !== 12) throw new Error("Expected exactly twelve tracked projects");
 for (const project of data.projects) {
@@ -78,4 +80,4 @@ const chooser = await readFile(join(root, "choose.js"), "utf8");
 for (const hook of ["workflow", "license", "priority", "data-compare-choice"]) {
   if (!chooser.includes(hook)) throw new Error(`Missing chooser hook: ${hook}`);
 }
-console.log(`Site check passed: ${htmlFiles.length} HTML pages, ${data.projects.length} project snapshots, ${checkedResources} static resource references`);
+console.log(`Site check passed: ${htmlFiles.length} HTML pages, ${checkedPages.size} reachable sitemap pages, ${data.projects.length} project snapshots, ${checkedResources} static resource references`);

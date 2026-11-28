@@ -1,10 +1,28 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { checkIndexableHtml, checkModifiedDate } from "../scripts/seo-guard.mjs";
+import { checkIndexableHtml, checkModifiedDate, findUnlinkedPages } from "../scripts/seo-guard.mjs";
 const url = "https://ai.ipunk.cn/projects/opencode/";
 const canonical = `<link href='${url}' rel='canonical'>`;
 const make = (links = canonical, robots = "") => `<html><head><title>Project</title><meta content='Useful guide' name='description'>${links}${robots}</head><body>Guide</body></html>`;
+test("crawl paths use live same-origin anchors and allow fragment links", () => {
+  const origin = "https://ai.ipunk.cn";
+  const entries = [
+    ["/", `<a href="/en/">English</a>
+      <link rel="canonical" href="/orphan/">
+      <!-- <a href="/orphan/">Comment</a> -->
+      <script>const fake = '<a href="/orphan/">'</script>
+      <template><a href="/orphan/">Inactive</a></template>
+      <a href="https://example.com/orphan/">External</a>`],
+    ["/en/", "<a href='guides/start/?view=short#next'>Start</a>"],
+    ["/en/guides/start/", '<a href="/en/">English</a>'],
+    ["/orphan/", '<a href="/en/">English</a>'],
+  ];
+  const pages = new Map(entries.map(([path, html]) => [origin + path, html]));
+  assert.deepEqual(findUnlinkedPages(pages, origin + "/"), [origin + "/orphan/"]);
+  pages.set(origin + "/en/", '<a href="/orphan/#answer">Answer</a><a href="/en/guides/start">Start</a>');
+  assert.deepEqual(findUnlinkedPages(pages, origin + "/"), []);
+});
 test("accepts a server-rendered self canonical with reordered attributes", () => assert.doesNotThrow(() => checkIndexableHtml(make(), url)));
 test("rejects wrong, duplicate and body-only canonicals", () => {
   for (const html of [make(canonical.replace("ai.ipunk.cn", "example.com")), make(canonical + canonical), make("").replace("Guide</body>", `${canonical}</body>`)]) assert.throws(() => checkIndexableHtml(html, url), /canonical/);
