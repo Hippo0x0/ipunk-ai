@@ -15,3 +15,9 @@ macOS arm64 的 Codex CLI 0.172.0 连跑八组隔离测试。临时 Git 仓库�
 使用原生 SVG 分流启动路径、覆盖文件和不确定情况。英文图链接到英文正文，中文入口标明英文。正式验收记录见下。
 
 localhost 核对 390px 和 1440px 的首答、决策树键盘高亮、缩放、三条章节链接、证据下载和无全页溢出。禁用 JavaScript 后仍可读取命令并跳转。Search Console 的站点地图报表显示 `/sitemap.xml` 最后于 11 月 25 日成功读取，已发现 33 个页面，早于本轮。
+
+## 正式交付
+
+GitHub `main` 的 `68d61a5` 干净归档通过 90 项测试，站点检查覆盖 66 个 HTML、65 个首页可达 sitemap 页面和 356 处静态资源。预览页和证据 JSON 与归档一致。北京时间 12:45，Worker 版本 `1e60cb9a-8e47-4e5a-a4dd-bdeb44ab0e0e` 承接 100% 流量，部署 `38409434-cb51-426a-825c-486f2500798d`。正式站 9 个相关路径均返回 HTTP 200 且与归档逐字节一致，采用直接 HTTP 验收。
+
+上线后 [新 URL 精确检查](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=c2ySvgO2IgLT3vppp1Le6A) 显示暂未被 Google 识别。当天已有手工提交配额限制，本轮通过站点地图和内部链接提供发现入口。Search Console Web 完整数据仍更新至 11 月 25 日（太平洋时间），11 月 19–25 日为 21 次曝光、0 次点击。该窗口早于本轮，新增曝光和点击须用上线后的完整数据确认。
