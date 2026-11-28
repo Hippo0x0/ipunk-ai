@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama OpenAI-Compatible API: Base URL, API Key and 404 Fixes | iPunk AI Radar</title>
+<meta name="description" content="Connect the OpenAI Python SDK to local Ollama. Use the right /v1 base URL and placeholder API key, list model tags, and diagnose two tested kinds of 404.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-openai-compatible-api/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Ollama OpenAI-Compatible API: Base URL, API Key and 404 Fixes">
+<meta property="og:description" content="Run a local chat request and distinguish a missing /v1 from a missing model tag.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/ollama-openai-compatible-api/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Ollama OpenAI-Compatible API: Base URL, API Key and 404 Fixes","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/ollama-openai-compatible-api/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#connect">Run a chat request</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama OpenAI-Compatible API</h1>
+<p class="guide-answer">Use <code>http://127.0.0.1:11434/v1/</code> as the OpenAI SDK base URL and <code>ollama</code> as its placeholder API key for a standard local Ollama server. Pick an exact model ID from <code>/v1/models</code>. If chat returns 404, check whether the SDK reached <code>/v1/chat/completions</code>, then check the model tag in the response.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#connect">Connect the OpenAI Python SDK</a></li>
+<li><a href="#diagnose">Find the failing step</a></li>
+<li><a href="#connection">Fix connection errors</a></li>
+<li><a href="#not-found">Distinguish two kinds of 404</a></li>
+<li><a href="#evidence">Download the tested responses</a></li>
+</ol></nav>
+<section id="connect"><h2>Connect the OpenAI Python SDK</h2>
+<p>Start Ollama and make sure at least one local model is present. If you need a model, follow the <a href="/en/guides/run-llm-locally/">first local model guide</a>. Use the actual port if it differs from 11434. From the same machine as Ollama, check the compatible models endpoint:</p>
+<pre><code>curl --noproxy '*' -fsS --max-time 5 http://127.0.0.1:11434/v1/models</code></pre>
+<p>Copy a model ID from <code>data[].id</code>. Install <code>openai</code> in your Python environment if needed. Replace the example ID with the one you just copied.</p>
+<pre><code>from openai import OpenAI
+
+with OpenAI(
+    base_url="http://127.0.0.1:11434/v1/",
+    api_key="ollama",
+    max_retries=0,
+    timeout=45,
+) as client:
+    reply = client.chat.completions.create(
+        model="qwen2.5:0.5b",
+        messages=[{"role": "user", "content": "Reply with exactly LOCAL_OK."}],
+        max_tokens=16,
+        temperature=0,
+    )
+    print(reply.choices[0].message.content)</code></pre>
+<p>A short reply from the chosen model confirms the chat route works. The SDK appends <code>chat/completions</code> to its base URL. A client field labeled <strong>full endpoint</strong> may instead expect <code>http://127.0.0.1:11434/v1/chat/completions</code>. The 45-second diagnostic timeout may be too short for a larger model loading for the first time.</p>
+<p>The placeholder satisfies the SDK’s key setting. Standard Ollama on loopback does not require authentication. A remote proxy or Ollama Cloud can have different authentication requirements. Use an actual provider key only with its intended service.</p></section>
+<section id="diagnose" class="guide-decision"><h2>What does the local request return?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Ollama API troubleshooting decision tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Choose the result of your local request">
+<defs><marker id="ollama-api-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="connection" d="M330 104 C330 147 110 143 110 218" marker-end="url(#ollama-api-arrow)"/>
+<path data-edge="not-found" d="M330 104 L330 218" marker-end="url(#ollama-api-arrow)"/>
+<path data-edge="connect" d="M330 104 C330 147 550 143 550 218" marker-end="url(#ollama-api-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What does the request return?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">Request result?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Connection error</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">HTTP 404</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Success / unsure</text>
+</g>
+<g data-node="connection" role="button" tabindex="0" aria-pressed="false" aria-label="Check the host and port"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Check the port</text></g>
+<g data-node="not-found" role="button" tabindex="0" aria-pressed="false" aria-label="Check the URL and model tag"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Check URL and tag</text></g>
+<g data-node="connect" role="button" tabindex="0" aria-pressed="false" aria-label="Run a minimal chat request"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Try a short chat</text></g>
+</svg></div>
+<div class="decision-links"><a href="#connection" aria-label="See steps: host and port">See steps</a><a href="#not-found" aria-label="See steps: 404 errors">See steps</a><a href="#connect" aria-label="See steps: minimal chat request">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="connection"><h2>Fix connection errors before changing the API key</h2>
+<pre><code>curl --noproxy '*' -fsS --max-time 5 http://127.0.0.1:11434/api/version</code></pre>
+<p>A version response confirms a server answered on that address. If the connection is refused, open the Ollama app or start <code>ollama serve</code> if you use the CLI and no instance is already listening. Recheck the address and port from the same environment as your client. In a container, <code>127.0.0.1</code> refers to that container. A connection timeout can have other causes, including an unreachable host or proxy configuration.</p>
+<p>After the version response succeeds, retry <code>/v1/models</code>. If only the native API is answering, verify the exact compatible path and your Ollama version. For the OpenCode model picker, use the separate <a href="/en/guides/opencode-ollama/">OpenCode and Ollama guide</a>.</p></section>
+<section id="not-found"><h2>Distinguish two kinds of 404</h2>
+<ol>
+<li><strong>Wrong route.</strong> With the Python base URL set to the server root, our request went to <code>/chat/completions</code> and returned plain-text <code>404 page not found</code>. Set the SDK base URL to the server address followed by <code>/v1/</code>, then check that the SDK calls <code>/v1/chat/completions</code>.</li>
+<li><strong>Missing model.</strong> With the correct route and an unknown tag, our request returned a JSON error naming the missing model. List <code>/v1/models</code> again and copy an ID. The native <code>/api/tags</code> endpoint also lists models, using a different response format.</li>
+</ol>
+<p>If a known ID still fails, check that the model list and chat go to the same host and port. Once a short request works, use the <a href="/en/guides/ollama-context-length/">Ollama context guide</a> if you need to verify the loaded context for a longer task.</p></section>
+<section id="evidence"><h2>What the local requests returned</h2>
+<p>On November 28, 2026 we used one small Qwen GGUF, Ollama 0.40.18 and the OpenAI Python SDK on a temporary loopback port. The SDK chat and a direct HTTP request with no Authorization header both returned <code>LOCAL_OK</code>. The native and compatible model lists showed the same tag. The two deliberate 404s had different paths and bodies. After stopping Ollama, the SDK raised <code>APIConnectionError</code>.</p>
+<p><a href="/evidence/ollama-api/observations.json" download>Download the model lists, request and observed responses</a>. The test covers local Chat Completions with one installed model. Other compatible endpoints and remote authentication depend on the version and deployment.</p>
+<p>Sources checked November 28, 2026. <a href="https://docs.ollama.com/api/openai-compatibility">Ollama’s OpenAI compatibility reference</a> · <a href="https://docs.ollama.com/api/authentication">Ollama’s authentication reference</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

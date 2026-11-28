@@ -98,7 +98,7 @@
   --model ollama/qwen-local-first:latest \
   "Reply with exactly LOCAL_OK and nothing else."</code></pre>
 <p>Check for a reply, then immediately check <code>ollama ps</code> for the same tag. For a custom port, point the Ollama CLI at it first, or query <code>/api/ps</code> on that port. Prefer an otherwise idle test server so you can identify which request loaded the model. A connection test says little about how well it can edit a repository.</p>
-<p>If the model is visible but the request fails, read the first error and verify the port again. For memory or context errors, check the actual running setting using the <a href="/en/guides/ollama-context-length/">Ollama context guide</a>. Ollama recommends a larger context for OpenCode coding workloads. Use the local test above to establish connectivity before choosing a coding model.</p>
+<p>If the model is visible but the request fails, read the first error and verify the port again. For memory or context errors, check the actual running setting using the <a href="/en/guides/ollama-context-length/">Ollama context guide</a>. For a separate OpenAI SDK client, <a href="/en/guides/ollama-openai-compatible-api/">test the local OpenAI-compatible endpoint</a>. Ollama recommends a larger context for OpenCode coding workloads. Use the local test above to establish connectivity before choosing a coding model.</p>
 </section>
 <p>Using the hosted Go provider instead? <a href="/en/guides/opencode-go-limits/">Check OpenCode Go usage and reset windows</a>.</p>
 <section id="evidence">

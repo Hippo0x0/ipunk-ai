@@ -1,0 +1,147 @@
+{
+  "date": "2026-11-28",
+  "ollama_version": "0.40.18",
+  "python_openai_sdk": "3.60.0",
+  "server": "http://127.0.0.1:51804",
+  "request": {
+    "model": "ipunk-small:latest",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Reply with exactly LOCAL_OK and nothing else."
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 16,
+    "stream": false
+  },
+  "native_models": {
+    "method": "GET",
+    "path": "/api/tags",
+    "status": 200,
+    "response": {
+      "models": [
+        {
+          "name": "ipunk-small:latest",
+          "model": "ipunk-small:latest",
+          "modified_at": "2026-11-28T11:33:47.636590495+08:00",
+          "size": 491400150,
+          "digest": "8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7",
+          "details": {
+            "parent_model": "qwen.gguf",
+            "format": "gguf",
+            "family": "qwen2",
+            "families": [
+              "qwen2"
+            ],
+            "parameter_size": "630.17M",
+            "quantization_level": "Q4_K_M",
+            "context_length": 32768,
+            "embedding_length": 896,
+            "runner": "llamacpp"
+          },
+          "capabilities": [
+            "tools",
+            "completion"
+          ]
+        }
+      ]
+    }
+  },
+  "compatible_models": {
+    "method": "GET",
+    "path": "/v1/models",
+    "status": 200,
+    "response": {
+      "object": "list",
+      "data": [
+        {
+          "id": "ipunk-small:latest",
+          "object": "model",
+          "created": 1795836827,
+          "owned_by": "library"
+        }
+      ]
+    }
+  },
+  "compatible_chat_without_auth_header": {
+    "method": "POST",
+    "path": "/v1/chat/completions",
+    "status": 200,
+    "response": {
+      "id": "chatcmpl-386",
+      "object": "chat.completion",
+      "created": 1795836828,
+      "model": "ipunk-small:latest",
+      "system_fingerprint": "fp_ollama",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "LOCAL_OK"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 38,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens": 3,
+        "total_tokens": 41
+      }
+    }
+  },
+  "python_sdk": {
+    "correct_base": {
+      "status": 200,
+      "path": "/v1/chat/completions",
+      "response": {
+        "id": "chatcmpl-28",
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "content": "LOCAL_OK",
+              "role": "assistant"
+            }
+          }
+        ],
+        "created": 1795836829,
+        "model": "ipunk-small:latest",
+        "object": "chat.completion",
+        "system_fingerprint": "fp_ollama",
+        "usage": {
+          "completion_tokens": 3,
+          "prompt_tokens": 38,
+          "total_tokens": 41,
+          "prompt_tokens_details": {
+            "cached_tokens": 37
+          }
+        }
+      }
+    },
+    "missing_v1": {
+      "status": 404,
+      "path": "/chat/completions",
+      "response": "404 page not found"
+    },
+    "missing_model_tag": {
+      "status": 404,
+      "path": "/v1/chat/completions",
+      "response": {
+        "message": "model 'ipunk-missing:latest' not found",
+        "type": "not_found_error",
+        "param": null,
+        "code": null
+      }
+    },
+    "server_stopped": {
+      "error": "APIConnectionError",
+      "cause": "ConnectError"
+    }
+  }
+}
