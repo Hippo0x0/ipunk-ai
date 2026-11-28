@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>OpenCode Review: Models, Permissions and Safety | iPunk AI Radar</title>
-<meta name="description" content="Review OpenCode models and V1-to-V2 migration. See tested permission rules and check why an edit was allowed, denied, or rejected without prompting.">
+<meta name="description" content="Check OpenCode V1 and V2 permissions, see four tested write outcomes, and find setup, model, configuration and session troubleshooting guides.">
 <link rel="canonical" href="https://ai.ipunk.cn/en/projects/opencode/">
 <link rel="alternate" hreflang="zh-CN" href="https://ai.ipunk.cn/projects/opencode/">
 <link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/projects/opencode/">
@@ -11,14 +11,42 @@
 <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"OpenCode Review: Models, Permissions and Safety","datePublished":"2026-10-26","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/projects/opencode/","author":{"@type":"Organization","name":"iPunk AI Radar"}}</script>
 <script type="module" src="/analytics.mjs"></script></head>
-<body>
+<body class="opencode-review">
 <header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/en/#projects">Watchlist (Chinese / English)</a><a href="/methodology/">Scoring method</a><a class="lang" href="/projects/opencode/" lang="zh-CN" hreflang="zh-CN" aria-label="Read the Chinese OpenCode review">中文</a></nav></div></header>
 <main>
-<section class="project-hero"><div class="wrap"><a class="back" href="/projects/opencode/">← Chinese edition</a><div class="eyebrow">CODING AGENT · DOCUMENTATION REVIEW</div><h1>OpenCode: models, permissions and safety</h1><p class="section-note">OpenCode supports multiple model providers. Check your version before configuring permissions, then verify the individual tool result when running headless.</p></div></section>
+<section class="project-hero"><div class="wrap"><a class="back" href="/projects/opencode/">← Chinese edition</a><div class="eyebrow">CODING AGENT · DOCUMENTATION REVIEW</div><h1>OpenCode: models, permissions and safety</h1><p class="section-note">OpenCode lets you choose a model provider and configure approval rules. In V2, the last matching permission rule wins. For non-interactive runs, check the tool result and the file as well as the process exit code.</p>
+<nav class="project-task-nav" aria-label="OpenCode tasks">
+<a href="#permission-start">Set permissions</a>
+<a href="#permission-order">Why no prompt?</a>
+<a href="#open-guides">Setup and troubleshooting guides</a>
+</nav></div></section>
 <div class="wrap project-layout"><article class="article task-article">
 <p>English edition published <time datetime="2026-10-26">October 26, 2026</time>. This adapts our Chinese project review; migration and security sources were rechecked on that date.</p>
 <div class="notice"><strong>Evidence boundary:</strong> This is a documentation-based review, not a hands-on test of coding performance. We inspected the configured rule order and ran four non-interactive file-write checks with a local fixture. The Chinese edition's original October 15 editorial score has not been revalidated for V2. We do not turn GitHub stars into a quality or search-demand claim.</div>
 <nav aria-label="On this page"><ul><li><a href="#permission-start">Version-specific permission setup</a></li><li><a href="#permission-order">Check why an edit did not ask</a></li><li><a href="#permission-runtime">Verify a non-interactive write</a></li><li><a href="#fit">What to evaluate</a></li><li><a href="#migration">V1 and V2 migration</a></li><li><a href="#safety">Permission boundaries</a></li><li><a href="#trial">Trial checklist</a></li><li><a href="#sources">Sources and limitations</a></li></ul></nav>
+<section id="open-guides" class="project-task-index">
+<h2>OpenCode setup and troubleshooting guides</h2>
+<div class="project-task-groups">
+<div><h3>Install and run</h3>
+<ul>
+<li><a href="/en/guides/opencode-tutorial/">Install OpenCode and verify your first run</a></li>
+<li><a href="/en/guides/opencode-ollama/">Connect and test an Ollama model</a></li>
+<li><a href="/en/guides/opencode-go-limits/">Check Go usage and reset times</a></li>
+</ul></div>
+<div><h3>Config and sessions</h3>
+<ul>
+<li><a href="/en/guides/opencode-config/">Find the active configuration file</a></li>
+<li><a href="/en/guides/opencode-agents-md/">Check which AGENTS.md files load</a></li>
+<li><a href="/en/guides/opencode-resume/">Resume or recover a saved session</a></li>
+</ul></div>
+<div><h3>Tools and extensions</h3>
+<ul>
+<li><a href="/en/guides/opencode-mcp-server/">Connect and check an MCP server</a></li>
+<li><a href="/en/guides/opencode-skills-not-loading/">Find why a skill is missing</a></li>
+<li><a href="/en/guides/opencode-plugins-not-loading/">Find why a plugin did not load</a></li>
+</ul></div>
+</div>
+</section>
 <section id="permission-start"><h2>OpenCode permissions: match the installed version</h2><p>Run <code>opencode --version</code> first. For V2, ask before edits, shell commands and access outside the project with the rules below. Keep a copy of existing configuration before merging; managed and agent rules can change the effective result.</p><h3>Which OpenCode version are you using?</h3><div class="decision" data-flow><div class="flow-viewport" tabindex="0" role="region" aria-label="Decision tree"><svg viewBox="0 0 1080 365" class="flow-svg" xmlns="http://www.w3.org/2000/svg" aria-label="Which OpenCode version are you using?"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"/></marker></defs><path data-edge="n0" d="M 540 155 C 540 205, 180 205, 180 275" marker-end="url(#arrow)"/><text x="180" y="235" text-anchor="middle">V2</text><path data-edge="n1" d="M 540 155 C 540 205, 540 205, 540 275" marker-end="url(#arrow)"/><text x="540" y="235" text-anchor="middle">V1</text><path data-edge="n2" d="M 540 155 C 540 205, 900 205, 900 275" marker-end="url(#arrow)"/><text x="900" y="235" text-anchor="middle">Not sure</text><g data-node="root" role="button" tabindex="0" aria-pressed="false"><path class="node-shape" d="M 540 15 L 830 85 L 540 155 L 250 85 Z"/><text x="540" y="90" text-anchor="middle">Which OpenCode version are you using?</text></g><g data-node="n0" role="button" tabindex="0" aria-pressed="false"><rect class="node-shape" x="35" y="275" width="290" height="75" rx="14"/><text x="180" y="320" text-anchor="middle">Check V2 rules</text></g><g data-node="n1" role="button" tabindex="0" aria-pressed="false"><rect class="node-shape" x="395" y="275" width="290" height="75" rx="14"/><text x="540" y="320" text-anchor="middle">Keep V1 syntax</text></g><g data-node="n2" role="button" tabindex="0" aria-pressed="false"><rect class="node-shape" x="755" y="275" width="290" height="75" rx="14"/><text x="900" y="320" text-anchor="middle">Read the version</text></g></svg></div><div class="decision-links"><a href="#permissions-v2" aria-label="Check V2 rules">V2 rules</a><a href="#permissions-v1" aria-label="Keep V1 syntax">V1 syntax</a><a href="#permissions-version" aria-label="Read the version">Check version</a></div><div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><button type="button" data-zoom="in" aria-label="Zoom in">＋</button></div></div><div id="permissions-v2"><h3>V2: ask for edits, commands and outside-project access</h3><pre><code>{
   &quot;$schema&quot;: &quot;https://opencode.ai/config.json&quot;,
   &quot;permissions&quot;: [
@@ -62,14 +90,6 @@
 <section id="safety"><h2>Approval prompts are not a sandbox</h2><p>The project's <a href="https://github.com/anomalyco/opencode/blob/dev/SECURITY.md">published security model</a> states that the agent is not sandboxed. Approval prompts do not provide process, filesystem or network isolation. For isolation, the project recommends a container or virtual machine.</p><ul><li><strong>Server mode:</strong> when enabling it, configure authentication and restrict network exposure. The security document identifies <code>OPENCODE_SERVER_PASSWORD</code> as the password setting.</li><li><strong>Model providers:</strong> their own policies govern data sent to them.</li><li><strong>External MCP servers:</strong> assess their behavior and data handling separately; they are outside the project's core trust boundary.</li></ul><p>Our practical recommendation: use a disposable repository without secrets for a first trial. A container with broad host mounts is not automatically an adequate boundary; review what access you actually grant.</p></section>
 <section id="trial"><h2>A small trial you can reproduce</h2><p>The following is our proposed evaluation procedure, not a report of completed testing. Keep the same task and acceptance criteria when comparing runs.</p><ol><li><strong>Write down the setup.</strong> Record the installed version, operating system, chosen model, provider and permission configuration. Never publish API keys.</li><li><strong>Choose a bounded change.</strong> Use a disposable copy of a small repository with a known passing test command. Save its initial revision and test result.</li><li><strong>Ask for an explanation first.</strong> Check whether the agent identifies the relevant files and constraints before permitting edits.</li><li><strong>Allow one change.</strong> Review the proposed commands and resulting diff. Record unexpected file changes and approval requests.</li><li><strong>Run the same tests.</strong> Keep the actual output, including failures. A confident answer is not evidence that the task works.</li><li><strong>Check recovery and cost.</strong> Confirm you can restore the disposable copy, inspect provider usage, then decide whether to expand access.</li></ol><p>A useful result contains the task, before-and-after diff, test output, failures and measured cost. Until those artifacts exist, treat claims about speed, reliability and value as unverified.</p></section>
 <section id="sources"><h2>Sources and limitations</h2><ul><li><a href="https://opencode.ai/v2/docs/migrate-v1/">Official V1-to-V2 migration guide</a> — installation and compatibility boundaries.</li><li><a href="https://github.com/anomalyco/opencode/blob/dev/SECURITY.md">Official security model</a> — isolation, server authentication and external services.</li><li><a href="/projects/opencode/">Chinese project review</a> — original editorial assessment and separately dated public metrics.</li></ul><p>We have not measured task success rate, operating-system compatibility or V2 performance. This English URL contains static English content and does not require JavaScript or a saved language preference to read.</p></section>
-<p><a href="/en/guides/opencode-tutorial/">Set up OpenCode and run a first project</a>.</p>
-<p><a href="/en/guides/opencode-agents-md/">Check how OpenCode loads global and project rules</a>.</p>
-<p><a href="/en/guides/opencode-resume/">Resume an OpenCode session by ID</a> or recover an exported transcript.</p>
-<p><a href="/en/guides/opencode-config/">Find which OpenCode config file is loaded</a> and check the effective agent setting.</p>
-<p><a href="/en/guides/opencode-mcp-server/">Connect and check a local MCP server in OpenCode V2</a></p><p><a href="/en/guides/opencode-ollama/">Find and verify an Ollama model in OpenCode V2</a></p>
-<p><a href="/en/guides/opencode-go-limits/">OpenCode Go Limits and Usage Calculator</a></p>
-<p><a href="/en/guides/opencode-skills-not-loading/">OpenCode Skills Not Loading? Check the File, ID and Scope</a></p>
-<p><a href="/en/guides/opencode-plugins-not-loading/">OpenCode Plugins Not Loading? Check V1, V2 and Plugin Scope</a></p>
 </article><aside class="side"><div class="snapshot"><div class="eyebrow">READING GUIDE</div><h2>Start with the boundary</h2><p>Check your installed generation, then permissions, then one small task. Add tools and integrations only after you can explain their access.</p><p><a href="/projects/opencode/" hreflang="zh-CN" lang="zh-CN">阅读中文版 →</a></p></div><div class="snapshot"><div class="eyebrow">CONTINUE READING</div><p><a href="/guides/ai-coding-agent-security/">Coding-agent safety checklist (bilingual) →</a></p><p><a href="/methodology/">How our editorial scoring works (bilingual) →</a></p></div></aside></div>
 </main><footer class="footer"><div class="wrap footer-inner"><strong>iPunk AI Radar</strong><span>Documentation review · Not a hands-on benchmark</span></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
 <script src="/guide-flow.js" defer></script></body></html>
