@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Resume an OpenCode Session and Find Its ID | iPunk AI Radar</title>
+<meta name="description" content="Resume the last OpenCode session with --continue or select an exact ID with --session. Check the project and export or import a missing session.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-resume/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="How to Resume an OpenCode Session and Find Its ID">
+<meta property="og:description" content="Choose the right session, verify the earlier messages, and recover an exported session in another project.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/opencode-resume/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How to Resume an OpenCode Session and Find Its ID","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/opencode-resume/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#list">Find a session ID</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>How to Resume an OpenCode Session</h1>
+<p class="guide-answer">From the project directory, run <code>opencode --continue</code> to reopen the latest session. For an older conversation, run <code>opencode session list</code> and open the exact ID with <code>opencode --session SESSION_ID</code>. Confirm the earlier messages before sending a new prompt. In OpenCode 2, an ID missing from the current store can create an empty session.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#latest">Continue the last session</a></li>
+<li><a href="#list">Find and open a specific ID</a></li>
+<li><a href="#missing">Diagnose an empty or missing session</a></li>
+<li><a href="#transfer">Export and import a session</a></li>
+<li><a href="#test">See the OpenCode 2.4.1 test</a></li>
+</ol></nav>
+
+<section class="guide-decision"><h2>Which session do you want to resume?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="OpenCode session decision tree">
+<svg class="flow-svg" viewBox="0 0 660 280" role="group" aria-label="Choose an OpenCode session">
+<defs><marker id="opencode-resume-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="latest" d="M330 103 C330 151 110 134 110 205" marker-end="url(#opencode-resume-arrow)"/>
+<path data-edge="list" d="M330 103 L330 205" marker-end="url(#opencode-resume-arrow)"/>
+<path data-edge="missing" d="M330 103 C330 151 550 134 550 205" marker-end="url(#opencode-resume-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Which session do you want?"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">Which session?</text></g>
+<g text-anchor="middle">
+<rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">Latest</text>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">An older one</text>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">Missing / unsure</text>
+<g data-node="latest" role="button" tabindex="0" aria-pressed="false" aria-label="Continue the latest session"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">Continue</text></g>
+<g data-node="list" role="button" tabindex="0" aria-pressed="false" aria-label="Find the exact session ID"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">Select by ID</text></g>
+<g data-node="missing" role="button" tabindex="0" aria-pressed="false" aria-label="Check the directory and server"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">Check project</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#latest">Continue</a><a href="#list">Select by ID</a><a href="#missing">Check project</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+<section id="latest">
+<h2>Continue the last OpenCode session</h2>
+<p>Open the directory where you started the earlier conversation. Use <code>--continue</code> or its short form <code>-c</code>. In the terminal interface, you can also run <code>/sessions</code> to choose a conversation.</p>
+<pre><code>opencode --continue</code></pre>
+<p>Check the transcript and directory before you submit a prompt. In scripts, the same option is available on <code>opencode run</code>. This command immediately sends the new prompt, so use it when you know the latest session is the one you want.</p>
+<pre><code>opencode run --continue "Summarize the decisions already made."</code></pre>
+</section>
+
+<section id="list">
+<h2>Find the exact session ID</h2>
+<p>From the original project directory, list sessions and copy the full ID, including its <code>ses_</code> prefix. Replace <code>SESSION_ID</code> with that value.</p>
+<pre><code>opencode session list --max-count 20 --format json
+opencode --session SESSION_ID</code></pre>
+<p>Check the <code>directory</code> and <code>title</code> in the list. If you need a script to continue that ID, use <code>opencode run --session SESSION_ID "Your next prompt"</code>. In OpenCode 2.4.1 the flag can create a new empty session when the ID is absent. Verify the transcript or list entry before relying on the ID.</p>
+</section>
+
+<section id="missing">
+<h2>Why an OpenCode session may be missing or empty</h2>
+<ol>
+<li>Verify the directory, including the checkout or worktree where you started the session. A repository with a different initial commit can have a separate project identity. Check the directory in the JSON list instead of relying on its title or ordering alone.</li>
+<li>Check the server and user profile. If you previously used a remote server or a container, reconnect to that same server or environment. A private server started with <code>--standalone</code> uses the profile available to that command. Run <code>opencode debug paths</code> to inspect local paths.</li>
+<li>If the session is listed but opens without earlier messages, try the original context before sending any data. An empty conversation with the expected ID can be newly created. If you have an export, recover it in the intended project first.</li>
+</ol>
+<p>In our two empty Git repositories sharing one temporary profile, <code>session list</code> in one directory displayed the other directory’s session. Running <code>--continue</code> in the second directory started a new conversation. Treat the listed <code>directory</code> and transcript as the confirmation.</p>
+<p>For a mismatch between a CLI and a separate service, also <a href="/en/guides/opencode-config/">check the OpenCode config sources</a>.</p>
+</section>
+
+<section id="transfer">
+<h2>Export and import an OpenCode session</h2>
+<p>Export from the source project and keep the JSON private if you need it for restoration. It can contain prompts, file data or tool output. Then go to the destination directory and import the file there. Use a fresh destination profile to test the import before relying on it.</p>
+<pre><code>opencode session export SESSION_ID &gt; session.json</code></pre>
+<pre><code>opencode session import /path/to/session.json --directory /path/to/project
+opencode session list --format json</code></pre>
+<p>Use the ID shown after import. Confirm the earlier messages in the destination before continuing. Restore any uncommitted files separately if the session refers to them.</p>
+<p>For sharing, <code>opencode session export --sanitize SESSION_ID</code> removes sensitive transcript and file data as described by OpenCode. Inspect the result before sharing. Keep an original private copy when you need the prior prompts for recovery.</p>
+</section>
+
+<section id="test">
+<h2>What carried over in OpenCode 2.4.1</h2>
+<div class="video-table"><table>
+<thead><tr><th scope="col">Action</th><th scope="col">History sent on the next prompt</th></tr></thead>
+<tbody>
+<tr><td><code>--continue</code> after two sessions</td><td>Messages from the second session</td></tr>
+<tr><td><code>--session</code> with the first ID</td><td>Messages from the first session</td></tr>
+<tr><td>Export and import into a fresh profile</td><td>The first session’s earlier prompts under the original ID</td></tr>
+<tr><td>Continue from another empty Git repository</td><td>Only the new prompt under a new ID</td></tr>
+<tr><td>Use an absent ID in a fresh profile</td><td>Only the new prompt under the requested ID</td></tr>
+</tbody></table></div>
+<p>We ran the macOS arm64 CLI with isolated projects and a loopback-only provider fixture. The fixture recorded synthetic markers from real requests and returned fixed text. The export retained the tested prompt markers. They were absent from a sanitized export. These observations cover saved history and session selection, without testing model answers or cross-version migration.</p>
+<p><a href="/evidence/opencode-resume/observations.json" download>Download the session and request checks</a>. See the <a href="https://opencode.ai/docs/cli/commands">OpenCode CLI commands</a> and <a href="https://opencode.ai/docs/cli/tui/">terminal interface guide</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

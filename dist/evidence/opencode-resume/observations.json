@@ -1,0 +1,87 @@
+{
+  "version": "2.4.1",
+  "platform": "macOS arm64",
+  "date": "2026-11-28",
+  "scope": "Real CLI and temporary Git/XDG state, sandbox restricted to loopback. A synthetic provider returned fixed text and recorded only the listed markers. Session IDs use labels in these observations.",
+  "first": {
+    "session_id": "alpha",
+    "request_markers": [
+      [
+        "SEED_ALPHA"
+      ],
+      [
+        "SEED_ALPHA"
+      ]
+    ]
+  },
+  "second": {
+    "session_id": "beta",
+    "request_markers": [
+      [
+        "SEED_BETA"
+      ],
+      [
+        "SEED_BETA"
+      ]
+    ]
+  },
+  "latest": {
+    "session_id": "beta",
+    "request_markers": [
+      [
+        "SEED_BETA",
+        "FOLLOW_LATEST"
+      ]
+    ]
+  },
+  "explicit": {
+    "session_id": "alpha",
+    "request_markers": [
+      [
+        "SEED_ALPHA",
+        "FOLLOW_EXPLICIT"
+      ]
+    ]
+  },
+  "other_committed_project_list_count": 0,
+  "unborn_git": {
+    "count_seen_in_another_unborn_repository": 1,
+    "reported_project_id": "global",
+    "continued_same_id_from_second_directory": false,
+    "continued_request_markers": [
+      [
+        "FOLLOW_UNBORN"
+      ],
+      [
+        "FOLLOW_UNBORN"
+      ]
+    ]
+  },
+  "missing_id_in_fresh_profile": {
+    "initial_list_count": 0,
+    "created_requested_id": true,
+    "request_markers": [
+      [
+        "UNKNOWN_ID"
+      ],
+      [
+        "UNKNOWN_ID"
+      ]
+    ]
+  },
+  "export": {
+    "raw_prompts_present": true,
+    "sanitized_prompts_absent": true,
+    "import_kept_original_id": true
+  },
+  "imported": {
+    "session_id": "alpha",
+    "request_markers": [
+      [
+        "SEED_ALPHA",
+        "FOLLOW_EXPLICIT",
+        "FOLLOW_IMPORTED"
+      ]
+    ]
+  }
+}
