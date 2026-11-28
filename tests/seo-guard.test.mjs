@@ -13,8 +13,15 @@ test("rejects indexing blocks and missing search descriptions", () => {
   for (const name of ["robots", "Googlebot", "bingbot"]) for (const content of ["noindex,follow", "none"]) assert.throws(() => checkIndexableHtml(make(canonical, `<meta name="${name}" content="${content}">`), url), /blocked/);
   assert.throws(() => checkIndexableHtml(make().replace("name='description'", "name='other'"), url), /description/);
 });
-test("published OpenCode editorial date agrees with its sitemap entry", async () => {
-  const html = await readFile(new URL("../dist/projects/opencode/index.html", import.meta.url), "utf8");
-  assert.doesNotThrow(() => checkModifiedDate(html, url, "2026-11-23"));
-  assert.throws(() => checkModifiedDate(html, url, "2026-10-22"), /lastmod differs/);
+test("published OpenCode editorial dates agree with their sitemap entries", async () => {
+  const sitemap = await readFile(new URL("../dist/sitemap.xml", import.meta.url), "utf8");
+  for (const path of ["/projects/opencode/", "/en/projects/opencode/"]) {
+    const pageUrl = new URL(path, url).href;
+    const html = await readFile(new URL(`../dist${path}index.html`, import.meta.url), "utf8");
+    const publishedDate = sitemap.split(`<loc>${pageUrl}</loc>`)[1]?.match(/^\s*<lastmod>([^<]+)<\/lastmod>/)?.[1];
+    assert.ok(publishedDate, `Missing sitemap date for ${pageUrl}`);
+    assert.match(html, /"dateModified"\s*:\s*"\d{4}-\d{2}-\d{2}"/);
+    assert.doesNotThrow(() => checkModifiedDate(html, pageUrl, publishedDate));
+    assert.throws(() => checkModifiedDate(html, pageUrl, "2026-10-22"), /lastmod differs/);
+  }
 });

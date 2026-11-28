@@ -1,0 +1,65 @@
+{
+  "version": "opencode v2.4.1",
+  "command": "opencode debug agents --standalone",
+  "scope": "Local configuration and built-in Build agent rule ordering; no model turns, approval replies or file edit actions.",
+  "observations": [
+    {
+      "case": "specific-last",
+      "config": {
+        "permissions": [
+          {
+            "action": "edit",
+            "resource": "*",
+            "effect": "ask"
+          },
+          {
+            "action": "edit",
+            "resource": "notes.txt",
+            "effect": "deny"
+          }
+        ]
+      },
+      "debug_build_edit_rules": [
+        {
+          "action": "edit",
+          "resource": "*",
+          "effect": "ask"
+        },
+        {
+          "action": "edit",
+          "resource": "notes.txt",
+          "effect": "deny"
+        }
+      ]
+    },
+    {
+      "case": "broad-last",
+      "config": {
+        "permissions": [
+          {
+            "action": "edit",
+            "resource": "notes.txt",
+            "effect": "deny"
+          },
+          {
+            "action": "edit",
+            "resource": "*",
+            "effect": "ask"
+          }
+        ]
+      },
+      "debug_build_edit_rules": [
+        {
+          "action": "edit",
+          "resource": "notes.txt",
+          "effect": "deny"
+        },
+        {
+          "action": "edit",
+          "resource": "*",
+          "effect": "ask"
+        }
+      ]
+    }
+  ]
+}
