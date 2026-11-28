@@ -1,0 +1,13 @@
+AI video replacement trial
+Input: Image-to-video. Keep the same starting image and crop.
+Target: 16:9, 5 seconds
+
+Scene or reference to keep:
+A blue mug centered on a plain table.
+
+Motion to test:
+A slow camera push toward the mug.
+
+Record per attempt: service/model, duration offered and cost shown.
+After download, check: framing, subject consistency, motion, actual duration, watermark and audio.
+Note any change from the target and any retry before comparing results.
