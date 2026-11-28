@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scanned PDF to Markdown on Mac with Local OCR | iPunk AI Radar</title>
+<meta name="description" content="Convert a scanned PDF to Markdown on macOS. Keep existing text, OCR missing pages with Apple Vision, and verify the recovered text against the source.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/scanned-pdf-to-markdown/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Scanned PDF to Markdown on Mac with Local OCR">
+<meta property="og:description" content="Use Apple Vision to recover scan text and preserve the source page numbers in Markdown.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/scanned-pdf-to-markdown/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Scanned PDF to Markdown on Mac with Local OCR","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/scanned-pdf-to-markdown/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#convert">Convert a PDF</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Convert a Scanned PDF to Markdown on Mac</h1>
+<p class="guide-answer">Run the local Swift converter to keep existing PDF text and OCR image-only pages with Apple Vision. It writes one Markdown section per page. If a page has selectable text and a scanned image, you can choose that page for OCR explicitly.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#convert">Convert a PDF on macOS</a></li>
+<li><a href="#force">Choose specific pages for OCR</a></li>
+<li><a href="#verify">Check page coverage and reading order</a></li>
+<li><a href="#evidence">Try a known sample</a></li>
+</ol></nav>
+<section id="convert"><h2>Extract text and OCR image-only pages on Mac</h2>
+<p>Download <a href="/evidence/scanned-pdf-to-markdown/pdf-to-markdown.swift" download>the Swift converter</a>. If your Mac does not have <code>swift</code>, install Apple’s Command Line Tools with <code>xcode-select --install</code>. The converter uses macOS PDFKit and Apple Vision after that setup.</p>
+<p>Run this from the folder with the script and PDF. Pick a new output path. The converter refuses to replace an existing file.</p>
+<pre><code>swift pdf-to-markdown.swift "scan.pdf" "scan.md"</code></pre>
+<p>The converter reads extractable text where it can and applies English OCR to pages whose text layer is empty. Both modes write a page heading, the extraction method and the recovered text into the same Markdown file. The PDF stays on your Mac.</p>
+</section>
+
+<section class="guide-decision"><h2>What text can you select in the PDF?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="PDF scan decision tree"><svg class="flow-svg" viewBox="0 0 660 280" role="group" aria-label="Choose what the PDF page contains">
+<defs><marker id="scan-ocr-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="convert" d="M330 103 C330 151 110 134 110 205" marker-end="url(#scan-ocr-arrow)"/>
+<path data-edge="force" d="M330 103 L330 205" marker-end="url(#scan-ocr-arrow)"/>
+<path data-edge="verify" d="M330 103 C330 151 550 134 550 205" marker-end="url(#scan-ocr-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What text can you select in the PDF?"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">Selectable text?</text></g>
+<g text-anchor="middle">
+<rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">None</text>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">Some text</text>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">All / unsure</text>
+<g data-node="convert" role="button" tabindex="0" aria-pressed="false" aria-label="Convert and OCR image-only pages"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">Run OCR</text></g>
+<g data-node="force" role="button" tabindex="0" aria-pressed="false" aria-label="Choose a page for OCR"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">Choose pages</text></g>
+<g data-node="verify" role="button" tabindex="0" aria-pressed="false" aria-label="Check extracted text against the PDF"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">Verify the text</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#convert">Run OCR</a><a href="#force">Choose pages</a><a href="#verify">Verify the text</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+
+
+<section id="force"><h2>OCR a specific page that is missing scanned text</h2>
+<p>A page can have a selectable header and still contain an image with the text you need. When you spot a missing sentence in the Markdown, use the PDF viewer’s physical page position and rerun to a new filename.</p>
+<pre><code>swift pdf-to-markdown.swift "scan.pdf" "scan-rechecked.md" --ocr-pages 3,5</code></pre>
+<p>Replace <code>3,5</code> with the pages you want to read as images. On those pages, OCR supplies the entire page’s text. Keep the first Markdown for comparison. For text-based tables, try the <a href="/en/guides/markitdown-pdf-to-markdown/#table">MarkItDown table check</a> before replacing the text-layer result with OCR.</p>
+</section>
+<section id="verify"><h2>Check the Markdown page by page</h2>
+<ol>
+<li>Search for a known phrase from each important page. Compare the exact spellings, numbers, decimal points, units and IDs with the PDF.</li>
+<li>If you see <strong>No text recovered</strong>, open that page in the PDF viewer. A blank page may be expected. A nonblank page might need a clearer scan or another OCR language.</li>
+<li>Check tables and columns for reading order. The output stores page text in fenced blocks. For AI search, confirm your importer indexes the block and captures its source page. A useful retrieval test asks for a value that only the scanned page contains.</li>
+</ol>
+<p>The scan mode is configured for English printed text. Handwriting, complex layouts and scanned text in other languages need separate verification. Unlock password-protected documents before trying the script.</p>
+</section>
+<section id="evidence"><h2>Try the three-page sample</h2>
+<p>Download <a href="/evidence/markitdown-pdf/support-notes.pdf" download>the synthetic support PDF</a> and run the converter. Pages 1 and 2 should use the PDF text layer. Page 3 should use OCR and recover <code>SCAN-43</code> and <code>72 hours</code>. In our trial, forcing OCR on page 2 changed the reading order of the table cells. Keep the original table as the reference.</p>
+<p><a href="/evidence/scanned-pdf-to-markdown/support-notes-auto.md" download>Download the default output</a>, <a href="/evidence/scanned-pdf-to-markdown/support-notes-ocr-page-2.md" download>compare the forced OCR output</a> or <a href="/evidence/scanned-pdf-to-markdown/observations.json" download>read the checks</a>. Tests ran on macOS 26.4.1, Apple M4, with outbound internet access denied. The sample is a printed, single-column scan with a separate text-based table page.</p>
+<p>See Apple’s <a href="https://developer.apple.com/documentation/vision/recognizing-text-in-images">Vision text recognition guide</a> and <a href="https://developer.apple.com/documentation/pdfkit/pdfpage">PDFKit page reference</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

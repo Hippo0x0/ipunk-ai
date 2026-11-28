@@ -63,6 +63,7 @@ markitdown input.pdf -o output.md</code></pre>
 </section>
 <section id="scan">
 <h2>Recover text from an image-only page</h2>
+<p>To process a whole PDF with a mix of scans and text, use the <a href="/en/guides/scanned-pdf-to-markdown/">local macOS converter that labels each page</a>. For a single page, the steps below extract an image and run OCR on that image.</p>
 <p>Try selecting text on the page in a PDF viewer. If the page is an image, apply OCR to a copy of that page. With Poppler and Swift installed on macOS, download the <a href="/evidence/markitdown-pdf/ocr-page.swift" download>local English OCR script</a>, then run:</p>
 <pre><code>pdftoppm -f 3 -l 3 -r 150 -png support-notes.pdf support-page
 swift ocr-page.swift support-page-3.png &gt; page-3-ocr.txt</code></pre>

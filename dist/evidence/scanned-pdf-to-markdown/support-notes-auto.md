@@ -1,0 +1,35 @@
+## Page 1
+
+Text source: PDF text layer
+
+```text
+SUPPORT NOTES / 1
+Setup and review
+Ticket BASIC-52 requires supervisor review.
+Contact the support desk before extending retention.
+Use the retention table on page 2.
+```
+
+## Page 2
+
+Text source: PDF text layer
+
+```text
+SUPPORT NOTES / 2
+Retention by tier
+Tier Retention Review
+Standard 14 days Monthly
+Extended 45 days Weekly
+Times apply only to the tier on the same row.
+```
+
+## Page 3
+
+Text source: OCR (English)
+
+```text
+SUPPORT NOTES /3
+Scanned exception notice
+Exception SCAN-43 requires escalation.
+Escalate within 72 hours.
+```

@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-28",
+  "os": "macOS 26.4.1",
+  "chip": "Apple M4",
+  "swift": "6.2.3",
+  "tool": "PDFKit and Apple Vision",
+  "ocr_language": "en-US",
+  "network": "external network denied during conversion",
+  "source": "/evidence/markitdown-pdf/support-notes.pdf",
+  "pdf_sha256": "7a76c4cc3edf1888f20df07978009d7c9ff5497ed918e95546b0b10a215ce8ad",
+  "auto_modes": [
+    "text layer",
+    "text layer",
+    "OCR"
+  ],
+  "forced_page_2_modes": [
+    "text layer",
+    "OCR",
+    "OCR"
+  ],
+  "page_3_id_and_deadline": true,
+  "mixed_page_needs_force": true,
+  "forced_table_column_order_changed": true,
+  "blank_page_flagged": true,
+  "existing_output_unchanged": true,
+  "source_unchanged": true,
+  "invalid_page_and_missing_input_rejected": true
+}
