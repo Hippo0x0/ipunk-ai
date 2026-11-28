@@ -1,0 +1,4 @@
+#mute-tool video{display:block;max-width:100%;max-height:360px;margin:.85rem 0;background:#111}
+#mute-tool output{display:block;margin:.85rem 0}
+#mute-tool output:empty,#mute-tool [hidden]{display:none}
+#mute-tool .task-actions{margin-bottom:0}

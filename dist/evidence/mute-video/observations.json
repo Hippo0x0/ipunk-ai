@@ -1,0 +1,119 @@
+{
+  "tested": "2026-11-28",
+  "environment": "macOS Chrome, viewport widths 390 and 1440 pixels",
+  "fixtures": [
+    "MP4 with one audio track",
+    "MP4 with two audio tracks",
+    "MOV with one audio track",
+    "WebM with one audio track"
+  ],
+  "method": "Compare the ordered SHA-256 of each encoded video packet, codec, display size, duration and number of audio tracks.",
+  "results": [
+    {
+      "viewportWidth": 390,
+      "cases": [
+        {
+          "extension": "mp4",
+          "samePackets": true,
+          "packets": 96,
+          "sourceAudio": 1,
+          "resultAudio": 0,
+          "codec": "avc",
+          "codecUnchanged": true,
+          "sameSize": true,
+          "sourceDuration": 4.021333333333334,
+          "resultDuration": 4
+        },
+        {
+          "extension": "mp4",
+          "samePackets": true,
+          "packets": 96,
+          "sourceAudio": 2,
+          "resultAudio": 0,
+          "codec": "avc",
+          "codecUnchanged": true,
+          "sameSize": true,
+          "sourceDuration": 4.021333333333334,
+          "resultDuration": 4
+        },
+        {
+          "extension": "mp4",
+          "samePackets": true,
+          "packets": 96,
+          "sourceAudio": 1,
+          "resultAudio": 0,
+          "codec": "avc",
+          "codecUnchanged": true,
+          "sameSize": true,
+          "sourceDuration": 4.021333333333334,
+          "resultDuration": 4
+        },
+        {
+          "extension": "webm",
+          "samePackets": true,
+          "packets": 96,
+          "sourceAudio": 1,
+          "resultAudio": 0,
+          "codec": "vp9",
+          "codecUnchanged": true,
+          "sameSize": true,
+          "sourceDuration": 4.018,
+          "resultDuration": 4
+        }
+      ]
+    },
+    {
+      "viewportWidth": 1440,
+      "cases": [
+        {
+          "extension": "mp4",
+          "samePackets": true,
+          "packets": 96,
+          "sourceAudio": 1,
+          "resultAudio": 0,
+          "codec": "avc",
+          "codecUnchanged": true,
+          "sameSize": true,
+          "sourceDuration": 4.021333333333334,
+          "resultDuration": 4
+        },
+        {
+          "extension": "mp4",
+          "samePackets": true,
+          "packets": 96,
+          "sourceAudio": 2,
+          "resultAudio": 0,
+          "codec": "avc",
+          "codecUnchanged": true,
+          "sameSize": true,
+          "sourceDuration": 4.021333333333334,
+          "resultDuration": 4
+        },
+        {
+          "extension": "mp4",
+          "samePackets": true,
+          "packets": 96,
+          "sourceAudio": 1,
+          "resultAudio": 0,
+          "codec": "avc",
+          "codecUnchanged": true,
+          "sameSize": true,
+          "sourceDuration": 4.021333333333334,
+          "resultDuration": 4
+        },
+        {
+          "extension": "webm",
+          "samePackets": true,
+          "packets": 96,
+          "sourceAudio": 1,
+          "resultAudio": 0,
+          "codec": "vp9",
+          "codecUnchanged": true,
+          "sameSize": true,
+          "sourceDuration": 4.018,
+          "resultDuration": 4
+        }
+      ]
+    }
+  ]
+}

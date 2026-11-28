@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mute Video Online: Remove Audio from MP4, MOV or WebM | iPunk AI Radar</title>
+<meta name="description" content="Remove all audio tracks from a local video and download a silent MP4 or WebM. The browser copies compatible video without re-encoding.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/mute-video/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css"><link rel="stylesheet" href="/task-choice.css"><link rel="stylesheet" href="/video-mute.css">
+<meta property="og:title" content="Mute Video Online: Remove Audio from MP4, MOV or WebM">
+<meta property="og:description" content="Remove all audio tracks and save a silent copy in your browser. No upload or video re-encoding.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/mute-video/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Mute Video and Remove Audio Tracks","applicationCategory":"MultimediaApplication","operatingSystem":"Browser","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","url":"https://ai.ipunk.cn/en/guides/mute-video/"}</script>
+<script type="module" src="/analytics.mjs"></script><script type="module" src="/video-mute.mjs"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#mute">Mute a video</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Mute Video Online</h1>
+<p class="guide-answer">Choose a video and remove every audio track, then preview and download a silent copy. Compatible MP4, MOV and WebM pictures are copied without re-encoding. Your video stays in your browser.</p></header>
+<article class="article guide-article">
+<section id="mute"><h2>Remove audio from a video</h2>
+<form id="mute-tool" class="task-panel" hidden>
+<label for="mute-source">Video file · up to 250 MiB</label><input id="mute-source" name="video" type="file" accept="video/*,.mp4,.mov,.webm">
+<div class="task-actions"><button type="submit" disabled>Remove audio</button><button type="button" data-cancel hidden disabled>Cancel</button></div>
+<progress max="1" value="0" hidden aria-label="Copy progress"></progress>
+<output role="status">Choose a video to start.</output>
+<div data-mute-result hidden><video controls preload="metadata" playsinline aria-label="Silent video preview"></video><div class="task-actions"><a download>Download silent video</a></div></div>
+</form>
+<noscript><p>Enable JavaScript to remove audio locally. The example and instructions remain available.</p></noscript>
+<p><a href="/evidence/video-compressor/motion-and-tone.mp4" download>Download a four-second MP4 with a test tone</a> to check the result.</p>
+</section>
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#mute">Remove the sound</a></li><li><a href="#verify">Verify the silent copy</a></li><li><a href="#formats">Check format support</a></li>
+</ol></nav>
+<section id="verify"><h2>Verify the saved video has no audio track</h2>
+<ol><li>Wait for the download link. The tool reopens the output to verify it contains only a video track.</li><li>Play the result at normal player volume, then open the downloaded file. To verify independently, check the file’s track list in an editor or media inspector.</li><li>If you also want to keep a separate soundtrack, <a href="/en/guides/extract-audio-from-video/">extract the audio</a> from the source file before sharing the silent copy.</li></ol>
+<p>In four test files, each output kept all 96 encoded video packets byte for byte and had zero audio tracks. <a href="/evidence/mute-video/observations.json" download>Download the comparison results</a>.</p>
+<p>The tool removes audio throughout the clip. To keep a shorter silent clip, <a href="/en/guides/trim-video/">trim it by start and end time</a>.</p>
+</section>
+<section id="formats"><h2>Which formats can be copied?</h2>
+<p>A compatible MP4 or MOV exports as MP4. WebM stays WebM. Use a file with one video track and optional audio tracks. The operation stops if it cannot copy the picture into the output container or the source has other track types. If the file already has no audio track, you can use it as it is.</p>
+<p>Video data is copied with <a href="https://mediabunny.dev/guide/converting-media-files#copying-media-data">Mediabunny</a>. The file container can change, so the download may have a different size. The original remains available on your device.</p>
+</section>
+</article>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body>
+</html>
