@@ -26,3 +26,11 @@ SCAN-43 在没有 OCR 时的首位是第 2 页，余弦 0.604229，该页没有�
 使用原生 SVG 连接向量请求、排序和缺失文本。参考 [Ollama 原生 API](https://docs.ollama.com/api/embed)、[向量文档](https://docs.ollama.com/capabilities/embeddings) 和 [Nomic 任务前缀](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5#task-instruction-prefixes)。本轮开始时的 Search Console 仍未识别此前已提交的 OpenCode MCP 与 MarkItDown PDF 两页，未重复提交。
 
 从公开原始向量独立重算排序并核对首位页文本。localhost 在 390px 和 1440px 验证首答、决策树、键盘高亮且不改变 hash、缩放复原、所有步骤跳转、原始向量下载字节和无全页横向溢出。禁用 JavaScript 后仍可读取命令和打开步骤。正式发布状态另记。
+
+## 正式交付
+
+GitHub `main` 的 `9bf6fad` 从干净归档通过 90 项自动测试。站点检查覆盖 59 个 HTML、58 个从首页可达的 sitemap 页面和 319 个静态资源引用。预览中新页、样本、脚本和向量逐字节符合归档。北京时间 11:59，Worker 版本 `52cdbf77-c223-441d-9bfe-94ab93503997` 承接全部流量，部署 `3dba4367-ce05-425f-93fc-9ea9216c95ee`。正式站 11 个路径均 HTTP 200、与发布内容逐字节一致，直接 HTTP 核对未触发浏览器统计。
+
+发布后的网址检查已确认此前的 [OpenCode MCP 指南](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=QPKpTMCGzM7ilSPFPnPRPQ) 收录，Google 选择规范与声明一致，北京时间 11:54:31 抓取。最新完整 final Web 数据为洛杉矶时间 11 月 19–25 日，按日期行合计 21 次曝光、0 次点击，早于本次发布。
+
+[新指南网址检查](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=pOAIG9wHQrAZMd4TaKZJLQ)在开始提交时显示 Google 尚未识别。回执确认加入优先抓取队列。新页收录和上线后曝光、点击仍有待确认。
