@@ -42,6 +42,7 @@
 </tbody></table></div>
 <p>此前对话速览把 27B 写作约 9.1 token/s；那对应短提示的 9.10，中提示则是 9.19。这里直接标明所选样本，不把两个数混成平均值，也不把“缓存字段缺失”写成确认未命中。</p>
 <p><a href="https://huggingface.co/Qwen/Qwen3.6-35B-A3B" rel="noreferrer">Qwen 官方模型卡</a>把 35B-A3B 定义为稀疏 MoE：总参数与每个 token 激活的参数不是一回事。这解释了为什么不能只按“9B 比 35B 小”推断速度；但激活约 3B 也不意味着全部模型权重只需 3B 的内存。本机结果更不能证明 35B 在所有任务、精度和上下文上都更快。</p>
+<p><a href="/guides/ollama-memory-calculator/">用内存计算器估算 GGUF 模型与上下文开销</a>。</p>
 <h3>先纠正截图里的 GB／GiB</h3>
 <p>原对话速览中的内存单位需要更正。核对本机 Rapid-MLX health 路由及调度器后，<code>active_memory_gb</code> 来自字节数除以 <code>1e9</code>，是十进制 GB；oMLX 下文使用字节数除以 <code>2**30</code>，是 GiB。1 GiB = 1,073,741,824 字节。两种口径不能直接相减。</p>
 <div class="bench-table" tabindex="0" role="region" aria-label="Rapid-MLX 内存记录"><table><caption>9B 独立测试的 MLX 活跃／峰值内存，不是整机内存</caption><thead><tr><th scope="col">模型</th><th scope="col">活跃内存</th><th scope="col">峰值</th></tr></thead><tbody><tr><th scope="row">9B 8bit</th><td>9.78 GB</td><td>11.12 GB</td></tr><tr><th scope="row">9B 4bit</th><td>5.30 GB</td><td>6.79 GB</td></tr></tbody></table></div>

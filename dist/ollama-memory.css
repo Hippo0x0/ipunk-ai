@@ -1,0 +1,11 @@
+.memory-fields,.memory-result{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem 1rem}
+.memory-fields label{margin-top:.15rem}
+.memory-fields fieldset{grid-column:1/-1;padding:.85rem;margin:0;min-width:0;border:1px solid var(--line,#ccc);border-radius:8px}
+.memory-fields legend{padding:0 .25rem}
+.memory-fields [hidden],.memory-result[hidden]{display:none}
+.memory-result{margin:1rem 0 0;padding:1rem 0 0;border-top:1px solid var(--line,#ccc)}
+.memory-result div{padding:.2rem 0}
+.memory-result dt{color:var(--muted);font-size:.92rem}
+.memory-result dd{margin:0;font-weight:650}
+.memory-submit{margin-top:1rem}
+@media(max-width:500px){.memory-fields{grid-template-columns:1fr}}
