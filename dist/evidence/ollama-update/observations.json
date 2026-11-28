@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-28",
+  "os": "macOS arm64",
+  "ollama": "0.40.18",
+  "model": "Qwen2.5-0.5B-Instruct Q4_K_M GGUF",
+  "procedure": "Offline custom tag replacement with ollama create. The two Modelfiles differ only in num_ctx (1024 and 2048). This procedure does not replay a registry publication.",
+  "source": {
+    "models": {
+      "ipunk-update:active": {
+        "digest": "29edfba2ee46556f01ac6e1b111a76616d7c49bb63f858a75ce1833ee43dd9bf",
+        "show": {
+          "system": null,
+          "parameters": "num_ctx                        1024"
+        }
+      }
+    },
+    "blob_bytes": 491400782
+  },
+  "saved_local_alias": {
+    "models": {
+      "ipunk-update:before": {
+        "digest": "29edfba2ee46556f01ac6e1b111a76616d7c49bb63f858a75ce1833ee43dd9bf",
+        "show": {
+          "system": null,
+          "parameters": "num_ctx                        1024"
+        }
+      },
+      "ipunk-update:active": {
+        "digest": "29edfba2ee46556f01ac6e1b111a76616d7c49bb63f858a75ce1833ee43dd9bf",
+        "show": {
+          "system": null,
+          "parameters": "num_ctx                        1024"
+        }
+      }
+    },
+    "blob_bytes": 491400782
+  },
+  "replacement": {
+    "models": {
+      "ipunk-update:active": {
+        "digest": "237e3de8d9c9795da237ab7eb40ddb59eb874509e02c1bb9992a2a78438b21a4",
+        "show": {
+          "system": null,
+          "parameters": "num_ctx                        2048"
+        }
+      },
+      "ipunk-update:before": {
+        "digest": "29edfba2ee46556f01ac6e1b111a76616d7c49bb63f858a75ce1833ee43dd9bf",
+        "show": {
+          "system": null,
+          "parameters": "num_ctx                        1024"
+        }
+      }
+    },
+    "blob_bytes": 491401414
+  },
+  "after_restart": {
+    "models": {
+      "ipunk-update:active": {
+        "digest": "237e3de8d9c9795da237ab7eb40ddb59eb874509e02c1bb9992a2a78438b21a4",
+        "show": {
+          "system": null,
+          "parameters": "num_ctx                        2048"
+        }
+      },
+      "ipunk-update:before": {
+        "digest": "29edfba2ee46556f01ac6e1b111a76616d7c49bb63f858a75ce1833ee43dd9bf",
+        "show": {
+          "system": null,
+          "parameters": "num_ctx                        1024"
+        }
+      }
+    },
+    "blob_bytes": 491401414
+  },
+  "after_restore": {
+    "models": {
+      "ipunk-update:active": {
+        "digest": "29edfba2ee46556f01ac6e1b111a76616d7c49bb63f858a75ce1833ee43dd9bf",
+        "show": {
+          "system": null,
+          "parameters": "num_ctx                        1024"
+        }
+      },
+      "ipunk-update:before": {
+        "digest": "29edfba2ee46556f01ac6e1b111a76616d7c49bb63f858a75ce1833ee43dd9bf",
+        "show": {
+          "system": null,
+          "parameters": "num_ctx                        1024"
+        }
+      }
+    },
+    "blob_bytes": 491401414
+  },
+  "responses": {
+    "source": "LOCAL_OK",
+    "replacement": "LOCAL_OK",
+    "saved_after_restart": "LOCAL_OK",
+    "restored": "LOCAL_OK"
+  },
+  "registry_test": {
+    "model": "smollm:135m",
+    "source": "https://registry.ollama.ai/v2/library/smollm/manifests/135m",
+    "fixture": "Started from the published model. Rebuilt the same tag locally with num_ctx 2048 and saved that local variation as ipunk-library:before before pulling the registry tag again.",
+    "layer_setup": "All five registry files were downloaded separately and verified against the published digests and sizes before preloading them into the isolated store. Ollama resolved the genuine registry manifest for each pull. No cold-download speed or historical publication was tested.",
+    "registry_manifest_digest": "b0b2a46174385c0adcaa77ff245ffeced5fc4a61447b6f221b2beb5c5a760133",
+    "registry_files": [
+      {
+        "mediaType": "application/vnd.docker.container.image.v1+json",
+        "digest": "sha256:f590523c855b7d0f2741a9e076d4b663b1f128f2617b7fcd3fe7d7b57ce71d83",
+        "size": 488
+      },
+      {
+        "mediaType": "application/vnd.ollama.image.model",
+        "digest": "sha256:eb2c714d40d4b35ba4b8ee98475a06d51d8080a17d2d2a75a23665985c739b94",
+        "size": 91727296
+      },
+      {
+        "mediaType": "application/vnd.ollama.image.template",
+        "digest": "sha256:62fbfd9ed093d6e5ac83190c86eec5369317919f4b149598d2dbb38900e9faef",
+        "size": 182
+      },
+      {
+        "mediaType": "application/vnd.ollama.image.license",
+        "digest": "sha256:cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "size": 11358
+      },
+      {
+        "mediaType": "application/vnd.ollama.image.params",
+        "digest": "sha256:ca7a9654b5469dc2d638456f31a51a03367987c54135c089165752d9eeb08cd7",
+        "size": 89
+      }
+    ],
+    "digests_by_stage": {
+      "initial": {
+        "smollm:135m": "b0b2a46174385c0adcaa77ff245ffeced5fc4a61447b6f221b2beb5c5a760133"
+      },
+      "before-pull": {
+        "ipunk-library:before": "3533754c2af69528f7efc9fddcae4eed04912bccba3b8cfa1981427c27230bbb",
+        "smollm:135m": "3533754c2af69528f7efc9fddcae4eed04912bccba3b8cfa1981427c27230bbb",
+        "ipunk-library:current": "b0b2a46174385c0adcaa77ff245ffeced5fc4a61447b6f221b2beb5c5a760133"
+      },
+      "after-pull": {
+        "smollm:135m": "b0b2a46174385c0adcaa77ff245ffeced5fc4a61447b6f221b2beb5c5a760133",
+        "ipunk-library:before": "3533754c2af69528f7efc9fddcae4eed04912bccba3b8cfa1981427c27230bbb",
+        "ipunk-library:current": "b0b2a46174385c0adcaa77ff245ffeced5fc4a61447b6f221b2beb5c5a760133"
+      },
+      "repeated-pull": {
+        "smollm:135m": "b0b2a46174385c0adcaa77ff245ffeced5fc4a61447b6f221b2beb5c5a760133",
+        "ipunk-library:before": "3533754c2af69528f7efc9fddcae4eed04912bccba3b8cfa1981427c27230bbb",
+        "ipunk-library:current": "b0b2a46174385c0adcaa77ff245ffeced5fc4a61447b6f221b2beb5c5a760133"
+      },
+      "after-rollback": {
+        "smollm:135m": "3533754c2af69528f7efc9fddcae4eed04912bccba3b8cfa1981427c27230bbb",
+        "ipunk-library:before": "3533754c2af69528f7efc9fddcae4eed04912bccba3b8cfa1981427c27230bbb",
+        "ipunk-library:current": "b0b2a46174385c0adcaa77ff245ffeced5fc4a61447b6f221b2beb5c5a760133"
+      }
+    }
+  }
+}

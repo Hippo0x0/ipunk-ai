@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Update an Ollama Model with ollama pull | iPunk AI Radar</title>
+<meta name="description" content="Update one Ollama model tag with ollama pull, check its digest, and keep a runnable copy of the previous version for rollback.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/update-ollama-model/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="How to Update an Ollama Model with ollama pull">
+<meta property="og:description" content="Keep the current model under a local tag, pull the exact library tag again, and verify the result.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/update-ollama-model/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How to Update an Ollama Model with ollama pull","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/update-ollama-model/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#pull">Update a tag</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>How to Update an Ollama Model with <code>ollama pull</code></h1>
+<p class="guide-answer">Run <code>ollama list</code> to find the full library tag, then run <code>ollama pull NAME:TAG</code> again. If you need to keep the current version, first copy it to a new local tag with <code>ollama cp</code>. Compare the model ID before and after, then run a prompt you already know works.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#identify">Identify the installed model</a></li>
+<li><a href="#pull">Update a library tag</a></li>
+<li><a href="#custom">Rebuild a custom tag</a></li>
+<li><a href="#verify">Check the update</a></li>
+<li><a href="#restore">Restore the previous version</a></li>
+<li><a href="#test">See the rollback test</a></li>
+</ol></nav>
+
+<section class="guide-decision"><h2>Where did the model tag come from?</h2>
+<div class="decision" data-flow><div class="flow-viewport" tabindex="0" aria-label="Ollama model update decision tree">
+<svg class="flow-svg" viewBox="0 0 660 285" role="group" aria-label="Choose how to update your Ollama tag">
+<defs><marker id="ollama-update-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="pull" d="M330 103 C330 153 110 133 110 209" marker-end="url(#ollama-update-arrow)"/>
+<path data-edge="custom" d="M330 103 L330 209" marker-end="url(#ollama-update-arrow)"/>
+<path data-edge="identify" d="M330 103 C330 153 550 133 550 209" marker-end="url(#ollama-update-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Where did the tag come from?"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">Tag source?</text></g>
+<g text-anchor="middle">
+<rect x="20" y="165" width="180" height="30" rx="6" fill="white"/><text x="110" y="187">Library tag</text>
+<rect x="240" y="165" width="180" height="30" rx="6" fill="white"/><text x="330" y="187">Custom tag</text>
+<rect x="460" y="165" width="180" height="30" rx="6" fill="white"/><text x="550" y="187">Not sure</text>
+<g data-node="pull" role="button" tabindex="0" aria-pressed="false" aria-label="Pull the exact library tag"><rect class="node-shape" x="11" y="214" width="198" height="60" rx="12"/><text x="110" y="251">Pull again</text></g>
+<g data-node="custom" role="button" tabindex="0" aria-pressed="false" aria-label="Rebuild the custom tag"><rect class="node-shape" x="231" y="214" width="198" height="60" rx="12"/><text x="330" y="251">Rebuild</text></g>
+<g data-node="identify" role="button" tabindex="0" aria-pressed="false" aria-label="Check how the tag was made"><rect class="node-shape" x="451" y="214" width="198" height="60" rx="12"/><text x="550" y="251">Check tag</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#pull">Pull again</a><a href="#custom">Rebuild</a><a href="#identify">Check tag</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+
+<section id="identify">
+<h2>Identify the tag and the server</h2>
+<p>Use the exact name from <code>ollama list</code>, including the part after the colon. Check that the CLI is reaching the same Ollama server as your app. For a Docker install, run commands in the server container or point your CLI at its API address.</p>
+<p>Check the <a href="https://ollama.com/search">Ollama model library</a> for the tag you originally pulled. If you used <code>ollama create</code>, imported a GGUF or made a copy with <code>ollama cp</code>, check your local recipe or the original library name first. A custom tag can have the same name as a library tag.</p>
+<p><code>ollama --version</code> checks the Ollama software version. A model pull refreshes a model tag. If a model requires a newer Ollama release, follow the <a href="/en/guides/ollama-setup/">Ollama setup instructions</a> before retrying.</p>
+</section>
+
+<section id="pull">
+<h2>Update a library model with ollama pull</h2>
+<p>Record the installed tag and ID. Replace <code>qwen2.5:0.5b</code> with your model if it differs. Choose a backup tag you have never used and confirm it has the original ID before you pull the library tag again.</p>
+<pre><code>ollama list
+ollama cp qwen2.5:0.5b qwen2.5:before-update-20261128
+ollama list</code></pre>
+<p>Once requests using the model have finished, unload its running copy and pull the same exact library tag.</p>
+<pre><code>ollama stop qwen2.5:0.5b
+ollama pull qwen2.5:0.5b
+ollama list</code></pre>
+<p>The server needs access to the registry and room for any new files. If the pull fails, keep the backup and check the error, server and free space before retrying. Changing to a different tag selects a different library entry. In particular, <code>:latest</code> can differ from the tag you currently use.</p>
+</section>
+
+<section id="custom">
+<h2>Refresh a custom model or imported GGUF</h2>
+<p>Keep the old local tag with <code>ollama cp</code> and keep the original source files. Update the base tag or GGUF path in your Modelfile, then build under a separate candidate tag first. Run your usual prompts against the candidate before changing your app’s model selection.</p>
+<pre><code>ollama create my-model:candidate -f Modelfile
+ollama run my-model:candidate</code></pre>
+<p>See the <a href="/en/guides/ollama-modelfile/">Modelfile examples</a> for how to check which base and parameters the build uses. Pulling a library base does not rebuild an existing custom tag.</p>
+</section>
+
+<section id="verify">
+<h2>Tell whether the installed model changed</h2>
+<ul><li><strong>Same ID:</strong> the prefix shown by <code>ollama list</code> matches. Compare the full <code>digest</code> in <a href="https://docs.ollama.com/api/tags"><code>GET /api/tags</code></a> on the same server if you need an exact check.</li>
+<li><strong>Different digest:</strong> the installed model manifest changed. Parameters and templates can change a digest even when the weights are identical.</li>
+<li><strong>Working update:</strong> run a previously listed model with the exact tag. Repeat a known prompt and any app-specific test, such as parsing the JSON or invoking a tool you rely on. A successful pull alone only confirms the transfer and install.</li></ul>
+<p>Keep the saved tag until the new version works where you use it. A local copy uses the same model store. To protect against a disk failure, keep a separate copy of the <a href="/en/guides/ollama-models-location/">complete models folder</a>.</p>
+</section>
+
+<section id="restore">
+<h2>Roll back to the old Ollama model</h2>
+<p>The quickest rollback is to point your app to the saved local tag and test it. If the app needs the original tag, wait for active requests to finish. The second command below replaces the model under that original name, so check the source and destination first.</p>
+<pre><code>ollama stop qwen2.5:0.5b
+ollama cp qwen2.5:before-update-20261128 qwen2.5:0.5b
+ollama list</code></pre>
+<p>Confirm the original tag’s digest matches the saved tag, then run your known prompt again. If you never saved the earlier version, check for a separate store backup or the exact old source files. Pulling the same library tag again gets the registry’s current version.</p>
+</section>
+
+<section id="test">
+<h2>What the saved tag retained in an offline test</h2>
+<p>On macOS arm64 with Ollama 0.40.18, we imported Qwen2.5-0.5B-Instruct Q4_K_M under a temporary tag. We kept a copy, rebuilt the active tag with the same GGUF and a different <code>num_ctx</code>, restarted Ollama, then restored the active tag from the saved copy.</p>
+<div class="video-table"><table>
+<thead><tr><th scope="col">Stage</th><th scope="col">Active ID</th><th scope="col">Active <code>num_ctx</code></th></tr></thead>
+<tbody><tr><td>Before rebuild</td><td><code>29edfba2ee46</code></td><td>1024</td></tr>
+<tr><td>After restart</td><td><code>237e3de8d9c9</code></td><td>2048</td></tr>
+<tr><td>After rollback</td><td><code>29edfba2ee46</code></td><td>1024</td></tr></tbody>
+</table></div>
+<p>The saved tag kept ID <code>29edfba2ee46</code> and still replied <code>LOCAL_OK</code> after restart. Restoring the active tag brought back the full digest, the original parameter value and the reply. Creating the alias left the sum of blob file lengths unchanged. This was a local rebuild and rollback test using <code>ollama create</code> and <code>ollama cp</code>.</p>
+<h3>What happened when we pulled a real library tag again?</h3>
+<p>We used the public <a href="https://ollama.com/library/smollm:135m"><code>smollm:135m</code> tag</a> in a separate store. A local build under that same name had ID <code>3533754c2af6</code>. After saving the local build, <code>ollama pull smollm:135m</code> installed the registry ID <code>b0b2a4617438</code>. A second pull kept that ID. Copying the saved local build over the active name restored <code>3533754c2af6</code>.</p>
+<p>The registry files were already in the test store after separate checksum-verified downloads. This checks how a real pull changes the local tag and how to reverse it. The local variation stood in for the previous version.</p>
+<p><a href="/evidence/ollama-update/observations.json" download>Download the digests, settings and replies</a>. See the <a href="https://docs.ollama.com/cli">Ollama CLI reference</a> and the <a href="https://docs.ollama.com/api/copy">copy endpoint reference</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
