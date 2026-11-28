@@ -11,3 +11,9 @@
 OpenCode 2.4.1、Ollama 0.40.18、macOS arm64，使用 Qwen2.5-0.5B-Instruct Q4_K_M。隔离项目禁用工具，出站限定回环。同一会话两次，再在新会话提交同样的第二个提示，总计 3 steps、2 sessions。逐步字段加总 754 input、11 output、1,451 cache.read，与当前项目 lifetime 报告一致。不同首次提交的另一项目报 0 个会话。保留部分真实数字并替换 ID，样本不含原始命令、提示、路径或模型回答。未测试托管账单、费用精度或跨供应商是否等效。
 
 查看器本地读取 NDJSON，分开汇总报告的各字段。跳过坏行、不完整步骤和可识别重复，不把缺数据算成零。新增两项回归测试核对汇总和坏行／重复。Chromium 390 与 1440 px 验证示例导入、错误反馈、清除、表格宽度、键盘分支和步骤链接。禁用 JavaScript 后仍可读 jq 示例和实测表。
+
+## 正式交付
+
+内容提交 `ca25f6f` 的干净归档通过 95 项测试。站点检查覆盖 85 个 HTML、84 个从首页可达的站点地图网址和 476 处静态资源引用。Cloudflare 预览页、查看器脚本和 NDJSON 样本一致。北京时间 15:13:43，Worker 版本 `1a1b7042-60f4-4074-b496-965d71b7cf29` 承接全部流量。正式域 11 个地址返回 HTTP 200 且与归档逐字节一致。
+
+[Search Console](https://search.google.com/search-console/inspect?resource_id=https://ai.ipunk.cn/&id=6Eg6lt_mKIhDGZim6TIdRQ) 发布后显示 Google 尚未识别该网址。新页已进入站点地图。未重复提交手动索引请求。暂无上线后点击数据。
