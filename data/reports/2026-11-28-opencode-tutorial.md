@@ -11,3 +11,9 @@
 OpenCode 2.4.1 与 Ollama 0.40.18，macOS arm64，另建 Git 仓库和用户目录。两进程只允许回环，OpenCode 拒绝工具动作。Qwen2.5-0.5B-Instruct Q4_K_M 是此前已导入的本地 GGUF，本次配置独立端口、32 token 输出上限与温度零。启动前运行列表空，发现目标模型后首条请求得到 READY_CHECK，Ollama 运行列表出现同一模型。用相同会话附上两行 Python，模型答 5，与本地 Python 输出一致。Git 状态前后均干净，脚本 SHA-256 未变。范围限已装的本机 CLI。未实测安装过程、托管服务、其他平台或模型质量。
 
 Chromium 从 390 与 1440 px 验证首答、规范地址、三路分流、键盘高亮、缩放、章节跳转和证据下载。无 JavaScript 时保留静态路径与文本。
+
+## 正式交付
+
+内容提交 `a13564f` 的干净归档通过 93 项测试。站点检查覆盖 84 个 HTML、83 个站点地图可达页面和 470 处静态资源引用。预览新页和证据与归档一致。北京时间 15:01:09，Cloudflare Worker `b483bb2b-c55b-4da8-8937-d4db372604ca` 承接全部流量。正式域相关 9 个路径均返回 HTTP 200、响应逐字节一致。
+
+[Search Console 网址检查](https://search.google.com/u/1/search-console/inspect?resource_id=https%3A%2F%2Fai.ipunk.cn%2F&id=mtuQDKIGSnv41ND-FGfNQA&hl=zh-CN) 显示 Google 尚未识别新网址。单次请求编入索引返回「超出了配额」，没有进入优先队列。正式站点地图已包含新页，普通发现、收录与点击效果待确认。
