@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trim Video Online: Cut an MP4 by Start and End Time | iPunk AI Radar</title>
+<meta name="description" content="Trim a video by start and end time, then preview and download the selected clip as MP4. Your video stays in your browser.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/trim-video/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css"><link rel="stylesheet" href="/task-choice.css"><link rel="stylesheet" href="/video-trim.css">
+<meta property="og:title" content="Trim Video Online: Cut an MP4 by Start and End Time">
+<meta property="og:description" content="Cut off the beginning or end of a video and save the part you keep. No file upload.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/trim-video/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Local Video Trimmer","applicationCategory":"MultimediaApplication","operatingSystem":"Browser","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","url":"https://ai.ipunk.cn/en/guides/trim-video/"}</script>
+<script type="module" src="/analytics.mjs"></script><script type="module" src="/video-trim.mjs"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#trim">Trim a video</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Trim Video Online</h1>
+<p class="guide-answer">Choose a video, set the start and end of the part you want to keep, then download it as MP4. Preview the result and check its duration and sound before sharing. The tool runs in your browser without uploading the video.</p></header>
+<article class="article guide-article">
+<section id="trim"><h2>Cut out a clip by time</h2>
+<form id="trim-tool" class="task-panel" hidden>
+<label for="trim-video">Video file · up to 250 MiB</label><input id="trim-video" name="video" type="file" accept="video/*,.mp4,.mov,.webm,.mkv">
+<video data-source controls preload="metadata" playsinline hidden aria-label="Source video"></video>
+<fieldset hidden disabled>
+<div class="trim-range"><div><label for="trim-start">Start · seconds</label><input id="trim-start" name="start" type="number" min="0" max="1" step="any" value="0" required></div><div><label for="trim-end">End · seconds</label><input id="trim-end" name="end" type="number" min="0" max="1" step="any" value="1" required></div></div>
+<div class="task-actions"><button type="submit">Trim to MP4</button></div>
+</fieldset>
+<button type="button" data-cancel hidden disabled>Cancel</button>
+<progress max="1" value="0" hidden aria-label="Export progress"></progress>
+<output role="status">Choose a video to start.</output>
+<div data-trim-result hidden><video controls preload="metadata" playsinline aria-label="Trimmed MP4 preview"></video><div class="task-actions"><a download>Download trimmed MP4</a></div></div>
+</form>
+<noscript><p>Enable JavaScript to trim a local video. The example and instructions remain available below.</p></noscript>
+<p><a href="/evidence/video-compressor/motion-and-tone.mp4" download>Download the four-second test video</a>. Set start to <code>1</code> and end to <code>3</code> to keep the middle two seconds.</p>
+</section>
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#trim">Trim a video</a></li><li><a href="#range">Choose the start and end</a></li><li><a href="#verify">Check the MP4 before sharing</a></li><li><a href="#formats">Formats and local processing</a></li>
+</ol></nav>
+<section id="range"><h2>Choose the start and end</h2>
+<p>To remove the opening, increase the start time. To cut off the ending, reduce the end time. Choose <code>0</code> as the start to keep the opening. A cut from <code>1.25</code> to <code>3.00</code> requests a clip about <code>1.75</code> seconds long. Use decimals to position the cut more precisely.</p>
+<p>This tool exports one continuous segment. If you need to remove a section in the middle and join the remaining parts, use an editor that supports multiple segments. For changing the visible area of each frame, use the <a href="/en/guides/crop-video/">video cropper</a>.</p>
+</section>
+<section id="verify"><h2>Check the MP4 before sharing</h2>
+<ol><li>Wait for the download link and check the measured duration. Video frame and audio packet timing can make it differ slightly from the requested interval.</li><li>Play the first and last moments of the exported clip. Listen to confirm it includes the intended sound.</li><li>Download and open the saved MP4 in the app where you plan to use it. If you only need one still image, <a href="/en/guides/video-frame-extractor/">extract that frame as PNG</a>.</li></ol>
+</section>
+<section id="formats"><h2>Formats and local processing</h2>
+<p>Use a file with one video track and at most one audio track. A supported MP4, MOV or WebM can be written as MP4, depending on the browser’s available decoders and AVC and AAC support. If a track cannot be kept, the tool stops before offering a download.</p>
+<p>The tool writes a new file using <a href="https://mediabunny.dev/guide/converting-media-files#trimming">Mediabunny’s trim and conversion API</a>. It re-encodes video, so output size and quality can differ from the source. The source file stays on your device and remains available unchanged.</p>
+</section>
+</article>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body>
+</html>
