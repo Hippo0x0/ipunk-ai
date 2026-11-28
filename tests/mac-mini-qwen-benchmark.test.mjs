@@ -69,11 +69,17 @@ test("dated Qwen recheck preserves measured rows, cache counts and incomplete at
   assert.equal(next.method.initial_loaded_model_count, 0);
   assert.deepEqual(next.measurements.map(r => [r.round, r.case]), [[1, "short"], [1, "medium"], [2, "short"], [2, "medium"]]);
   assert.ok(next.incomplete_attempts.every(r => r.valid_samples === 0));
-  assert.match(html, /"datePublished":"2026-11-01","dateModified":"2026-11-07"/);
+  assert.match(html, /"datePublished":"2026-11-01","dateModified":"2026-11-28"/);
+  assert.match(html, /最近复测于 <time datetime="2026-11-07">2026-11-07<\/time>/);
+  const english = await readFile(new URL(`../dist/en${route}index.html`, import.meta.url), "utf8");
+  checkIndexableHtml(english, "https://ai.ipunk.cn/en" + route);
+  assert.match(english, /<h2>November 7 recheck<\/h2>/);
+  assert.ok(english.includes("/evidence/" + filename));
   assert.ok(html.includes("/evidence/" + filename));
   for (const r of next.measurements) {
     assert.ok(Math.abs(r.decode_tokens_per_second - (r.completion_tokens - 1) / (r.total_seconds - r.ttft_seconds)) < 1e-8);
     assert.ok(html.includes(`<td>${r.prompt_tokens}</td><td>${r.cached_prompt_tokens}</td><td>${r.ttft_seconds.toFixed(2)} 秒</td><td>${r.decode_tokens_per_second.toFixed(2)} token/s</td>`));
+    assert.ok(english.includes(`<td>${r.prompt_tokens} / ${r.cached_prompt_tokens}</td><td>${r.ttft_seconds.toFixed(2)} s</td><td>${r.decode_tokens_per_second.toFixed(2)} tok/s</td>`));
   }
   assert.doesNotMatch(JSON.stringify(next), /\/Users\/|\/Volumes\/|@gmail\.com|"(?:api_key|secret_key|text|headers)"/);
 });
