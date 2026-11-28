@@ -13,3 +13,9 @@
 macOS 26.4.1 arm64、Apple M4、Ollama 0.40.18。在仅允许回环的独立仓库和 HOME 使用事先校验的 Qwen2.5-0.5B Q4_K_M。真实 CLI 在配方目录以外执行相对路径导入，正常文件成功，缺文件报 invalid model name。派生基模型与新 tag 在 manifest 指向同一权重 SHA-256。生成的 Modelfile 指向本机 blob。编辑配方后 show 输出仍相同，重建后上下文从 2,048 升到 4,096。一次原生 API 的请求覆盖将运行上下文设为 8,192。另两组同名不同 tag 对照中，已列出的 `:v1` 可派生，`:local` 引发尝试从 registry 拉 `:latest`。未把现象推广到其他版本。公开证据为脱敏日志和选定结果。
 
 本地 390px 和 1440px 验收首答、SVG 键盘高亮、缩放、三条链接、全页无溢出和证据下载字节。禁用 JavaScript 后保留命令和锚点。
+
+## 正式交付
+
+GitHub main 内容提交 `8ebbfe9` 的归档通过 93 项测试。站点检查覆盖 69 个 HTML、68 个首页可达站点地图页和 381 处静态资源引用。预览新页及证据与归档一致。生产部署确认 Worker `fe629378-81d4-47f5-beb4-30c8040741b7` 承接 100% 流量。8 条正式路径均返回 HTTP 200 且与归档一致，使用直接 HTTP 验收。
+
+[Search Console](https://search.google.com/search-console/sitemaps?resource_id=https%3A%2F%2Fai.ipunk.cn%2F) 界面显示站点地图最近于 11 月 25 日成功读取。发布后精确网址检查显示 Google 暂未识别新页。曝光与点击待完整数据确认。
