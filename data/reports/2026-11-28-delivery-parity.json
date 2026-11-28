@@ -1,0 +1,57 @@
+{
+  "checked_at": "2026-11-28T02:01:31.022202+00:00",
+  "source_head": "330ab76179c8ba6fe191c06e7967582dc60ad83d",
+  "source_tree": "9952608fb38454d1e03693bd2e5863b2817a62e2",
+  "method": "Read-only HTTP without browser execution; one attempt per resource; timeouts are unknown, not 404. Local complete source preserved.",
+  "paths": [
+    {
+      "url": "https://ai.ipunk.cn/en/guides/best-ai-image-generator/",
+      "local_sha256": "54b4aaed9064c82e21a08b1d1f81dd48abc08cf26362864f87ff882aff6fc536",
+      "http_status": 404,
+      "transport_ok": true,
+      "raw_sha256": "0e4d84cf0e921d66d8ef3878b50820389e3476dbf2c0fddc36538712f303132b",
+      "bytes_match": false
+    },
+    {
+      "url": "https://ai.ipunk.cn/en/guides/chatgpt-alternatives/",
+      "local_sha256": "16664b074b9dce71df48c23ce86095f57513721731fc73fcc19834b50bd78aef",
+      "http_status": 404,
+      "transport_ok": true,
+      "raw_sha256": "0e4d84cf0e921d66d8ef3878b50820389e3476dbf2c0fddc36538712f303132b",
+      "bytes_match": false
+    },
+    {
+      "url": "https://ai.ipunk.cn/en/guides/ollama-vs-lm-studio/",
+      "local_sha256": "8de7097b55721ed130b09200e57be73b2ee3360383ff49c6412a32ac15599aa0",
+      "http_status": 404,
+      "transport_ok": true,
+      "raw_sha256": "0e4d84cf0e921d66d8ef3878b50820389e3476dbf2c0fddc36538712f303132b",
+      "bytes_match": false
+    },
+    {
+      "url": "https://ai.ipunk.cn/en/guides/ollama-context-length/",
+      "local_sha256": "e68a77b21148060fc6fa6446a6d78dcbfe3799dea09b48365ed80f6f812a058f",
+      "http_status": 404,
+      "transport_ok": true,
+      "raw_sha256": "0e4d84cf0e921d66d8ef3878b50820389e3476dbf2c0fddc36538712f303132b",
+      "bytes_match": false
+    },
+    {
+      "url": "https://ai.ipunk.cn/en/guides/codex-token-usage/",
+      "local_sha256": "335999889d378199e94f86fda8c3e80484016f7065428247b6726bbe7620c5a1",
+      "http_status": 404,
+      "transport_ok": true,
+      "raw_sha256": "0e4d84cf0e921d66d8ef3878b50820389e3476dbf2c0fddc36538712f303132b",
+      "bytes_match": false
+    },
+    {
+      "url": "https://ai.ipunk.cn/analytics.mjs",
+      "local_sha256": "76cc022bc9b60ae7494279383308399a082860e42f6e5573b7ed5713b7e90aa4",
+      "http_status": 404,
+      "transport_ok": true,
+      "raw_sha256": "0e4d84cf0e921d66d8ef3878b50820389e3476dbf2c0fddc36538712f303132b",
+      "bytes_match": false
+    }
+  ],
+  "qualification": "New page absence is delivery status, not deindexing or traffic. No deployment, no analytics event, no index request."
+}
