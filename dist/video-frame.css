@@ -1,0 +1,8 @@
+#frame-tool fieldset{border:0;padding:0;margin:1rem 0;min-width:0}
+#frame-tool input[type=range]{padding:0;min-height:36px}
+#frame-tool input[type=number]{max-width:13rem}
+#frame-tool output{display:block;margin:.85rem 0}
+#frame-tool output:empty{display:none}
+#frame-tool img{display:block;width:auto;max-width:100%;max-height:420px;height:auto;margin:.9rem 0}
+#frame-tool [hidden]{display:none}
+#frame-tool .task-actions{margin-bottom:0}

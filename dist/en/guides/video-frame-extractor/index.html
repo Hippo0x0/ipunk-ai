@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video to PNG: Extract a Frame or Video Screenshot | iPunk AI Radar</title>
+<meta name="description" content="Extract a PNG frame from an MP4, WebM or MOV in your browser. Choose a video timestamp or its last frame, preview it and download the still.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/video-frame-extractor/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css"><link rel="stylesheet" href="/task-choice.css"><link rel="stylesheet" href="/video-frame.css">
+<meta property="og:title" content="Video to PNG: Extract a Frame or Video Screenshot">
+<meta property="og:description" content="Save a still PNG at the selected video timestamp. Your video stays in your browser.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/video-frame-extractor/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Video to PNG Frame Extractor","applicationCategory":"MultimediaApplication","operatingSystem":"Browser","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","url":"https://ai.ipunk.cn/en/guides/video-frame-extractor/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script type="module" src="/video-frame.mjs"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#extract">Extract a frame</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Video to PNG Frame Extractor</h1>
+<p class="guide-answer">Choose a video, enter a time, then preview and download a single PNG at the video’s display size. Use Last frame to save the final image. The tool reads your video in the browser without uploading it.</p></header>
+<article class="article guide-article">
+<section id="extract"><h2>Save a video frame as PNG</h2>
+<form id="frame-tool" class="task-panel" hidden>
+<label for="frame-video">Video file</label><input id="frame-video" name="video" type="file" accept="video/*,.mp4,.mov,.webm,.mkv">
+<fieldset hidden disabled>
+<label for="frame-timeline">Timeline</label><input id="frame-timeline" name="timeline" type="range" min="0" max="1" step="any" value="0">
+<label for="frame-seconds">Time in seconds</label><input id="frame-seconds" name="seconds" type="number" min="0" max="1" step="any" value="0" required>
+<div class="task-actions"><button type="submit">Extract frame</button><button type="submit" formnovalidate data-last-frame>Last frame</button></div>
+</fieldset>
+<output role="status">Choose a video to start.</output>
+<div data-frame-result hidden>
+<img alt="Extracted video frame preview">
+<div class="task-actions"><a download>Download PNG</a></div>
+</div>
+</form>
+<noscript><p>Enable JavaScript to extract a frame. The sample video and instructions are available below.</p></noscript>
+<p><a href="/evidence/video-compressor/motion-and-tone.mp4" download>Download a four-second MP4 test clip</a> to check the tool on this browser.</p>
+</section>
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#extract">Extract one frame</a></li>
+<li><a href="#timestamp">Find a video screenshot by time</a></li>
+<li><a href="#check">Check the saved PNG</a></li>
+<li><a href="#formats">Formats and decoding</a></li>
+</ol></nav>
+<section id="timestamp"><h2>Choose the frame by timestamp</h2>
+<p>Use the timeline for a rough location or type seconds for a specific moment, such as <code>1.25</code>. The decoder selects the last frame whose start time is at or before the time you entered. A video frame spans an interval, so the displayed frame time can be slightly earlier. Time starts at the first displayed frame of the main video track.</p>
+<p>Use <strong>Last frame</strong> if you need the final still. The video duration usually marks the end of playback, while the last visible frame starts earlier. Check the reported frame time under the controls.</p>
+</section>
+<section id="check"><h2>Check the saved PNG</h2>
+<ol><li>Confirm that the preview shows the moment you want. Change the time and extract again if needed.</li><li>Save the PNG and open it to verify its dimensions. The preview fits the page. The download uses the decoded frame at its display dimensions, including supported orientation metadata.</li><li>If you need movement, use the <a href="/en/guides/video-to-gif/">local video-to-GIF tool</a>. To save only sound, use the <a href="/en/guides/extract-audio-from-video/">audio extractor</a>.</li></ol>
+<p>PNG preserves the exported frame without additional JPEG compression. The frame has already been decoded from the video, and the PNG does not preserve HDR mastering metadata or improve source quality.</p>
+</section>
+<section id="formats"><h2>Which videos can the browser decode?</h2>
+<p>Try MP4, WebM or MOV. The video codec inside the file determines whether it decodes on this device. If the file has no readable video track or its codec is unsupported, try a known H.264 MP4 or use a desktop editor capable of reading the source. Export works on the main video track.</p>
+<p>The tool uses the site’s self-hosted <a href="https://mediabunny.dev/api/CanvasSink">Mediabunny decoder and canvas renderer</a>. Your selected file and output data stay in this tab. The original file is left intact.</p>
+</section>
+</article>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body>
+</html>
