@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Codex AGENTS.md: Loading Order and Troubleshooting | iPunk AI Radar</title>
+<meta name="description" content="Check which AGENTS.md files Codex loads from your home, repo and subdirectory. Diagnose missing rules, empty overrides and custom file names.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/codex-agents-md/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Codex AGENTS.md: Loading Order and Troubleshooting">
+<meta property="og:description" content="Find which project rules reach Codex and diagnose missing or overridden AGENTS.md files.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/codex-agents-md/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Codex AGENTS.md: Loading Order and Troubleshooting","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/codex-agents-md/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#verify">Check loaded rules</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Codex AGENTS.md: Which Instructions Load?</h1>
+<p class="guide-answer">Put shared rules in the repository root’s <code>AGENTS.md</code>. For rules specific to a subdirectory, add a file there and launch Codex from that directory or below it. Codex reads global rules first, then walks from the repository root to its starting directory. If a rule is missing, check the launch directory and look for a same-directory <code>AGENTS.override.md</code>.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#order">See the loading order</a></li>
+<li><a href="#diagnose">Find the missing rule</a></li>
+<li><a href="#overrides">Check override files</a></li>
+<li><a href="#fallback">Check custom names and size</a></li>
+<li><a href="#verify">Inspect the local prompt</a></li>
+</ol></nav>
+<section id="order"><h2>Where Codex looks for AGENTS.md</h2>
+<ol>
+<li><strong>Global.</strong> Check <code>${CODEX_HOME:-$HOME/.codex}</code> for shared instructions. <code>AGENTS.override.md</code> takes precedence there.</li>
+<li><strong>Repository.</strong> Read one selected document per directory from the Git root down to the starting directory. An override takes precedence over <code>AGENTS.md</code> in its own directory. The nearest selected document appears last.</li>
+<li><strong>Outside a project.</strong> When Codex cannot identify a project root, it checks only the current directory for project instructions.</li>
+</ol>
+<p>For a task scoped to <code>services/billing</code>, open a fresh session at that path. A session started at the repository root can edit billing files without having loaded billing’s rules during startup. It also skips sibling folders such as <code>services/search</code>.</p>
+<pre><code>git rev-parse --show-toplevel
+codex --cd services/billing</code></pre>
+<p>Use the root file for shared commands and rules. Use the billing file for a precise local rule such as <code>Run make test-billing after changing this service.</code> After editing the files, check from a fresh launch.</p>
+</section>
+<section id="diagnose" class="guide-decision"><h2>Which rule is missing?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Troubleshoot Codex project instructions">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Missing Codex instructions decision tree">
+<defs><marker id="agents-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="order" d="M330 104 C330 147 110 143 110 218" marker-end="url(#agents-arrow)"/>
+<path data-edge="overrides" d="M330 104 L330 218" marker-end="url(#agents-arrow)"/>
+<path data-edge="verify" d="M330 104 C330 147 550 143 550 218" marker-end="url(#agents-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Which rule is missing?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">Missing rule?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Subfolder rule</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Duplicate files</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Not sure</text>
+</g>
+<g data-node="order" role="button" tabindex="0" aria-pressed="false" aria-label="Check the launch directory"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Check launch path</text></g>
+<g data-node="overrides" role="button" tabindex="0" aria-pressed="false" aria-label="Check which file takes precedence"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Check override</text></g>
+<g data-node="verify" role="button" tabindex="0" aria-pressed="false" aria-label="Inspect the local prompt"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Inspect prompt</text></g>
+</svg></div>
+<div class="decision-links"><a href="#order" aria-label="See steps: check the launch directory">See steps</a><a href="#overrides" aria-label="See steps: check override files">See steps</a><a href="#verify" aria-label="See steps: inspect the local prompt">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="overrides"><h2>Check for an empty AGENTS.override.md</h2>
+<p>If two instruction files sit in the same directory, first check the override’s content. In a local Codex CLI 0.172.0 test, a zero-byte or whitespace-only <code>AGENTS.override.md</code> still suppressed the same-directory <code>AGENTS.md</code>. The parent rules stayed in the prompt. Removing the override restored the base file in the next run.</p>
+<p>Before changing a shared override, check whether it was intentional. If you maintain it and want the base rules back, rename it outside the configured instruction names or remove it after reviewing the change. Restart and verify that a distinctive line from the base file appears.</p>
+</section>
+<section id="fallback"><h2>Check custom filenames and the byte limit</h2>
+<p>If the folder uses a different filename, put its exact name in the top-level Codex configuration. The file is only considered after <code>AGENTS.override.md</code> and <code>AGENTS.md</code> in that directory.</p>
+<pre><code>project_doc_fallback_filenames = ["TEAM_GUIDE.md"]</code></pre>
+<p>For rules missing late in a long chain, check <code>project_doc_max_bytes</code>. OpenAI documents a default of 32 KiB for project instructions. Shorten the earlier files or adjust that limit and check again from a fresh invocation. <a href="https://learn.chatgpt.com/docs/agent-configuration/agents-md">OpenAI’s discovery reference</a> explains both settings.</p>
+</section>
+<section id="verify"><h2>Verify what actually reached the local prompt</h2>
+<p>In Codex CLI 0.172.0, <code>debug prompt-input</code> printed the assembled input without a model request in our network-blocked test. From the directory you want to check, search for a short, distinctive phrase already in the expected instruction file.</p>
+<pre><code>codex debug prompt-input "Check project instructions" |
+  grep -Fq 'Run make test-billing after changing this service.'</code></pre>
+<p>Exit status <code>0</code> means the phrase appeared. If it is absent, confirm the debug command itself ran successfully, then compare a fresh run from the Git root and the target directory. Keep full prompt dumps local because they may include real project instructions and paths. A phrase in the input confirms loading. Model adherence requires a separate check.</p>
+<p><a href="/evidence/codex-agents-md/observations.json" download>Download the eight synthetic checks</a>. They record the marker order on macOS in Codex CLI 0.172.0, including global overrides, sibling exclusion, fallback names and both forms of empty project override.</p>
+<p>For an existing session whose working directory is uncertain, see <a href="/en/guides/codex-resume/">how to verify a resumed Codex session</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

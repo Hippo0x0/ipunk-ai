@@ -1,0 +1,82 @@
+{
+  "tested": "2026-11-28",
+  "cli": "codex-cli 0.172.0",
+  "method": "Parsed local debug prompt-input JSON in a synthetic Git repository with network denied. Only synthetic markers are retained.",
+  "cases": [
+    {
+      "case": "Repository root",
+      "workingDirectory": ".",
+      "markers": [
+        "CASE_GLOBAL_BASE",
+        "CASE_REPO_ROOT"
+      ]
+    },
+    {
+      "case": "Nested override",
+      "workingDirectory": "services/billing",
+      "markers": [
+        "CASE_GLOBAL_BASE",
+        "CASE_REPO_ROOT",
+        "CASE_SERVICES_FALLBACK",
+        "CASE_BILLING_OVERRIDE"
+      ]
+    },
+    {
+      "case": "Sibling from its own directory",
+      "workingDirectory": "services/search",
+      "markers": [
+        "CASE_GLOBAL_BASE",
+        "CASE_REPO_ROOT",
+        "CASE_SERVICES_FALLBACK",
+        "CASE_SEARCH_BASE"
+      ]
+    },
+    {
+      "case": "No configured fallback",
+      "workingDirectory": "services/billing",
+      "markers": [
+        "CASE_GLOBAL_BASE",
+        "CASE_REPO_ROOT",
+        "CASE_BILLING_OVERRIDE"
+      ]
+    },
+    {
+      "case": "Whitespace-only nested override",
+      "workingDirectory": "services/billing",
+      "markers": [
+        "CASE_GLOBAL_BASE",
+        "CASE_REPO_ROOT",
+        "CASE_SERVICES_FALLBACK"
+      ]
+    },
+    {
+      "case": "Zero-byte nested override",
+      "workingDirectory": "services/billing",
+      "markers": [
+        "CASE_GLOBAL_BASE",
+        "CASE_REPO_ROOT",
+        "CASE_SERVICES_FALLBACK"
+      ]
+    },
+    {
+      "case": "Removed nested override",
+      "workingDirectory": "services/billing",
+      "markers": [
+        "CASE_GLOBAL_BASE",
+        "CASE_REPO_ROOT",
+        "CASE_SERVICES_FALLBACK",
+        "CASE_BILLING_BASE"
+      ]
+    },
+    {
+      "case": "Global override",
+      "workingDirectory": "services/billing",
+      "markers": [
+        "CASE_GLOBAL_OVERRIDE",
+        "CASE_REPO_ROOT",
+        "CASE_SERVICES_FALLBACK",
+        "CASE_BILLING_BASE"
+      ]
+    }
+  ]
+}
