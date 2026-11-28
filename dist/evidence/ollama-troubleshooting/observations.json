@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-28",
+  "platform": "macOS 26.4.1 arm64, Apple M4",
+  "method": "Two isolated, loopback-only Ollama 0.40.18 daemons with separate model directories. One imported an official Qwen2.5 0.5B Q4_K_M fixture; the other remained empty, then was stopped. Curl bypassed proxies for loopback. Response bodies reduced to diagnostic fields.",
+  "observations": {
+    "correct_server_version": {
+      "path": "/api/version",
+      "curl_exit": 0,
+      "http": 200,
+      "body": {
+        "version": "0.40.18"
+      }
+    },
+    "correct_server_tag_list": {
+      "path": "/api/tags",
+      "curl_exit": 0,
+      "http": 200,
+      "body": {
+        "models": [
+          "diagnostic-qwen:latest"
+        ]
+      }
+    },
+    "other_server_version": {
+      "path": "/api/version",
+      "curl_exit": 0,
+      "http": 200,
+      "body": {
+        "version": "0.40.18"
+      }
+    },
+    "other_server_tag_list": {
+      "path": "/api/tags",
+      "curl_exit": 0,
+      "http": 200,
+      "body": {
+        "models": []
+      }
+    },
+    "native_path_under_compat_prefix": {
+      "path": "/v1/api/tags",
+      "curl_exit": 0,
+      "http": 404,
+      "body": "404 page not found"
+    },
+    "correct_compat_path": {
+      "path": "/v1/models",
+      "curl_exit": 0,
+      "http": 200,
+      "body": {
+        "model_ids": [
+          "diagnostic-qwen:latest"
+        ]
+      }
+    },
+    "missing_tag_chat": {
+      "path": "/api/chat",
+      "curl_exit": 0,
+      "http": 404,
+      "body": {
+        "error": "model 'absent-model:latest' not found"
+      }
+    },
+    "correct_tag_chat": {
+      "path": "/api/chat",
+      "curl_exit": 0,
+      "http": 200,
+      "body": {
+        "done": true,
+        "model": "diagnostic-qwen:latest"
+      }
+    },
+    "stopped_port": {
+      "path": "/api/version",
+      "curl_exit": 7,
+      "http": null,
+      "body": ""
+    }
+  }
+}

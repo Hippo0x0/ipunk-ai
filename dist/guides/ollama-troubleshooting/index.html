@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama 排障：连接被拒绝、找不到模型与 API 404 | iPunk AI Radar</title>
+<meta name="description" content="按症状排查 Ollama connection refused、model not found 和 HTTP 404。核对实际服务地址、模型标签，以及原生 API 和 /v1 地址。">
+<link rel="canonical" href="https://ai.ipunk.cn/guides/ollama-troubleshooting/">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/ollama-troubleshooting/">
+<link rel="alternate" hreflang="zh-CN" href="https://ai.ipunk.cn/guides/ollama-troubleshooting/">
+<link rel="alternate" hreflang="x-default" href="https://ai.ipunk.cn/en/guides/ollama-troubleshooting/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Ollama 排障：连接被拒绝、找不到模型与 API 404"><meta property="og:description" content="按症状排查 Ollama connection refused、model not found 和 HTTP 404。核对实际服务地址、模型标签，以及原生 API 和 /v1 地址。"><meta property="og:url" content="https://ai.ipunk.cn/guides/ollama-troubleshooting/"><meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Ollama 排障：连接被拒绝、找不到模型与 API 404","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"zh-CN","mainEntityOfPage":"https://ai.ipunk.cn/guides/ollama-troubleshooting/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="主导航"><a href="/en/guides/ollama-troubleshooting/" lang="en" hreflang="en">English</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama 排障指南</h1><p class="guide-answer">先在客户端实际使用的服务地址查 <code>/api/version</code> 和 <code>/api/tags</code>。连接被拒绝时，查主机、端口和服务是否启动。版本接口有响应时，再核对那台服务是否装了完整模型标签。遇到 HTTP 404 时，结合响应内容检查接口路径，分清 Ollama 原生接口与 OpenAI 兼容的 <code>/v1</code> 接口。</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="目录"><ol><li><a href="#start">核对客户端使用的服务</a></li><li><a href="#connect">连接被拒绝</a></li><li><a href="#model">找不到模型或模型列表为空</a></li><li><a href="#route">HTTP 404 与 /v1 基础地址</a></li><li><a href="#after">接口正常后的检查</a></li><li><a href="#evidence">实测结果</a></li></ol></nav>
+<section id="start"><h2>核对客户端使用的服务</h2><p>在客户端所在的电脑或运行环境执行以下命令。示例适用于客户端与 Ollama 同机、使用标准端口的情况。若客户端配置了其他主机或端口，两条命令都换成实际地址。</p>
+<pre><code>curl --noproxy '*' -sS -i http://127.0.0.1:11434/api/version
+curl --noproxy '*' -sS -i http://127.0.0.1:11434/api/tags</code></pre>
+<p>版本号只能确认有服务回应。实测中两个服务实例版本相同，只有一个装了目标模型，所以要接着查同一地址的标签列表。首次安装可以先看<a href="/guides/ollama-setup/">Ollama 本地部署与验证</a>。</p></section>
+<section id="diagnose" class="guide-decision"><h2>客户端报了什么错？</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="选择 Ollama 排障步骤">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Ollama 排障决策树">
+<defs><marker id="keep-alive-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="connect" d="M330 104 C330 147 110 143 110 218" marker-end="url(#keep-alive-arrow)"/>
+<path data-edge="model" d="M330 104 L330 218" marker-end="url(#keep-alive-arrow)"/>
+<path data-edge="route" d="M330 104 C330 147 550 143 550 218" marker-end="url(#keep-alive-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="客户端报了什么错？"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">遇到什么问题？</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">无法连接</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">缺少模型</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">404／不确定</text>
+</g>
+<g data-node="connect" role="button" tabindex="0" aria-pressed="false" aria-label="核对主机和端口"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">核对地址</text></g>
+<g data-node="model" role="button" tabindex="0" aria-pressed="false" aria-label="核对完整模型标签"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">核对标签</text></g>
+<g data-node="route" role="button" tabindex="0" aria-pressed="false" aria-label="核对路径和响应内容"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">核对路径与响应</text></g>
+</svg></div>
+<div class="decision-links"><a href="#connect" aria-label="查看步骤: 核对主机和端口">查看步骤</a><a href="#model" aria-label="查看步骤: 核对完整模型标签">查看步骤</a><a href="#route" aria-label="查看步骤: 核对路径和响应内容">查看步骤</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="connect"><h2>连接被拒绝</h2><p>如果 curl 返回错误 7 或 <code>Connection refused</code>，先核对主机和端口。打开 Ollama App。若你用 CLI 安装且端口还没有服务监听，就启动 <code>ollama serve</code>，再请求版本接口。超时时则先从客户端核对连接能否到达服务器。</p>
+<p>客户端在 Docker 容器里时，其 <code>127.0.0.1</code> 指向容器自身。Docker Desktop 支持用 <code>host.docker.internal</code> 从容器访问宿主机，但 Ollama 也需要在该地址接受连接。这里的实测使用本机的两个进程，Docker 网络按<a href="https://docs.docker.com/desktop/features/networking/#use-cases-and-workarounds">Docker Desktop 官方说明</a>确认。</p></section>
+<section id="model"><h2>找不到模型或模型列表为空</h2><p>对照 <code>/api/tags</code> 返回的 <code>models[].name</code> 和客户端填写的完整标签。服务能回应但列表为空时，先查是否连接到了另一台服务实例，或者该服务使用不同的模型目录。确认预期的服务确实缺少该标签，再下载安装。</p>
+<p>自建模型要核对同一台服务上的 <code>ollama create</code> 是否成功，以及客户端是否使用创建后的标签。<a href="/en/guides/ollama-modelfile/">查看 Modelfile 创建与验证（英文）</a>。OpenCode 用户可以<a href="/en/guides/opencode-ollama/">核对 OpenCode 的 Ollama 地址和模型发现（英文）</a>。</p></section>
+<section id="route"><h2>HTTP 404 与 /v1 基础地址</h2><p>Ollama 原生接口使用 <code>/api/tags</code>、<code>/api/chat</code> 等路径。OpenAI 兼容客户端通常填入 <code>http://127.0.0.1:11434/v1</code> 作为基础地址，再由客户端附加 <code>/models</code> 或 <code>/chat/completions</code>。</p>
+<p>实测把原生路径拼到 <code>/v1</code> 后，返回纯文本 404。有效的 <code>/api/chat</code> 收到不存在的模型标签时，也返回 404，但 JSON 中的 <code>error</code> 会写出缺少的模型。如果客户端隐藏了响应内容，用 <code>curl -i</code> 重试它实际发送的方法和路径。<a href="/en/guides/ollama-openai-compatible-api/">查看 OpenAI 兼容接口示例（英文）</a>。</p></section>
+<section id="after"><h2>接口正常后的检查</h2><p>短请求通过但实际任务仍慢或吃内存时，先用 <code>ollama ps</code> 核对处理器分配和运行上下文。可先用较小模型或更短上下文做同条件对照。</p>
+<ul><li><a href="/guides/ollama-memory-calculator/">估算 Mac 运行模型和上下文所需内存</a></li><li><a href="/en/guides/ollama-gpu/">核对 CPU 与 GPU 分配（英文）</a></li><li><a href="/en/guides/ollama-stop-keep-alive/">卸载空闲模型并核对运行列表（英文）</a></li></ul></section>
+
+<section id="evidence"><h2>实测结果</h2>
+<p>在同一台 Apple M4 上启动两个独立的 Ollama 0.40.18 服务，版本结果相同。一台有 Qwen 测试标签，另一台模型列表为空。另复现了两种 404，并在停止空服务后观察到 curl 错误 7。公开数据保留了诊断所需的响应字段。</p>
+<p><a href="/evidence/ollama-troubleshooting/observations.json" download>下载 HTTP 实测记录</a> · <a href="https://docs.ollama.com/troubleshooting">Ollama 官方排障说明</a></p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/">iPunk AI Radar</a><time datetime="2026-11-28">2026 年 11 月 28 日</time></div><p class="wrap" data-analytics-privacy><a href="/privacy/">隐私与统计</a></p></footer>
+</body></html>

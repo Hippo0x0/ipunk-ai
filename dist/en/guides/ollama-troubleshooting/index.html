@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama Troubleshooting: Connection Refused, Missing Models and 404 | iPunk AI Radar</title>
+<meta name="description" content="Diagnose Ollama connection refused, missing models and HTTP 404. Compare the native and OpenAI-compatible URLs and isolate the server your client uses.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-troubleshooting/">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/ollama-troubleshooting/">
+<link rel="alternate" hreflang="zh-CN" href="https://ai.ipunk.cn/guides/ollama-troubleshooting/">
+<link rel="alternate" hreflang="x-default" href="https://ai.ipunk.cn/en/guides/ollama-troubleshooting/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Ollama Troubleshooting: Connection Refused, Missing Models and 404"><meta property="og:description" content="Diagnose Ollama connection refused, missing models and HTTP 404. Compare the native and OpenAI-compatible URLs and isolate the server your client uses."><meta property="og:url" content="https://ai.ipunk.cn/en/guides/ollama-troubleshooting/"><meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Ollama Troubleshooting: Connection Refused, Missing Models and 404","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/ollama-troubleshooting/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="/guides/ollama-troubleshooting/" lang="zh-CN" hreflang="zh-CN">中文</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama Troubleshooting</h1><p class="guide-answer">Check <code>/api/version</code> and <code>/api/tags</code> on the same server address your client uses. A refused connection points to the address, port or server. If the version works, confirm the server has the exact model tag. For an HTTP 404, read the response body and check whether the client expects a native Ollama endpoint or an OpenAI-compatible <code>/v1</code> endpoint.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#start">Check the exact server</a></li><li><a href="#connect">Connection refused</a></li><li><a href="#model">Model not found or list is empty</a></li><li><a href="#route">HTTP 404 and the /v1 base URL</a></li><li><a href="#after">After the API works</a></li><li><a href="#evidence">What we reproduced</a></li></ol></nav>
+<section id="start"><h2>Check the exact server</h2><p>Run both calls from the same computer or network environment as your client. The example assumes a client and Ollama on the same machine with the standard port. Replace the origin if your client uses a different host or port.</p>
+<pre><code>curl --noproxy '*' -sS -i http://127.0.0.1:11434/api/version
+curl --noproxy '*' -sS -i http://127.0.0.1:11434/api/tags</code></pre>
+<p>A version response proves a server answered. In our two-server test, both returned the same version and only one had the model. Always check the model list on the same origin. For initial installation and a synthetic prompt, use the <a href="/en/guides/ollama-setup/">Ollama setup guide</a>.</p></section>
+<section id="diagnose" class="guide-decision"><h2>What did the client report?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Find the next Ollama check">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Ollama troubleshooting decision tree">
+<defs><marker id="keep-alive-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="connect" d="M330 104 C330 147 110 143 110 218" marker-end="url(#keep-alive-arrow)"/>
+<path data-edge="model" d="M330 104 L330 218" marker-end="url(#keep-alive-arrow)"/>
+<path data-edge="route" d="M330 104 C330 147 550 143 550 218" marker-end="url(#keep-alive-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What did the client report?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">Which symptom?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">No connection</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Missing model</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">404 / unsure</text>
+</g>
+<g data-node="connect" role="button" tabindex="0" aria-pressed="false" aria-label="Check the host and port"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Check host</text></g>
+<g data-node="model" role="button" tabindex="0" aria-pressed="false" aria-label="Compare the exact model tags"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Compare tags</text></g>
+<g data-node="route" role="button" tabindex="0" aria-pressed="false" aria-label="Check the URL and response body"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check URL and body</text></g>
+</svg></div>
+<div class="decision-links"><a href="#connect" aria-label="See steps: check the host and port">See steps</a><a href="#model" aria-label="See steps: compare the exact model tags">See steps</a><a href="#route" aria-label="See steps: check the URL and response body">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="connect"><h2>Connection refused</h2><p>When curl reports error 7 or <code>Connection refused</code>, confirm the address and port. Open the Ollama app or start <code>ollama serve</code> if you use a CLI installation and no instance is already listening. Repeat the version request. A timeout is a different signal. Check reachability from the client before changing model or API settings.</p>
+<p>If the client runs in Docker, its <code>127.0.0.1</code> points inside that container. Check the topology first and use the actual reachable service address. Docker Desktop provides <code>host.docker.internal</code> for reaching the host from a container. The host service must accept the connection at that address. The test below used two local processes and did not test Docker networking. See <a href="https://docs.docker.com/desktop/features/networking/#use-cases-and-workarounds">Docker Desktop networking</a>.</p></section>
+<section id="model"><h2>Model not found or list is empty</h2><p>Read <code>models[].name</code> in <code>/api/tags</code> and compare it with the client’s complete model ID. An empty list on a responding server can mean you reached another instance or a different model directory. Compare the origin and list first. Install the tag only if the intended server really lacks it.</p>
+<p>If you created your own tag, check that <code>ollama create</code> completed on that server and use the output tag in the client. <a href="/en/guides/ollama-modelfile/">Verify a tag built with a Modelfile</a>. For OpenCode, <a href="/en/guides/opencode-ollama/">check its configured Ollama origin and model discovery</a>.</p></section>
+<section id="route"><h2>HTTP 404 and the /v1 base URL</h2><p>Choose the path based on the client’s API mode. The native API uses paths such as <code>/api/tags</code> or <code>/api/chat</code>. An OpenAI-compatible client typically takes <code>http://127.0.0.1:11434/v1</code> as its base and appends <code>/models</code> or <code>/chat/completions</code>.</p>
+<p>In our run, putting a native path under <code>/v1</code> returned a plain 404. Sending a missing tag to valid <code>/api/chat</code> also returned 404, with a JSON <code>error</code> naming the missing model. Check the response and endpoint together. If a client hides the response body, retry your specific method and path locally with <code>curl -i</code>. See the <a href="/en/guides/ollama-openai-compatible-api/">OpenAI-compatible endpoint examples</a>.</p></section>
+<section id="after"><h2>After the API works</h2><p>If a short request completes but normal prompts still fail, check the loaded context and processor with <code>ollama ps</code>. For a slow response or high memory use, try a smaller model or shorter context first and compare under the same conditions.</p>
+<ul><li><a href="/en/guides/ollama-gpu/">Check CPU and GPU placement</a></li><li><a href="/en/guides/ollama-memory-calculator/">Estimate Mac memory before changing context</a></li><li><a href="/en/guides/ollama-stop-keep-alive/">Unload an idle model and confirm it left memory</a></li></ul></section>
+
+<section id="evidence"><h2>What we reproduced</h2>
+<p>One Apple M4 ran two isolated Ollama 0.40.18 instances. Both returned version 0.40.18. One listed the Qwen test tag, the other returned an empty list. We reproduced both 404s and stopped the empty instance to see curl error 7. The published responses omit unrelated fields.</p>
+<p><a href="/evidence/ollama-troubleshooting/observations.json" download>Download the HTTP observations</a> · <a href="https://docs.ollama.com/troubleshooting">Official Ollama troubleshooting documentation</a></p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>

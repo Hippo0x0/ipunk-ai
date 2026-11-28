@@ -36,7 +36,7 @@ ollama ps</code></pre>
 <section id="check"><h2>检查服务、模型列表和接口</h2>
 <p><a href="/evidence/ollama-setup/check-ollama.py" download>下载 Python 检查脚本</a>，用 Python 3.9 或更新版本运行。默认读取 <code>127.0.0.1:11434</code> 的服务版本和两种模型列表。脚本只使用标准库，直接连本机端口，不下载模型。如果 Ollama 监听其他本机端口，用 <code>--port</code> 指定。</p>
 <pre><code>python3 check-ollama.py</code></pre>
-<p>有版本号但列表为空，说明服务已响应。读不到版本时，先确认服务已启动且端口正确。原生列表有数据但 <code>/v1/models</code> 失败时，优先检查使用 OpenAI 兼容接口的客户端配置。</p>
+<p>有版本号但列表为空，说明服务已响应。读不到版本时，先确认服务已启动且端口正确。原生列表有数据但 <code>/v1/models</code> 失败时，优先检查使用 OpenAI 兼容接口的客户端配置。 <a href="/guides/ollama-troubleshooting/">按症状排查连接失败、找不到模型和 404</a>。</p>
 <p>需要进一步实测时，复制 <code>native_model_tags</code> 中的完整标签。可分别或同时指定聊天模型与向量模型。下例要求两个标签都已安装，会发送一条合成提示词和两条合成文本。</p>
 <pre><code>python3 check-ollama.py --chat-model qwen2.5:0.5b --embedding-model nomic-embed-text:v1.5</code></pre>
 <p>在 Apple M4 上使用 Ollama 0.40.18 实测，两个标签都出现在原生列表和兼容列表中。聊天返回 <code>LOCAL_OK</code>，向量接口返回两个 768 维向量。填入不存在的聊天标签后，聊天检查失败，向量检查仍通过。停止测试服务后，版本检查失败。<a href="/evidence/ollama-setup/observations.json" download>下载四组实测结果</a>。</p>
