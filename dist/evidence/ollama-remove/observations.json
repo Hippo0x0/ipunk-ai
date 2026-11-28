@@ -1,0 +1,253 @@
+{
+  "date": "2026-11-28",
+  "os": "macOS arm64",
+  "ollama": "0.40.18",
+  "server": "http://127.0.0.1:53684",
+  "model": "Qwen2.5-0.5B-Instruct Q4_K_M GGUF",
+  "copy": {
+    "command": "ollama cp ipunk-cleanup:sample ipunk-cleanup:keep",
+    "exit": 0,
+    "stdout": "copied 'ipunk-cleanup:sample' to 'ipunk-cleanup:keep'\n",
+    "stderr": "success\n"
+  },
+  "initial_run": {
+    "request": {
+      "model": "ipunk-cleanup:sample",
+      "prompt": "Reply with exactly LOCAL_OK and nothing else.",
+      "stream": false,
+      "options": {
+        "num_predict": 16,
+        "temperature": 0
+      },
+      "keep_alive": "2m"
+    },
+    "response": {
+      "model": "ipunk-cleanup:sample",
+      "created_at": "2026-11-28T03:40:24.116489Z",
+      "response": "LOCAL_OK",
+      "done": true,
+      "done_reason": "stop",
+      "context": [
+        151644,
+        8948,
+        198,
+        2610,
+        525,
+        1207,
+        16948,
+        11,
+        3465,
+        553,
+        54364,
+        14817,
+        13,
+        1446,
+        525,
+        264,
+        10950,
+        17847,
+        13,
+        151645,
+        198,
+        151644,
+        872,
+        198,
+        20841,
+        448,
+        6896,
+        42501,
+        8375,
+        323,
+        4302,
+        770,
+        13,
+        151645,
+        198,
+        151644,
+        77091,
+        198,
+        39081,
+        8375
+      ],
+      "total_duration": 605617958,
+      "load_duration": 544650833,
+      "prompt_eval_count": 38,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 38654000,
+      "eval_count": 3,
+      "eval_duration": 18832000
+    }
+  },
+  "before": {
+    "list": "NAME                    ID              SIZE      MODIFIED               \nipunk-cleanup:keep      8f286bf62688    491 MB    Less than a second ago    \nipunk-cleanup:sample    8f286bf62688    491 MB    Less than a second ago    \n",
+    "running_tags": [
+      "ipunk-cleanup:sample"
+    ],
+    "installed_tags": [
+      "ipunk-cleanup:keep",
+      "ipunk-cleanup:sample"
+    ],
+    "ps": "NAME                    ID              SIZE      PROCESSOR    CONTEXT    RUNNER      UNTIL                   \nipunk-cleanup:sample    8f286bf62688    338 MB    100% GPU     4096       llamacpp    About a minute from now    \n",
+    "blobs": [
+      {
+        "name": "sha256-0cfdbbebf551bc0093c80b6679cdb597b865ddb015dbfcf3817cc8eb85712a65",
+        "bytes": 118,
+        "allocated_bytes": 4096
+      },
+      {
+        "name": "sha256-74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+        "bytes": 491400032,
+        "allocated_bytes": 491401216
+      },
+      {
+        "name": "sha256-8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7",
+        "bytes": 470,
+        "allocated_bytes": 4096
+      }
+    ]
+  },
+  "stop": {
+    "command": "ollama stop ipunk-cleanup:sample",
+    "exit": 0,
+    "stdout": "",
+    "stderr": "\u001b[?2026h\u001b[?25l\u001b[1G\u001b[K\u001b[?25h\u001b[?2026l\u001b[?25l\u001b[2K\u001b[1G\u001b[?25h"
+  },
+  "after_stop": {
+    "list": "NAME                    ID              SIZE      MODIFIED               \nipunk-cleanup:keep      8f286bf62688    491 MB    Less than a second ago    \nipunk-cleanup:sample    8f286bf62688    491 MB    Less than a second ago    \n",
+    "running_tags": [],
+    "installed_tags": [
+      "ipunk-cleanup:keep",
+      "ipunk-cleanup:sample"
+    ],
+    "ps": "NAME    ID    SIZE    PROCESSOR    CONTEXT    RUNNER    UNTIL \n",
+    "blobs": [
+      {
+        "name": "sha256-0cfdbbebf551bc0093c80b6679cdb597b865ddb015dbfcf3817cc8eb85712a65",
+        "bytes": 118,
+        "allocated_bytes": 4096
+      },
+      {
+        "name": "sha256-74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+        "bytes": 491400032,
+        "allocated_bytes": 491401216
+      },
+      {
+        "name": "sha256-8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7",
+        "bytes": 470,
+        "allocated_bytes": 4096
+      }
+    ]
+  },
+  "first_removal": {
+    "command": "ollama rm ipunk-cleanup:sample",
+    "exit": 0,
+    "stdout": "deleted 'ipunk-cleanup:sample'\n",
+    "stderr": "\u001b[?2026h\u001b[?25l\u001b[1G\u001b[K\u001b[?25h\u001b[?2026l\u001b[?25l\u001b[2K\u001b[1G\u001b[?25h"
+  },
+  "after_first_removal": {
+    "list": "NAME                  ID              SIZE      MODIFIED               \nipunk-cleanup:keep    8f286bf62688    491 MB    Less than a second ago    \n",
+    "running_tags": [],
+    "installed_tags": [
+      "ipunk-cleanup:keep"
+    ],
+    "ps": "NAME    ID    SIZE    PROCESSOR    CONTEXT    RUNNER    UNTIL \n",
+    "blobs": [
+      {
+        "name": "sha256-0cfdbbebf551bc0093c80b6679cdb597b865ddb015dbfcf3817cc8eb85712a65",
+        "bytes": 118,
+        "allocated_bytes": 4096
+      },
+      {
+        "name": "sha256-74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
+        "bytes": 491400032,
+        "allocated_bytes": 491401216
+      },
+      {
+        "name": "sha256-8f286bf62688e4d45f2edd0b02b7d7bd7b453b639987aa78f874a3721b5364d7",
+        "bytes": 470,
+        "allocated_bytes": 4096
+      }
+    ]
+  },
+  "retained_tag_run": {
+    "request": {
+      "model": "ipunk-cleanup:keep",
+      "prompt": "Reply with exactly LOCAL_OK and nothing else.",
+      "stream": false,
+      "options": {
+        "num_predict": 16,
+        "temperature": 0
+      },
+      "keep_alive": "2m"
+    },
+    "response": {
+      "model": "ipunk-cleanup:keep",
+      "created_at": "2026-11-28T03:40:24.846891Z",
+      "response": "LOCAL_OK",
+      "done": true,
+      "done_reason": "stop",
+      "context": [
+        151644,
+        8948,
+        198,
+        2610,
+        525,
+        1207,
+        16948,
+        11,
+        3465,
+        553,
+        54364,
+        14817,
+        13,
+        1446,
+        525,
+        264,
+        10950,
+        17847,
+        13,
+        151645,
+        198,
+        151644,
+        872,
+        198,
+        20841,
+        448,
+        6896,
+        42501,
+        8375,
+        323,
+        4302,
+        770,
+        13,
+        151645,
+        198,
+        151644,
+        77091,
+        198,
+        39081,
+        8375
+      ],
+      "total_duration": 589613375,
+      "load_duration": 520415542,
+      "prompt_eval_count": 38,
+      "prompt_eval_cached_count": 0,
+      "prompt_eval_duration": 46690000,
+      "eval_count": 3,
+      "eval_duration": 18549000
+    }
+  },
+  "last_removal": {
+    "command": "ollama rm ipunk-cleanup:keep",
+    "exit": 0,
+    "stdout": "deleted 'ipunk-cleanup:keep'\n",
+    "stderr": "\u001b[?2026h\u001b[?25l\u001b[1G\u001b[K\u001b[?25h\u001b[?2026l\u001b[?25l\u001b[2K\u001b[1G\u001b[?25h"
+  },
+  "after_last_removal": {
+    "list": "NAME    ID    SIZE    MODIFIED \n",
+    "running_tags": [],
+    "installed_tags": [],
+    "ps": "NAME    ID    SIZE    PROCESSOR    CONTEXT    RUNNER    UNTIL \n",
+    "blobs": []
+  }
+}

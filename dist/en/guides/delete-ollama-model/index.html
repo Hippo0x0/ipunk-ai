@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Delete an Ollama Model and Check Disk Space | iPunk AI Radar</title>
+<meta name="description" content="Remove an exact Ollama model tag with ollama rm, or unload it with ollama stop. See why shared model files can stay on disk after a successful deletion.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/delete-ollama-model/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="How to Delete an Ollama Model and Check Disk Space">
+<meta property="og:description" content="Delete the right tag and verify what changed in running memory and on disk.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/delete-ollama-model/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"How to Delete an Ollama Model and Check Disk Space","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/delete-ollama-model/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#delete">Remove a model</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>How to Delete an Ollama Model and Check Disk Space</h1>
+<p class="guide-answer">Run <code>ollama list</code>, copy the full model name and tag, then remove it with <code>ollama rm NAME:TAG</code>. Run <code>ollama list</code> again to confirm the tag is gone. If you only need to free running memory, use <code>ollama stop NAME:TAG</code> instead. Files shared with another installed tag can stay on disk after deletion.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#choose">Choose what to free</a></li>
+<li><a href="#inspect">Check the server, tag and folder</a></li>
+<li><a href="#unload">Unload from memory</a></li>
+<li><a href="#delete">Remove one installed tag</a></li>
+<li><a href="#disk">Check disk usage and shared files</a></li>
+</ol></nav>
+<p>Before deleting a custom model you may need again, keep its original GGUF and Modelfile outside Ollama’s store. A recipe that refers to a weight file inside the store may stop working after the last tag using it is removed.</p>
+<section id="choose" class="guide-decision"><h2>What do you need to free?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Ollama model cleanup decision tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Choose memory, disk space or inspect first">
+<defs><marker id="ollama-remove-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="unload" d="M330 104 C330 147 110 143 110 218" marker-end="url(#ollama-remove-arrow)"/>
+<path data-edge="delete" d="M330 104 L330 218" marker-end="url(#ollama-remove-arrow)"/>
+<path data-edge="inspect" d="M330 104 C330 147 550 143 550 218" marker-end="url(#ollama-remove-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What do you need to free?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">What to free?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Running memory</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Disk space</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Not sure</text>
+</g>
+<g data-node="unload" role="button" tabindex="0" aria-pressed="false" aria-label="Unload the model"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Unload model</text></g>
+<g data-node="delete" role="button" tabindex="0" aria-pressed="false" aria-label="Remove an installed tag"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Remove a tag</text></g>
+<g data-node="inspect" role="button" tabindex="0" aria-pressed="false" aria-label="Check installed and running tags"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check both lists</text></g>
+</svg></div>
+<div class="decision-links"><a href="#unload" aria-label="See steps: unload from memory">See steps</a><a href="#delete" aria-label="See steps: remove a tag">See steps</a><a href="#inspect" aria-label="See steps: inspect tags and server">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="inspect"><h2>Check the server, tag and model folder</h2>
+<pre><code>ollama list
+ollama ps</code></pre>
+<p><code>ollama list</code> shows installed tags. <code>ollama ps</code> shows models currently loaded. If you have more than one server, check the CLI’s <code>OLLAMA_HOST</code> before running either command against the wrong instance. With Docker, check the model volume used by the container running the server.</p>
+<p>Ollama documents these default model folders. A server configured with <code>OLLAMA_MODELS</code> uses the directory set for its own process.</p>
+<ul><li><strong>macOS:</strong> <code>~/.ollama/models</code></li><li><strong>Linux service:</strong> <code>/usr/share/ollama/.ollama/models</code></li><li><strong>Windows:</strong> <code>%USERPROFILE%\.ollama\models</code></li></ul>
+</section>
+<section id="unload"><h2>Unload the model from memory</h2>
+<p>Wait until requests using the model have finished. Replace the example with the tag shown by <code>ollama ps</code>.</p>
+<pre><code>ollama stop qwen2.5:0.5b
+ollama ps
+ollama list</code></pre>
+<p>The tag should disappear from the running list and stay in the installed list. Another request can load it again from disk. If the running list was already empty, there was no loaded model to stop.</p>
+</section>
+<section id="delete"><h2>Remove one installed tag</h2>
+<ol>
+<li>Use <code>ollama list</code> and copy the exact value from the <strong>NAME</strong> column. Check that apps, scripts and saved configurations are no longer using that tag.</li>
+<li>Run the following commands with the tag you intend to remove. If it is loaded, finish any active request and unload it first.</li>
+</ol>
+<pre><code>ollama rm qwen2.5:0.5b
+ollama list</code></pre>
+<p>Deletion succeeded when that exact tag disappears from the same server’s installed list. If Ollama reports the model is missing, recheck the tag and server before trying again. Removing a registry tag means you may need to download it again. Keep the source files required to recreate an imported model.</p>
+</section>
+<section id="disk"><h2>Why disk space may stay the same after ollama rm</h2>
+<p><code>ollama list</code> gives a size for each tag. Two tags can point to the same weights, so adding their listed sizes can overcount the disk space they use. Deleting a tag can leave the shared weight files in place while another tag still uses them.</p>
+<p>Compare the actual models folder before and after. On macOS with the default model store, run <code>du -sh "$HOME/.ollama/models"</code> both times. On Windows, check the model folder’s <strong>Properties</strong> in Explorer. Use the actual server store if you changed its location. Avoid deleting individual blob files by hand because a remaining model can still need them.</p>
+<div class="video-table"><table>
+<caption>Ollama 0.40.18 · two tags for one local GGUF</caption>
+<thead><tr><th scope="col">Action</th><th scope="col">Tags installed</th><th scope="col">Bytes in blob files</th></tr></thead>
+<tbody><tr><td>Before cleanup</td><td>2</td><td>491,400,620</td></tr><tr><td>Stop the loaded tag</td><td>2</td><td>491,400,620</td></tr><tr><td>Remove the first tag</td><td>1</td><td>491,400,620</td></tr><tr><td>Remove the last tag</td><td>0</td><td>0</td></tr></tbody>
+</table></div>
+<p>In our November 28, 2026 macOS test, the remaining tag still answered a short request after the first removal. After removing the last tag, the three blob files were gone from the isolated store. The table sums file lengths in that store. Available volume space can differ, and we did not measure it.</p>
+<p><a href="/evidence/ollama-remove/observations.json" download>Download the CLI outputs, blob counts and model responses</a>. See <a href="https://docs.ollama.com/cli">Ollama’s CLI reference</a> and its <a href="https://docs.ollama.com/faq#where-are-models-stored">model folder documentation</a>. If you need to confirm that a retained model runs, follow the <a href="/en/guides/run-llm-locally/">first local model check</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
