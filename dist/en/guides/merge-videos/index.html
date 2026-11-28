@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Combine Videos Online: Merge Clips into One MP4 | iPunk AI Radar</title>
+<meta name="description" content="Combine two to eight videos into one MP4 in your browser. Reorder the clips, keep their sound and preview the result without uploading your files.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/merge-videos/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css"><link rel="stylesheet" href="/task-choice.css"><link rel="stylesheet" href="/video-merge.css">
+<meta property="og:title" content="Combine Videos Online: Merge Clips into One MP4">
+<meta property="og:description" content="Join local clips in order, keep their sound and download one MP4.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/merge-videos/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Combine Videos into One MP4","applicationCategory":"MultimediaApplication","operatingSystem":"Browser","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","url":"https://ai.ipunk.cn/en/guides/merge-videos/"}</script>
+<script type="module" src="/analytics.mjs"></script><script type="module" src="/video-merge.mjs"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#merge">Combine videos</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Combine Videos into One MP4</h1>
+<p class="guide-answer">Choose two or more video clips, put them in playback order, then download one MP4. The first clip sets the output shape. Other clips fit inside it, and each clip’s sound plays in its own segment. The browser processes your files locally.</p></header>
+<article class="article guide-article">
+<section id="merge"><h2>Merge your video clips</h2>
+<form id="merge-tool" class="task-panel" hidden>
+<label for="merge-source">Choose 2–8 video clips</label><input id="merge-source" name="videos" type="file" accept="video/*,.mp4,.mov,.webm,.mkv" multiple aria-describedby="merge-limits">
+<small id="merge-limits">Up to 250 MiB and 2 minutes in total.</small>
+<ol hidden aria-label="Playback order"></ol>
+<div class="task-actions"><button type="submit" disabled>Merge to MP4</button><button type="button" data-cancel hidden disabled>Cancel</button></div>
+<progress max="1" value="0" hidden aria-label="Merge progress"></progress>
+<output role="status"></output>
+<div data-merge-result hidden><video controls preload="metadata" playsinline aria-label="Merged MP4 preview"></video><div class="task-actions"><a download>Download merged MP4</a></div></div>
+</form>
+<noscript><p>Enable JavaScript to combine clips locally. The test clips and instructions remain available.</p></noscript>
+<p>To try it, download the <a href="/evidence/video-compressor/motion-and-tone.mp4" download>four-second landscape clip with sound</a> and the <a href="/evidence/canva-video/synthetic-portrait-6s.mp4" download>six-second silent portrait clip</a>. Choose both files together.</p>
+</section>
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#merge">Combine two or more clips</a></li><li><a href="#order">Choose the playback order and shape</a></li><li><a href="#check">Check the video at the join</a></li><li><a href="#formats">Input and output formats</a></li>
+</ol></nav>
+<section id="order"><h2>Set the order and the output shape</h2>
+<p>Use Up and Down to arrange the clips in the order they should play. Put a portrait clip first if you want a portrait result. The output uses the first clip’s aspect ratio, with the longest side capped at 1,280 pixels. Other clips are fitted inside the canvas and can have black bars.</p>
+<p>To shorten a clip first, <a href="/en/guides/trim-video/">trim it by start and end time</a>. If you prefer different framing on a clip, <a href="/en/guides/crop-video/">crop the visible area</a> before merging.</p>
+</section>
+<section id="check"><h2>Play across each join before sharing</h2>
+<ol><li>Check that the exported duration is close to the combined source durations. Frame and audio timing may cause small differences.</li><li>Play the preview across each transition. Verify the order, framing and sound. A clip without audio stays silent for its segment.</li><li>Save the MP4 and open it in the destination app before relying on it.</li></ol>
+<p>A Chromium test combined a six-second silent portrait clip with a four-second landscape clip with sound. Both orders exported in about 10.03 seconds, and the sound played during the landscape segment in each result. <a href="/evidence/merge-videos/observations.json">See the test measurements</a>.</p>
+<p>To make the entire result silent, <a href="/en/guides/mute-video/">remove its audio track</a> after merging.</p>
+</section>
+<section id="formats"><h2>Formats and local processing</h2>
+<p>Each clip needs one video track and can have one audio track. MP4, MOV, WebM and MKV are supported when their codecs can be decoded in your browser. The combined MP4 is re-encoded as H.264 video. If any clip has sound, the output includes stereo AAC. Audio outside a clip’s video time is trimmed.</p>
+<p>The files stay on your device. For formats the browser cannot decode, very long material or projects with multiple audio tracks, use an editor that supports those source files. Decoding and writing use <a href="https://mediabunny.dev/guide/media-sources">Mediabunny</a>.</p>
+</section>
+</article>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body>
+</html>
