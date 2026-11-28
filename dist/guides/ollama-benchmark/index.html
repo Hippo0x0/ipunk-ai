@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama 测速与 token/s 计算器 | iPunk AI Radar</title>
+<meta name="description" content="用 Ollama --verbose 快速看生成速度，或粘贴原生 JSON 与 NDJSON，分别计算生成、输入处理、模型加载与服务端耗时。">
+<link rel="canonical" href="https://ai.ipunk.cn/guides/ollama-benchmark/">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/ollama-benchmark/">
+<link rel="alternate" hreflang="zh-Hans" href="https://ai.ipunk.cn/guides/ollama-benchmark/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css"><link rel="stylesheet" href="/task-choice.css"><link rel="stylesheet" href="/ollama-benchmark.css">
+<meta property="og:title" content="Ollama 测速与 token/s 计算器">
+<meta property="og:description" content="核对 Ollama 的生成速度、首段文本等待和模型加载耗时。">
+<meta property="og:url" content="https://ai.ipunk.cn/guides/ollama-benchmark/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Ollama 测速与 token/s 计算器","applicationCategory":"DeveloperApplication","operatingSystem":"Browser","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"zh-CN","url":"https://ai.ipunk.cn/guides/ollama-benchmark/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script><script type="module" src="/ollama-benchmark.mjs"></script>
+</head><body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="主导航"><a href="#calculator">开始计算</a><a href="/en/guides/ollama-benchmark/" lang="en">English</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama 怎么测速？生成速度和加载耗时</h1>
+<p class="guide-answer">只想看生成速度，可以在终端加 <code>--verbose</code>，回复后读 <code>eval rate</code>。要分开查看输入处理、输出生成和模型加载，就把完整的 Ollama 原生响应粘贴到下方。数据只在当前浏览器里计算。</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="本页目录"><ol>
+<li><a href="#quick">在终端快速看速度</a></li>
+<li><a href="#calculator">用原生响应计算速度</a></li>
+<li><a href="#request">保存一次测速响应</a></li>
+<li><a href="#wait">排查首段文本等待</a></li>
+<li><a href="#speed">比较输入处理和生成速度</a></li>
+<li><a href="#fields">补齐计时字段</a></li>
+<li><a href="#evidence">查看真实请求结果</a></li>
+</ol></nav>
+<section id="quick"><h2>在终端快速查看 Ollama 的生成速度</h2>
+<p>用 <code>ollama list</code> 找到已安装的标签，把命令中的 <code>LOCAL_MODEL</code> 换成它。等回复结束，在末尾找到 <code>eval rate</code>。如果用它比较模型，先换成你的固定提示词，再运行几次并保留输入和输出 token 数。</p>
+<pre><code>ollama run LOCAL_MODEL --verbose "Reply with exactly LOCAL_OK and nothing else."</code></pre>
+<p>实测中终端报告了 38 个输入 token，其中 24 个已缓存。它用剩下的 14 个 token 和 11.497 毫秒算出 <code>prompt eval rate</code> 为 1,217.71 tokens/s。<code>eval rate</code> 则对应输出生成。</p>
+<p><code>load duration</code> 是这次请求中 Ollama 报告的加载耗时。想留存原始数字、计算耗时或处理完整流式响应，可以用下方的原生 API 计算器。<a href="/evidence/ollama-benchmark/cli-example.json" download>下载实际终端输出的计时字段</a>。</p>
+</section>
+
+<section id="calculator"><h2>用 Ollama API 响应计算每秒 token 数</h2>
+<form id="ollama-timing" class="task-panel" hidden>
+<label for="timing-input">Ollama 响应 JSON 或 NDJSON</label>
+<textarea id="timing-input" rows="8" wrap="off" maxlength="1000000" spellcheck="false" autocomplete="off"></textarea>
+<div class="task-actions"><button type="submit">计算</button><button type="button" data-sample>试用样例</button><button type="reset">清空</button></div>
+<output role="status"></output>
+<div class="task-result" data-result hidden>
+<dl class="ollama-timing-results">
+<div><dt>生成速度</dt><dd data-value="generation-rate"></dd></div>
+<div><dt>输入处理速度</dt><dd data-value="prompt-rate"></dd></div>
+<div><dt>生成 token 数</dt><dd data-value="generation-count"></dd></div>
+<div><dt>报告的输入 token 数</dt><dd data-value="prompt-count"></dd></div>
+<div><dt>已缓存的输入 token 数</dt><dd data-value="prompt-cache-count"></dd></div>
+<div><dt>生成耗时</dt><dd data-value="generation-time"></dd></div>
+<div><dt>输入处理耗时</dt><dd data-value="prompt-time"></dd></div>
+<div><dt>模型加载耗时</dt><dd data-value="load"></dd></div>
+<div><dt>服务端总耗时</dt><dd data-value="total"></dd></div>
+</dl>
+<p data-prompt-note hidden></p>
+</div>
+</form>
+<template id="ollama-timing-sample">{
+  "model": "speed-fixture:latest",
+  "done": true,
+  "done_reason": "length",
+  "total_duration": 1036819417,
+  "load_duration": 556975917,
+  "prompt_eval_count": 43,
+  "prompt_eval_cached_count": 0,
+  "prompt_eval_duration": 41363000,
+  "eval_count": 64,
+  "eval_duration": 436247000
+}</template>
+<noscript><p>启用 JavaScript 即可在本地计算，也可以按下文的公式核对。</p></noscript>
+<p>粘贴一条 <code>/api/generate</code> 或 <code>/api/chat</code> 的完整响应。对于流式输出，可以粘贴整段 NDJSON，或仅粘贴最后一条包含 <code>"done": true</code> 的记录。</p>
+</section>
+
+
+
+<section id="request"><h2>用 curl 保存一条 Ollama 测速响应</h2>
+<p>把 <code>qwen2.5:0.5b</code> 和端口改成你的本地模型与服务端口。这个请求生成最多 64 个 token，并让模型驻留 5 分钟，方便连跑对比。如果服务还在给其他应用使用，选择临时模型或单独测试服务。</p>
+<pre><code>curl --noproxy '*' -fsS --max-time 60 \
+  http://127.0.0.1:11434/api/generate \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model":"qwen2.5:0.5b",
+    "prompt":"Explain why the Moon stays in orbit in six short numbered points.",
+    "stream":false,
+    "keep_alive":"5m",
+    "options":{"num_ctx":2048,"num_predict":64,"temperature":0}
+  }'</code></pre>
+<p>把完整 JSON 粘贴到计算器。需要流式响应时设 <code>"stream":true</code>，并给 curl 加上 <code>-N</code> 查看逐行输出。只分析最后一条 <code>"done": true</code> 的 JSON 也可以。</p>
+</section>
+
+<section class="guide-decision"><h2>测速时卡在哪一步？</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Ollama 测速排查图"><svg class="flow-svg" viewBox="0 0 660 280" role="group" aria-label="选择要排查的情况">
+<defs><marker id="ollama-timing-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="wait" d="M330 103 C330 151 110 134 110 205" marker-end="url(#ollama-timing-arrow)"/>
+<path data-edge="speed" d="M330 103 L330 205" marker-end="url(#ollama-timing-arrow)"/>
+<path data-edge="fields" d="M330 103 C330 151 550 134 550 205" marker-end="url(#ollama-timing-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="测速时卡在哪一步？"><path class="node-shape" d="M330 5L482 54L330 103L178 54Z"/><text x="330" y="61" text-anchor="middle">先查什么？</text></g>
+<g text-anchor="middle">
+<rect x="12" y="159" width="196" height="31" fill="white" rx="6"/><text x="110" y="181">首段文本等得久</text>
+<rect x="232" y="159" width="196" height="31" fill="white" rx="6"/><text x="330" y="181">生成速度慢</text>
+<rect x="452" y="159" width="196" height="31" fill="white" rx="6"/><text x="550" y="181">缺字段或不确定</text>
+<g data-node="wait" role="button" tabindex="0" aria-pressed="false" aria-label="检查加载和输入处理耗时"><rect class="node-shape" x="11" y="210" width="198" height="60" rx="12"/><text x="110" y="247">检查等待</text></g>
+<g data-node="speed" role="button" tabindex="0" aria-pressed="false" aria-label="比较生成速度"><rect class="node-shape" x="231" y="210" width="198" height="60" rx="12"/><text x="330" y="247">比较速度</text></g>
+<g data-node="fields" role="button" tabindex="0" aria-pressed="false" aria-label="查找原生计时字段"><rect class="node-shape" x="451" y="210" width="198" height="60" rx="12"/><text x="550" y="247">找计时字段</text></g>
+</g></svg></div>
+<div class="decision-links"><a href="#wait">检查等待</a><a href="#speed">比较速度</a><a href="#fields">找计时字段</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="缩小" disabled>−</button><button type="button" data-zoom="in" aria-label="放大">+</button></div>
+</div></section>
+
+
+
+
+<section id="wait"><h2>为什么首段文本等得久？</h2>
+<p>先对照 <code>load_duration</code> 和 <code>prompt_eval_duration</code>。加载模型与处理输入都可能发生在第一段文本出现前。用 <code>ollama ps</code> 查看模型当前是否驻留。复跑同一模型时，记录上下文大小、提示词和模型状态。重复提示可能复用缓存，从而缩短结果。</p>
+<p>如果想测真正的等待，用客户端的单调时钟记录从发送请求到收到第一个非空文本片段的时间。服务端最终响应只有累计耗时，无法恢复这个时间点。</p>
+</section>
+<section id="speed"><h2>用原始计时字段计算 token/s</h2>
+<ul>
+<li><strong>生成速度</strong>用 <code>eval_count × 1,000,000,000 ÷ eval_duration</code> 计算。</li>
+<li><strong>输入处理速度</strong>先用 <code>prompt_eval_count</code> 减去 <code>prompt_eval_cached_count</code>，再除以 <code>prompt_eval_duration</code> 换算的秒数。缺少缓存计数时，用报告的总数计算，并标明缓存情况未知。原生耗时字段的单位是纳秒。</li>
+</ul>
+<p>比较不同配置时固定量化、上下文、生成上限、提示词和并发数，分别保留首次运行和驻留后的结果。生成慢时，可先用 <code>ollama ps</code> 检查 <strong>PROCESSOR</strong> 列。必要时查看<a href="/en/guides/ollama-gpu/">如何读 CPU／GPU 分配（英文）</a>。</p>
+</section>
+<section id="fields"><h2>为什么缺少原生耗时字段？</h2>
+<p><code>/v1/chat/completions</code> 兼容接口的 <code>usage</code> 可返回 token 计数。需要生成与输入耗时时，改用 <code>/api/generate</code> 或 <code>/api/chat</code>。如果流式输出还没有最后一条 <code>"done": true</code>，先检查请求是否中断，再捕获一条完整响应。</p>
+<p>计数或耗时缺失会显示无可用数据。耗时为零时也无法计算速度。<code>done_reason</code> 为 <code>length</code> 时，表示请求在生成上限处结束。如果响应只有加载或卸载结果，再发送一条真正生成文本的请求。</p>
+<p>字段说明见 Ollama 的 <a href="https://docs.ollama.com/api/generate">Generate API</a> 和 <a href="https://docs.ollama.com/api/chat">Chat API</a>。扣除缓存的口径与 <a href="https://github.com/ollama/ollama/blob/v0.40.18/api/types.go">Ollama 0.40.18 的 CLI 计时实现</a>一致。</p>
+</section>
+<section id="evidence"><h2>同一台 Apple M4 上的测速结果</h2>
+<p>在 Apple M4 32 GiB 上用 Ollama 0.40.18 跑 Qwen2.5-0.5B-Instruct Q4_K_M。原生接口的首次和重复请求都生成 64 个 token。首次请求前用 <code>/api/ps</code> 确认模型未驻留，系统文件缓存未清除。</p>
+<ul>
+<li><strong>模型未驻留</strong>。加载耗时 0.5570 秒，生成速度 146.71 tokens/s，首段文本在 0.6012 秒到达。</li>
+<li><strong>驻留后重复同一提示三次</strong>。生成速度 162.42–165.26 tokens/s，首段文本在 0.0076–0.0079 秒到达。每次报告 43 个输入 token，其中 42 个已缓存。驻留和缓存对首段等待的影响没有单独分离。</li>
+</ul>
+<p>可以下载<a href="/evidence/ollama-benchmark/observations.json" download>逐次实测数据</a>、<a href="/evidence/ollama-benchmark/native-response.json" download>非流式 JSON</a>和<a href="/evidence/ollama-benchmark/native-stream.ndjson" download>完整 NDJSON</a>后在上面复算。另一次 <code>--verbose</code> 命令只生成了 3 个 token，用于核对终端字段。更大模型和其他引擎的记录见 <a href="/guides/mac-mini-m4-qwen-local-benchmark/">Mac mini M4 跑 Qwen 实测</a>。</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/">iPunk AI Radar</a><time datetime="2026-11-28">2026 年 11 月 28 日</time></div><p class="wrap" data-analytics-privacy><a href="/privacy/">隐私与统计</a></p></footer>
+</body></html>

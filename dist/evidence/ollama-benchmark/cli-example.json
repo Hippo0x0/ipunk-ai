@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-28",
+  "ollama": "0.40.18",
+  "chip": "Apple M4",
+  "model": "Qwen2.5-0.5B-Instruct Q4_K_M",
+  "command": [
+    "ollama",
+    "run",
+    "speed-fixture:latest",
+    "--verbose",
+    "Reply with exactly LOCAL_OK and nothing else."
+  ],
+  "timings": [
+    "total duration:       28.494792ms",
+    "load duration:        343.334\u00b5s",
+    "prompt eval count:    38 token(s)",
+    "prompt eval cached:   24 token(s)",
+    "prompt eval duration: 11.497ms",
+    "prompt eval rate:     1217.71 tokens/s",
+    "eval count:           3 token(s)",
+    "eval duration:        15.536ms",
+    "eval rate:            193.10 tokens/s"
+  ]
+}

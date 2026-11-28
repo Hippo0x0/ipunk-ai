@@ -5,6 +5,8 @@
 <title>Ollama Benchmark and Tokens per Second Calculator | iPunk AI Radar</title>
 <meta name="description" content="Measure Ollama generation and prompt tokens per second from native API JSON. Compare load time, full duration and repeated requests.">
 <link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-benchmark/">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/ollama-benchmark/">
+<link rel="alternate" hreflang="zh-Hans" href="https://ai.ipunk.cn/guides/ollama-benchmark/">
 <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css"><link rel="stylesheet" href="/task-choice.css"><link rel="stylesheet" href="/ollama-benchmark.css">
 <meta property="og:title" content="Ollama Benchmark and Tokens per Second Calculator">
 <meta property="og:description" content="Calculate Ollama tokens per second and tell model loading from prompt processing and generation.">
@@ -13,13 +15,13 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Ollama Tokens per Second Calculator","applicationCategory":"DeveloperApplication","operatingSystem":"Browser","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","url":"https://ai.ipunk.cn/en/guides/ollama-benchmark/"}</script>
 <script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script><script type="module" src="/ollama-benchmark.mjs"></script>
 </head><body class="guide-page">
-<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#calculator">Calculate</a></nav></div></header>
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#calculator">Calculate</a><a href="/guides/ollama-benchmark/" lang="zh-CN">中文</a></nav></div></header>
 <main class="wrap guide-main">
 <header class="guide-header"><h1>Ollama Benchmark and Tokens per Second Calculator</h1>
 <p class="guide-answer">Use Ollama’s native API and paste the completed JSON response here. The calculator reports generation and prompt processing separately, with model loading and total server time. Nothing you paste is sent to a server.</p></header>
 <article class="article guide-article">
 <nav class="guide-toc" aria-label="On this page"><ol>
-<li><a href="#calculator">Calculate the rates</a></li><li><a href="#request">Record a native request</a></li>
+<li><a href="#calculator">Calculate the rates</a></li><li><a href="#quick">Check the CLI rate</a></li><li><a href="#request">Record a native request</a></li>
 <li><a href="#wait">Diagnose a slow first response</a></li><li><a href="#speed">Compare generation rates</a></li>
 <li><a href="#fields">Find missing fields</a></li><li><a href="#evidence">See measured requests</a></li>
 </ol></nav>
@@ -35,11 +37,13 @@
 <div><dt>Prompt processing speed</dt><dd data-value="prompt-rate"></dd></div>
 <div><dt>Generated tokens</dt><dd data-value="generation-count"></dd></div>
 <div><dt>Prompt tokens reported</dt><dd data-value="prompt-count"></dd></div>
+<div><dt>Cached prompt tokens</dt><dd data-value="prompt-cache-count"></dd></div>
 <div><dt>Generation time</dt><dd data-value="generation-time"></dd></div>
 <div><dt>Prompt processing time</dt><dd data-value="prompt-time"></dd></div>
 <div><dt>Model load time</dt><dd data-value="load"></dd></div>
 <div><dt>Total server time</dt><dd data-value="total"></dd></div>
 </dl>
+<p data-prompt-note hidden></p>
 </div>
 </form>
 <template id="ollama-timing-sample">{
@@ -49,12 +53,19 @@
   "total_duration": 1036819417,
   "load_duration": 556975917,
   "prompt_eval_count": 43,
+  "prompt_eval_cached_count": 0,
   "prompt_eval_duration": 41363000,
   "eval_count": 64,
   "eval_duration": 436247000
 }</template>
 <noscript><p>Enable JavaScript to calculate in your browser, or use the formulas below.</p></noscript>
 <p>Paste one complete response from <code>/api/generate</code> or <code>/api/chat</code>. For a stream, paste the complete NDJSON or only its final <code>"done": true</code> record. The pasted text stays in the page.</p>
+</section>
+
+<section id="quick"><h2>Check Ollama speed in the terminal</h2>
+<p>Replace <code>LOCAL_MODEL</code> with a tag from <code>ollama list</code>. After the reply, look for <code>eval rate</code> for generation and <code>prompt eval rate</code> for prompt processing.</p>
+<pre><code>ollama run LOCAL_MODEL --verbose "Reply with exactly LOCAL_OK and nothing else."</code></pre>
+<p><a href="/evidence/ollama-benchmark/cli-example.json" download>Download the measured CLI timings</a>. This check used a three-token reply. Use a fixed prompt and a longer output for comparisons.</p>
 </section>
 
 <section id="request"><h2>Record an Ollama benchmark request with curl</h2>
@@ -102,7 +113,7 @@
 <section id="speed"><h2>Compare generation with prompt processing speed</h2>
 <ul>
 <li><strong>Generation rate.</strong> Divide <code>eval_count</code> by <code>eval_duration ÷ 1,000,000,000</code>.</li>
-<li><strong>Prompt processing rate.</strong> Divide <code>prompt_eval_count</code> by <code>prompt_eval_duration ÷ 1,000,000,000</code>. With a repeated prompt, treat this as a ratio of the reported counters. It may include reuse and should not be quoted as a fresh-input speed.</li>
+<li><strong>Prompt processing rate.</strong> Subtract <code>prompt_eval_cached_count</code> from <code>prompt_eval_count</code>, then divide by <code>prompt_eval_duration ÷ 1,000,000,000</code>. If the cache count is missing, the calculator uses the reported token count and labels that result.</li>
 </ul>
 <p>Compare several runs with the same quantization, context, output budget, concurrency and prompt. Keep the first run separate from the resident runs. If the generation phase stays slow, check <a href="/en/guides/ollama-gpu/">CPU and GPU placement in <code>ollama ps</code></a>. If first output is slow while generation is fast, compare model loading and the input phase before changing GPU settings.</p>
 </section>
@@ -110,14 +121,14 @@
 <section id="fields"><h2>Recover timing fields when they are missing</h2>
 <p>Use one completed native response. The <code>/v1/chat/completions</code> route can report token usage through the OpenAI-compatible schema. Its usage counts alone do not give the native generation and prompt durations. If an NDJSON capture stops before <code>"done": true</code>, retry and keep the final record.</p>
 <p>A missing count or duration leaves that rate unavailable. A zero duration also leaves the rate unavailable. <code>done_reason: "length"</code> is a completed timing record when generation stops at its token limit. A finished load-only or unload request provides no generation measurement.</p>
-<p>See the official <a href="https://docs.ollama.com/api/generate">Generate API</a> and <a href="https://docs.ollama.com/api/chat">Chat API</a>, or the <a href="/en/guides/ollama-streaming/">native NDJSON and compatible SSE examples</a>.</p>
+<p>See the official <a href="https://docs.ollama.com/api/generate">Generate API</a> and <a href="https://docs.ollama.com/api/chat">Chat API</a>, or the <a href="/en/guides/ollama-streaming/">native NDJSON and compatible SSE examples</a>. The cache subtraction follows the <a href="https://github.com/ollama/ollama/blob/v0.40.18/api/types.go">Ollama 0.40.18 CLI timing calculation</a>.</p>
 </section>
 
 <section id="evidence"><h2>What changed when the model stayed loaded</h2>
 <p>On one Apple M4 with 32 GiB, we sent one request with the model absent from <code>/api/ps</code> and three identical requests after it was loaded. Tests used Ollama 0.40.18 and the same Qwen2.5-0.5B-Instruct Q4_K_M GGUF. Each request generated 64 tokens. Operating system caches were not cleared.</p>
 <ul>
 <li><strong>First request.</strong> Server reported 0.5570 s loading and 146.71 tokens/s in generation. First text arrived after 0.6012 s.</li>
-<li><strong>Three resident requests.</strong> Server reported 162.42–165.26 tokens/s in generation. First text arrived after 0.0076–0.0079 s. The repeated prompt may have benefited from cache reuse.</li>
+<li><strong>Three resident requests.</strong> Server reported 162.42–165.26 tokens/s in generation. First text arrived after 0.0076–0.0079 s. Each repeat reported 42 cached tokens out of 43. The test did not isolate the separate effects of residency and cache reuse.</li>
 </ul>
 <p><a href="/evidence/ollama-benchmark/observations.json" download>Download the per-request timings</a>, <a href="/evidence/ollama-benchmark/native-response.json" download>paste the measured JSON response</a> or <a href="/evidence/ollama-benchmark/native-stream.ndjson" download>paste the complete NDJSON capture</a>. These short runs reflect one model and a repeated prompt on one machine. For another engine and larger models, see the <a href="/guides/mac-mini-m4-qwen-local-benchmark/">Mac mini M4 Qwen field notes (Chinese)</a>.</p>
 </section>

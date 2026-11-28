@@ -11,7 +11,7 @@ const record = {
 test('native nanosecond metrics give separate prompt and generation rates', () => {
   const result = readOllamaTiming(JSON.stringify(record));
   assert.deepEqual(result, {
-    prompt: {count: 200, seconds: 0.25, tokensPerSecond: 800},
+    prompt: {count: 200, seconds: 0.25, tokensPerSecond: 800, cachedCount: null},
     generation: {count: 64, seconds: 1.6, tokensPerSecond: 40},
     loadSeconds: 0.9,
     totalSeconds: 2.8,
@@ -42,4 +42,10 @@ test('rejects compatible SSE, non-native usage, input errors and unsafe counters
   assert.throws(() => readOllamaTiming(JSON.stringify({...record,eval_duration:-1})), /non-negative integers/);
   assert.throws(() => readOllamaTiming(JSON.stringify({...record,eval_count:9e16})), /non-negative integers/);
   assert.throws(() => readOllamaTiming(' '.repeat(1_000_001)), /one million characters/);
+});
+
+test('deducts known cached tokens using the native CLI calculation', () => {
+  const {prompt} = readOllamaTiming(JSON.stringify({...record, prompt_eval_cached_count: 199}));
+  assert.deepEqual(prompt, {count: 200, cachedCount: 199, seconds: 0.25, tokensPerSecond: 4});
+  assert.equal(readOllamaTiming(JSON.stringify({...record, prompt_eval_cached_count: 201})).prompt.tokensPerSecond, 0);
 });

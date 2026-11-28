@@ -42,6 +42,7 @@ ollama ps</code></pre>
 <p>在 Apple M4 上使用 Ollama 0.40.18 实测，两个标签都出现在原生列表和兼容列表中。聊天返回 <code>LOCAL_OK</code>，向量接口返回两个 768 维向量。填入不存在的聊天标签后，聊天检查失败，向量检查仍通过。停止测试服务后，版本检查失败。<a href="/evidence/ollama-setup/observations.json" download>下载四组实测结果</a>。</p>
 </section>
 <section id="next"><h2>按任务继续</h2>
+<p>模型能回答后，可以用 <a href="/guides/ollama-benchmark/">Ollama 测速指南</a>在终端查看每秒生成多少 token，或用原生 API 响应拆开核对加载和生成耗时。</p>
 <dl class="guide-task-list">
 <dt><a href="/en/guides/ollama-openai-compatible-api/">接入 OpenAI SDK（英文）</a></dt><dd>填对本机 <code>/v1/</code> 地址，区分路径写错和模型标签缺失这两种 404。</dd>
 <dt><a href="/en/guides/opencode-ollama/">让 OpenCode 使用本地模型（英文）</a></dt><dd>核对模型是否出现在 OpenCode，再发一条短请求验证。</dd>

@@ -27,7 +27,8 @@
     "eval_count": 64,
     "eval_duration": 436247000,
     "client_elapsed_s": 1.0378,
-    "client_first_text_s": 0.6012
+    "client_first_text_s": 0.6012,
+    "prompt_eval_cached_count": 0
   },
   "resident": [
     {
@@ -41,7 +42,8 @@
       "eval_count": 64,
       "eval_duration": 387267000,
       "client_elapsed_s": 0.3956,
-      "client_first_text_s": 0.0079
+      "client_first_text_s": 0.0079,
+      "prompt_eval_cached_count": 42
     },
     {
       "model": "speed-fixture:latest",
@@ -54,7 +56,8 @@
       "eval_count": 64,
       "eval_duration": 389508000,
       "client_elapsed_s": 0.3977,
-      "client_first_text_s": 0.0076
+      "client_first_text_s": 0.0076,
+      "prompt_eval_cached_count": 42
     },
     {
       "model": "speed-fixture:latest",
@@ -67,7 +70,8 @@
       "eval_count": 64,
       "eval_duration": 394039000,
       "client_elapsed_s": 0.4021,
-      "client_first_text_s": 0.0076
+      "client_first_text_s": 0.0076,
+      "prompt_eval_cached_count": 42
     }
   ],
   "nonstream": {
@@ -81,6 +85,7 @@
     "eval_count": 64,
     "eval_duration": 393334000,
     "client_elapsed_s": 0.4013,
-    "client_first_text_s": null
+    "client_first_text_s": null,
+    "prompt_eval_cached_count": 42
   }
 }
