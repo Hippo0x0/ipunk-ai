@@ -11,3 +11,4 @@
 .bench-article pre{max-width:100%;overflow-x:auto;padding:20px;background:var(--ink);color:var(--white);font:13px/1.7 var(--mono)}
 .bench-article section{scroll-margin-top:100px}.bench-table:focus-visible,.bench-toc a:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
 .side .snapshot{line-height:1.7}.side h2{font-size:27px;line-height:1.4}
+.bench-scroll-hint{display:none}@media(max-width:650px){.bench-scroll-hint{display:block;color:var(--muted);font-size:14px}}

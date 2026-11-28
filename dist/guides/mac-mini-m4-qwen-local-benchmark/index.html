@@ -5,20 +5,29 @@
 <title>Mac mini M4 32GB 跑 Qwen 实测：9B、27B、35B 速度与内存｜iPunk AI</title>
 <meta name="description" content="同一台 Mac mini M4 32GB 的 Qwen 本地推理记录：9B 4bit/8bit、27B MTP、35B-A3B，附 oMLX 专家卸载、首字等待、缓存异常和脱敏逐次数据。">
 <link rel="canonical" href="https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/">
-<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/benchmark.css">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/mac-mini-m4-qwen-local-benchmark/"><link rel="alternate" hreflang="zh-CN" href="https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/"><link rel="alternate" hreflang="x-default" href="https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css"><link rel="stylesheet" href="/benchmark.css">
 <meta property="og:type" content="article"><meta property="og:title" content="Mac mini M4 32GB 跑 Qwen：速度、内存与首字等待实测"><meta property="og:description" content="不只看最快 token/s：保留冷态、缓存命中和 SSD 专家卸载的代价。"><meta property="og:url" content="https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Mac mini M4 32GB 跑 Qwen 实测：9B、27B、35B 速度与内存","datePublished":"2026-11-01","dateModified":"2026-11-07","inLanguage":"zh-CN","author":{"@type":"Organization","name":"iPunk AI Radar"},"mainEntityOfPage":"https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/"}</script>
-<script type="module" src="/analytics.mjs"></script></head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Mac mini M4 32GB 跑 Qwen 实测：9B、27B、35B 速度与内存","datePublished":"2026-11-01","dateModified":"2026-11-28","inLanguage":"zh-CN","author":{"@type":"Organization","name":"iPunk AI Radar"},"mainEntityOfPage":"https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script></head>
 <body>
-<header class="topbar"><div class="wrap nav"><a class="brand" href="/"><span>iP</span>AI Radar</a><nav class="navlinks"><a href="/projects/openclaw/">OpenClaw</a><a href="/guides/ai-coding-agent-security/">安全指南</a><a href="/methodology/">证据方法</a></nav></div></header>
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/"><span>iP</span>AI Radar</a><nav class="navlinks"><a href="/projects/openclaw/">OpenClaw</a><a href="/guides/ai-coding-agent-security/">安全指南</a><a href="/en/guides/mac-mini-m4-qwen-local-benchmark/" hreflang="en">English</a></nav></div></header>
 <main>
-<section class="project-hero"><div class="wrap"><a class="back" href="/">← 返回 AI Radar</a><p class="eyebrow" style="margin-top:35px">FIELD NOTES / LOCAL INFERENCE</p><h1 class="bench-title">Mac mini M4 跑 Qwen：<br>不只看 token/s。</h1><p class="bench-deck">32GB 统一内存，同机不同轮次的 9B、27B、35B 测试；再看 oMLX 专家卸载和前缀缓存如何改变等待体验。</p><p class="bench-byline">iPunk 实测记录 · 发布：<time datetime="2026-11-01">2026-11-01</time> · 最近复测：<time datetime="2026-11-07">2026-11-07</time> · 约 12 分钟</p><div class="hero-meta"><span class="pill">M4 · 非 M4 Pro</span><span class="pill">32GB 统一内存</span><span class="pill">单并发 · 文本短测</span><span class="pill">逐次数据可下载</span></div></div></section>
+<section class="project-hero"><div class="wrap"><a class="back" href="/">← 返回 AI Radar</a><h1 class="bench-title">Mac mini M4 32GB 跑 Qwen 实测</h1><p class="bench-deck">11 月 1 日的中等输入测试中，Rapid-MLX 的 9B 4bit 跑到 <strong>19.54 token/s</strong>，35B-A3B 4bit 跑到 <strong>44.57 token/s</strong>。11 月 7 日用 oMLX 复测 35B-A3B 时，生成速度约 34–39 token/s，模型未加载时第一条请求等了 129 秒才开始输出。内存紧张可先试 9B 4bit，再用自己的提示词检查内存压力和首字时间。</p><p class="bench-byline">发布于 <time datetime="2026-11-01">2026-11-01</time>，最近复测于 <time datetime="2026-11-07">2026-11-07</time></p><div class="hero-meta"><span class="pill">M4 · 非 M4 Pro</span><span class="pill">32GB 统一内存</span><span class="pill">单并发 · 文本短测</span><span class="pill">逐次数据可下载</span></div></div></section>
 <div class="wrap project-layout">
 <article class="article bench-article">
-<div class="notice"><strong>先给结论：</strong>在这台机器和已记录的短输入下，35B-A3B 4bit 全常驻输出约 43–45 token/s；9B 4bit 约 19.5 token/s，但内存更小。专家卸载能降低 oMLX 的模型加载分配，却明显增加等待。它们都不是回答准确率、全天稳定性或其他 Mac 的性能保证。</div>
 <nav class="bench-toc" aria-label="文章目录"><strong>本页内容</strong><ol><li><a href="#environment">测试环境与口径</a></li><li><a href="#four-models">四模型逐项对照</a></li><li><a href="#offload">专家常驻 100%／75%／50%</a></li><li><a href="#latency">首字、冷态与缓存异常</a></li><li><a href="#choice">如何选，不做能力排名</a></li><li><a href="#recheck-2026-11-07">11 月 7 日复测</a></li><li><a href="#reproduce">复查数据与复现方法</a></li></ol></nav>
-
+<section class="guide-decision" id="decision"><h2>本地运行卡在哪一步？</h2>
+<div class="decision" data-flow data-four-branches><div class="flow-viewport" tabindex="0" aria-label="本地运行卡在哪一步？"><svg class="flow-svg" viewBox="0 0 800 268" role="group" aria-label="本地运行卡在哪一步？">
+<defs><marker id="qwen-arrow-zh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="four-models" d="M400 105 C400 157 100 152 100 199" marker-end="url(#qwen-arrow-zh)"/><path data-edge="offload" d="M400 105 C400 157 300 152 300 199" marker-end="url(#qwen-arrow-zh)"/><path data-edge="latency" d="M400 105 C400 157 500 152 500 199" marker-end="url(#qwen-arrow-zh)"/><path data-edge="choice" d="M400 105 C400 157 700 152 700 199" marker-end="url(#qwen-arrow-zh)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="本地运行卡在哪一步？"><path class="node-shape" d="M400 4L583 54L400 105L217 54Z"/><text x="400" y="61" text-anchor="middle">本地运行卡在哪一步？</text></g>
+<g text-anchor="middle"><text x="100" y="175" stroke="#fff" stroke-width="7" paint-order="stroke">内存紧张</text><g data-node="four-models" role="button" tabindex="0" aria-pressed="false" aria-label="对照 9B 量化"><rect class="node-shape" x="7" y="203" width="186" height="55" rx="12"/><text x="100" y="236">对照 9B 量化</text></g><text x="300" y="175" stroke="#fff" stroke-width="7" paint-order="stroke">35B 常驻预算不足</text><g data-node="offload" role="button" tabindex="0" aria-pressed="false" aria-label="核对专家卸载"><rect class="node-shape" x="207" y="203" width="186" height="55" rx="12"/><text x="300" y="236">核对专家卸载</text></g><text x="500" y="175" stroke="#fff" stroke-width="7" paint-order="stroke">首字等待长</text><g data-node="latency" role="button" tabindex="0" aria-pressed="false" aria-label="排查等待时间"><rect class="node-shape" x="407" y="203" width="186" height="55" rx="12"/><text x="500" y="236">排查等待时间</text></g><text x="700" y="175" stroke="#fff" stroke-width="7" paint-order="stroke">不确定</text><g data-node="choice" role="button" tabindex="0" aria-pressed="false" aria-label="测试本机"><rect class="node-shape" x="607" y="203" width="186" height="55" rx="12"/><text x="700" y="236">测试本机</text></g></g>
+</svg></div>
+<div class="decision-links"><a href="#four-models">对照 9B 量化</a><a href="#offload">核对专家卸载</a><a href="#latency">排查等待时间</a><a href="#choice">测试本机</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="缩小" disabled>−</button><button type="button" data-zoom="in" aria-label="放大">+</button></div></div></section>
 <section id="environment"><h2>测了什么，又没有测什么？</h2>
+<p class="bench-scroll-hint">表格可横向滑动查看其余列。</p>
 <p>这是一组真实部署过程中的工程记录，目的是为本地助手选择兜底模型，不是先设计好的标准评测。机器是同一台基础款 Mac mini M4、32GB 统一内存；27B 的预热记录来自此前测试，9B、35B 与 oMLX 的追加记录在 11 月 1 日核对。不同轮次、引擎和缓存状态不能假装成严格受控的横评。</p>
 <div class="bench-table" tabindex="0" role="region" aria-label="测试条件"><table><caption>已记录的性能测试条件</caption><thead><tr><th scope="col">项目</th><th scope="col">本次记录</th></tr></thead><tbody>
 <tr><th scope="row">机器</th><td>Mac mini M4／32GB；不是 M4 Pro、Max 或 Ultra</td></tr>
@@ -71,7 +80,7 @@
 <p><strong>0.119 秒不是“开启缓存后每次都这样快”。</strong>重复短提示的 8.944 秒说明，字段显示缓存命中仍不能保证低延迟。日志不足以确定那一次慢在调度、运行时还是其他环节，所以保留样本，不擅自解释。重启、空闲卸载、缓存驱逐、提示前缀改变都需要重新测。</p>
 <p>“支持 128K 上下文”的配置声明也不等于本机在 128K 下能保持上述速度：主对照只有 32／916-token 输入。给助手接很多工具时，系统提示和工具 schema 会增大输入；不能用短聊天速度预测完整 Agent 工作流。</p></section>
 
-<section id="choice"><h2>按自己的任务选，不把速度表当能力榜</h2>
+<section id="choice"><h2>怎么判断 Qwen 能否在你的 Mac 上运行</h2><p>打开「活动监视器 → 内存」，查看启动模型前与执行实际请求时的内存压力和交换使用量。每次只加载一个模型。如果同一任务持续增加交换用量，试较小模型或缩短上下文，再用同一请求核对。<a href="https://support.apple.com/zh-cn/guide/activity-monitor/actmntr1004/mac">Apple 活动监视器指南</a></p>
 <ul><li><strong>内存更紧张：</strong>9B 4bit 的活跃内存记录最低，输出约 19.5 token/s；值得用自己的问答、格式和工具样本再验证，不代表它对所有任务“够用”。</li>
 <li><strong>这台 32GB Mac 上重视连续输出：</strong>35B-A3B 4bit 全常驻是已测的较快方案，但还要为系统和其他应用留空间，观察内存压力与 swap。</li>
 <li><strong>模型能加载，但需要腾出常驻预算：</strong>75%／50% 卸载是可测的取舍。本机速度下降明显；如果 17 或 13.5 token/s 无法接受，不要只看省内存数字。</li>
@@ -99,6 +108,7 @@
   --model YOUR_MODEL_ID</code></pre>
 <p>服务需要认证时，通过环境变量 <code>LOCAL_LLM_API_KEY</code> 注入，脚本不会打印它。不要把真实令牌写进文章评论、命令截图或公开仓库。每次测试记录引擎版本、量化来源、MTP、缓存开关、输入长度和机器状态；分别保留首次与重复请求，不把最好的那次改名为“平均值”。</p>
 <p>需要继续补测的内容包括：更多提示与长输出、多轮延迟分布、冷磁盘／系统页缓存的影响、同口径进程峰值、长上下文和真实工具任务正确率。11 月 1 日的数据来自对既有本机测试的复核，11 月 7 日的数据来自使用原脚本追加的新请求。</p>
+<p><a href="/methodology/">证据方法</a>。</p>
 <p>如果你刚开始跑本地模型，可以按 <a href="/guides/ollama-setup/">Ollama 配置教程</a>先核对本机服务、模型标签和接口。</p>
 <p>如果你使用 Ollama，<a href="/guides/ollama-benchmark/">可用原生 API 响应分别计算输入处理速度、生成速度和加载耗时</a>。这些字段与上面脚本记录的客户端首字时间采用不同口径。</p>
 <h3>一手参考与证据边界</h3><ul>

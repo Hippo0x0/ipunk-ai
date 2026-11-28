@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" data-page-language="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qwen on Mac mini M4 32GB: 9B, 27B and 35B Benchmarks | iPunk AI Radar</title>
+<meta name="description" content="Real Qwen benchmarks from a 32GB Mac mini M4. Compare 9B, 27B and 35B generation speed, memory, time to first token, and oMLX expert offload.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/mac-mini-m4-qwen-local-benchmark/">
+<link rel="alternate" hreflang="en" href="https://ai.ipunk.cn/en/guides/mac-mini-m4-qwen-local-benchmark/"><link rel="alternate" hreflang="zh-CN" href="https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/"><link rel="alternate" hreflang="x-default" href="https://ai.ipunk.cn/guides/mac-mini-m4-qwen-local-benchmark/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css"><link rel="stylesheet" href="/benchmark.css">
+<meta property="og:type" content="article"><meta property="og:title" content="Qwen on Mac mini M4 32GB: 9B, 27B and 35B Benchmarks"><meta property="og:description" content="Real Qwen benchmarks from a 32GB Mac mini M4. Compare 9B, 27B and 35B generation speed, memory, time to first token, and oMLX expert offload."><meta property="og:url" content="https://ai.ipunk.cn/en/guides/mac-mini-m4-qwen-local-benchmark/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Qwen on Mac mini M4 32GB: 9B, 27B and 35B Benchmarks","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","author":{"@type":"Organization","name":"iPunk AI Radar"},"mainEntityOfPage":"https://ai.ipunk.cn/en/guides/mac-mini-m4-qwen-local-benchmark/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Language"><a href="/guides/mac-mini-m4-qwen-local-benchmark/" hreflang="zh-CN">简体中文</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>Qwen on Mac mini M4 32GB: 9B, 27B and 35B benchmarks</h1>
+<p class="guide-answer">On a 32GB Mac mini M4, the November 1 medium-prompt runs reached <strong>19.54 tok/s for Qwen3.5-9B 4-bit</strong> and <strong>44.57 tok/s for Qwen3.6-35B-A3B 4-bit</strong> in Rapid-MLX. The November 7 oMLX recheck generated at 34–39 tok/s and took 129 s to produce the first token from an unloaded model. Start with 9B 4-bit if memory is tight, and test both response time and memory pressure with your own prompts.</p>
+</header>
+<article class="article guide-article bench-article">
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#four-models">Qwen speed and memory</a></li><li><a href="#offload">How much memory does oMLX expert offload save?</a></li><li><a href="#latency">Why the first token can take minutes</a></li><li><a href="#recheck-2026-11-07">November 7 recheck</a></li><li><a href="#choice">Check which Qwen model fits your Mac</a></li><li><a href="#environment">Test conditions and limits</a></li><li><a href="#reproduce">Download the data and benchmark your own setup</a></li></ol></nav>
+<section class="guide-decision" id="decision"><h2>What limits your local run?</h2>
+<div class="decision" data-flow data-four-branches><div class="flow-viewport" tabindex="0" aria-label="What limits your local run?"><svg class="flow-svg" viewBox="0 0 800 268" role="group" aria-label="What limits your local run?">
+<defs><marker id="qwen-arrow-en" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="four-models" d="M400 105 C400 157 100 152 100 199" marker-end="url(#qwen-arrow-en)"/><path data-edge="offload" d="M400 105 C400 157 300 152 300 199" marker-end="url(#qwen-arrow-en)"/><path data-edge="latency" d="M400 105 C400 157 500 152 500 199" marker-end="url(#qwen-arrow-en)"/><path data-edge="choice" d="M400 105 C400 157 700 152 700 199" marker-end="url(#qwen-arrow-en)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="What limits your local run?"><path class="node-shape" d="M400 4L583 54L400 105L217 54Z"/><text x="400" y="61" text-anchor="middle">What limits your local run?</text></g>
+<g text-anchor="middle"><text x="100" y="175" stroke="#fff" stroke-width="7" paint-order="stroke">Tight memory</text><g data-node="four-models" role="button" tabindex="0" aria-pressed="false" aria-label="Compare 9B builds"><rect class="node-shape" x="7" y="203" width="186" height="55" rx="12"/><text x="100" y="236">Compare 9B builds</text></g><text x="300" y="175" stroke="#fff" stroke-width="7" paint-order="stroke">35B memory budget</text><g data-node="offload" role="button" tabindex="0" aria-pressed="false" aria-label="Check offload"><rect class="node-shape" x="207" y="203" width="186" height="55" rx="12"/><text x="300" y="236">Check offload</text></g><text x="500" y="175" stroke="#fff" stroke-width="7" paint-order="stroke">Slow first token</text><g data-node="latency" role="button" tabindex="0" aria-pressed="false" aria-label="Check latency"><rect class="node-shape" x="407" y="203" width="186" height="55" rx="12"/><text x="500" y="236">Check latency</text></g><text x="700" y="175" stroke="#fff" stroke-width="7" paint-order="stroke">Unsure</text><g data-node="choice" role="button" tabindex="0" aria-pressed="false" aria-label="Measure your Mac"><rect class="node-shape" x="607" y="203" width="186" height="55" rx="12"/><text x="700" y="236">Measure your Mac</text></g></g>
+</svg></div>
+<div class="decision-links"><a href="#four-models">Compare 9B builds</a><a href="#offload">Check offload</a><a href="#latency">Check latency</a><a href="#choice">Measure your Mac</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div></div></section>
+<section id="four-models"><h2>Qwen speed and memory</h2>
+<p class="bench-scroll-hint">Swipe or scroll the tables to see all columns.</p>
+<p>These Rapid-MLX 0.16.10 records use a 916-token prompt and 64 output tokens. Each row is an individual run. The locally served 27B build is labeled Qwen3.8-27B in the original notes. It used multi-token prediction (MTP) and reused 896 prompt tokens, so its first-token time reflects a different starting condition.</p>
+<div class="bench-table" tabindex="0" role="region" aria-label="Rapid-MLX medium-prompt runs"><table><caption>Rapid-MLX medium-prompt runs</caption><thead><tr><th scope="col">Model</th><th scope="col">First token</th><th scope="col">Generation</th><th scope="col">Cached input</th></tr></thead><tbody>
+<tr><th scope="row">Qwen 27B 4-bit (MTP)</th><td>0.84 s</td><td>9.19 tok/s</td><td>896 / 916</td></tr>
+<tr><th scope="row">Qwen3.5-9B 8-bit</th><td>4.51 s</td><td>10.23 tok/s</td><td>Unreported</td></tr>
+<tr><th scope="row">Qwen3.5-9B 4-bit</th><td>4.33 s</td><td>19.54 tok/s</td><td>Unreported</td></tr>
+<tr><th scope="row">Qwen3.6-35B-A3B 4-bit</th><td>3.52 s</td><td>44.57 tok/s</td><td>Unreported</td></tr>
+</tbody></table></div>
+<p>Qwen3.6-35B-A3B uses a sparse mixture of experts. It can activate roughly 3B parameters per token while still needing access to the much larger set of weights. This is one reason model size alone gives an incomplete prediction of decode speed. <a href="https://huggingface.co/Qwen/Qwen3.6-35B-A3B">Qwen model card</a></p>
+<div class="bench-table" tabindex="0" role="region" aria-label="Rapid-MLX 9B Metal allocation"><table><caption>Rapid-MLX 9B Metal allocation</caption><thead><tr><th scope="col">Quantization</th><th scope="col">Active</th><th scope="col">Peak</th></tr></thead><tbody>
+<tr><th scope="row">9B 8-bit</th><td>9.78 GB</td><td>11.12 GB</td></tr>
+<tr><th scope="row">9B 4-bit</th><td>5.30 GB</td><td>6.79 GB</td></tr>
+</tbody></table></div>
+<p>Rapid-MLX reports decimal GB (bytes divided by 1 billion). The oMLX table below reports GiB (bytes divided by 2<sup>30</sup>) and measures loaded model allocation. macOS memory pressure includes other apps, cache, buffers, and swap. The 27B and 35B Rapid-MLX runs lack synchronized memory readings for a four-way comparison. For Ollama GGUF files, use the <a href="/en/guides/ollama-memory-calculator/">Ollama memory calculator</a> to estimate weight and context costs separately.</p>
+</section>
+<section id="offload"><h2>How much memory does oMLX expert offload save?</h2>
+<p>In oMLX 0.7.3, lowering expert residency let the engine stream nonresident experts from the checkpoint on an external USB drive. The same 35B-A3B 4-bit weights were used in each run. Prefix caching was disabled and macOS file cache was left in place.</p>
+<div class="bench-table" tabindex="0" role="region" aria-label="Warm 916-token repeat, 64 output tokens"><table><caption>Warm 916-token repeat, 64 output tokens</caption><thead><tr><th scope="col">Expert residency</th><th scope="col">Loaded model</th><th scope="col">First token</th><th scope="col">Generation</th></tr></thead><tbody>
+<tr><th scope="row">100%</th><td>18.48 GiB</td><td>1.96 s</td><td>43.50 tok/s</td></tr>
+<tr><th scope="row">75%</th><td>14.37 GiB</td><td>3.17 s</td><td>17.01 tok/s</td></tr>
+<tr><th scope="row">50%</th><td>10.16 GiB</td><td>5.94 s</td><td>13.53 tok/s</td></tr>
+</tbody></table></div>
+<p>At 75% residency, loaded model allocation dropped by about 4.1 GiB and decode fell from 43.50 to 17.01 tok/s. At 50%, the allocation dropped by about 8.3 GiB and decode fell to 13.53 tok/s. These are changes in the loaded model metric. Memory pressure and response time can change with context size, the system's file cache, and the storage device. This test does not isolate cold drive reads or cover a 90% setting. <a href="https://github.com/jundot/omlx/pull/2595">oMLX expert offload implementation</a></p>
+</section>
+<section id="latency"><h2>Why the first token can take minutes</h2>
+<p>The first token includes time spent loading the model if it is unloaded, plus scheduling and prompt processing. Generation speed measures output after streaming has begun. In one Rapid-MLX run the first short request took 59.93 s to start, while a later medium request took 3.52 s. Both generated at about 44.6 tok/s.</p>
+<div class="bench-table" tabindex="0" role="region" aria-label="Separate oMLX prefix-cache observations at full residency"><table><caption>Separate oMLX prefix-cache observations at full residency</caption><thead><tr><th scope="col">Request</th><th scope="col">Input / cached tokens</th><th scope="col">First token</th></tr></thead><tbody>
+<tr><th scope="row">First medium</th><td>916 / 0</td><td>2.084 s</td></tr>
+<tr><th scope="row">Repeat medium</th><td>916 / 909</td><td>0.119 s</td></tr>
+<tr><th scope="row">Follow-up</th><td>994 / 909</td><td>0.559 s</td></tr>
+<tr><th scope="row">Repeat short</th><td>32 / 25</td><td>8.944 s</td></tr>
+</tbody></table></div>
+<p>The repeated short prompt hit the cache and still took 8.944 s to start. The test did not isolate the reason. Record the first and repeated request separately, along with prompt length and cached tokens. A large context window can cost more to process even if short prompts start quickly.</p>
+</section>
+<section id="recheck-2026-11-07"><h2>November 7 recheck</h2>
+<p>The same Mac mini with macOS build 25E253 ran oMLX 0.7.3 and Qwen3.6-35B-A3B full resident, with MTP off and no model loaded at the start. Each request produced 64 tokens. Two serial rounds finished. The third ended at a health check with a reset connection.</p>
+<div class="bench-table" tabindex="0" role="region" aria-label="oMLX 35B-A3B, two serial rounds"><table><caption>oMLX 35B-A3B, two serial rounds</caption><thead><tr><th scope="col">Request</th><th scope="col">Input / cached tokens</th><th scope="col">First token</th><th scope="col">Generation</th></tr></thead><tbody>
+<tr><th scope="row">First short, model unloaded</th><td>32 / 0</td><td>129.12 s</td><td>33.98 tok/s</td></tr>
+<tr><th scope="row">First medium, model loaded</th><td>916 / 0</td><td>3.61 s</td><td>36.93 tok/s</td></tr>
+<tr><th scope="row">Repeat short</th><td>32 / 25</td><td>0.58 s</td><td>34.65 tok/s</td></tr>
+<tr><th scope="row">Repeat medium</th><td>916 / 909</td><td>0.17 s</td><td>39.04 tok/s</td></tr>
+</tbody></table></div>
+<p>Loaded model allocation was 19.08 GiB after both rounds. The first 129.12 s measurement includes loading and inference. The 0.17 s repeat reused 909 of 916 tokens. It captures a single repeat. <a href="/evidence/mac-mini-m4-qwen-2026-11-07.json">November 7 per-request data</a></p>
+</section>
+<section id="choice"><h2>Check which Qwen model fits your Mac</h2>
+<ol>
+<li>In Activity Monitor, open <strong>Memory</strong> and note Memory Pressure and Swap Used with your normal apps running. Load one model at a time, then check the readings again during a representative request. <a href="https://support.apple.com/en-euro/guide/activity-monitor/-actmntr1004/mac">Apple Activity Monitor guide</a></li>
+<li>Start with Qwen3.5-9B 4-bit when headroom is limited. If you want the faster sustained generation measured here, try 35B-A3B 4-bit at full residency and observe the difference in pressure. When swap keeps growing under the same work, try a smaller model or shorter context and repeat. If you use expert offload to keep 35B, retest first-token time and generation.</li>
+<li>Run your actual format, accuracy, and tool tests before choosing. In a small November 1 check with thinking off, both 9B builds passed five of seven checks and failed two arithmetic or reasoning prompts. The 35B build missed those two prompts too. The samples provide no general quality ranking.</li>
+</ol>
+<p>Our 32GB host kept 35B-A3B in oMLX at full residency for this deployment. Treat 16GB, 24GB, different M-series chips, and long context as separate setups. Start with the <a href="/en/guides/run-llm-locally/">local LLM setup guide</a> if you still need a running endpoint.</p>
+</section>
+<section id="environment"><h2>Test conditions and limits</h2>
+<p>Hardware was one base Mac mini M4 with 32GB unified memory. The November 1 records came from engineering runs in Rapid-MLX 0.16.10 and oMLX 0.7.3. Single-concurrency streaming used temperature 0, thinking off, and up to 64 completion tokens. The service reported approximately 32 and 916 input tokens for the two prompts. OS builds were not consistently recorded for that set. The 27B warm sample predates the additional November 1 checks.</p>
+<p>Decode speed is <code>(output tokens − 1) / (total seconds − first-token seconds)</code>. The script records the first streamed content or reasoning chunk. The calculation covers steady output, so it excludes first-token wait. No matched long-context, image, power, multi-user, p95, or stability tests were run.</p>
+</section>
+<section id="reproduce"><h2>Download the data and benchmark your own setup</h2>
+<p><a href="/evidence/mac-mini-m4-qwen-2026-11-01.json">November 1 results</a> · <a href="/evidence/mac-mini-m4-qwen-2026-11-07.json">November 7 recheck</a> · <a href="/evidence/benchmark-qwen-stream.py" download>Python streaming benchmark</a></p>
+<p>Start an OpenAI-compatible server on loopback, download the script, and replace the port or server model ID below. For a password-protected endpoint, pass its key in <code>LOCAL_LLM_API_KEY</code>.</p>
+<pre><code>python3 benchmark-qwen-stream.py \
+  --base-url http://127.0.0.1:8080/v1 \
+  --model YOUR_MODEL_ID</code></pre>
+<p>Keep the model, engine version, quantization, prompt, residency, cache settings, and concurrency with your results. For Ollama, the <a href="/en/guides/ollama-benchmark/">Ollama timing guide</a> uses native API durations for its separate input and output rates.</p>
+<p><a href="https://rapidmlx.com/docs/models/alias-catalog">Rapid-MLX model aliases</a> · <a href="https://github.com/jundot/omlx/releases/tag/v0.7.3">oMLX 0.7.3 release</a></p>
+</section>
+
+</article>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">AI Radar</a></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy and analytics</a></p></footer>
+</body>
+</html>
