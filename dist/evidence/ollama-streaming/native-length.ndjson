@@ -1,0 +1,2 @@
+{"model":"stream-fixture:latest","created_at":"2026-11-28T05:30:42.429786Z","message":{"role":"assistant","content":"LOCAL"},"done":false}
+{"model":"stream-fixture:latest","created_at":"2026-11-28T05:30:42.429945Z","message":{"role":"assistant","content":""},"done":true,"done_reason":"length","total_duration":7809500,"load_duration":471583,"prompt_eval_count":38,"prompt_eval_cached_count":37,"prompt_eval_duration":6168000,"eval_count":1,"eval_duration":1000}

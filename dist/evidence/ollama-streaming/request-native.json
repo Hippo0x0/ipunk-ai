@@ -1,0 +1,15 @@
+{
+  "model": "qwen2.5:0.5b",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Reply with exactly LOCAL_OK and nothing else."
+    }
+  ],
+  "stream": true,
+  "options": {
+    "num_ctx": 2048,
+    "num_predict": 32,
+    "temperature": 0
+  }
+}

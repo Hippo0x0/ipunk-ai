@@ -50,7 +50,7 @@
 <p>On the native route, use <code>"format":"json"</code> for a JSON object without a specified shape. Describe the intended content in the prompt. If your application needs a required field, a type or a fixed set of keys, provide a schema and validate the reply. A successful JSON parse only confirms that the content is syntactically valid.</p>
 </section>
 <section id="schema"><h2>Send a schema with native /api/chat</h2>
-<p>Download <a href="/evidence/ollama-structured-output/request-native.json" download>request-native.json</a> to your current directory. Replace <code>qwen2.5:0.5b</code> with the exact local tag from <code>ollama list</code>. The prompt asks for a count from a short sentence. The request has <code>stream</code> set to <code>false</code>.</p>
+<p>Download <a href="/evidence/ollama-structured-output/request-native.json" download>request-native.json</a> to your current directory. Replace <code>qwen2.5:0.5b</code> with the exact local tag from <code>ollama list</code>. The prompt asks for a count from a short sentence. The request has <code>stream</code> set to <code>false</code>. For live text, see <a href="/en/guides/ollama-streaming/">how to read Ollama chat streams</a>.</p>
 <pre><code>"format": {
   "type": "object",
   "properties": {"count": {"type": "integer"}},

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ollama Streaming API: NDJSON, SSE and Completion Checks | iPunk AI Radar</title>
+<meta name="description" content="Stream Ollama chat with curl. Read native NDJSON and OpenAI-compatible SSE, handle usage events, and detect incomplete replies.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/ollama-streaming/">
+<link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="Ollama Streaming API: NDJSON, SSE and Completion Checks">
+<meta property="og:description" content="Capture Ollama chat streams and check protocol completion with tested native and compatible examples.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/ollama-streaming/"><meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Ollama Streaming API: NDJSON, SSE and Completion Checks","datePublished":"2026-11-28","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/ollama-streaming/"}</script>
+<script type="module" src="/analytics.mjs"></script><script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#native">Read a stream</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header"><h1>Ollama Streaming API</h1>
+<p class="guide-answer">Set <code>"stream":true</code> and read the response in the format used by your endpoint. Ollama’s <code>/api/chat</code> sends one JSON object per line. Its OpenAI-compatible <code>/v1/chat/completions</code> sends Server-Sent Events. Check the terminal marker and the finish reason before saving the reply as complete.</p></header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol>
+<li><a href="#native">Read native JSON lines</a></li>
+<li><a href="#compatible">Read OpenAI-compatible SSE</a></li>
+<li><a href="#complete">Detect a cut-off or token-limited response</a></li>
+<li><a href="#tested">Compare the actual captured streams</a></li>
+</ol></nav>
+<section id="diagnose" class="guide-decision"><h2>Which stream does your client use?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="Choose the Ollama streaming format">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Ollama streaming decision tree">
+<defs><marker id="streaming-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="native" d="M330 104 C330 147 110 143 110 218" marker-end="url(#streaming-arrow)"/>
+<path data-edge="compatible" d="M330 104 L330 218" marker-end="url(#streaming-arrow)"/>
+<path data-edge="complete" d="M330 104 C330 147 550 143 550 218" marker-end="url(#streaming-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Which stream does your client use?"><path class="node-shape" d="M330 4L488 54L330 104L172 54Z"/><text x="330" y="61" text-anchor="middle">Which API?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Native API</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">OpenAI-compatible</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Not sure</text>
+</g>
+<g data-node="native" role="button" tabindex="0" aria-pressed="false" aria-label="Read native JSON lines"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Read JSON lines</text></g>
+<g data-node="compatible" role="button" tabindex="0" aria-pressed="false" aria-label="Read compatible SSE events"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Read SSE events</text></g>
+<g data-node="complete" role="button" tabindex="0" aria-pressed="false" aria-label="Check whether the stream completed"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Check completion</text></g>
+</svg></div>
+<div class="decision-links"><a href="#native" aria-label="See steps: read native JSON lines">See steps</a><a href="#compatible" aria-label="See steps: read compatible SSE events">See steps</a><a href="#complete" aria-label="See steps: check whether the stream completed">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div></section>
+<section id="native"><h2>Stream native /api/chat with curl</h2>
+<p>Download <a href="/evidence/ollama-streaming/request-native.json" download>request-native.json</a> and set <code>model</code> to an installed tag. Send the file to your local server. The example uses a text-only prompt, one response and no tools.</p>
+<pre><code>curl --noproxy '*' -fsSN \
+  http://127.0.0.1:11434/api/chat \
+  -H 'Content-Type: application/json' \
+  --data-binary @request-native.json &gt; native.ndjson</code></pre>
+<p>Ollama sends <code>application/x-ndjson</code>. Parse each complete line as JSON and append <code>message.content</code> exactly as received. A network chunk may contain part of a line or several lines. The <code>done</code> frame can carry an empty text fragment and still contain <code>done_reason</code> and counts. For <code>/api/generate</code>, use <code>response</code> for the text instead.</p>
+</section>
+<section id="compatible"><h2>Read SSE from /v1/chat/completions</h2>
+<p>Download <a href="/evidence/ollama-streaming/request-compatible.json" download>request-compatible.json</a> and set the same local tag. This route returns <code>text/event-stream</code>. The request also asks for usage with <code>stream_options.include_usage</code>.</p>
+<pre><code>curl --noproxy '*' -fsSN \
+  http://127.0.0.1:11434/v1/chat/completions \
+  -H 'Content-Type: application/json' \
+  --data-binary @request-compatible.json &gt; compatible.sse</code></pre>
+<p>Process complete SSE events separated by blank lines. For a JSON payload, append <code>choices[0].delta.content</code> when it exists. The finish reason is on the choice. A usage event can arrive with an empty <code>choices</code> array after the finish reason. Continue until the <code>data: [DONE]</code> event, which is a marker outside JSON. Use the <a href="/en/guides/ollama-openai-compatible-api/">local OpenAI SDK guide</a> if an SDK is handling SSE for you.</p>
+</section>
+<section id="complete"><h2>Know when the text is ready to use</h2>
+<ol>
+<li>For native chat, look for <code>done: true</code> and read <code>done_reason</code>. For compatible chat, require both the choice’s finish reason and the <code>[DONE]</code> event in the tested Ollama stream.</li>
+<li>Check whether the finish reason is suitable for your application. Both test streams reached their terminal markers with reason <code>length</code> at a one-token limit. Each contained only <code>LOCAL</code> from the intended reply <code>LOCAL_OK</code>.</li>
+<li>If the connection closes before the terminal marker, treat the text as incomplete. If the stream contains an error record, handle it before using any text. In a streaming UI, add incoming text as a preview and mark it complete only after the final checks.</li>
+</ol>
+<p><code>curl -N</code> disables curl’s own output buffering. To watch the raw events as they arrive, omit the file redirection. If events still arrive together, check your client’s read method and try the same request directly on loopback to isolate buffering outside the application.</p>
+<p>For a saved response, download <a href="/evidence/ollama-streaming/read-chat-stream.py" download>read-chat-stream.py</a> and run it with Python 3.9 or later. This example prints buffered text only after a normal <code>stop</code>. It handles one text chat choice. Tool calls and reasoning events require separate handling.</p>
+<pre><code>python3 read-chat-stream.py native native.ndjson
+python3 read-chat-stream.py compatible compatible.sse</code></pre>
+<p>When you only need one short structured result, <a href="/en/guides/ollama-structured-output/">use a non-streaming JSON Schema request and validate the result</a>.</p>
+</section>
+<section id="tested"><h2>What the two local endpoints returned</h2>
+<div class="video-table"><table><caption>Ollama 0.40.18 with the same small Qwen model</caption><thead><tr><th scope="col">Capture</th><th scope="col">Text</th><th scope="col">Finish</th></tr></thead><tbody>
+<tr><td><a href="/evidence/ollama-streaming/native.ndjson" download>Native</a></td><td><code>LOCAL_OK</code></td><td><code>stop</code></td></tr>
+<tr><td><a href="/evidence/ollama-streaming/compatible.sse" download>Compatible</a></td><td><code>LOCAL_OK</code></td><td><code>stop</code></td></tr>
+<tr><td><a href="/evidence/ollama-streaming/native-length.ndjson" download>Native at one token</a></td><td><code>LOCAL</code></td><td><code>length</code></td></tr>
+<tr><td><a href="/evidence/ollama-streaming/compatible-length.sse" download>Compatible at one token</a></td><td><code>LOCAL</code></td><td><code>length</code></td></tr>
+</tbody></table></div>
+<p>We also removed the final NDJSON record or SSE marker from local copies. The checker rejected both cut-off streams. <a href="/evidence/ollama-streaming/observations.json" download>Download the request and check results</a>. See <a href="https://docs.ollama.com/api/streaming">Ollama’s streaming reference</a> and the <a href="https://html.spec.whatwg.org/multipage/server-sent-events.html#parsing-an-event-stream">SSE parsing standard</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
