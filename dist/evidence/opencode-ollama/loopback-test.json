@@ -1,0 +1,182 @@
+{
+  "date": "2026-11-28",
+  "opencode": "2.4.1",
+  "ollama": "0.40.18",
+  "model": "ollama/qwen-local-first:latest",
+  "scope": "Separate scratch profiles and loopback-only process policies on macOS arm64; existing official Qwen GGUF was already imported. No repository edits or provider access beyond loopback.",
+  "discovery": [
+    {
+      "case": "wrong-port",
+      "config": {
+        "providers": {
+          "ollama": {
+            "settings": {
+              "baseURL": "http://127.0.0.1:58768/v1"
+            }
+          }
+        },
+        "permissions": [
+          {
+            "action": "*",
+            "resource": "*",
+            "effect": "deny"
+          }
+        ]
+      },
+      "command_exit_code": 0,
+      "expected_model_listed": false
+    },
+    {
+      "case": "working-port",
+      "config": {
+        "providers": {
+          "ollama": {
+            "settings": {
+              "baseURL": "http://127.0.0.1:58767/v1"
+            }
+          }
+        },
+        "permissions": [
+          {
+            "action": "*",
+            "resource": "*",
+            "effect": "deny"
+          }
+        ]
+      },
+      "command_exit_code": 0,
+      "expected_model_listed": true
+    }
+  ],
+  "uncapped_request": {
+    "timed_out_after_seconds": 55,
+    "ollama_requests": [
+      {
+        "status": 200,
+        "method": "GET",
+        "path": "/api/version"
+      },
+      {
+        "status": 200,
+        "method": "GET",
+        "path": "/api/tags"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/show"
+      },
+      {
+        "status": 200,
+        "method": "GET",
+        "path": "/api/tags"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/show"
+      },
+      {
+        "status": 200,
+        "method": "GET",
+        "path": "/api/ps"
+      },
+      {
+        "status": 200,
+        "method": "GET",
+        "path": "/api/tags"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/show"
+      },
+      {
+        "status": 200,
+        "method": "GET",
+        "path": "/api/tags"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/v1/chat/completions"
+      },
+      {
+        "status": 500,
+        "method": "POST",
+        "path": "/v1/chat/completions"
+      }
+    ]
+  },
+  "bounded_request": {
+    "config": {
+      "providers": {
+        "ollama": {
+          "settings": {
+            "baseURL": "http://127.0.0.1:58767/v1"
+          },
+          "body": {
+            "max_tokens": 32,
+            "temperature": 0
+          }
+        }
+      },
+      "permissions": [
+        {
+          "action": "*",
+          "resource": "*",
+          "effect": "deny"
+        }
+      ]
+    },
+    "exit_code": 0,
+    "prompt": "Reply with exactly LOCAL_OK and nothing else.",
+    "reply": "LOCAL_OK",
+    "stop_reason": "stop",
+    "before_running_models": 0,
+    "after_running_models": [
+      {
+        "name": "qwen-local-first:latest",
+        "context_length": 8192,
+        "runner": "llamacpp"
+      }
+    ],
+    "ollama_requests": [
+      {
+        "status": 200,
+        "method": "GET",
+        "path": "/api/version"
+      },
+      {
+        "status": 200,
+        "method": "GET",
+        "path": "/api/ps"
+      },
+      {
+        "status": 200,
+        "method": "GET",
+        "path": "/api/tags"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/api/show"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/v1/chat/completions"
+      },
+      {
+        "status": 200,
+        "method": "POST",
+        "path": "/v1/chat/completions"
+      },
+      {
+        "status": 200,
+        "method": "GET",
+        "path": "/api/ps"
+      }
+    ]
+  }
+}

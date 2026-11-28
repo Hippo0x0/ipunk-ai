@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OpenCode With Ollama: Verify Your Local Model | iPunk AI Radar</title>
+<meta name="description" content="Connect OpenCode 2 to Ollama, find your model ID, fix discovery on a custom port and verify a request reached the local model.">
+<link rel="canonical" href="https://ai.ipunk.cn/en/guides/opencode-ollama/">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/guides.css">
+<meta property="og:title" content="OpenCode With Ollama: Verify Your Local Model">
+<meta property="og:description" content="Check the Ollama address, discover your model in OpenCode 2 and verify where a request ran.">
+<meta property="og:url" content="https://ai.ipunk.cn/en/guides/opencode-ollama/">
+<meta property="og:type" content="article">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"OpenCode With Ollama: Verify Your Local Model","dateModified":"2026-11-28","inLanguage":"en","mainEntityOfPage":"https://ai.ipunk.cn/en/guides/opencode-ollama/"}</script>
+<script type="module" src="/analytics.mjs"></script>
+<script defer src="/guide-flow.js"></script>
+</head>
+<body class="guide-page">
+<header class="topbar"><div class="wrap nav"><a class="brand" href="/en/"><span>iP</span>AI Radar</a><nav class="navlinks" aria-label="Main navigation"><a href="#discover">Find your model</a></nav></div></header>
+<main class="wrap guide-main">
+<header class="guide-header">
+<h1>OpenCode With Ollama: Verify Your Local Model</h1>
+<p class="guide-answer">Start Ollama with a downloaded text model, then open <code>/models</code> in OpenCode 2. It discovers completion models at <code>127.0.0.1:11434</code> by default. If Ollama listens on another port, set <code>providers.ollama.settings.baseURL</code> to its address ending in <code>/v1</code>, then copy the exact <code>ollama/</code> model ID from the list.</p>
+</header>
+<article class="article guide-article">
+<nav class="guide-toc" aria-label="On this page"><ol><li><a href="#discover">Check model discovery</a></li><li><a href="#diagnose">Find the failure</a></li><li><a href="#port">Configure a custom port</a></li><li><a href="#request">Verify a local request</a></li><li><a href="#evidence">See the test results</a></li></ol></nav>
+<section id="discover">
+<h2>Check model discovery in OpenCode 2</h2>
+<ol>
+<li>Run <code>opencode --version</code>. This guide uses V2’s <code>providers</code> configuration. Check the <a href="https://opencode.ai/docs/migrate-v1/">migration guide</a> before using V2 settings in an older installation.</li>
+<li>Start Ollama and check that your model exists. If you need a small test model, follow the <a href="/en/guides/run-llm-locally/">first local Ollama run</a>.</li>
+<li>Open <code>/models</code> in the OpenCode client, or use <code>opencode models --standalone</code> from a disposable project. Look for the exact <code>ollama/</code> entry, including the model tag.</li>
+</ol>
+<p><code>--standalone</code> starts a private OpenCode server for that command. If you normally use an existing server or Desktop, verify its model list separately. The server process needs to reach Ollama from wherever it is running.</p>
+</section>
+<section id="diagnose" class="guide-decision"><h2>Where does the connection stop?</h2>
+<div class="decision" data-flow>
+<div class="flow-viewport" tabindex="0" aria-label="OpenCode and Ollama decision tree">
+<svg class="flow-svg" viewBox="0 0 660 300" role="group" aria-label="Where does it stop?">
+<defs><marker id="opencode-ollama-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z"/></marker></defs>
+<path data-edge="port" d="M330 103 C330 146 110 142 110 218" marker-end="url(#opencode-ollama-arrow)"/>
+<path data-edge="missing" d="M330 103 L330 218" marker-end="url(#opencode-ollama-arrow)"/>
+<path data-edge="request" d="M330 103 C330 146 550 142 550 218" marker-end="url(#opencode-ollama-arrow)"/>
+<g data-node="root" role="button" tabindex="0" aria-pressed="false" aria-label="Where does it stop?"><path class="node-shape" d="M330 4L482 54L330 104L178 54Z"/><text x="330" y="61" text-anchor="middle">Where does it stop?</text></g>
+<g text-anchor="middle">
+<rect x="6" y="161" width="208" height="38" rx="6" fill="white"/><text x="110" y="187">Port differs</text>
+<rect x="226" y="161" width="208" height="38" rx="6" fill="white"/><text x="330" y="187">Model missing</text>
+<rect x="446" y="161" width="208" height="38" rx="6" fill="white"/><text x="550" y="187">Listed / unsure</text>
+</g>
+<g data-node="port" role="button" tabindex="0" aria-pressed="false" aria-label="Check the port"><rect class="node-shape" x="6" y="224" width="208" height="64" rx="12"/><text x="110" y="263" text-anchor="middle">Check the port</text></g>
+<g data-node="missing" role="button" tabindex="0" aria-pressed="false" aria-label="Check discovery"><rect class="node-shape" x="226" y="224" width="208" height="64" rx="12"/><text x="330" y="263" text-anchor="middle">Check discovery</text></g>
+<g data-node="request" role="button" tabindex="0" aria-pressed="false" aria-label="Verify the request"><rect class="node-shape" x="446" y="224" width="208" height="64" rx="12"/><text x="550" y="263" text-anchor="middle">Verify the request</text></g>
+</svg></div>
+<div class="decision-links"><a href="#port" aria-label="See steps: custom port">See steps</a><a href="#missing" aria-label="See steps: model discovery">See steps</a><a href="#request" aria-label="See steps: local request">See steps</a></div>
+<div class="flow-controls"><button type="button" data-zoom="out" aria-label="Zoom out" disabled>−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button></div>
+</div>
+</section>
+<section id="port">
+<h2>Ollama answers on a different port</h2>
+<p>Verify the actual Ollama port with its native API. This example assumes port 11440 and an already running local server:</p>
+<pre><code>curl --noproxy '*' -fsS \
+  http://127.0.0.1:11440/api/tags</code></pre>
+<p>In a disposable test project, save this configuration as <code>opencode.json</code>. If you are applying it to a real project, keep a copy of your configuration and merge the provider entry.</p>
+<pre><code>{
+  "providers": {
+    "ollama": {
+      "settings": {
+        "baseURL": "http://127.0.0.1:11440/v1"
+      }
+    }
+  }
+}</code></pre>
+<p>OpenCode derives Ollama’s native discovery paths from the base URL. Use <code>/v1</code> in the OpenCode configuration and <code>/api/tags</code> from the host root for the direct check. For this local test, keep Ollama bound to loopback.</p>
+</section>
+<section id="missing">
+<h2>Ollama answers but OpenCode shows no model</h2>
+<p>Check that <code>/api/tags</code> lists the full name you expect. If the model is listed there, query Ollama’s <code>/api/show</code> with that exact name and look for <code>completion</code> in <code>capabilities</code>. OpenCode’s built-in discovery omits embedding-only models. Select a downloaded model that generates text for the check below.</p>
+<pre><code>curl --noproxy '*' -fsS \
+  http://127.0.0.1:11440/api/show \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"qwen-local-first:latest"}'</code></pre>
+<p>If the native check works and <code>opencode models --standalone</code> differs from the client picker, confirm that both are using the same workspace and server configuration. A previously successful list can also survive a temporary outage, so verify the running server before relying on the picker.</p>
+</section>
+<section id="request">
+<h2>Verify a request reached Ollama</h2>
+<p>In a scratch project with no private files, send a short prompt using the exact ID you saw. Replace our imported alias with your own. Before running it, merge this test-only provider body and permission rule into the scratch project’s configuration. Keep the existing <code>settings.baseURL</code> if you use a custom port.</p>
+<pre><code>{
+  "providers": {
+    "ollama": { "body": { "max_tokens": 32, "temperature": 0 } }
+  },
+  "permissions": [
+    { "action": "*", "resource": "*", "effect": "deny" }
+  ]
+}</code></pre>
+<p>The output cap is for this short probe. Keep this example in the scratch project so it does not cap later coding tasks.</p>
+<pre><code>opencode run --standalone --agent plan \
+  --model ollama/qwen-local-first:latest \
+  "Reply with exactly LOCAL_OK and nothing else."</code></pre>
+<p>Check for a reply, then immediately check <code>ollama ps</code> for the same tag. For a custom port, point the Ollama CLI at it first, or query <code>/api/ps</code> on that port. Prefer an otherwise idle test server so you can identify which request loaded the model. A connection test says little about how well it can edit a repository.</p>
+<p>If the model is visible but the request fails, read the first error and verify the port again. For memory or context errors, check the actual running setting using the <a href="/en/guides/ollama-context-length/">Ollama context guide</a>. Ollama recommends a larger context for OpenCode coding workloads. Use the local test above to establish connectivity before choosing a coding model.</p>
+</section>
+<section id="evidence">
+<h2>What the controlled port test showed</h2>
+<p>We tested OpenCode 2.4.1 and Ollama 0.40.18 on Apple Silicon with the same downloaded Qwen GGUF. With a fresh OpenCode profile pointed at an unused port, <code>opencode models --standalone</code> exited with code 0 and did not list our model. A fresh profile pointed at the working port listed <code>ollama/qwen-local-first:latest</code>. Check the model ID in the output even when the listing command exits successfully.</p>
+<p>The first, uncapped request reached Ollama but timed out after 55 seconds. After setting the 32-token cap and temperature 0, a fresh run returned <code>LOCAL_OK</code> and stopped normally. Ollama reported no loaded model before the bounded request and the test model at 8,192 context tokens afterward. Both processes were restricted to loopback during the test. This result verifies discovery and a small request with that setup. <a href="/evidence/opencode-ollama/loopback-test.json" download>Download the configurations and filtered results</a>.</p>
+<p>Sources checked November 28, 2026. <a href="https://opencode.ai/docs/providers/#ollama">OpenCode’s Ollama provider instructions</a> document discovery and the custom base URL. The <a href="https://docs.ollama.com/integrations/opencode">Ollama integration guide</a> covers its launcher and coding context recommendations. For broader setup and permission checks, see the <a href="/en/projects/opencode/">OpenCode project guide</a>.</p>
+</section>
+</article></main>
+<footer class="footer"><div class="wrap footer-inner"><a href="/en/">iPunk AI Radar</a><time datetime="2026-11-28">Nov 28, 2026</time></div><p class="wrap" data-analytics-privacy><a href="/en/privacy/">Privacy &amp; analytics</a></p></footer>
+</body></html>
